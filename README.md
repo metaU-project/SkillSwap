@@ -1,15 +1,15 @@
-# Dave
+# SkillSwap
 
 ## Overview
 
-Dave is a custom solution designed to address the college counseling struggles faced by African students. In a region where access to college counseling services is often limited, Dave offers an easy-to-use, scalable, and entirely free platform. It empowers low-income students to access counseling and prepare effectively for college applications. At its core, Dave is a system crafted to guide students, regardless of their starting point, from novices in college research to experts in networking, essay writing, personal branding, and other skills essential for the college application journey. With Dave, students can receive world-class mentorship and connect with fellow African students who are either already enrolled at prestigious institutions or in the process of applying to colleges.
+SkillSwap is a community-driven platform designed to connect people who want to share or learn skills through informal sessions. The app facilitates skill exchange by enabling users to post skill offers or requests, search for relevant opportunities by category or location, and connect with others interested in peer-to-peer learning. This platform empowers users to grow their abilities and build local or online communities based on shared knowledge. SkillSwap is scalable, easy to use, and fosters continuous learning and collaboration especially at the workplace.
 
 ## Project Plan
 
-For detailed information about the project, including user roles, personas, and stories, please refer to the [Project Plan Document](https://docs.google.com/document/d/1cvXeQ4v5acgUZ2zXqIfI3YfzyiDLFwAbxLeeQFuD_SQ/edit?usp=sharing).
+For detailed information about the project, including user roles, personas, and stories, please refer to the [Project Plan Document](https://docs.google.com/document/d/1q5PDm8L_pALFiUCXYNso6z2uid2x5GtOIc7O4y06Ptc/edit?usp=sharing).
 
 ## Getting Started
 
 ## Contact
 
-For questions or feedback, please contact [Wellington Mappise](wpm44@cornell.edu).
+For questions or feedback, please contact [Wellington Mapise](wpm44@cornell.edu).
