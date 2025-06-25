@@ -7,15 +7,13 @@ import Onboarding from './pages/Onboarding';
 
 function App() {
   return (
-
-  <Router>
     <Routes>
-      <Route path='/' element={<LogInPage/>} />
+      <Route path='/' element={<SignUpPage/>} />
       <Route path='/signup' element={<SignUpPage/>} />
       <Route path='/signin' element={<LogInPage />} />
       <Route path='/onboarding' element={<Onboarding/>} />
     </Routes>
-  </Router>
+
   )
 }
 

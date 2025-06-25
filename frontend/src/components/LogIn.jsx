@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {loginUser} from "../utils/utils";
+import { checkAuth, loginUser } from "../utils/utils";
 
 const LogIn = () => {
     const navigate = useNavigate();
@@ -10,7 +10,15 @@ const LogIn = () => {
     const handleLogIn = async (e) => {
         e.preventDefault();
         const response = await loginUser(email, password);
-        navigate("/onboarding");
+        if (response?.success) {
+            const user = await checkAuth();
+            if (user) {
+                navigate("/onboarding");
+            }
+            else {
+                alert("Invalid email or password");
+            }
+        }
     }
 
     return (
@@ -21,13 +29,13 @@ const LogIn = () => {
                 <label>
                     Email address
                     <br />
-                    <input type="text"  value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
                 </label>
                 <br />
                 <label>
                     Password
                     <br />
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
                 <br />
                 <button className="login-btn" type="submit">Log in</button>

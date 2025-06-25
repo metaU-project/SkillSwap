@@ -28,6 +28,7 @@ router.post("/register", async (req, res) => {
       },
     });
 
+    req.session.userId = newUser.id;
     res.status(201).json({ message: "Signup successful" });
   } catch (error) {
     console.error(error);
@@ -42,7 +43,7 @@ const loginLimiter = rateLimit({
 });
 
 
-//route for log in 
+//route for log in
 router.post("/login", loginLimiter, async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -61,7 +62,8 @@ router.post("/login", loginLimiter, async (req, res) => {
 
     req.session.userId = user.id;
     req.session.email = user.email;
-    res.json({ id: user.id, email: user.email })
+    
+    res.json({ success: true, id: user.id, email: user.email })
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Something went wrong during login" });
@@ -81,7 +83,8 @@ router.get('/me', async (req, res) => {
             select: { email: true }
         })
 
-        res.json({ id: req.session.userId, email: user.email})
+        res.json({ id: req.session.userId, email: user.email});
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Error fetching user session data" })

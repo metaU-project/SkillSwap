@@ -32,6 +32,7 @@ export async function loginUser(email, password) {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({
                 email,
                 password
@@ -42,6 +43,8 @@ export async function loginUser(email, password) {
             throw new Error(`Response status: ${response.status}`);
         }
 
+        const json = await response.json();
+        return json;
     } catch (error) {
         console.error(error.message);
     }
@@ -76,12 +79,13 @@ export async function checkAuth() {
             credentials: 'include',
         });
         if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
+            return null;
 
         }
-        return response.json();
+        return await response.json();
     }
         catch (error) {
             console.error(error.message);
+            return null;
         }
 }

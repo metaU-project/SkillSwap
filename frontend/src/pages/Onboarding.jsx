@@ -1,9 +1,10 @@
+import OnboardingForm from "../components/OnboardingForm";
 
 const Onboarding = () => {
     return (
-      <div>
-        <h1>Onboarding Page</h1>
-      </div>
+      <>
+       <OnboardingForm/>
+      </>
     );
   }
 
