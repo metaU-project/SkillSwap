@@ -5,8 +5,8 @@ import "./SignUpPage.css";
 const SignUpPage = () => {
     return (
         <div className="main-content-signup">
-        <SignUp/>
         <ShuffledSkill/>
+        <SignUp/>
         </div>
     );
 };

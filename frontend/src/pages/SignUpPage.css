@@ -1,8 +1,7 @@
 .main-content-signup{
     display: flex;
-    flex-direction: row;
-    gap: 50px;
-    align-items: center;
     justify-content: center;
-
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }

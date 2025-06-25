@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { checkAuth, loginUser } from "../utils/utils";
+import "./LogIn.css";
 
 const LogIn = () => {
     const navigate = useNavigate();
@@ -15,14 +16,17 @@ const LogIn = () => {
             if (user) {
                 navigate("/onboarding");
             }
-            else {
-                alert("Invalid email or password");
-            }
+        }
+        else if (response?.error){
+            alert(response.error);
+        }
+        else {
+            alert("Something went wrong");
         }
     }
 
     return (
-        <div>
+        <div className="login-container">
             <h2>Welcome back!</h2>
             <h4>Enter your credentials to access your account</h4>
             <form onSubmit={handleLogIn}>

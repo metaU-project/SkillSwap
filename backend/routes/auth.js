@@ -29,12 +29,15 @@ router.post("/register", async (req, res) => {
     });
 
     req.session.userId = newUser.id;
-    res.status(201).json({ message: "Signup successful" });
+    res.status(201).json({ success: true, id: newUser.id, email: newUser.email });
+
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Something went wrong during signup" });
   }
 });
+
+//rate limiting for login
 
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -56,13 +59,13 @@ router.post("/login", loginLimiter, async (req, res) => {
         .json({ error: "email and password are required." });
     }
 
-    if (!email || !(await bcrypt.compare(password, user.password))) {
+    if (!user || !(await bcrypt.compare(password, user.password))) {
       return res.status(400).json({ error: "Invalid email or password." });
     }
 
     req.session.userId = user.id;
     req.session.email = user.email;
-    
+
     res.json({ success: true, id: user.id, email: user.email })
   } catch (error) {
     console.error(error);
@@ -99,7 +102,7 @@ router.post('/logout', (req, res) => {
       return res.status(500).json({ error: 'Failed to log out' });
     }
     res.clearCookie('connect.sid');
-    res.json({ message: 'Logout successful' });
+    res.json({ success: true, message: 'Logout successful' });
   });
 });
 

@@ -1,3 +1,15 @@
 .skill-container img {
-    border-radius: 20px;
+    border-radius: 8px;
+    width: 410px;
+    height: auto;
+    object-fit: cover;
+    height: 410px;
+}
+
+.skill-container {
+    flex: 1;
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 8px;
+    margin: 10px;
 }

@@ -14,14 +14,12 @@ export async function registerUser(name, email, password) {
                 password
             })
         });
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
         const json = await response.json();
-
+        return json;
     }
     catch (error) {
         console.error(error.message);
+        return { error: 'An error occured please try again later'}
     }
 }
 
@@ -38,15 +36,11 @@ export async function loginUser(email, password) {
                 password
             })
         });
-
-        if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
-        }
-
         const json = await response.json();
         return json;
     } catch (error) {
         console.error(error.message);
+        return { error: 'An error occured please try again later'}
     }
 }
 
@@ -60,15 +54,20 @@ export async function logOutUser() {
             },
             credentials: 'include',
         });
-
+        const json = await response.json();
         if (!response.ok) {
-            throw new Error(`Response status: ${response.status}`);
+            return { error: 'An error occured please try again later'}
         }
-        return response.json();
+        return json;
+
+
     }
+
+
 
     catch (error) {
         console.error(error.message);
+        return { error: 'An error occured please try again later'}
     }
 }
 
