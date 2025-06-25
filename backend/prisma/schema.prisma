@@ -15,13 +15,13 @@ model User {
  email     String   @unique
  password  String
  profileImage String?
- location  String
+ location  String?
  bio       String?
- interests String[]
+ interests String[] @db.Text @default([])
  posts     Post[]
- reviews Review[] @relation("Reviewer")
+ reviews Review[] @relation("Reviewer") 
 receivedReviews Review[] @relation("Recipient")
-sessions Session[] @relation("ParticipantSessions")
+sessions Session[] @relation("ParticipantSessions") 
 createdAt DateTime @default(now())
 }
 
