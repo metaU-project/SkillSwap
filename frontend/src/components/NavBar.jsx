@@ -1,6 +1,6 @@
 import './NavBar.css';
 import { useNavigate } from 'react-router-dom';
-import { logOutUser } from '../utils/utils';
+import { logOutUser } from '../utils/authFetch';
 import ErrorModal from './ErrorModal';
 import { useState } from 'react';
 

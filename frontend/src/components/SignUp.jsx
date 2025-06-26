@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { registerUser } from '../utils/utils';
+import { registerUser } from '../utils/authFetch';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
 import ErrorModal from './ErrorModal';
@@ -15,7 +15,6 @@ const SignUp = () => {
     const handleSignUp = async (e) => {
         e.preventDefault();
         const response = await registerUser(first_name,last_name, email, password);
-        console.log(response);
         if (response?.success){
             navigate('/signin');
         }

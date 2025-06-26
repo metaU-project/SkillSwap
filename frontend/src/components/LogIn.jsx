@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { checkAuth, loginUser } from "../utils/utils";
+import { checkAuth, loginUser } from "../utils/authFetch";
 import "./LogIn.css";
 import ErrorModal from "./ErrorModal";
 
