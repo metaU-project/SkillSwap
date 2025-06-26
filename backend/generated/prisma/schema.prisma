@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              Int       @id @default(autoincrement())
+  first_name      String?
+  last_name       String?
+  email           String    @unique
+  password        String
+  profileImage    String?
+  location        String?
+  bio             String?
+  interests       String[]  @default([]) @db.Text
+  posts           Post[]
+  reviews         Review[]  @relation("Reviewer")
+  receivedReviews Review[]  @relation("Recipient")
+  sessions        Session[] @relation("ParticipantSessions")
+  createdAt       DateTime  @default(now())
+}
+
+model Session {
+  id            Int      @id @default(autoincrement())
+  title         String
+  description   String?
+  date          DateTime
+  location      String
+  postId        Int
+  post          Post     @relation(fields: [postId], references: [id])
+  participantId Int
+  participant   User     @relation("ParticipantSessions", fields: [participantId], references: [id])
+  createdAt     DateTime @default(now())
+}
+
+model Review {
+  id          Int      @id @default(autoincrement())
+  rating      Int
+  comment     String
+  reviewerId  Int
+  recipientId Int
+  reviewer    User     @relation("Reviewer", fields: [reviewerId], references: [id])
+  recipient   User     @relation("Recipient", fields: [recipientId], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+model Post {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  category    String
+  type        PostType
+  location    String
+  image       String?
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+  sessions    Session[]
+  createdAt   DateTime  @default(now())
+}
+
+enum PostType {
+  OFFER
+  REQUEST
+}

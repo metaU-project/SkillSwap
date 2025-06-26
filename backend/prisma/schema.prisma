@@ -11,13 +11,14 @@ datasource db {
 
 model User {
  id        Int      @id @default(autoincrement())
- name      String
+ first_name  String?
+ last_name String?
  email     String   @unique
  password  String
  profileImage String?
- location  String
+ location  String?
  bio       String?
- interests String[]
+ interests String[] @db.Text @default([])
  posts     Post[]
  reviews Review[] @relation("Reviewer")
 receivedReviews Review[] @relation("Recipient")
@@ -70,6 +71,3 @@ enum PostType {
  OFFER
  REQUEST
 }
-
-
-
