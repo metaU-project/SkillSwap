@@ -1,6 +1,6 @@
 const BASE_URL = 'http://localhost:3000/auth';
 
-export async function registerUser(name, email, password) {
+export async function registerUser(first_name, last_name, email, password) {
     try {
         const response = await fetch(`${BASE_URL}/register`, {
             method: 'POST',
@@ -9,12 +9,18 @@ export async function registerUser(name, email, password) {
             },
             credentials: 'include',
             body: JSON.stringify({
-                name,
+                first_name,
+                last_name,
                 email,
                 password
             })
         });
         const json = await response.json();
+
+        if (!response.ok) {
+            return { error: json.error}
+        }
+
         return json;
     }
     catch (error) {
@@ -36,6 +42,10 @@ export async function loginUser(email, password) {
                 password
             })
         });
+        if (!response.ok) {
+            const errorData = await response.json().catch(() => ({}));
+            return { error: errorData.error || 'Login failed' };
+        }
         const json = await response.json();
         return json;
     } catch (error) {

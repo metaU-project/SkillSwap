@@ -11,7 +11,8 @@ datasource db {
 
 model User {
  id        Int      @id @default(autoincrement())
- name      String
+ first_name  String?
+ last_name String?
  email     String   @unique
  password  String
  profileImage String?
@@ -19,9 +20,9 @@ model User {
  bio       String?
  interests String[] @db.Text @default([])
  posts     Post[]
- reviews Review[] @relation("Reviewer") 
+ reviews Review[] @relation("Reviewer")
 receivedReviews Review[] @relation("Recipient")
-sessions Session[] @relation("ParticipantSessions") 
+sessions Session[] @relation("ParticipantSessions")
 createdAt DateTime @default(now())
 }
 
@@ -70,6 +71,3 @@ enum PostType {
  OFFER
  REQUEST
 }
-
-
-

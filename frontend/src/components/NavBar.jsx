@@ -1,8 +1,11 @@
 import './NavBar.css';
 import { useNavigate } from 'react-router-dom';
 import { logOutUser } from '../utils/utils';
+import ErrorModal from './ErrorModal';
+import { useState } from 'react';
 
 const NavBar = () => {
+    const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
     const handleLogout = async () => {
         const response = await logOutUser();
@@ -10,17 +13,17 @@ const NavBar = () => {
             navigate('/signin');
         }
         else if (response?.error) {
-            alert(response?.error)
+            setErrorMessage(response?.error);
         }
         else {
-            alert("Something went wrong")
+            setErrorMessage("Something went wrong")
         }
-
     }
     return (
-        <>
+        <div>
             <button className='signout-btn' onClick={handleLogout}> SignOut</button>
-        </>
+            {errorMessage && <ErrorModal errorMessage={errorMessage} setErrorMessage={setErrorMessage} />}
+        </div>
     );
 };
 

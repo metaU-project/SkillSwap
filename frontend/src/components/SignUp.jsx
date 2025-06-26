@@ -2,25 +2,28 @@ import React, { useState } from 'react';
 import { registerUser } from '../utils/utils';
 import { useNavigate } from 'react-router-dom';
 import './SignUp.css';
+import ErrorModal from './ErrorModal';
 
 const SignUp = () => {
-    const [name, setName] = useState('');
+    const [first_name, setFirstName] = useState('');
+    const [last_name, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleSignUp = async (e) => {
         e.preventDefault();
-        const response = await registerUser(name, email, password);
+        const response = await registerUser(first_name,last_name, email, password);
+        console.log(response);
         if (response?.success){
-            alert('Registration successful. Please login to continue.');
             navigate('/signin');
         }
         else if (response?.error){
-            alert(response.error);
+            setErrorMessage(response.error);
         }
         else{
-            alert('Registration failed. Please try again.');
+            setErrorMessage('Registration failed. Please try again.');
         }
 
     }
@@ -29,15 +32,22 @@ const SignUp = () => {
             <h2>Get Started Now</h2>
             <form onSubmit={handleSignUp}>
                 <label>
-                    Name
+                    First Name
                     <br />
-                    <input type="text" placeholder="Type your fullname" value={name} onChange={(e) => setName(e.target.value)} required/>
+                    <input type="text" placeholder="First name" value={first_name} onChange={(e) => setFirstName(e.target.value)} required/>
+                </label>
+                <br />
+
+                <label>
+                    Last Name
+                    <br />
+                    <input type="text" placeholder="Last name" value={last_name} onChange={(e) => setLastName(e.target.value)} required/>
                 </label>
                 <br />
                 <label>
                     Email address
                     <br />
-                    <input type="text" value={email} placeholder="Type your email" onChange={(e) => setEmail(e.target.value)} required/>
+                    <input type="email" value={email} placeholder="Type your email" onChange={(e) => setEmail(e.target.value)} required/>
                 </label>
                 <br />
                 <label>
@@ -49,6 +59,11 @@ const SignUp = () => {
                 <button className="login-btn" type="submit">Sign Up</button>
             </form>
             <p>Have an account? <a href="/signin">Sign In</a></p>
+
+            {errorMessage && (
+                <ErrorModal errorMessage={errorMessage} setErrorMessage={setErrorMessage}/>
+               )}
+
         </div>
     );
 };

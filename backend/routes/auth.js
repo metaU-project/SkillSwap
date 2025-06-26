@@ -4,25 +4,39 @@ const bcrypt = require("bcrypt");
 const prisma = new PrismaClient();
 const router = express.Router();
 const rateLimit = require("express-rate-limit");
+const ERROR_CODES = require('../utils/errors');
+
+
+//check valid email
+const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 //route for signup
 router.post("/register", async (req, res) => {
-  const { name, password, email } = req.body;
+  const { first_name, last_name, password, email } = req.body;
 
-  if (!name || !email || !password) {
-    return res.status(400).json({ error: "Required fields are missing" });
+  if (!first_name || !last_name || !email || !password) {
+    return res.status(400).json({ error: ERROR_CODES.MISSING_FIELDS });
   }
+
+  if (!validateEmail(email)) {
+    return res.status(400).json({ error: ERROR_CODES.INVALID_EMAIL});
+  }
+  if (password.length < 6) {
+    return res.status(400).json({ error: ERROR_CODES.INVALID_PASSWORD});
+  }
+
   try {
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
-      return res.status(400).json({ error: "Email already exists." });
+      return res.status(400).json({ error: ERROR_CODES.USER_EXISTS});
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await prisma.user.create({
       data: {
-        name,
+        first_name,
+        last_name,
         password: hashedPassword,
         email,
       },
@@ -33,7 +47,7 @@ router.post("/register", async (req, res) => {
 
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Something went wrong during signup" });
+    res.status(500).json({ error: ERROR_CODES.REGISTRATION_FAILED});
   }
 });
 
@@ -42,7 +56,7 @@ router.post("/register", async (req, res) => {
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
-  message: { error: "Too many failed login attempts. Try again later." },
+  message: { error: ERROR_CODES.TOO_MANY_REQUESTS},
 });
 
 
@@ -56,11 +70,11 @@ router.post("/login", loginLimiter, async (req, res) => {
     if (!email || !password) {
       return res
         .status(400)
-        .json({ error: "email and password are required." });
+        .json({ error: ERROR_CODES.MISSING_FIELDS });
     }
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(400).json({ error: "Invalid email or password." });
+      return res.status(400).json({ error: ERROR_CODES.INVALID_CREDENTIALS });
     }
 
     req.session.userId = user.id;
@@ -69,7 +83,7 @@ router.post("/login", loginLimiter, async (req, res) => {
     res.json({ success: true, id: user.id, email: user.email })
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Something went wrong during login" });
+    res.status(500).json({ error: ERROR_CODES.LOGIN_FAILED });
   }
 });
 
@@ -90,7 +104,7 @@ router.get('/me', async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Error fetching user session data" })
+        res.status(500).json({ error: ERROR_CODES.LOGIN_FAILED })
     }
 })
 
@@ -99,7 +113,7 @@ router.get('/me', async (req, res) => {
 router.post('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      return res.status(500).json({ error: 'Failed to log out' });
+      return res.status(500).json({ error: ERROR_CODES.LOGOUT_FAILED });
     }
     res.clearCookie('connect.sid');
     res.json({ success: true, message: 'Logout successful' });

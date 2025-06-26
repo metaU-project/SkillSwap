@@ -2,11 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { checkAuth, loginUser } from "../utils/utils";
 import "./LogIn.css";
+import ErrorModal from "./ErrorModal";
 
 const LogIn = () => {
     const navigate = useNavigate();
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const handleLogIn = async (e) => {
         e.preventDefault();
@@ -17,14 +19,13 @@ const LogIn = () => {
                 navigate("/onboarding");
             }
         }
-        else if (response?.error){
-            alert(response.error);
+        else if (response?.error) {
+            setErrorMessage(response.error);
         }
         else {
-            alert("Something went wrong");
+            setErrorMessage("Something went wrong");
         }
     }
-
     return (
         <div className="login-container">
             <h2>Welcome back!</h2>
@@ -33,18 +34,22 @@ const LogIn = () => {
                 <label>
                     Email address
                     <br />
-                    <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" required />
                 </label>
                 <br />
                 <label>
                     Password
                     <br />
-                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" required />
                 </label>
                 <br />
                 <button className="login-btn" type="submit">Log in</button>
             </form>
             <p>Don't have an account? <a href="/signup">Sign up</a></p>
+
+            {
+                errorMessage && <ErrorModal errorMessage={errorMessage} setErrorMessage={setErrorMessage} />
+            }
         </div>
     );
 };
