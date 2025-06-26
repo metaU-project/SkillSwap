@@ -3,6 +3,7 @@ const cors = require('cors');
 const session = require('express-session');
 require('dotenv').config();
 const authRoutes = require('./routes/auth');
+const onboardingRoutes = require('./routes/onboarding');
 const app = express();
 
 app.use(session({
@@ -18,7 +19,8 @@ app.use(cors({
     credentials: true,
 }));
 app.use(express.json());
-app.use('/auth', authRoutes)
+app.use('/auth', authRoutes);
+app.use('/onboarding', onboardingRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

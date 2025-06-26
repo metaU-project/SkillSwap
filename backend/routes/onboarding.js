@@ -2,39 +2,43 @@ const express = require("express");
 const { PrismaClient } = require("../generated/prisma");
 const prisma = new PrismaClient();
 const router = express.Router();
+const checkAuth = require("../middleware/checkAuth");
+const ERROR_CODES = require("../utils/errors");
 
 //get suggestions for interests
+const suggestedInterests = [
+    "Web Development",
+    "Graphic Design",
+    "Cooking",
+    "Public Speaking",
+    "Photography",
+    "Guitar",
+    "Data Analysis"
+  ];
 router.get('/interests/suggestions', (req, res) => {
-    const suggestions = [
-      "Web Development",
-      "Graphic Design",
-      "Cooking",
-      "Public Speaking",
-      "Photography",
-      "Guitar",
-      "Data Analysis"
-    ];
-    res.json({ suggestions });
+    res.json({ suggestions: suggestedInterests });
   });
 
 
 //add interests for a user
-router.post('/interests', async (req, res) => {
-    const { interests } = req.body;
+router.post('/', checkAuth, async (req, res) => {
+    const userId = req.session.userId;
+    const { interests,location, bio } = req.body;
 
-    if (!req.session.userId) {
-      return res.status(401).json({ error: "UNAUTHORIZED" });
+    if (!Array.isArray(interests)) {
+      return res.status(400).json({ error: ERROR_CODES.INTEREST_ERROR});
     }
-
     try {
-      await prisma.user.update({
-        where: { id: req.session.userId },
-        data: { interests },
+        const updatedUser = await prisma.user.update({
+        where: { id: userId },
+        data: { interests, location, bio},
       });
 
-      res.json({ success: true, message: "Interests updated" });
+      res.json({ success: true, interests: updatedUser.interests, location: updatedUser.location, bio: updatedUser.bio });
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "SERVER_ERROR" });
     }
   });
+
+  module.exports = router;
