@@ -10,6 +10,8 @@ const ERROR_CODES = {
     INVALID_CREDENTIALS: 'Invalid credentials',
     LOGIN_FAILED: 'Log in failed. Please try again.',
     LOGOUT_FAILED: 'Log out failed. Please try again.',
+    NOT_AUTHORIZED : 'Not authorized',
+    INTEREST_ERROR: "Interests must be an array" ,
 }
 
 module.exports = ERROR_CODES;

@@ -1,8 +1,8 @@
-const BASE_URL = 'http://localhost:3000/auth';
+import { API_ROUTES } from "./apiRoutes";
 
 export async function registerUser(first_name, last_name, email, password) {
     try {
-        const response = await fetch(`${BASE_URL}/register`, {
+        const response = await fetch(API_ROUTES.register, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ export async function registerUser(first_name, last_name, email, password) {
 
 export async function loginUser(email, password) {
     try {
-        const response = await fetch(`${BASE_URL}/login`, {
+        const response = await fetch(API_ROUTES.login, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ export async function loginUser(email, password) {
 
 export async function logOutUser() {
     try {
-        const response = await fetch(`${BASE_URL}/logout`, {
+        const response = await fetch(API_ROUTES.logout, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -72,9 +72,6 @@ export async function logOutUser() {
 
 
     }
-
-
-
     catch (error) {
         console.error(error.message);
         return { error: 'An error occured please try again later'}
@@ -84,7 +81,7 @@ export async function logOutUser() {
 
 export async function checkAuth() {
     try {
-        const response = await fetch(`${BASE_URL}/me`, {
+        const response = await fetch(API_ROUTES.me, {
             credentials: 'include',
         });
         if (!response.ok) {
