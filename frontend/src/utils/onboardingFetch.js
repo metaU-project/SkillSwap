@@ -16,7 +16,7 @@ export async function completeOnboarding(interests, location, bio = "") {
       const json = await response.json();
 
       if (!response.ok) {
-        return { error: json.error };
+        return { error: json.error || 'Unauthorized please login'};
       }
 
       return json;
