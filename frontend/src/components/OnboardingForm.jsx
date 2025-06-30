@@ -5,7 +5,6 @@ import ErrorModal from "./ErrorModal";
 import "./OnboardingForm.css";
 import { RiAddBoxFill } from "react-icons/ri";
 
-
 const Onboarding = () => {
     const [location, setLocation] = useState('');
     const [bio, setBio] = useState('');
@@ -40,7 +39,6 @@ const Onboarding = () => {
     const handleCompleteOnboarding = async (e) => {
         e.preventDefault();
         const res = await completeOnboarding(interests, location, bio);
-
         if (res?.success) {
             navigate("/landing");
         }
@@ -49,7 +47,6 @@ const Onboarding = () => {
         }
     };
 
-
     return (
         <div className="onboarding-form">
             <h3>Welcome to SkillSwap</h3>
@@ -57,12 +54,12 @@ const Onboarding = () => {
             <form onSubmit={handleCompleteOnboarding}>
                 <label>
                     Location
-                    <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} required placeholder="Enter your location"/>
+                    <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} required placeholder="Enter your location" />
                 </label>
                 <br />
                 <label>
                     Bio
-                    <textarea value={bio} onChange={(e) => setBio(e.target.value)} required placeholder="Tell us a little bit about yourself"/>
+                    <textarea value={bio} onChange={(e) => setBio(e.target.value)} required placeholder="Tell us a little bit about yourself" />
                 </label>
                 <br />
 
@@ -81,21 +78,21 @@ const Onboarding = () => {
 
                         ))}
                         <div>
-                        <button type="button" className="add-interest-btn" onClick={()  => setAddInterest(!addInterest)}><RiAddBoxFill/></button>
+                            <button type="button" className="add-interest-btn" onClick={() => setAddInterest(!addInterest)}><RiAddBoxFill /></button>
                         </div>
                     </div>
 
-                    { addInterest && (<div className="custom-interest-input">
+                    {addInterest && (<div className="custom-interest-input">
                         <input
                             placeholder="Add custom interest"
                             value={customInterest}
-                            onChange={(e) => {setCustomInterest(e.target.value)}}
+                            onChange={(e) => { setCustomInterest(e.target.value) }}
                             onKeyDown={(e) => {
                                 if (e.key === "Enter") {
-                                  e.preventDefault();
-                                  addCustomInterest();
+                                    e.preventDefault();
+                                    addCustomInterest();
                                 }
-                              }}
+                            }}
                         />
                     </div>)}
                     <h4>Selected Interests</h4>

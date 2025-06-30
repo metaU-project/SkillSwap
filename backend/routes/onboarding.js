@@ -13,7 +13,8 @@ const suggestedInterests = [
     "Public Speaking",
     "Photography",
     "Guitar",
-    "Data Analysis"
+    "Data Analysis",
+    "Blogging",
   ];
 router.get('/interests/suggestions', (req, res) => {
     res.json({ suggestions: suggestedInterests });
