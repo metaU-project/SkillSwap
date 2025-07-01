@@ -1,3 +1,5 @@
+
+
 const BASE_URL = "http://localhost:3000";
 
 export const API_ROUTES = {
@@ -8,5 +10,9 @@ export const API_ROUTES = {
   onboarding: `${BASE_URL}/onboarding`,
   suggestions: `${BASE_URL}/onboarding/interests/suggestions`,
   interests: `${BASE_URL}/onboarding/interests`,
-  posts: `${BASE_URL}/posts`,
+  posts: `${BASE_URL}/post`,
+  reviews: `${BASE_URL}/review`,
+  postReview: `${BASE_URL}/review/post`,
+  likePost: `${BASE_URL}/like/post`
+
 };
