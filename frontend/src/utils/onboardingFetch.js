@@ -1,5 +1,5 @@
 import { API_ROUTES } from "./apiRoutes";
-
+import { ERROR_CODES } from "./ErrorCodes";
 
 //complete onboarding
 export async function completeOnboarding(interests, location, bio = "") {
@@ -16,13 +16,13 @@ export async function completeOnboarding(interests, location, bio = "") {
       const json = await response.json();
 
       if (!response.ok) {
-        return { error: json.error || 'Unauthorized please login'};
+        return { error: json.error || ERROR_CODES.UNAUTHORIZED};
       }
 
       return json;
     } catch (error) {
       console.error(error);
-      return { error: "An error occurred, please try again later" };
+      return { error: ERROR_CODES.TRY_AGAIN };
     }
   }
 
@@ -38,6 +38,6 @@ export async function completeOnboarding(interests, location, bio = "") {
       return json;
     } catch (error) {
       console.error(error);
-      return { error: "Could not load suggested interests" };
+      return { error:ERROR_CODES.ERROR_FETCHING_INTERESTS };
     }
   }

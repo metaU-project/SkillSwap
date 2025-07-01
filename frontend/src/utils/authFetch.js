@@ -1,4 +1,5 @@
 import { API_ROUTES } from "./apiRoutes";
+import { ERROR_CODES } from "./ErrorCodes";
 
 export async function registerUser(first_name, last_name, email, password) {
     try {
@@ -25,7 +26,7 @@ export async function registerUser(first_name, last_name, email, password) {
     }
     catch (error) {
         console.error(error.message);
-        return { error: 'An error occured please try again later'}
+        return { error: ERROR_CODES.TRY_AGAIN}
     }
 }
 
@@ -44,16 +45,15 @@ export async function loginUser(email, password) {
         });
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
-            return { error: errorData.error || 'Login failed' };
+            return { error: errorData.error};
         }
         const json = await response.json();
         return json;
     } catch (error) {
         console.error(error.message);
-        return { error: 'An error occured please try again later'}
+        return { error: ERROR_CODES.TRY_AGAIN}
     }
 }
-
 
 export async function logOutUser() {
     try {
@@ -66,7 +66,7 @@ export async function logOutUser() {
         });
         const json = await response.json();
         if (!response.ok) {
-            return { error: 'An error occured please try again later'}
+            return { error: ERROR_CODES.TRY_AGAIN}
         }
         return json;
 
@@ -74,10 +74,9 @@ export async function logOutUser() {
     }
     catch (error) {
         console.error(error.message);
-        return { error: 'An error occured please try again later'}
+        return { error: ERROR_CODES.TRY_AGAIN}
     }
 }
-
 
 export async function checkAuth() {
     try {
