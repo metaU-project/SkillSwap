@@ -17,6 +17,9 @@ const ERROR_CODES = {
     MISSING_POST: "Post not found",
     MISSING_USER: "User not found",
     CREATE_REVIEW_ERROR: "failed to create review",
+    REQUIRED_FIELDS: "All fields are required",
+    FAILED_TO_CREATE_POST: "Failed to create post",
+    FAILED_TO_UPLOAD_IMAGE: "Failed to upload image",
 }
 
 module.exports = ERROR_CODES;

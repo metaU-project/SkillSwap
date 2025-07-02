@@ -69,3 +69,4 @@ dist-ssr
 *.sln
 *.sw?
 backend/prisma/migrations/*
+uploads
