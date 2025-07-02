@@ -4,7 +4,6 @@ const session = require('express-session');
 require('dotenv').config();
 const authRoutes = require('./routes/auth');
 const onboardingRoutes = require('./routes/onboarding');
-// const postRoutes = require('./routes/post');
 const app = express();
 
 app.use(session({
@@ -22,7 +21,6 @@ app.use(cors({
 app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/onboarding', onboardingRoutes);
-// app.use('/post', postRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
