@@ -6,8 +6,9 @@ import { useState } from 'react';
 import { CgProfile } from "react-icons/cg";
 import { FaSearch } from "react-icons/fa";
 import SearchBar from '../components/search/SearchBar';
+import CreatedPostModal from './Post/Modals/CreatePostModal';
 
-const NavBar = () => {
+const NavBar = ({setPosts}) => {
     const [showSearchBar, setShowSearchBar] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
@@ -37,9 +38,9 @@ const NavBar = () => {
                 onSearch={(value) => console.log('Searching for:', value)}
             />)}
             <FaSearch onClick={() => handleSearch()} />
-            <button className='new-post-btn'>+ New Post</button>
-            <button className='signout-btn' onClick={handleLogout}> SignOut</button>
+            <button className='signout-btn' onClick={handleLogout}> Sign Out</button>
             {errorMessage && <ErrorModal errorMessage={errorMessage} setErrorMessage={setErrorMessage} />}
+            <CreatedPostModal setPosts={setPosts}/>
             <a href='/profile'><CgProfile /></a>
             </div>
 

@@ -28,7 +28,7 @@
   color: #000;
 }
 
-.signout-btn, .new-post-btn {
+.signout-btn {
   margin-left: 1.5rem;
   padding: 0.4rem 1rem;
   border: none;

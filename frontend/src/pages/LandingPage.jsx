@@ -21,9 +21,9 @@ useEffect(() => {
 
   return (
     <div>
-      <NavBar />
+      <NavBar setPosts={setPosts}/>
       <FilterBar filter={filter} setFilter={setFilter}/>
-      <PostList posts={posts} />
+      <PostList posts={posts}/>
       <Footer />
     </div>
   );
