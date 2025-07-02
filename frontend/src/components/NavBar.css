@@ -1,9 +1,52 @@
-.signout-btn {
-    padding: 12px;
-    background-color: #004225;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
-  }
+.nav-bar-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+}
+
+.nav-bar-main h1 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+.nav-bar-main a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+}
+
+.nav-bar-main a:hover {
+  color: #000;
+}
+
+.signout-btn, .new-post-btn {
+  margin-left: 1.5rem;
+  padding: 0.4rem 1rem;
+  border: none;
+  background-color: #031710;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signout-btn:hover {
+  background-color: #e04b4b;
+}
+
+.nav-actions{
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  cursor: pointer;
+
+}

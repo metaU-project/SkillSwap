@@ -1,0 +1,48 @@
+.submit-btn, .cancel-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #031710;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: small;
+    width: auto;
+    flex: 0 0 auto;
+
+}
+
+.action-btns {
+    display: flex;
+    gap : 1rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.modal-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(244, 244, 244, 0.5);
+    backdrop-filter: blur(5px);
+  }
+
+  .modal-content {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    align-items: center;
+    position: relative;
+    border: #ccc 1px solid;
+  }

@@ -4,9 +4,9 @@ import ShuffledSkill from "../components/ShuffledSkill";
 import "./Onboarding.css";
 
 const Onboarding = () => {
+
     return (
       <div>
-      <NavBar/>
       <div className="onboarding-main-section">
       <ShuffledSkill/>
       <OnboardingForm/>
