@@ -95,12 +95,6 @@ const Onboarding = () => {
                             }}
                         />
                     </div>)}
-                    <h4>Selected Interests</h4>
-                    <div className="selected-interests">
-                        {interests.map((i) => (
-                            <span key={i} style={{ marginRight: "8px" }}>{i}</span>
-                        ))}
-                    </div>
                 </label>
                 <br />
                 <button type="submit" className="submit-btn">Finish Onboarding</button>

@@ -146,10 +146,10 @@ exports.Prisma.SessionScalarFieldEnum = {
 
 exports.Prisma.ReviewScalarFieldEnum = {
   id: 'id',
-  rating: 'rating',
   comment: 'comment',
   reviewerId: 'reviewerId',
   recipientId: 'recipientId',
+  postId: 'postId',
   createdAt: 'createdAt'
 };
 
@@ -160,8 +160,18 @@ exports.Prisma.PostScalarFieldEnum = {
   category: 'category',
   type: 'type',
   location: 'location',
-  image: 'image',
+  imageUrl: 'imageUrl',
   userId: 'userId',
+  numReviews: 'numReviews',
+  numLikes: 'numLikes',
+  rating: 'rating',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.LikeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  postId: 'postId',
   createdAt: 'createdAt'
 };
 
@@ -188,7 +198,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
   Review: 'Review',
-  Post: 'Post'
+  Post: 'Post',
+  Like: 'Like'
 };
 
 /**
