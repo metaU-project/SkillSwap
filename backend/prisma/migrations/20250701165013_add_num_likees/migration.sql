@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Post" ADD COLUMN     "numLikes" INTEGER NOT NULL DEFAULT 0;
