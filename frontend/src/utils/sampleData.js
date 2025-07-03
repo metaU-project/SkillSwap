@@ -1,0 +1,43 @@
+export const reviews = ["review1", "review2", "review3", "review4", "review5", "review6", "review7", "review8"]
+
+
+export const interests = ["Dogs", "Cats", "Birds", "Amphibians",
+    "Insects", "Spiders", "Snakes", "Lizards", "Turtles", "Rabbits",
+    "Rodents", "Horses", "Cows", "Sheep", "Goats", "Pigs ", "Chickens",
+    "Ducks", "Geese", "Turkeys", "Penguins", "Eagles", "Owls", "Raccoons",
+    "Squirrels", "Bears", "Coyotes", "Foxes", "Wolves", "Lions", "Tigers",
+    "Leopards"]
+
+
+export const posts = [
+    {
+        id: 1,
+        title: "Amazing Team Collaboration",
+        date: "2024-01-15",
+        image: "https://picsum.photos/200/300?random=1"
+    },
+    {
+        id: 2,
+        title: "Outstanding Project Delivery",
+        date: "2024-01-10",
+        image: "https://picsum.photos/200/300?random=2"
+    },
+    {
+        id: 3,
+        title: "Creative Problem Solving",
+        date: "2024-01-05",
+        image: "https://picsum.photos/200/300?random=3"
+    },
+    {
+        id: 4,
+        title: "Excellent Customer Service",
+        date: "2024-01-01",
+        image: "https://picsum.photos/200/300?random=4"
+    },
+    {
+        id: 5,
+        title: "Innovation and Leadership",
+        date: "2023-12-28",
+        image: "https://picsum.photos/200/300?random=5"
+    }
+];

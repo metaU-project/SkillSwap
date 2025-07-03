@@ -1,0 +1,145 @@
+.profile-pic{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 10px;
+}
+
+.profile-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    gap: 100px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.profile-menu{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 10px;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+
+
+.default-btn{
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    border-radius: 5px;
+    padding: 15px;
+    border: none;
+}
+
+.selected-btn{
+    background-color: #201d1e;
+    color: white;
+    border-radius: 5px;
+    padding: 15px;
+    border: none;
+}
+.main-section{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.profile-bottom-left{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    width: 70%;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.home-btn {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 999;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .home-btn:hover {
+    transform: scale(1.1);
+  }
+
+  .edit-btn{
+    position: absolute;
+    bottom: 40px;
+    right: 10px;
+    z-index: 1;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .edit-btn:hover {
+    transform: scale(1.1);
+
+  }
+.profile-pic-container{
+    display: inline-block;
+    position: relative;
+}
+
+.profile-bottom{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 10px;
+    width: 100%;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+
+}
+
+.profile-bottom-right{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    width: 30%;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+
+}
+
+.profile-bottom-right-bottom{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+    width: 325px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    border: #201d1e solid 1px;
+}
