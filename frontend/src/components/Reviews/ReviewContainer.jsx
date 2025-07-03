@@ -1,15 +1,38 @@
 import './ReviewContainer.css'
+import React, { useState } from 'react'
+import {createPostReview} from '../../utils/reviewFetch';
 
-const ReviewContainer = ({reviews}) => {
+const ReviewContainer = ({reviews, setReviews,post}) => {
+    const [newReview, setNewReview] = useState('');
+
+
+    const addReview = async (comment,postID) => {
+       const newReview =  await createPostReview(postID,{comment});
+
+       if (newReview && newReview.reviewer) {
+        setReviews([...reviews, newReview])
+    };
+}
   return (
     <div className="reviews-container">
     {reviews?.map((review, index) => (
         <div className="review" key={index}>
-            <p><strong>Review: </strong>{review.review}</p>
+            <p>{review.comment} - {review.reviewer.first_name} {review.reviewer.last_name}</p>
         </div>
     ))}
+    <input
+    type="text"
+    placeholder="Add a review"
+     className="review-input"
+     onChange={(e) => {setNewReview(e.target.value)}}
+     value={newReview}
+     onKeyDown ={(e) => {
+         if (e.key === 'Enter') {
+             addReview(newReview, post.id);
+             setNewReview('');
+         }}}
 
-    <input type="text" placeholder="Add a review" className="review-input" />
+     />
 </div>
   )
 }
