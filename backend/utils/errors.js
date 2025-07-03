@@ -12,6 +12,11 @@ const ERROR_CODES = {
     LOGOUT_FAILED: 'Log out failed. Please try again.',
     NOT_AUTHORIZED : 'Not authorized',
     INTEREST_ERROR: "Interests must be an array" ,
+    POSTS_ERROR: "failed to get posts",
+    REVIEWS_ERROR : "failed to get reviews",
+    MISSING_POST: "Post not found",
+    MISSING_USER: "User not found",
+    CREATE_REVIEW_ERROR: "failed to create review",
 }
 
 module.exports = ERROR_CODES;

@@ -19,6 +19,7 @@ model User {
   bio             String?
   interests       String[]  @default([]) @db.Text
   posts           Post[]
+  likes           Like[]
   reviews         Review[]  @relation("Reviewer")
   receivedReviews Review[]  @relation("Recipient")
   sessions        Session[] @relation("ParticipantSessions")
@@ -40,10 +41,11 @@ model Session {
 
 model Review {
   id          Int      @id @default(autoincrement())
-  rating      Int
   comment     String
   reviewerId  Int
   recipientId Int
+  postId      Int?
+  post        Post?    @relation(fields: [postId], references: [id])
   reviewer    User     @relation("Reviewer", fields: [reviewerId], references: [id])
   recipient   User     @relation("Recipient", fields: [recipientId], references: [id])
   createdAt   DateTime @default(now())
@@ -56,11 +58,25 @@ model Post {
   category    String
   type        PostType
   location    String
-  image       String?
+  imageUrl    String?
   userId      Int
+  numReviews  Int       @default(0)
+  numLikes    Int       @default(0)
+  rating      Float     @default(0)
   user        User      @relation(fields: [userId], references: [id])
+  reviews     Review[]
+  likes       Like[]
   sessions    Session[]
   createdAt   DateTime  @default(now())
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+  createdAt DateTime @default(now())
 }
 
 enum PostType {
