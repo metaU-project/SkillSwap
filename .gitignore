@@ -68,3 +68,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+backend/prisma/migrations/20250630214426_likes_and_refactor/

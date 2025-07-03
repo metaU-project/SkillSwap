@@ -20,41 +20,25 @@
     max-width: 800px;
     max-height: 80vh;
     overflow-y: auto;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    position: relative;
     border: #ccc 1px solid;
   }
 
   #close-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #000306;
-    color: white;
+    position: absolute;
     border: none;
-    border-radius: 5px;
+    background: none;
+    right: 10px;
+    top: 10px;
+    font-size: 1.5rem;
     cursor: pointer;
   }
 
   #close-btn:hover {
-    background-color: #4b4f53;
+    background-color: #d1d5d8;
   }
 
-  .reviews-container{
-
-    margin-top: 1rem;
-    text-align: left;
-    background: #f9f9f9;
-    padding: 0.5rem;
-    border-radius: 5px;
-    max-height: 150px;
-    overflow-y: auto;
-  }
-
-  .review{
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
-  }
 
   .modal-content h2{
     margin-bottom: 0.5rem;
@@ -80,7 +64,31 @@
   .modal-body{
     display: flex;
     flex-direction: row;
-    gap: 10rem;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
 
+  .modal-info-section{
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .interest-btn, .review-btn{
+    background-color: #12a732;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+
+  .review-interest-section{
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: center;
 
   }
