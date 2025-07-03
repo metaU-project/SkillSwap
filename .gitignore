@@ -40,7 +40,6 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
 /generated/prisma
 
 
@@ -69,4 +68,4 @@ dist-ssr
 *.sln
 *.sw?
 backend/prisma/migrations/20250630214426_likes_and_refactor/
- backend/uploads/
+backend/uploads/
