@@ -2,14 +2,16 @@ import { AiOutlineLike } from "react-icons/ai";
 import PostInfoModal from "../Post/Modals/PostInfoModal";
 import { useState } from "react";
 import SessionModal from "./Modals/SessionModal";
+import {likePost} from '../../utils/likeFetch';
 
 function PostCard({post}) {
+    const [likes , setLikes] = useState(post.numLikes);
+    const [isLiked, setIsLiked] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const previewLength = 100;
     const isLong = post.description.length > previewLength;
     const  previewText  = isLong ? post.description.slice(0, previewLength): post.description;
     const [showRecommend, setShowRecommend] = useState(false);
-
 
     const handlePostClick = (e) => {
         e.preventDefault();
@@ -23,6 +25,21 @@ function PostCard({post}) {
     const handleRecommend = (e) => {
         e.preventDefault();
         setShowRecommend(true);
+    }
+
+    const handleLike = async (postId) => {
+        setIsLiked(!isLiked);
+        setLikes(prev => isLiked ? prev - 1 : prev + 1);
+        try{
+            const response = await likePost(postId);
+            setLikes(response.numLikes);
+            setIsLiked(false);
+        }
+        catch(error){
+            setIsLiked(true);
+            setLikes(post.numLikes);
+            console.error(error, "Error liking post");
+        }
     }
 
     return (
@@ -53,13 +70,13 @@ function PostCard({post}) {
                 </div>
 
                 <div className="post-user">
-                    <strong>Posted by:</strong> {post.userName}
+                    <strong>Posted by:</strong> {post.user.first_name} {post.user.last_name}
                 </div>
                 {
                     post.type === "OFFER" && (
                         <div className="post-actions">
                         <div className="post-like">
-                            <AiOutlineLike />
+                            {likes} <AiOutlineLike className= {isLiked ? 'liked' : ''} onClick={(e) => {e.stopPropagation(); handleLike(post.id)}}/>
                         </div>
                         <div className="post-reviews">
                             <a className="post-reviews-count" href=" ">{post.numReviews} Reviews</a>
