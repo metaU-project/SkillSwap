@@ -14,6 +14,8 @@ function PostCard({ post }) {
     ? post.description.slice(0, previewLength)
     : post.description;
   const [showRecommend, setShowRecommend] = useState(false);
+  const request = "REQUEST";
+  const offer = "OFFER";
 
   const handlePostClick = (e) => {
     e.preventDefault();
@@ -94,7 +96,7 @@ function PostCard({ post }) {
           </div>
         )}
 
-        {post.type === "REQUEST" && (
+        {post.type === request && (
           <div className="post-actions">
             <button className="post-recommend-btn" onClick={handleRecommend}>
               Recommend session
@@ -103,7 +105,7 @@ function PostCard({ post }) {
         )}
       </div>
 
-      {showModal && post.type == "OFFER" && (
+      {showModal && post.type == offer && (
         <PostInfoModal post={post} onClose={onClose} />
       )}
 
