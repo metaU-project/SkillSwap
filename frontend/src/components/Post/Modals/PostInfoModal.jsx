@@ -3,24 +3,31 @@ import { IoLocationOutline } from "react-icons/io5";
 import { useState } from 'react';
 import { IoMdClose } from "react-icons/io";
 import ReviewContainer from '../../Reviews/ReviewContainer';
+import { HiOutlineMail } from "react-icons/hi";
+import { fetchPostReviews } from '../../../utils/reviewFetch';
 
 const PostInfoModal = ({ post, onClose }) => {
     const [reviews, setReviews] = useState([]);
     const [isReviewOpen, setIsReviewOpen] = useState(false);
 
-    const handleReviewClick = () => {
-        const reviews = [
-            { review: "Your first review here..." },
-            { review: "Your second review here..." },
-        ];
-        setReviews(reviews);
+    const handleReviewClick = async () => {
+
+        if (!isReviewOpen) {
+            try {
+                const response = await fetchPostReviews(post.id);
+                setReviews(response);
+            }
+            catch (error) {
+                console.error(error);
+            }
+        }
         setIsReviewOpen(!isReviewOpen);
     }
 
     return (
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button id="close-btn" onClick={onClose}>
+                <button id="close-btn" onClick={onClose}>
                     <IoMdClose />
                 </button>
                 <div className="modal-header">
@@ -51,13 +58,15 @@ const PostInfoModal = ({ post, onClose }) => {
                 </div>
 
                 <div className='review-interest-section'>
-                <button className='interest-btn'> Express interest</button>
-                <div className="modal-reviews-section">
-                    <button className='review-btn' onClick={handleReviewClick}> {!isReviewOpen ? "See all Reviews" : "Hide Reviews"}</button>
+                    <button className='interest-btn'>
+                        <HiOutlineMail className='email-icon' />  Express interest
+                    </button>
+                    <div className="modal-reviews-section">
+                        <button className='review-btn' onClick={handleReviewClick}> {!isReviewOpen ? "See all Reviews" : "Hide Reviews"}</button>
+                    </div>
                 </div>
-                </div>
-                {isReviewOpen && ( <ReviewContainer reviews={reviews} />
-                    )}
+                {isReviewOpen && (<ReviewContainer reviews={reviews} setReviews={setReviews} post={post} />
+                )}
             </div>
         </div>
     );
