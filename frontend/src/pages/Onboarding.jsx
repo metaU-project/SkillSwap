@@ -7,7 +7,6 @@ const Onboarding = () => {
 
     return (
       <div>
-      {/* <NavBar/> */}
       <div className="onboarding-main-section">
       <ShuffledSkill/>
       <OnboardingForm/>
