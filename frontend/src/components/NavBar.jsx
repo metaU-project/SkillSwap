@@ -38,7 +38,7 @@ const NavBar = () => {
             />)}
             <FaSearch onClick={() => handleSearch()} />
             <button className='new-post-btn'>+ New Post</button>
-            <button className='signout-btn' onClick={handleLogout}> SignOut</button>
+            <button className='signout-btn' onClick={handleLogout}> Sign Out</button>
             {errorMessage && <ErrorModal errorMessage={errorMessage} setErrorMessage={setErrorMessage} />}
             <a href='/profile'><CgProfile /></a>
             </div>
