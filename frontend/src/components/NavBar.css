@@ -8,7 +8,6 @@
   position: sticky;
   top: 0;
   z-index: 100;
-
 }
 
 .nav-bar-main h1 {
@@ -28,7 +27,8 @@
   color: #000;
 }
 
-.signout-btn, .new-post-btn {
+.signout-btn,
+.new-post-btn {
   margin-left: 1.5rem;
   padding: 0.4rem 1rem;
   border: none;
@@ -43,10 +43,9 @@
   background-color: #e04b4b;
 }
 
-.nav-actions{
+.nav-actions {
   display: flex;
   align-items: center;
   gap: 0.1rem;
   cursor: pointer;
-
 }

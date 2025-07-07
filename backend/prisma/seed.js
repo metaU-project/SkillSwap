@@ -2,7 +2,6 @@ const { PrismaClient } = require('../generated/prisma');
 const prisma = new PrismaClient();
 
 async function main() {
-
   // Example Users
   const user1 = await prisma.user.create({
     data: {
@@ -73,7 +72,6 @@ async function main() {
     },
   });
 
-
   await prisma.post.create({
     data: {
       title: 'Need help with SQL',
@@ -85,7 +83,6 @@ async function main() {
       userId: user2.id,
     },
   });
-
 
   await prisma.post.create({
     data: {

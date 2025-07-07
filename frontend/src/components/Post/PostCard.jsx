@@ -1,8 +1,8 @@
-import { AiOutlineLike } from "react-icons/ai";
-import PostInfoModal from "../Post/Modals/PostInfoModal";
-import { useState } from "react";
-import SessionModal from "./Modals/SessionModal";
-import { likePost } from "../../utils/likeFetch";
+import { AiOutlineLike } from 'react-icons/ai';
+import PostInfoModal from '../Post/Modals/PostInfoModal';
+import { useState } from 'react';
+import SessionModal from './Modals/SessionModal';
+import { likePost } from '../../utils/likeFetch';
 
 function PostCard({ post }) {
   const [likes, setLikes] = useState(post.numLikes);
@@ -14,8 +14,8 @@ function PostCard({ post }) {
     ? post.description.slice(0, previewLength)
     : post.description;
   const [showRecommend, setShowRecommend] = useState(false);
-  const request = "REQUEST";
-  const offer = "OFFER";
+  const request = 'REQUEST';
+  const offer = 'OFFER';
 
   const handlePostClick = (e) => {
     e.preventDefault();
@@ -37,7 +37,7 @@ function PostCard({ post }) {
       setIsLiked((prev) => !prev);
       setLikes((prev) => (isLiked ? prev - 1 : prev + 1));
     } catch (error) {
-      console.error(error, "Error liking post");
+      console.error(error, 'Error liking post');
     }
   };
 
@@ -65,27 +65,27 @@ function PostCard({ post }) {
         <div className="post-meta">
           <span className="post-category">{post.category}</span>
           <span className={`post-type ${post.type.toLowerCase()}`}>
-            {post.type === "OFFER" ? "Offering Skill" : "Seeking Skill"}
+            {post.type === 'OFFER' ? 'Offering Skill' : 'Seeking Skill'}
           </span>
         </div>
 
         <div className="post-location">{post.location}</div>
 
         <div className="post-user">
-          <strong>Posted by:</strong> {post.user.first_name}{" "}
+          <strong>Posted by:</strong> {post.user.first_name}{' '}
           {post.user.last_name}
         </div>
-        {post.type === "OFFER" && (
+        {post.type === 'OFFER' && (
           <div className="post-actions">
             <div className="post-like">
               <button
-                className= {isLiked ? "liked-btn": "unliked-btn"}
+                className={isLiked ? 'liked-btn' : 'unliked-btn'}
                 onClick={(e) => {
                   e.stopPropagation();
                   handleLike(post.id);
                 }}
               >
-                {isLiked ? "❤️" : "🤍"} {likes}
+                {isLiked ? '❤️' : '🤍'} {likes}
               </button>
             </div>
             <div className="post-reviews">
@@ -109,7 +109,7 @@ function PostCard({ post }) {
         <PostInfoModal post={post} onClose={onClose} />
       )}
 
-      {showRecommend && post.type == "REQUEST" && (
+      {showRecommend && post.type == 'REQUEST' && (
         <SessionModal setShowRecommend={setShowRecommend} />
       )}
     </>

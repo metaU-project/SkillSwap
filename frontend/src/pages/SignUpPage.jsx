@@ -1,14 +1,14 @@
-import SignUp from "../components/SignUp";
-import ShuffledSkill from "../components/ShuffledSkill";
-import "./SignUpPage.css";
+import SignUp from '../components/SignUp';
+import ShuffledSkill from '../components/ShuffledSkill';
+import './SignUpPage.css';
 
 const SignUpPage = () => {
-    return (
-        <div className="main-content-signup">
-        <ShuffledSkill/>
-        <SignUp/>
-        </div>
-    );
+  return (
+    <div className="main-content-signup">
+      <ShuffledSkill />
+      <SignUp />
+    </div>
+  );
 };
 
-export default SignUpPage ;
+export default SignUpPage;
