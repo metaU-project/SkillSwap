@@ -1,4 +1,4 @@
-.post-info img{
+.post-info img {
   border-radius: 50%;
   height: 30px;
   width: 30px;
@@ -15,7 +15,7 @@
   width: 90%;
 }
 
-.posts{
+.posts {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,5 +27,4 @@
   border: #682323 solid 1px;
   overflow-y: scroll;
   height: 40vh;
-
 }

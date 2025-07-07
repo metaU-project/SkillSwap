@@ -1,6 +1,4 @@
-
-
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = 'http://localhost:3000';
 
 export const API_ROUTES = {
   register: `${BASE_URL}/auth/register`,
@@ -13,6 +11,5 @@ export const API_ROUTES = {
   posts: `${BASE_URL}/post`,
   reviews: `${BASE_URL}/review`,
   postReview: `${BASE_URL}/review/post`,
-  likePost: `${BASE_URL}/like/post`
-
+  likePost: `${BASE_URL}/like/post`,
 };

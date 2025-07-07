@@ -1,18 +1,13 @@
 import './ReviewContainer.css';
-import {reviews} from '../../../utils/sampleData'
+import { reviews } from '../../../utils/sampleData';
 const ReviewContainer = () => {
-
   return (
     <div>
-         <div className="reviews-container">
+      <div className="reviews-container">
         {reviews.map((review) => (
-          <p
-            key={review}
-            className="review-item"
-          >
+          <p key={review} className="review-item">
             {review}
           </p>
-
         ))}
       </div>
     </div>
