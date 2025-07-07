@@ -1,17 +1,17 @@
-.main-content-login{
-    display: flex;
-    flex-direction: row;
-    gap: 50px;
-    align-items: center;
-    justify-content: center;
-
+.main-content-login {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f2f5;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-.login-header{
-    font-size: 30px;
-    font-weight: bold;
-    color: #1C2B33;
-    margin-bottom: 20px;
-    text-align: center;
-
+.login-header {
+  font-size: 30px;
+  font-weight: bold;
+  color: #1c2b33;
+  margin-bottom: 20px;
+  text-align: center;
 }

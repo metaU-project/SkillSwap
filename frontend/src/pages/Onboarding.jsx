@@ -4,16 +4,14 @@ import ShuffledSkill from "../components/ShuffledSkill";
 import "./Onboarding.css";
 
 const Onboarding = () => {
-
-    return (
-      <div>
+  return (
+    <div>
       <div className="onboarding-main-section">
-      <ShuffledSkill/>
-      <OnboardingForm/>
+        <ShuffledSkill />
+        <OnboardingForm />
       </div>
-
-      </div>
-    );
-  }
+    </div>
+  );
+};
 
 export default Onboarding;
