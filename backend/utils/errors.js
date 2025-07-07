@@ -17,6 +17,8 @@ const ERROR_CODES = {
   MISSING_POST: 'Post not found',
   MISSING_USER: 'User not found',
   CREATE_REVIEW_ERROR: 'failed to create review',
+  INVALID_SEARCH_QUERY: 'Invalid search query',
+  INTERNAL_SERVER_ERROR: 'Internal server error',
 };
 
 module.exports = ERROR_CODES;

@@ -1,0 +1,122 @@
+const express = require('express');
+const { PrismaClient } = require('../generated/prisma');
+const prisma = new PrismaClient();
+const router = express.Router();
+const checkAuth = require('../middleware/checkAuth');
+const ERROR_CODES = require('../utils/errors');
+
+//tokenized search
+router.get('/', async (req, res) => {
+  try {
+    const { keywords } = req.query;
+    if (!keywords || keywords.trim() === '') {
+      return res.status(400).json({ error: ERROR_CODES.INVALID_SEARCH_QUERY });
+    }
+    const tokens = keywords.trim().split(/\s+/);
+    const conditions = tokens.map((token) => ({
+      OR: [
+        { title: { contains: token, mode: 'insensitive' } },
+        { description: { contains: token, mode: 'insensitive' } },
+        { category: { contains: token, mode: 'insensitive' } },
+        { location: { contains: token, mode: 'insensitive' } },
+      ],
+    }));
+    const results = await prisma.post.findMany({
+      where: {
+        AND: conditions,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+    res.status(200).json(results);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: ERROR_CODES.INTERNAL_SERVER_ERROR });
+  }
+});
+
+//popular suggestions
+const getPopularSuggestions = async () => {
+  const popular = await prisma.post.findMany({
+    select: {
+      title: true,
+      category: true,
+    },
+    take: 5,
+    orderBy: {
+      numLikes: 'desc',
+    },
+  });
+  return popular.map((post) => [post.title, post.category].filter(Boolean));
+};
+
+//autosuggestions for search
+router.get('/suggestions', async (req, res) => {
+  const { input } = req.query;
+
+  // If the input is empty, return the most popular suggestions
+  if (!input || input.trim() === '') {
+    const popular = await getPopularSuggestions();
+    return res.json(popular);
+  }
+  const keyword = input.trim();
+
+  try {
+    //exact title suggestions
+    const exactMatches = await prisma.post.findMany({
+      where: {
+        OR: [
+          { title: { startsWith: keyword, mode: 'insensitive' } },
+          { category: { startsWith: keyword, mode: 'insensitive' } },
+        ],
+      },
+      select: {
+        title: true,
+        category: true,
+      },
+      take: 3,
+    });
+
+    //location suggestions
+    const locationMatches = await prisma.post.findMany({
+      where: {
+        location: { contains: keyword, mode: 'insensitive' },
+      },
+      select: {
+        location: true,
+      },
+      distinct: ['location'],
+      take: 3,
+    });
+
+    //popular categories containing the keyword
+    const categories = await prisma.post.groupBy({
+      by: ['category'],
+      where: {
+        category: { contains: keyword, mode: 'insensitive' },
+      },
+      _count: { category: true },
+      orderBy: {
+        _count: { category: 'desc' },
+      },
+      take: 3,
+    });
+
+    const allSuggestions = [
+      ...exactMatches.flatMap((match) => [match.title, match.category]),
+      ...locationMatches.map((match) => match.location),
+      ...categories.map((category) => category.category),
+    ];
+
+    const uniqueSuggestions = [...new Set(allSuggestions)]
+      .filter(Boolean)
+      .slice(0, 5);
+    res.json(uniqueSuggestions);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: ERROR_CODES.INTERNAL_SERVER_ERROR });
+  }
+});
+
+module.exports = router;
