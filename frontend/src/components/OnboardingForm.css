@@ -13,6 +13,9 @@
 .onboarding-form label {
   display: block;
   margin: 1px 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+
 }
 
 .onboarding-form input[type="text"],

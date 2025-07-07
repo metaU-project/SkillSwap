@@ -55,7 +55,7 @@ const Onboarding = () => {
 
   return (
     <div className="onboarding-form">
-      <h3>Welcome to SkillSwap</h3>
+      <h2>Welcome to SkillSwap</h2>
       <p>Please fill out the following information to get started</p>
       <form onSubmit={handleCompleteOnboarding}>
         <label>
