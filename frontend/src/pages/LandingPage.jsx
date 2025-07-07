@@ -23,7 +23,6 @@ const LandingPage = () => {
     <div>
       <NavBar />
       <FilterBar filter={filter} setFilter={setFilter} />
-      <FilterBar filter={filter} setFilter={setFilter} />
       <PostList posts={posts} />
       <Footer />
     </div>
