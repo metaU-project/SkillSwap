@@ -6,3 +6,12 @@
     justify-content: center;
 
 }
+
+.login-header{
+    font-size: 30px;
+    font-weight: bold;
+    color: #1C2B33;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
