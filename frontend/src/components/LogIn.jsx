@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { checkAuth, loginUser } from "../utils/authFetch";
-import "./LogIn.css";
-import ErrorModal from "./ErrorModal";
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { checkAuth, loginUser } from '../utils/authFetch';
+import './LogIn.css';
+import ErrorModal from './ErrorModal';
 
 const LogIn = () => {
   const navigate = useNavigate();

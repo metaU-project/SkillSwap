@@ -10,7 +10,7 @@ const ShuffledSkill = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const fetchedPosts = await postFetch();
-      if (fetchedPosts && !fetchedPosts.error) {
+        if (fetchedPosts && !fetchedPosts.error) {
         setPosts(fetchedPosts);
         if (fetchedPosts.length > 0) {
           setCurrentSkill(fetchedPosts[0]);

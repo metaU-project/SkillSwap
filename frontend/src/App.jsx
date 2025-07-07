@@ -1,10 +1,11 @@
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import LogInPage from "./pages/LogInPage";
-import SignUpPage from "./pages/SignUpPage";
-import Onboarding from "./pages/Onboarding";
-import LandingPage from "./pages/LandingPage";
-import ProtectedRoute from "./components/ProtectedRoute";
+import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LogInPage from './pages/LogInPage';
+import SignUpPage from './pages/SignUpPage';
+import Onboarding from './pages/Onboarding';
+import LandingPage from './pages/LandingPage';
+import ProtectedRoute from './components/ProtectedRoute';
+import Profile from './components/Profile/Profile';
 
 function App() {
   return (
@@ -25,6 +26,14 @@ function App() {
         element={
           <ProtectedRoute>
             <LandingPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
           </ProtectedRoute>
         }
       />

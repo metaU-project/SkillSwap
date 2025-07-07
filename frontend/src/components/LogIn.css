@@ -11,6 +11,10 @@
   margin-bottom: 20px;
   color: #333;
 }
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
 
 .login-container input {
   width: 80%;

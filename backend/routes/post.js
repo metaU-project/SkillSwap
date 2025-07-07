@@ -1,11 +1,11 @@
-const express = require("express");
-const { PrismaClient } = require("../generated/prisma");
+const express = require('express');
+const { PrismaClient } = require('../generated/prisma');
 const prisma = new PrismaClient();
 const router = express.Router();
-const ERROR_CODES = require("../utils/errors");
+const ERROR_CODES = require('../utils/errors');
 
 //fetch all posts
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const { category, location, type } = req.query;
     const filters = {};
@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
         likes: true,
         reviews: true,
       },
-      orderBy: { createdAt: "desc" },
+      orderBy: { createdAt: 'desc' },
     });
     res.json(posts);
   } catch (err) {

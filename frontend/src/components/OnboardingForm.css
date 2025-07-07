@@ -8,6 +8,7 @@
 
 .onboarding-form h3 {
   margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .onboarding-form label {
@@ -18,7 +19,7 @@
 
 }
 
-.onboarding-form input[type="text"],
+.onboarding-form input[type='text'],
 .onboarding-form textarea {
   width: 100%;
   padding: 10px;
@@ -35,6 +36,11 @@
   margin-top: 10px;
   border: 0.4px solid #ddd;
   border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  border: 0.4px solid #ddd;
+  border-radius: 5px;
 }
 
 .interest-chip {
@@ -45,9 +51,18 @@
   border: none;
   border-radius: 20px;
   cursor: pointer;
+  margin: 5px;
+  padding: 6px 14px;
+  background: #f0f0f0;
+  color: #333;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
 }
 
 .interest-chip.selected {
+  background: black;
+  color: white;
   background: black;
   color: white;
 }
@@ -69,9 +84,14 @@
   margin-top: 10px;
   display: flex;
   gap: 10px;
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .custom-interest-input input {
+  flex: 1;
+  padding: 8px;
   flex: 1;
   padding: 8px;
 }
@@ -86,9 +106,19 @@
   cursor: pointer;
   width: 100%;
   font-size: 1rem;
+  margin-top: 20px;
+  background: black;
+  color: white;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 1rem;
 }
 
 .submit-btn:hover {
+  background: #333;
   background: #333;
 }
 
@@ -106,6 +136,9 @@
 
 .add-interest-btn svg,
 .add-interest-btn i {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
   width: 20px;
   height: 20px;
   font-size: 20px;

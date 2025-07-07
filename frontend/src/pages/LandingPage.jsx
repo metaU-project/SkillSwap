@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { postFetch } from "../utils/postFetch";
 
 const LandingPage = () => {
-  const [filter, setFilter] = useState("Recommended");
+  const [filter, setFilter] = useState('Recommended');
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -23,10 +23,10 @@ const LandingPage = () => {
     <div>
       <NavBar />
       <FilterBar filter={filter} setFilter={setFilter} />
+      <FilterBar filter={filter} setFilter={setFilter} />
       <PostList posts={posts} />
       <Footer />
     </div>
   );
 };
-
 export default LandingPage;

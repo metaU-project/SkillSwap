@@ -1,6 +1,6 @@
-import LogIn from "../components/LogIn";
-import ShuffledSkill from "../components/ShuffledSkill";
-import "./LogInPage.css";
+import LogIn from '../components/LogIn';
+import ShuffledSkill from '../components/ShuffledSkill';
+import './LogInPage.css';
 
 const LogInPage = () => {
   return (

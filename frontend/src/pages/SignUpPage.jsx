@@ -1,6 +1,6 @@
-import SignUp from "../components/SignUp";
-import ShuffledSkill from "../components/ShuffledSkill";
-import "./SignUpPage.css";
+import SignUp from '../components/SignUp';
+import ShuffledSkill from '../components/ShuffledSkill';
+import './SignUpPage.css';
 
 const SignUpPage = () => {
     return (

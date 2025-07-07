@@ -1,7 +1,7 @@
-import NavBar from "../components/NavBar";
-import OnboardingForm from "../components/OnboardingForm";
-import ShuffledSkill from "../components/ShuffledSkill";
-import "./Onboarding.css";
+import NavBar from '../components/NavBar';
+import OnboardingForm from '../components/OnboardingForm';
+import ShuffledSkill from '../components/ShuffledSkill';
+import './Onboarding.css';
 
 const Onboarding = () => {
   return (
