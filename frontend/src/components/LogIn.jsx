@@ -15,8 +15,11 @@ const LogIn = () => {
         const response = await loginUser(email, password);
         if (response?.success) {
             const user = await checkAuth();
-            if (user) {
+            if (!user.user.location || user.user.interests.length === 0 || !user.user.bio) {
                 navigate("/onboarding");
+            }
+            else{
+                navigate("/landing");
             }
         }
         else if (response?.error) {
