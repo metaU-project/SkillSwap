@@ -1,19 +1,20 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   getSuggestedInterests,
   completeOnboarding,
-} from '../utils/onboardingFetch';
-import ErrorModal from './ErrorModal';
-import './OnboardingForm.css';
-import { RiAddBoxFill } from 'react-icons/ri';
+} from "../utils/onboardingFetch";
+import ErrorModal from "./ErrorModal";
+import "./OnboardingForm.css";
+import { IoAddSharp } from "react-icons/io5";
 
 const Onboarding = () => {
-  const [location, setLocation] = useState('');
-  const [bio, setBio] = useState('');
+  const [location, setLocation] = useState("");
+  const [bio, setBio] = useState("");
   const [interests, setInterests] = useState([]);
-  const [customInterest, setCustomInterest] = useState('');
+  const [customInterest, setCustomInterest] = useState("");
   const [suggested, setSuggested] = useState([]);
+  const [customInterests, setCustomInterests] = useState([]);
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
   const [addInterest, setAddInterest] = useState(false);
@@ -36,8 +37,9 @@ const Onboarding = () => {
 
   const addCustomInterest = () => {
     if (customInterest && !interests.includes(customInterest)) {
+      setCustomInterests([...customInterests, customInterest]);
       setInterests([...interests, customInterest]);
-      setCustomInterest('');
+      setCustomInterest("");
     }
   };
 
@@ -45,7 +47,7 @@ const Onboarding = () => {
     e.preventDefault();
     const res = await completeOnboarding(interests, location, bio);
     if (res?.success) {
-      navigate('/landing');
+      navigate("/landing");
     } else {
       setErrorMessage(res?.error);
     }
@@ -53,7 +55,7 @@ const Onboarding = () => {
 
   return (
     <div className="onboarding-form">
-      <h3>Welcome to SkillSwap</h3>
+      <h2>Welcome to SkillSwap</h2>
       <p>Please fill out the following information to get started</p>
       <form onSubmit={handleCompleteOnboarding}>
         <label>
@@ -86,7 +88,21 @@ const Onboarding = () => {
                 key={interest}
                 type="button"
                 onClick={() => toggleInterest(interest)}
-                className={`interest-chip ${interests.includes(interest) ? 'selected' : ''}`}
+                className={`interest-chip ${
+                  interests.includes(interest) ? "selected" : ""
+                }`}
+              >
+                {interest}
+              </button>
+            ))}
+            {customInterests.map((interest) => (
+              <button
+                key={`custom-${interest}`}
+                type="button"
+                onClick={() => toggleInterest(interest)}
+                className={`interest-chip custom ${
+                  interests.includes(interest) ? "selected" : ""
+                }`}
               >
                 {interest}
               </button>
@@ -97,7 +113,7 @@ const Onboarding = () => {
                 className="add-interest-btn"
                 onClick={() => setAddInterest(!addInterest)}
               >
-                <RiAddBoxFill />
+                <IoAddSharp />
               </button>
             </div>
           </div>
@@ -110,7 +126,7 @@ const Onboarding = () => {
                   setCustomInterest(e.target.value);
                 }}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
+                  if (e.key === "Enter") {
                     e.preventDefault();
                     addCustomInterest();
                   }

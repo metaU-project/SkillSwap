@@ -1,19 +1,23 @@
 .login-container {
   flex: 1;
-  width: 300px;
+  width: 100%;
+  max-width: 600px;
   padding: 30px;
   border-radius: 8px;
   margin: 10px;
-  height: 100%;
 }
 
 .login-container h2 {
   margin-bottom: 20px;
   color: #333;
 }
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
 
 .login-container input {
-  width: 100%;
+  width: 80%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
@@ -21,7 +25,7 @@
 }
 
 .login-container button {
-  width: 100%;
+  width: 80%;
   padding: 12px;
   background-color: #004225;
   color: white;
@@ -33,4 +37,21 @@
 
 .login-container button:hover {
   background-color: #006837;
+}
+.benefits-list {
+  margin: 1rem 0;
+  color: #333;
+}
+
+.benefits-list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.benefits-list li {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+.benefits-list h3 {
+  margin: 0.5rem 0;
 }
