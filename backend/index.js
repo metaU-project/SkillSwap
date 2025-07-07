@@ -8,6 +8,7 @@ const postRoutes = require('./routes/post');
 const reviewRoutes = require('./routes/reviews');
 const likeRoutes = require('./routes/likes');
 const profileRoutes = require('./routes/profile');
+const fileUpload = require("express-fileupload");
 const app = express();
 
 app.use(session({
@@ -22,6 +23,11 @@ app.use(cors({
     origin: 'http://localhost:5173',
     credentials: true,
 }));
+app.use(
+  fileUpload({
+    limits: { fileSize: 50 * 1024 * 1024 },
+  })
+);
 app.use(express.json());
 app.use('/auth', authRoutes);
 app.use('/onboarding', onboardingRoutes);
@@ -29,6 +35,7 @@ app.use('/post', postRoutes);
 app.use('/review', reviewRoutes);
 app.use('/like', likeRoutes);
 app.use('/profile', profileRoutes);
+app.use("/uploads", express.static("uploads"));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
