@@ -7,6 +7,7 @@ const onboardingRoutes = require('./routes/onboarding');
 const postRoutes = require('./routes/post');
 const reviewRoutes = require('./routes/reviews');
 const likeRoutes = require('./routes/likes');
+const profileRoutes = require('./routes/profile');
 const app = express();
 
 app.use(session({
@@ -27,6 +28,7 @@ app.use('/onboarding', onboardingRoutes);
 app.use('/post', postRoutes);
 app.use('/review', reviewRoutes);
 app.use('/like', likeRoutes);
+app.use('/profile', profileRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

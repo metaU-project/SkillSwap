@@ -8,4 +8,5 @@ export const ERROR_CODES = {
     UNAUTHORIZED: "Unauthorized",
     TRY_AGAIN: "An error occured please try again later",
     ERROR_FETCHING_INTERESTS: "Error fetching interests",
+    ERROR_FETCHING_PROFILE: "Error fetching profile",
 }

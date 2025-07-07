@@ -17,6 +17,7 @@ const ERROR_CODES = {
     MISSING_POST: "Post not found",
     MISSING_USER: "User not found",
     CREATE_REVIEW_ERROR: "failed to create review",
+    FAILED_TO_FETCH_PROFILE: "failed to fetch profile",
 }
 
 module.exports = ERROR_CODES;
