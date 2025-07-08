@@ -7,11 +7,11 @@ const SessionModal = ({ setShowRecommend }) => {
         <h2>Recommend a Session</h2>
         <input
           type="text"
-          placeholder="Search for a session" //searches for a session by name render like gifs in a grid //gets added and clik to go to card?
+          placeholder="Search for a session" //TODO - searches for a session by name render like gifs in a grid //gets added and click to go to card?
         />
 
         <div className="action-btns">
-          <button className="submit-btn">Submit</button>
+          <button className="submit-btn-session">Submit</button>
           <button
             className="cancel-btn"
             onClick={() => setShowRecommend(false)}

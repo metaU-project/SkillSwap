@@ -1,6 +1,5 @@
 import './InterestContainer.css';
-import { interests } from '../../../utils/sampleData';
-const InterestContainer = () => {
+const InterestContainer = ({interests}) => {
   return (
     <div>
       <h2>My Interests</h2>

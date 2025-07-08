@@ -9,6 +9,7 @@
   flex-wrap: wrap;
   justify-content: center;
   border: #201d1e solid 1px;
+  overflow-y: scroll;
 }
 
 .interest-item {

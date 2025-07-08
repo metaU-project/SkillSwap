@@ -1,8 +1,10 @@
 import './NewProfilePic.css';
 import { IoMdClose } from 'react-icons/io';
 import { useState } from 'react';
+import { updateProfilePicture } from '../../../utils/profileFetch';
+import { checkAuth } from '../../../utils/authFetch';
 
-export default function NewProfilePic({ setShowModal }) {
+export default function NewProfilePic({ setShowModal, onImageUpdate }) {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(
     'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y&s=200'
@@ -15,12 +17,14 @@ export default function NewProfilePic({ setShowModal }) {
     }
   };
 
-  const handleImageUpload = () => {
-    //TODO:  Upload image to server
-
-    // TODO: Reset the file input
-
-    // TODO: Close the modal
+  const handleImageUpload = async () => {
+    const user = await checkAuth();
+    const userId = user?.user.id;
+    const result = await updateProfilePicture(userId, image);
+    if (result) {
+      onImageUpdate?.(result.user.profileImage);
+    }
+    setImage(null);
     setShowModal(false);
   };
 

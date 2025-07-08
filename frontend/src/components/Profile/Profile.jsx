@@ -1,5 +1,5 @@
 import './Profile.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PostContainer from './containers/PostContainer';
 import ReviewContainer from './containers/ReviewContainer';
 import InterestContainer from './containers/InterestContainer';
@@ -8,13 +8,35 @@ import { FaHome } from 'react-icons/fa';
 import { MdOutlineEdit } from 'react-icons/md';
 import NewProfilePic from './modals/NewProfilePic';
 import { TabButton } from './components/TabButton';
+import { fetchProfile } from '../../utils/profileFetch';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedBtn, setSelectedBtn] = useState(1);
+  const [profile, setProfile] = useState(null);
+  const navigate = useNavigate();
+  const [profilePic, setProfilePic] = useState(null);
+
+  const handleImageUpdate = (imageUrl) => {
+    setProfilePic(imageUrl);
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const profileData = await fetchProfile();
+      setProfile(profileData);
+    };
+    fetchData();
+  }, []);
+
+  const handleClickHome = () => {
+    navigate('/landing');
+  };
+
   return (
     <div className="main-section">
-      <button className="home-btn">
+      <button className="home-btn" onClick={handleClickHome}>
         <FaHome />{' '}
       </button>
       <div className="profile-header">
@@ -23,22 +45,25 @@ const Profile = () => {
             <MdOutlineEdit />
           </button>
           <img
-            src="https://avatar.iran.liara.run/public"
+            src={profilePic || profile?.user.profileImage || 'https://avatar.iran.liara.run/public'}
             alt="profile-pic"
             className="profile-pic"
           />
         </div>
         <div className="user-details">
-          <h3>Shreyas Sane</h3>
-          <p>example@gmail.com</p>
+          <h3>
+            {profile?.user.first_name} {profile?.user.last_name}
+          </h3>
+          <p>{profile?.user.email}</p>
           <p>
-            <strong>Joined: </strong> 2016
+            <strong>Member Since: </strong>{' '}
+            {profile?.user.createdAt?.slice(0, 4)}
           </p>
           <p>
-            <strong>location: </strong>India
+            <strong>location: </strong> {profile?.user.location}
           </p>
           <p>
-            <strong>Bio: </strong>I am a software engineer at Meta
+            <strong>Bio: </strong> {profile?.user.bio}
           </p>
         </div>
       </div>
@@ -70,9 +95,13 @@ const Profile = () => {
             </TabButton>
           </div>
           <div>
-            {selectedBtn === 1 && <PostContainer />}
-            {selectedBtn === 2 && <ReviewContainer />}
-            {selectedBtn === 3 && <InterestContainer />}
+            {selectedBtn === 1 && <PostContainer posts={profile?.user.posts} />}
+            {selectedBtn === 2 && (
+              <ReviewContainer reviews={profile.user.receivedReviews} />
+            )}
+            {selectedBtn === 3 && (
+              <InterestContainer interests={profile.user.interests} />
+            )}
           </div>
         </div>
         <div className="profile-bottom-right">
@@ -83,7 +112,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      {showModal && <NewProfilePic setShowModal={setShowModal} />}
+      {showModal && <NewProfilePic setShowModal={setShowModal} onImageUpdate={handleImageUpdate } />}
     </div>
   );
 };

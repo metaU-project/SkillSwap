@@ -19,14 +19,17 @@ router.post('/register', async (req, res) => {
 
   if (!validateEmail(email)) {
     return res.status(400).json({ error: ERROR_CODES.INVALID_EMAIL });
+    return res.status(400).json({ error: ERROR_CODES.INVALID_EMAIL });
   }
   if (password.length < 6) {
+    return res.status(400).json({ error: ERROR_CODES.INVALID_PASSWORD });
     return res.status(400).json({ error: ERROR_CODES.INVALID_PASSWORD });
   }
 
   try {
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
+      return res.status(400).json({ error: ERROR_CODES.USER_EXISTS });
       return res.status(400).json({ error: ERROR_CODES.USER_EXISTS });
     }
 
@@ -48,6 +51,7 @@ router.post('/register', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: ERROR_CODES.REGISTRATION_FAILED });
+    res.status(500).json({ error: ERROR_CODES.REGISTRATION_FAILED });
   }
 });
 
@@ -56,6 +60,7 @@ router.post('/register', async (req, res) => {
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
+  message: { error: ERROR_CODES.TOO_MANY_REQUESTS },
   message: { error: ERROR_CODES.TOO_MANY_REQUESTS },
 });
 
@@ -93,10 +98,18 @@ router.get('/me', async (req, res) => {
   try {
     const user = await prisma.user.findUnique({
       where: { id: req.session.userId },
-      select: { email: true },
+      select: {
+        id: true,
+        first_name: true,
+        last_name: true,
+        email: true,
+        location: true,
+        bio: true,
+        interests: true,
+      },
     });
 
-    res.json({ id: req.session.userId, email: user.email });
+    res.json({ user });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: ERROR_CODES.LOGIN_FAILED });

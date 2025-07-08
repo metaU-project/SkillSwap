@@ -8,7 +8,7 @@ function PostCard({ post }) {
   const [likes, setLikes] = useState(post.numLikes);
   const [isLiked, setIsLiked] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const previewLength = 100;
+  const previewLength = 30;
   const isLong = post.description.length > previewLength;
   const previewText = isLong
     ? post.description.slice(0, previewLength)
@@ -17,14 +17,14 @@ function PostCard({ post }) {
   const request = 'REQUEST';
   const offer = 'OFFER';
 
-    const handlePostClick = (e) => {
-        e.preventDefault();
-        setShowModal(true);
-    };
+  const handlePostClick = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
 
-    const onClose = () => {
-        setShowModal(false);
-    };
+  const onClose = () => {
+    setShowModal(false);
+  };
 
   const handleRecommend = (e) => {
     e.preventDefault();
@@ -41,26 +41,26 @@ function PostCard({ post }) {
     }
   };
 
-    return (
-        <>
-            <div className="post-card" onClick={handlePostClick}>
-                <div className="post-card-img-container">
-                    {post.imageUrl && (
-                        <img src={post.imageUrl} alt={post.title} className="post-image" />
-                    )}
-                </div>
-                <h3>{post.title}</h3>
-                <p>
-                    {previewText}
-                    {isLong && (
-                        <span
-                            className="post-description-see-more"
-                            onClick={handlePostClick}
-                        >
-                            ...
-                        </span>
-                    )}
-                </p>
+  return (
+    <>
+      <div className="post-card" onClick={handlePostClick}>
+        <div className="post-card-img-container">
+          {post.imageUrl && (
+            <img src={post.imageUrl} alt={post.title} className="post-image" />
+          )}
+        </div>
+        <h3>{post.title}</h3>
+        <p>
+          {previewText}
+          {isLong && (
+            <span
+              className="post-description-see-more"
+              onClick={handlePostClick}
+            >
+              ...
+            </span>
+          )}
+        </p>
 
         <div className="post-meta">
           <span className="post-category">{post.category}</span>
@@ -69,7 +69,7 @@ function PostCard({ post }) {
           </span>
         </div>
 
-                <div className="post-location">{post.location}</div>
+        <div className="post-location">{post.location}</div>
 
         <div className="post-user">
           <strong>Posted by:</strong> {post.user.first_name}{' '}
@@ -89,9 +89,9 @@ function PostCard({ post }) {
               </button>
             </div>
             <div className="post-reviews">
-              <a className="post-reviews-count" href=" ">
+              <span className="post-reviews-count">
                 {post.numReviews} Reviews
-              </a>
+              </span>
             </div>
           </div>
         )}
