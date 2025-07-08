@@ -6,8 +6,9 @@ import { useState } from 'react';
 import { CgProfile } from 'react-icons/cg';
 import { FaSearch } from 'react-icons/fa';
 import SearchBar from '../components/search/SearchBar';
+import CreatedPostModal from './Post/Modals/CreatePostModal';
 
-const NavBar = () => {
+const NavBar = ({ setPosts }) => {
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
@@ -23,7 +24,8 @@ const NavBar = () => {
   };
 
   const handleSearch = () => {
-    setShowSearchBar(!showSearchBar);
+    console.log('searching');
+    //[TODO] search for posts in backend and set posts state
   };
 
   return (
@@ -32,12 +34,11 @@ const NavBar = () => {
       <div className="nav-actions">
         {showSearchBar && (
           <SearchBar
-            suggestions={['Guitar', 'Web Design', 'Cooking', 'Photography']}
-            onSearch={(value) => console.log('Searching for:', value)}
+            suggestions={['Guitar', 'Web Design', 'Cooking', 'Photography']} //[TODO] fetch suggestions from backend
+            onSearch={handleSearch}
           />
         )}
-        <FaSearch onClick={() => handleSearch()} />
-        <button className="new-post-btn">+ New Post</button>
+        <FaSearch onClick={() => setShowSearchBar(!showSearchBar)} />
         <button className="signout-btn" onClick={handleLogout}>
           {' '}
           Sign Out
@@ -48,6 +49,7 @@ const NavBar = () => {
             setErrorMessage={setErrorMessage}
           />
         )}
+        <CreatedPostModal setPosts={setPosts} />
         <a href="/profile">
           <CgProfile />
         </a>

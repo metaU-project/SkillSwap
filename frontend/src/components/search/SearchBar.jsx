@@ -43,6 +43,7 @@ function SearchBar({ suggestions, onSearch }) {
             setShowClearButton(e.target.value.trim() !== '');
           }}
           onFocus={() => input && setShowSuggestions(true)}
+          onKeyDown={(e) => { if (e.key === 'Enter') handleSelect(input); }}
         />
         {showClearButton && (
           <MdClear onClick={handleClear} className="clear-btn" />

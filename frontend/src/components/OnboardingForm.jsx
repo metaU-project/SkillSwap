@@ -7,6 +7,7 @@ import {
 import ErrorModal from "./ErrorModal";
 import "./OnboardingForm.css";
 import { IoAddSharp } from "react-icons/io5";
+import LocationInput from "../components/Location/LocationInput";
 
 const Onboarding = () => {
   const [location, setLocation] = useState("");
@@ -60,13 +61,7 @@ const Onboarding = () => {
       <form onSubmit={handleCompleteOnboarding}>
         <label>
           Location
-          <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            required
-            placeholder="Enter your location"
-          />
+          <LocationInput location={location} setLocation={setLocation} />
         </label>
         <br />
         <label>
@@ -89,7 +84,7 @@ const Onboarding = () => {
                 type="button"
                 onClick={() => toggleInterest(interest)}
                 className={`interest-chip ${
-                  interests.includes(interest) ? "selected" : ""
+                  interests.includes(interest) ? 'selected' : ''
                 }`}
               >
                 {interest}
@@ -101,7 +96,7 @@ const Onboarding = () => {
                 type="button"
                 onClick={() => toggleInterest(interest)}
                 className={`interest-chip custom ${
-                  interests.includes(interest) ? "selected" : ""
+                  interests.includes(interest) ? 'selected' : ''
                 }`}
               >
                 {interest}
@@ -126,7 +121,7 @@ const Onboarding = () => {
                   setCustomInterest(e.target.value);
                 }}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter") {
+                  if (e.key === 'Enter') {
                     e.preventDefault();
                     addCustomInterest();
                   }

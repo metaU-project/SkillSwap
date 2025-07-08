@@ -12,4 +12,7 @@ export const API_ROUTES = {
   reviews: `${BASE_URL}/review`,
   postReview: `${BASE_URL}/review/post`,
   likePost: `${BASE_URL}/like/post`,
+  profile: `${BASE_URL}/profile`,
+  autosuggestions: `${BASE_URL}/search/suggestions`,
+  tokenizedSearch: `${BASE_URL}/search`,
 };

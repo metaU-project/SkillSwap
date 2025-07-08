@@ -8,7 +8,7 @@ function PostCard({ post }) {
   const [likes, setLikes] = useState(post.numLikes);
   const [isLiked, setIsLiked] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const previewLength = 100;
+  const previewLength = 30;
   const isLong = post.description.length > previewLength;
   const previewText = isLong
     ? post.description.slice(0, previewLength)
@@ -65,7 +65,7 @@ function PostCard({ post }) {
         <div className="post-meta">
           <span className="post-category">{post.category}</span>
           <span className={`post-type ${post.type.toLowerCase()}`}>
-            {post.type === 'OFFER' ? 'Offering Skill' : 'Seeking Skill'}
+            {post.type === offer ? 'Offering Skill' : 'Seeking Skill'}
           </span>
         </div>
 
@@ -75,7 +75,7 @@ function PostCard({ post }) {
           <strong>Posted by:</strong> {post.user.first_name}{' '}
           {post.user.last_name}
         </div>
-        {post.type === 'OFFER' && (
+        {post.type === offer && (
           <div className="post-actions">
             <div className="post-like">
               <button
@@ -89,9 +89,9 @@ function PostCard({ post }) {
               </button>
             </div>
             <div className="post-reviews">
-              <a className="post-reviews-count" href=" ">
+              <span className="post-reviews-count">
                 {post.numReviews} Reviews
-              </a>
+              </span>
             </div>
           </div>
         )}
@@ -109,7 +109,7 @@ function PostCard({ post }) {
         <PostInfoModal post={post} onClose={onClose} />
       )}
 
-      {showRecommend && post.type == 'REQUEST' && (
+      {showRecommend && post.type == request && (
         <SessionModal setShowRecommend={setShowRecommend} />
       )}
     </>

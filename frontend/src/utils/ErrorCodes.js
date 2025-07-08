@@ -8,4 +8,8 @@ export const ERROR_CODES = {
   UNAUTHORIZED: 'Unauthorized',
   TRY_AGAIN: 'An error occured please try again later',
   ERROR_FETCHING_INTERESTS: 'Error fetching interests',
+  ERROR_FETCHING_PROFILE: 'Error fetching profile',
+  ERROR_UPDATING_PROFILE_PICTURE: 'Error updating profile picture',
+  ERROR_FETCHING_SUGGESTIONS: 'Error fetching suggestions',
+  ERROR_FETCHING_TOKENIZED_SEARCH: 'Error fetching tokenized search',
 };

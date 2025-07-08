@@ -17,6 +17,9 @@ const ERROR_CODES = {
   MISSING_POST: 'Post not found',
   MISSING_USER: 'User not found',
   CREATE_REVIEW_ERROR: 'failed to create review',
+  FAILED_TO_FETCH_PROFILE: 'failed to fetch profile',
+  MISSING_FILE: 'File not found',
+  FAILED_TO_UPDATE_PROFILE: 'failed to update profile',
   INVALID_SEARCH_QUERY: 'Invalid search query',
   INTERNAL_SERVER_ERROR: 'Internal server error',
 };

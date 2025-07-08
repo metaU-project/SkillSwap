@@ -6,22 +6,28 @@ import ErrorModal from './ErrorModal';
 
 const LogIn = () => {
   const navigate = useNavigate();
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogIn = async (e) => {
     e.preventDefault();
     const response = await loginUser(email, password);
     if (response?.success) {
       const user = await checkAuth();
-      if (user) {
-        navigate("/onboarding");
+      if (
+        !user.user.location ||
+        user.user.interests.length === 0 ||
+        !user.user.bio
+      ) {
+        navigate('/onboarding');
+      } else {
+        navigate('/landing');
       }
     } else if (response?.error) {
       setErrorMessage(response.error);
     } else {
-      setErrorMessage("Something went wrong");
+      setErrorMessage('Something went wrong');
     }
   };
   return (
