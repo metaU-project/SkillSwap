@@ -20,7 +20,7 @@ export const fetchProfile = async (userId) => {
 //update profile picture
 export const updateProfilePicture = async (userId, profilePicture) => {
   const formData = new FormData();
-  formData.append("profilePicture", profilePicture);
+  formData.append("profileImage", profilePicture);
   try {
     const response = await fetch(
       `${API_ROUTES.profile}/${userId}/profile-pic`,

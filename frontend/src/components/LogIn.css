@@ -1,38 +1,57 @@
 .login-container {
-    flex: 1;
-    width: 300px;
-    padding: 30px;
-    border-radius: 8px;
-    margin: 10px;
-    height: 100%;
-  }
+  flex: 1;
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 8px;
+  margin: 10px;
+}
 
-  .login-container h2 {
-    margin-bottom: 20px;
-    color: #333;
-  }
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+.login-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
 
-  .login-container input{
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
+.login-container input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
 
+.login-container button {
+  width: 80%;
+  padding: 12px;
+  background-color: #004225;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
 
-  .login-container button {
-    width: 100%;
-    padding: 12px;
-    background-color: #004225;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 10px;
+.login-container button:hover {
+  background-color: #006837;
+}
+.benefits-list {
+  margin: 1rem 0;
+  color: #333;
+}
 
-  }
+.benefits-list ul {
+  list-style-type: none;
+  padding: 0;
+}
 
-  .login-container button:hover {
-    background-color: #006837;
-  }
+.benefits-list li {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+.benefits-list h3 {
+  margin: 0.5rem 0;
+}
