@@ -1,15 +1,23 @@
 .skill-container img {
     border-radius: 8px;
-    width: 410px;
+    width: 600px;
     height: auto;
     object-fit: cover;
-    height: 410px;
+    height: 600px;
 }
 
 .skill-container {
-    flex: 1;
-    max-width: 500px;
-    padding: 30px;
-    border-radius: 8px;
-    margin: 10px;
+  flex: 1;
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 8px;
+  margin: 10px;
+}
+
+.skill-container h3{
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
 }

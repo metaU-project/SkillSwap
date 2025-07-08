@@ -1,23 +1,23 @@
-.reviews-container{
-    margin-top: 1rem;
-    text-align: left;
-    background: #f9f9f9;
-    padding: 0.5rem;
-    border-radius: 5px;
-    max-height: 200px;
-    overflow-y: auto;
-    position: relative;
-  }
+.reviews-container {
+  margin-top: 1rem;
+  text-align: left;
+  background: #f9f9f9;
+  padding: 0.5rem;
+  border-radius: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  position: relative;
+}
 
-  .review{
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #ddd;
-  }
+.review {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+}
 
-  .review-input{
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 5px;
-    position: sticky;
-    bottom: 0;
-  }
+.review-input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  position: sticky;
+  bottom: 0;
+}

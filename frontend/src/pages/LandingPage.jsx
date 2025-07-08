@@ -1,4 +1,3 @@
-
 import FilterBar from "../components/Filters/FilterBar";
 import Footer from "../components/Footer/Footer";
 import NavBar from "../components/NavBar";
@@ -7,16 +6,18 @@ import { useState,useEffect } from "react";
 import {postFetch } from "../utils/postFetch";
 
 const LandingPage = () => {
-  const [filter, setFilter] = useState("Recommended");
+  const [filter, setFilter] = useState('Recommended');
   const [posts, setPosts] = useState([]);
 
-useEffect(() => {
-  const fetchPosts = async () => {
-    const posts = await postFetch();
-    setPosts(posts);
-  };
-  fetchPosts();
-}, []);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const fetchedPosts = await postFetch();
+      if (fetchedPosts && !fetchedPosts.error) {
+        setPosts(fetchedPosts);
+      }
+    };
+    fetchPosts();
+  }, []);
 
 
   return (
@@ -27,6 +28,5 @@ useEffect(() => {
       <Footer />
     </div>
   );
-}
-
+};
 export default LandingPage;

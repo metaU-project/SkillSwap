@@ -1,19 +1,17 @@
-import NavBar from "../components/NavBar";
-import OnboardingForm from "../components/OnboardingForm";
-import ShuffledSkill from "../components/ShuffledSkill";
-import "./Onboarding.css";
+import NavBar from '../components/NavBar';
+import OnboardingForm from '../components/OnboardingForm';
+import ShuffledSkill from '../components/ShuffledSkill';
+import './Onboarding.css';
 
 const Onboarding = () => {
-
-    return (
-      <div>
+  return (
+    <div>
       <div className="onboarding-main-section">
-      <ShuffledSkill/>
-      <OnboardingForm/>
+        <ShuffledSkill />
+        <OnboardingForm />
       </div>
-
-      </div>
-    );
-  }
+    </div>
+  );
+};
 
 export default Onboarding;

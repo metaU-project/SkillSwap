@@ -8,7 +8,6 @@
   position: sticky;
   top: 0;
   z-index: 100;
-
 }
 
 .nav-bar-main h1 {
@@ -43,10 +42,9 @@
   background-color: #e04b4b;
 }
 
-.nav-actions{
+.nav-actions {
   display: flex;
   align-items: center;
   gap: 0.1rem;
   cursor: pointer;
-
 }

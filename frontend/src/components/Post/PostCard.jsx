@@ -1,19 +1,21 @@
-import { AiOutlineLike } from "react-icons/ai";
-import PostInfoModal from "../Post/Modals/PostInfoModal";
-import { useState } from "react";
-import SessionModal from "./Modals/SessionModal";
-import { likePost } from "../../utils/likeFetch";
+import { AiOutlineLike } from 'react-icons/ai';
+import PostInfoModal from '../Post/Modals/PostInfoModal';
+import { useState } from 'react';
+import SessionModal from './Modals/SessionModal';
+import { likePost } from '../../utils/likeFetch';
 
 function PostCard({ post }) {
-    const [likes, setLikes] = useState(post.numLikes);
-    const [isLiked, setIsLiked] = useState(false);
-    const [showModal, setShowModal] = useState(false);
-    const previewLength = 30;
-    const isLong = post.description.length > previewLength;
-    const previewText = isLong
-        ? post.description.slice(0, previewLength)
-        : post.description;
-    const [showRecommend, setShowRecommend] = useState(false);
+  const [likes, setLikes] = useState(post.numLikes);
+  const [isLiked, setIsLiked] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const previewLength = 100;
+  const isLong = post.description.length > previewLength;
+  const previewText = isLong
+    ? post.description.slice(0, previewLength)
+    : post.description;
+  const [showRecommend, setShowRecommend] = useState(false);
+  const request = 'REQUEST';
+  const offer = 'OFFER';
 
     const handlePostClick = (e) => {
         e.preventDefault();
@@ -24,19 +26,20 @@ function PostCard({ post }) {
         setShowModal(false);
     };
 
-    const handleRecommend = (e) => {
-        e.preventDefault();
-        setShowRecommend(true);
-    };
-    const handleLike = async (postId) => {
-        try {
-            const response = await likePost(postId);
-            setIsLiked((prev) => !prev);
-            setLikes((prev) => (isLiked ? prev - 1 : prev + 1));
-        } catch (error) {
-            console.error(error, "Error liking post");
-        }
-    };
+  const handleRecommend = (e) => {
+    e.preventDefault();
+    setShowRecommend(true);
+  };
+
+  const handleLike = async (postId) => {
+    try {
+      const response = await likePost(postId);
+      setIsLiked((prev) => !prev);
+      setLikes((prev) => (isLiked ? prev - 1 : prev + 1));
+    } catch (error) {
+      console.error(error, 'Error liking post');
+    }
+  };
 
     return (
         <>
@@ -59,58 +62,58 @@ function PostCard({ post }) {
                     )}
                 </p>
 
-                <div className="post-meta">
-                    <span className="post-category">{post.category}</span>
-                    <span className={`post-type ${post.type.toLowerCase()}`}>
-                        {post.type === "OFFER" ? "Offering Skill" : "Seeking Skill"}
-                    </span>
-                </div>
+        <div className="post-meta">
+          <span className="post-category">{post.category}</span>
+          <span className={`post-type ${post.type.toLowerCase()}`}>
+            {post.type === offer ? 'Offering Skill' : 'Seeking Skill'}
+          </span>
+        </div>
 
                 <div className="post-location">{post.location}</div>
 
-                <div className="post-user">
-                    <strong>Posted by:</strong> {post.user.first_name}{" "}
-                    {post.user.last_name}
-                </div>
-                {post.type === "OFFER" && (
-                    <div className="post-actions">
-                        <div className="post-like">
-                            <button
-                                className={isLiked ? "liked-btn" : "unliked-btn"}
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleLike(post.id);
-                                }}
-                            >
-                                {isLiked ? "❤️" : "🤍"} {likes}
-                            </button>
-                        </div>
-                        <div className="post-reviews">
-                            <a className="post-reviews-count" href=" ">
-                                {post.numReviews} Reviews
-                            </a>
-                        </div>
-                    </div>
-                )}
-
-                {post.type === "REQUEST" && (
-                    <div className="post-actions">
-                        <button className="post-recommend-btn" onClick={handleRecommend}>
-                            Recommend session
-                        </button>
-                    </div>
-                )}
+        <div className="post-user">
+          <strong>Posted by:</strong> {post.user.first_name}{' '}
+          {post.user.last_name}
+        </div>
+        {post.type === offer && (
+          <div className="post-actions">
+            <div className="post-like">
+              <button
+                className={isLiked ? 'liked-btn' : 'unliked-btn'}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleLike(post.id);
+                }}
+              >
+                {isLiked ? '❤️' : '🤍'} {likes}
+              </button>
             </div>
+            <div className="post-reviews">
+              <a className="post-reviews-count" href=" ">
+                {post.numReviews} Reviews
+              </a>
+            </div>
+          </div>
+        )}
 
-            {showModal && post.type == "OFFER" && (
-                <PostInfoModal post={post} onClose={onClose} />
-            )}
+        {post.type === request && (
+          <div className="post-actions">
+            <button className="post-recommend-btn" onClick={handleRecommend}>
+              Recommend session
+            </button>
+          </div>
+        )}
+      </div>
 
-            {showRecommend && post.type == "REQUEST" && (
-                <SessionModal setShowRecommend={setShowRecommend} />
-            )}
-        </>
-    );
+      {showModal && post.type == offer && (
+        <PostInfoModal post={post} onClose={onClose} />
+      )}
+
+      {showRecommend && post.type == request && (
+        <SessionModal setShowRecommend={setShowRecommend} />
+      )}
+    </>
+  );
 }
 
 export default PostCard;
