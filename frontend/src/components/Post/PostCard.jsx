@@ -17,14 +17,14 @@ function PostCard({ post }) {
   const request = 'REQUEST';
   const offer = 'OFFER';
 
-  const handlePostClick = (e) => {
-    e.preventDefault();
-    setShowModal(true);
-  };
+    const handlePostClick = (e) => {
+        e.preventDefault();
+        setShowModal(true);
+    };
 
-  const onClose = () => {
-    setShowModal(false);
-  };
+    const onClose = () => {
+        setShowModal(false);
+    };
 
   const handleRecommend = (e) => {
     e.preventDefault();
@@ -41,41 +41,41 @@ function PostCard({ post }) {
     }
   };
 
-  return (
-    <>
-      <div className="post-card" onClick={handlePostClick}>
-        <div className="post-card-img-container">
-          {post.imageUrl && (
-            <img src={post.imageUrl} alt={post.title} className="post-image" />
-          )}
-        </div>
-        <h3>{post.title}</h3>
-        <p>
-          {previewText}
-          {isLong && (
-            <span
-              className="post-description-see-more"
-              onClick={handlePostClick}
-            >
-              ...
-            </span>
-          )}
-        </p>
+    return (
+        <>
+            <div className="post-card" onClick={handlePostClick}>
+                <div className="post-card-img-container">
+                    {post.imageUrl && (
+                        <img src={post.imageUrl} alt={post.title} className="post-image" />
+                    )}
+                </div>
+                <h3>{post.title}</h3>
+                <p>
+                    {previewText}
+                    {isLong && (
+                        <span
+                            className="post-description-see-more"
+                            onClick={handlePostClick}
+                        >
+                            ...
+                        </span>
+                    )}
+                </p>
 
         <div className="post-meta">
           <span className="post-category">{post.category}</span>
           <span className={`post-type ${post.type.toLowerCase()}`}>
-            {post.type === 'OFFER' ? 'Offering Skill' : 'Seeking Skill'}
+            {post.type === offer ? 'Offering Skill' : 'Seeking Skill'}
           </span>
         </div>
 
-        <div className="post-location">{post.location}</div>
+                <div className="post-location">{post.location}</div>
 
         <div className="post-user">
           <strong>Posted by:</strong> {post.user.first_name}{' '}
           {post.user.last_name}
         </div>
-        {post.type === 'OFFER' && (
+        {post.type === offer && (
           <div className="post-actions">
             <div className="post-like">
               <button
@@ -109,7 +109,7 @@ function PostCard({ post }) {
         <PostInfoModal post={post} onClose={onClose} />
       )}
 
-      {showRecommend && post.type == 'REQUEST' && (
+      {showRecommend && post.type == request && (
         <SessionModal setShowRecommend={setShowRecommend} />
       )}
     </>
