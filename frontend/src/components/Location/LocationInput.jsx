@@ -58,7 +58,7 @@ const LocationInput = ({ location, setLocation }) => {
           {suggestedLocations.map((s, i) => (
             <li
               key={i}
-              onClick={() => handleSelectLocation(s)}
+              onMouseDown={() => handleSelectLocation(s)}
               className="suggestion-item"
             >
               {s.properties.formatted}

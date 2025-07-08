@@ -24,7 +24,8 @@ const NavBar = ({ setPosts }) => {
   };
 
   const handleSearch = () => {
-    setShowSearchBar(!showSearchBar);
+    console.log('searching');
+    //[TODO] search for posts in backend and set posts state
   };
 
   return (
@@ -33,11 +34,11 @@ const NavBar = ({ setPosts }) => {
       <div className="nav-actions">
         {showSearchBar && (
           <SearchBar
-            suggestions={['Guitar', 'Web Design', 'Cooking', 'Photography']}
-            onSearch={(value) => console.log('Searching for:', value)}
+            suggestions={['Guitar', 'Web Design', 'Cooking', 'Photography']} //[TODO] fetch suggestions from backend
+            onSearch={handleSearch}
           />
         )}
-        <FaSearch onClick={() => handleSearch()} />
+        <FaSearch onClick={() => setShowSearchBar(!showSearchBar)} />
         <button className="signout-btn" onClick={handleLogout}>
           {' '}
           Sign Out

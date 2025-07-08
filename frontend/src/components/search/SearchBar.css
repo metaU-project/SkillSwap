@@ -1,9 +1,8 @@
 .search-bar-container {
   position: relative;
-  width: 300px;
 }
 
-input {
+.search-input-wrapper input {
   width: 100%;
   padding: 8px;
   padding-right: 30px;
@@ -18,9 +17,10 @@ input {
   width: 100%;
   border: 1px solid #ccc;
   background: white;
-  max-height: 150px;
+  max-height: 300px;
   overflow-y: auto;
   z-index: 999;
+  border-radius: 12px;
 }
 
 .suggestion-item {

@@ -61,13 +61,6 @@ const Onboarding = () => {
       <form onSubmit={handleCompleteOnboarding}>
         <label>
           Location
-          {/* <input
-            type="text"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            required
-            placeholder="Enter your location"
-          /> */}
           <LocationInput location={location} setLocation={setLocation} />
         </label>
         <br />
