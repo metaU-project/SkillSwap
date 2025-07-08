@@ -4,10 +4,16 @@ import './LocationInput.css';
 const LocationInput = ({ location, setLocation }) => {
   const [query, setQuery] = useState('');
   const [suggestedLocations, setSuggestedLocations] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const apiKey = import.meta.env.VITE_GEOCOMPLETE_API_KEY;
 
   useEffect(() => {
-    if (query.length === 0) return;
+    if (query.length < 2) {
+      setSuggestedLocations([]);
+      setShowSuggestions(false);
+      return;
+    }
+
     const fetchSuggestions = async () => {
       try {
         const response = await fetch(
@@ -15,6 +21,7 @@ const LocationInput = ({ location, setLocation }) => {
         );
         const data = await response.json();
         setSuggestedLocations(data.features || []);
+        setShowSuggestions(true);
       } catch (error) {
         console.error('Error fetching suggestions:', error);
       }
@@ -25,9 +32,11 @@ const LocationInput = ({ location, setLocation }) => {
   }, [query, apiKey]);
 
   const handleSelectLocation = (place) => {
-      setLocation(place.properties.formatted);
-      setQuery(place.properties.formatted);
+    const selectedLocation = place.properties.formatted;
+    setLocation(selectedLocation);
+    setQuery(selectedLocation);
     setSuggestedLocations([]);
+    setShowSuggestions(false);
   };
 
   return (
@@ -35,15 +44,16 @@ const LocationInput = ({ location, setLocation }) => {
       <input
         type="text"
         placeholder="Enter a location"
-        value={query || location}
+        value={query !== '' ? query : location}
         onChange={(e) => {
           setQuery(e.target.value);
           setLocation('');
         }}
         className="location-input"
         autoComplete="off"
+        onBlur={() => setTimeout(() => setSuggestedLocations([]), 100)}
       />
-      {suggestedLocations.length > 0 && (
+      {showSuggestions && suggestedLocations.length > 0 && (
         <ul className="suggestions-box">
           {suggestedLocations.map((s, i) => (
             <li
