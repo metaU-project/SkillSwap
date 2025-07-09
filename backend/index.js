@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 require('dotenv').config();
 const authRoutes = require('./routes/auth');
 const onboardingRoutes = require('./routes/onboarding');
@@ -24,6 +25,10 @@ app.use(
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
+    store: new pgSession({
+      conString: process.env.DATABASE_URL,
+      tableName: 'session',
+    }),
     secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: false,
