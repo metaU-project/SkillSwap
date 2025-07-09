@@ -5,7 +5,7 @@ import { ERROR_CODES } from './ErrorCodes';
 export const getTokenizedSearch = async (keywords) => {
   try {
     const response = await fetch(
-      `${API_ROUTES.tokenizedSearch}?keyword=${keywords}`,
+      `${API_ROUTES.tokenizedSearch}?keywords=${keywords}`,
       {
         method: 'GET',
         credentials: 'include',

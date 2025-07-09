@@ -2,7 +2,6 @@ const express = require('express');
 const { PrismaClient } = require('../generated/prisma');
 const prisma = new PrismaClient();
 const router = express.Router();
-const checkAuth = require('../middleware/checkAuth');
 const ERROR_CODES = require('../utils/errors');
 
 //tokenized search
@@ -25,11 +24,18 @@ router.get('/', async (req, res) => {
       where: {
         AND: conditions,
       },
+      include: {
+        user: {
+          select: { id: true, first_name: true, last_name: true },
+        },
+        likes: true,
+        reviews: true,
+      },
       orderBy: {
         createdAt: 'desc',
       },
     });
-    res.status(200).json(results);
+    res.status(200).json({ success: true, results });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: ERROR_CODES.INTERNAL_SERVER_ERROR });
@@ -43,7 +49,7 @@ const getPopularSuggestions = async () => {
       title: true,
       category: true,
     },
-    take: 5,
+    take: 15,
     orderBy: {
       numLikes: 'desc',
     },
@@ -75,7 +81,7 @@ router.get('/suggestions', async (req, res) => {
         title: true,
         category: true,
       },
-      take: 3,
+      take: 20,
     });
 
     //location suggestions
@@ -87,7 +93,7 @@ router.get('/suggestions', async (req, res) => {
         location: true,
       },
       distinct: ['location'],
-      take: 3,
+      take: 20,
     });
 
     //popular categories containing the keyword
@@ -100,7 +106,7 @@ router.get('/suggestions', async (req, res) => {
       orderBy: {
         _count: { category: 'desc' },
       },
-      take: 3,
+      take: 20,
     });
 
     const allSuggestions = [

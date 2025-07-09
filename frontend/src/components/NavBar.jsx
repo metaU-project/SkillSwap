@@ -7,8 +7,9 @@ import { CgProfile } from 'react-icons/cg';
 import { FaSearch } from 'react-icons/fa';
 import SearchBar from '../components/search/SearchBar';
 import CreatedPostModal from './Post/Modals/CreatePostModal';
+import { getTokenizedSearch, getAutosuggestions } from '../utils/searchFetch';
 
-const NavBar = ({ setPosts }) => {
+const NavBar = ({ setPosts, getPosts }) => {
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
@@ -23,9 +24,17 @@ const NavBar = ({ setPosts }) => {
     }
   };
 
-  const handleSearch = () => {
-    console.log('searching');
-    //[TODO] search for posts in backend and set posts state
+  const handleSearch = async (value) => {
+    console.log('searching for ', value);
+    const response = await getTokenizedSearch(value);
+    console.log('response', response);
+    if (response?.success) {
+      setPosts(response?.results);
+    } else if (response?.error) {
+      setErrorMessage(response?.error);
+    } else {
+      setPosts([]);
+    }
   };
 
   return (
@@ -34,11 +43,16 @@ const NavBar = ({ setPosts }) => {
       <div className="nav-actions">
         {showSearchBar && (
           <SearchBar
-            suggestions={['Guitar', 'Web Design', 'Cooking', 'Photography']} //[TODO] fetch suggestions from backend
             onSearch={handleSearch}
+            fetchSuggestions={getAutosuggestions}
           />
         )}
-        <FaSearch onClick={() => setShowSearchBar(!showSearchBar)} />
+        <FaSearch
+          onClick={() => {
+            setShowSearchBar(!showSearchBar);
+           getPosts();
+          }}
+        />
         <button className="signout-btn" onClick={handleLogout}>
           {' '}
           Sign Out
