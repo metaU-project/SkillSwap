@@ -2,6 +2,7 @@ const express = require('express');
 const { PrismaClient } = require('../generated/prisma');
 const prisma = new PrismaClient();
 const router = express.Router();
+const checkAuth = require('../middleware/checkAuth');
 const ERROR_CODES = require('../utils/errors');
 const cloudinary = require('../config/cloudinary');
 
@@ -34,7 +35,7 @@ router.get('/', async (req, res) => {
 });
 
 //create a post
-router.post('/', async (req, res) => {
+router.post('/', checkAuth, async (req, res) => {
   const title = req.body.title;
   const description = req.body.description;
   const category = req.body.category;
