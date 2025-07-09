@@ -18,7 +18,10 @@ app.set('trust proxy', 1);
 app.use(express.json());
 app.use(
   cors({
-    origin: 'https://skillswap-frontend-bews.onrender.com',
+    origin: [
+      'https://skillswap-frontend-bews.onrender.com',
+      'http://localhost:5173',
+    ],
     credentials: true,
   })
 );
