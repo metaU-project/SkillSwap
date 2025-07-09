@@ -10,20 +10,19 @@ datasource db {
 
 model User {
   id              Int       @id @default(autoincrement())
-  first_name      String?
-  last_name       String?
   email           String    @unique
   password        String
   profileImage    String?
   location        String?
   bio             String?
-  interests       String[]  @default([]) @db.Text
-  posts           Post[]
-  likes           Like[]
-  reviews         Review[]  @relation("Reviewer")
-  receivedReviews Review[]  @relation("Recipient")
-  sessions        Session[] @relation("ParticipantSessions")
+  interests       String[]  @default([])
   createdAt       DateTime  @default(now())
+  first_name      String?
+  last_name       String?
+  posts           Post[]
+  receivedReviews Review[]  @relation("Recipient")
+  reviews         Review[]  @relation("Reviewer")
+  sessions        Session[] @relation("ParticipantSessions")
 }
 
 model Session {
@@ -33,10 +32,10 @@ model Session {
   date          DateTime
   location      String
   postId        Int
-  post          Post     @relation(fields: [postId], references: [id])
   participantId Int
-  participant   User     @relation("ParticipantSessions", fields: [participantId], references: [id])
   createdAt     DateTime @default(now())
+  participant   User     @relation("ParticipantSessions", fields: [participantId], references: [id])
+  post          Post     @relation(fields: [postId], references: [id])
 }
 
 model Review {
@@ -44,11 +43,11 @@ model Review {
   comment     String
   reviewerId  Int
   recipientId Int
+  createdAt   DateTime @default(now())
   postId      Int?
   post        Post?    @relation(fields: [postId], references: [id])
-  reviewer    User     @relation("Reviewer", fields: [reviewerId], references: [id])
   recipient   User     @relation("Recipient", fields: [recipientId], references: [id])
-  createdAt   DateTime @default(now())
+  reviewer    User     @relation("Reviewer", fields: [reviewerId], references: [id])
 }
 
 model Post {
@@ -58,25 +57,13 @@ model Post {
   category    String
   type        PostType
   location    String
-  imageUrl    String?
+  image       String?
   userId      Int
-  numReviews  Int       @default(0)
+  createdAt   DateTime  @default(now())
   numLikes    Int       @default(0)
-  rating      Float     @default(0)
   user        User      @relation(fields: [userId], references: [id])
   reviews     Review[]
-  likes       Like[]
   sessions    Session[]
-  createdAt   DateTime  @default(now())
-}
-
-model Like {
-  id        Int      @id @default(autoincrement())
-  userId    Int
-  postId    Int
-  user      User     @relation(fields: [userId], references: [id])
-  post      Post     @relation(fields: [postId], references: [id])
-  createdAt DateTime @default(now())
 }
 
 enum PostType {
