@@ -24,7 +24,11 @@ app.use(
     secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false },
+    cookie: {
+      secure: true,
+      httpOnly: true,
+      sameSite: 'none',
+    },
   })
 );
 app.use(express.json());

@@ -9,35 +9,37 @@ import Profile from './components/Profile/Profile';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<SignUpPage />} />
-      <Route path="/signup" element={<SignUpPage />} />
-      <Route path="/signin" element={<LogInPage />} />
-      <Route
-        path="/onboarding"
-        element={
-          <ProtectedRoute>
-            <Onboarding />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/landing"
-        element={
-          <ProtectedRoute>
-            <LandingPage />
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/profile"
-        element={
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+    <Router>
+      <Routes>
+        <Route path="/" element={<SignUpPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/signin" element={<LogInPage />} />
+        <Route
+          path="/onboarding"
+          element={
+            <ProtectedRoute>
+              <Onboarding />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/landing"
+          element={
+            <ProtectedRoute>
+              <LandingPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 
