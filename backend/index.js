@@ -11,6 +11,9 @@ const profileRoutes = require('./routes/profile');
 const fileUpload = require('express-fileupload');
 const app = express();
 
+// Trust proxy for Render deployment
+app.set('trust proxy', 1);
+
 app.use(express.json());
 app.use(
   cors({
@@ -28,6 +31,7 @@ app.use(
       secure: true,
       httpOnly: true,
       sameSite: 'none',
+      maxAge: 24 * 60 * 60 * 1000,
     },
   })
 );
