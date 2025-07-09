@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://skillswap-backend-n642.onrender.com';
 
 export const API_ROUTES = {
   register: `${BASE_URL}/auth/register`,

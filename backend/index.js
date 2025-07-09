@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://skillswap-frontend-bews.onrender.com',
     credentials: true,
   })
 );
@@ -40,7 +40,6 @@ app.use('/post', postRoutes);
 app.use('/review', reviewRoutes);
 app.use('/like', likeRoutes);
 app.use('/profile', profileRoutes);
-app.use('/uploads', express.static('uploads'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
