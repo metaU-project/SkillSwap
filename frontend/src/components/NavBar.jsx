@@ -1,5 +1,5 @@
 import './NavBar.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { logOutUser } from '../utils/authFetch';
 import ErrorModal from './ErrorModal';
 import { useState } from 'react';
@@ -50,9 +50,10 @@ const NavBar = ({ setPosts }) => {
           />
         )}
         <CreatedPostModal setPosts={setPosts} />
-        <a href="/profile">
-          <CgProfile />
-        </a>
+        <Link to="/profile">
+          {' '}
+          <CgProfile />{' '}
+        </Link>
       </div>
     </div>
   );
