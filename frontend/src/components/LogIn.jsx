@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { checkAuth, loginUser } from '../utils/authFetch';
 import './LogIn.css';
@@ -62,7 +62,7 @@ const LogIn = () => {
         </button>
       </form>
       <p>
-        Don't have an account? <a href="/signup">Sign up</a>
+        Don't have an account? <Link to="/signup">Sign Up</Link>
       </p>
 
       {errorMessage && (
