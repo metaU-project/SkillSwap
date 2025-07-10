@@ -160,15 +160,34 @@ exports.Prisma.PostScalarFieldEnum = {
   category: 'category',
   type: 'type',
   location: 'location',
-  image: 'image',
   userId: 'userId',
   createdAt: 'createdAt',
-  numLikes: 'numLikes'
+  numLikes: 'numLikes',
+  imageUrl: 'imageUrl',
+  numReviews: 'numReviews',
+  rating: 'rating'
+};
+
+exports.Prisma.LikeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  postId: 'postId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SessionScalarFieldEnum = {
+  sid: 'sid',
+  sess: 'sess',
+  expire: 'expire'
 };
 
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
 };
 
 exports.Prisma.QueryMode = {
@@ -180,6 +199,12 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
+};
 exports.PostType = exports.$Enums.PostType = {
   OFFER: 'OFFER',
   REQUEST: 'REQUEST'
@@ -189,7 +214,9 @@ exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
   Review: 'Review',
-  Post: 'Post'
+  Post: 'Post',
+  Like: 'Like',
+  session: 'session'
 };
 
 /**
