@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { checkAuth } from '../utils/authFetch';
+import Loading from '../components/Loading/Loading';
 
 function ProtectedRoute({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -23,7 +24,7 @@ function ProtectedRoute({ children }) {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!isAuthenticated) {
