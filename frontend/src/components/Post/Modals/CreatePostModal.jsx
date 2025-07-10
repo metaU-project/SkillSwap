@@ -12,6 +12,7 @@ const CreatedPostModal = ({ setPosts }) => {
   const [location, setLocation] = useState('');
   const [type, setType] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +24,7 @@ const CreatedPostModal = ({ setPosts }) => {
       location,
       type,
     };
+    setSubmitting(true);
     try {
       await postCreate(newPost);
       const updatedPosts = await postFetch();
@@ -30,6 +32,8 @@ const CreatedPostModal = ({ setPosts }) => {
     } catch (err) {
       console.error(err);
       setErrorMessage(err.message);
+    } finally {
+      setSubmitting(false);
     }
     setTitle('');
     setDescription('');
@@ -51,58 +55,67 @@ const CreatedPostModal = ({ setPosts }) => {
             className="modal-content"
             onClick={(event) => event.stopPropagation()}
           >
-            <button className="close-btn" onClick={() => setShowModal(false)}>
-              ✖
-            </button>
-            <h2>Create New Post</h2>
-            <form onSubmit={handleSubmit}>
-              <input
-                placeholder="Enter post title"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-              />
-              <input
-                placeholder="Enter post category"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              />
-              <select
-                value={type}
-                onChange={(e) => {
-                  setType(e.target.value);
-                }}
-                required
-              >
-                <option value="">Select type</option>
-                <option value="OFFER">Offer</option>
-                <option value="REQUEST">Request</option>
-              </select>
-              <textarea
-                placeholder="Enter a description"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-              <input
-                placeholder="Enter location"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-              />
-              {image && (
-                <div className="image-preview">
-                  <img src={URL.createObjectURL(image)} alt="preview" />
-                </div>
-              )}
-              {!image && <p>Choose an image for the post</p>}
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setImage(e.target.files[0])}
-              />
+            {submitting ? (
+              <Loading />
+            ) : (
+              <>
+                <button
+                  className="close-btn"
+                  onClick={() => setShowModal(false)}
+                >
+                  ✖
+                </button>
+                <h2>Create New Post</h2>
+                <form onSubmit={handleSubmit}>
+                  <input
+                    placeholder="Enter post title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                  />
+                  <input
+                    placeholder="Enter post category"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                  />
+                  <select
+                    value={type}
+                    onChange={(e) => {
+                      setType(e.target.value);
+                    }}
+                    required
+                  >
+                    <option value="">Select type</option>
+                    <option value="OFFER">Offer</option>
+                    <option value="REQUEST">Request</option>
+                  </select>
+                  <textarea
+                    placeholder="Enter a description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                  <input
+                    placeholder="Enter location"
+                    value={location}
+                    onChange={(e) => setLocation(e.target.value)}
+                  />
+                  {image && (
+                    <div className="image-preview">
+                      <img src={URL.createObjectURL(image)} alt="preview" />
+                    </div>
+                  )}
+                  {!image && <p>Choose an image for the post</p>}
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setImage(e.target.files[0])}
+                  />
 
-              <button type="submit" className="create-btn">
-                Post
-              </button>
-            </form>
+                  <button type="submit" className="create-btn">
+                    Post
+                  </button>
+                </form>
+              </>
+            )}
           </div>
         </div>
       )}
