@@ -8,9 +8,6 @@ const ERROR_CODES = require('../utils/errors');
 router.get('/', async (req, res) => {
   try {
     const { keywords } = req.query;
-    if (!keywords || keywords.trim() === '') {
-      return res.status(400).json({ error: ERROR_CODES.INVALID_SEARCH_QUERY });
-    }
     const tokens = keywords.trim().split(/\s+/);
     const conditions = tokens.map((token) => ({
       OR: [
