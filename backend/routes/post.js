@@ -5,6 +5,7 @@ const router = express.Router();
 const checkAuth = require('../middleware/checkAuth');
 const ERROR_CODES = require('../utils/errors');
 const cloudinary = require('../config/cloudinary');
+const { rebuildTrie } = require('./search');
 
 //fetch all posts
 router.get('/', async (req, res) => {
@@ -95,9 +96,16 @@ router.post('/', checkAuth, async (req, res) => {
       },
     });
 
+    // Rebuild the Trie with the new post data
+    try {
+      await rebuildTrie();
+    } catch (trieError) {
+      console.error(ERROR_CODES.ERROR_INITIALIZING_TRIE, trieError);
+    }
+
     res.status(201).json(post);
   } catch (error) {
-    console.error('Post creation error:', error);
+    console.error(ERROR_CODES.FAILED_TO_CREATE_POST, error);
     res.status(500).json({ error: ERROR_CODES.FAILED_TO_CREATE_POST });
   }
 });
