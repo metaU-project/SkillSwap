@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './CreatePostModal.css';
 import { postCreate, postFetch } from '../../../utils/postFetch';
 import ErrorModal from '../../ErrorModal';
+import Loading from '../../Loading/Loading';
 
 const CreatedPostModal = ({ setPosts }) => {
   const [showModal, setShowModal] = useState(false);
