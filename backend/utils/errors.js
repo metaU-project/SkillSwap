@@ -20,6 +20,10 @@ const ERROR_CODES = {
   FAILED_TO_FETCH_PROFILE: "failed to fetch profile",
   MISSING_FILE: "File not found",
   FAILED_TO_UPDATE_PROFILE: "failed to update profile",
+  ERROR_GETTING_SUGGESTIONS: 'Error getting popular suggestions',
+  INVALID_SEARCH_QUERY: 'Invalid search query',
+  ERROR_INITIALIZING_TRIE: 'Error initializing trie',
+
 };
 
 module.exports = ERROR_CODES;
