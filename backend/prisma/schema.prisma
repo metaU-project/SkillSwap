@@ -52,22 +52,22 @@ model Review {
 }
 
 model Post {
-  id          Int       @id @default(autoincrement())
-  title       String
-  description String
-  category    String
-  type        PostType
-  location    String
-  userId      Int
-  createdAt   DateTime  @default(now())
-  numLikes    Int       @default(0)
-  imageUrl    String?
-  numReviews  Int       @default(0)
-  rating      Float     @default(0)
-  Like        Like[]
-  user        User      @relation(fields: [userId], references: [id])
-  reviews     Review[]
-  sessions    Session[]
+ id          Int      @id @default(autoincrement())
+ title       String
+ description String
+ category    String
+ type        PostType
+ location    String
+ imageUrl  String?
+ userId      Int
+ numReviews  Int @default(0)
+ numLikes    Int @default(0)
+ rating      Float @default(0)
+ user        User     @relation(fields: [userId], references: [id])
+ reviews     Review[]
+ likes       Like[]
+ sessions  Session[]
+ createdAt   DateTime @default(now())
 }
 
 model Like {

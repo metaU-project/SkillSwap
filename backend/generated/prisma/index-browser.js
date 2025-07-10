@@ -160,12 +160,12 @@ exports.Prisma.PostScalarFieldEnum = {
   category: 'category',
   type: 'type',
   location: 'location',
-  userId: 'userId',
-  createdAt: 'createdAt',
-  numLikes: 'numLikes',
   imageUrl: 'imageUrl',
+  userId: 'userId',
   numReviews: 'numReviews',
-  rating: 'rating'
+  numLikes: 'numLikes',
+  rating: 'rating',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.LikeScalarFieldEnum = {

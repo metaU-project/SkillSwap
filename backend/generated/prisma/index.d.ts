@@ -1408,14 +1408,14 @@ export namespace Prisma {
    */
 
   export type PostCountOutputType = {
-    Like: number
     reviews: number
+    likes: number
     sessions: number
   }
 
   export type PostCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Like?: boolean | PostCountOutputTypeCountLikeArgs
     reviews?: boolean | PostCountOutputTypeCountReviewsArgs
+    likes?: boolean | PostCountOutputTypeCountLikesArgs
     sessions?: boolean | PostCountOutputTypeCountSessionsArgs
   }
 
@@ -1433,15 +1433,15 @@ export namespace Prisma {
   /**
    * PostCountOutputType without action
    */
-  export type PostCountOutputTypeCountLikeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LikeWhereInput
+  export type PostCountOutputTypeCountReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReviewWhereInput
   }
 
   /**
    * PostCountOutputType without action
    */
-  export type PostCountOutputTypeCountReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ReviewWhereInput
+  export type PostCountOutputTypeCountLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LikeWhereInput
   }
 
   /**
@@ -5047,16 +5047,16 @@ export namespace Prisma {
   export type PostAvgAggregateOutputType = {
     id: number | null
     userId: number | null
-    numLikes: number | null
     numReviews: number | null
+    numLikes: number | null
     rating: number | null
   }
 
   export type PostSumAggregateOutputType = {
     id: number | null
     userId: number | null
-    numLikes: number | null
     numReviews: number | null
+    numLikes: number | null
     rating: number | null
   }
 
@@ -5067,12 +5067,12 @@ export namespace Prisma {
     category: string | null
     type: $Enums.PostType | null
     location: string | null
-    userId: number | null
-    createdAt: Date | null
-    numLikes: number | null
     imageUrl: string | null
+    userId: number | null
     numReviews: number | null
+    numLikes: number | null
     rating: number | null
+    createdAt: Date | null
   }
 
   export type PostMaxAggregateOutputType = {
@@ -5082,12 +5082,12 @@ export namespace Prisma {
     category: string | null
     type: $Enums.PostType | null
     location: string | null
-    userId: number | null
-    createdAt: Date | null
-    numLikes: number | null
     imageUrl: string | null
+    userId: number | null
     numReviews: number | null
+    numLikes: number | null
     rating: number | null
+    createdAt: Date | null
   }
 
   export type PostCountAggregateOutputType = {
@@ -5097,12 +5097,12 @@ export namespace Prisma {
     category: number
     type: number
     location: number
-    userId: number
-    createdAt: number
-    numLikes: number
     imageUrl: number
+    userId: number
     numReviews: number
+    numLikes: number
     rating: number
+    createdAt: number
     _all: number
   }
 
@@ -5110,16 +5110,16 @@ export namespace Prisma {
   export type PostAvgAggregateInputType = {
     id?: true
     userId?: true
-    numLikes?: true
     numReviews?: true
+    numLikes?: true
     rating?: true
   }
 
   export type PostSumAggregateInputType = {
     id?: true
     userId?: true
-    numLikes?: true
     numReviews?: true
+    numLikes?: true
     rating?: true
   }
 
@@ -5130,12 +5130,12 @@ export namespace Prisma {
     category?: true
     type?: true
     location?: true
-    userId?: true
-    createdAt?: true
-    numLikes?: true
     imageUrl?: true
+    userId?: true
     numReviews?: true
+    numLikes?: true
     rating?: true
+    createdAt?: true
   }
 
   export type PostMaxAggregateInputType = {
@@ -5145,12 +5145,12 @@ export namespace Prisma {
     category?: true
     type?: true
     location?: true
-    userId?: true
-    createdAt?: true
-    numLikes?: true
     imageUrl?: true
+    userId?: true
     numReviews?: true
+    numLikes?: true
     rating?: true
+    createdAt?: true
   }
 
   export type PostCountAggregateInputType = {
@@ -5160,12 +5160,12 @@ export namespace Prisma {
     category?: true
     type?: true
     location?: true
-    userId?: true
-    createdAt?: true
-    numLikes?: true
     imageUrl?: true
+    userId?: true
     numReviews?: true
+    numLikes?: true
     rating?: true
+    createdAt?: true
     _all?: true
   }
 
@@ -5262,12 +5262,12 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    userId: number
-    createdAt: Date
-    numLikes: number
     imageUrl: string | null
+    userId: number
     numReviews: number
+    numLikes: number
     rating: number
+    createdAt: Date
     _count: PostCountAggregateOutputType | null
     _avg: PostAvgAggregateOutputType | null
     _sum: PostSumAggregateOutputType | null
@@ -5296,15 +5296,15 @@ export namespace Prisma {
     category?: boolean
     type?: boolean
     location?: boolean
-    userId?: boolean
-    createdAt?: boolean
-    numLikes?: boolean
     imageUrl?: boolean
+    userId?: boolean
     numReviews?: boolean
+    numLikes?: boolean
     rating?: boolean
-    Like?: boolean | Post$LikeArgs<ExtArgs>
+    createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     reviews?: boolean | Post$reviewsArgs<ExtArgs>
+    likes?: boolean | Post$likesArgs<ExtArgs>
     sessions?: boolean | Post$sessionsArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
@@ -5316,12 +5316,12 @@ export namespace Prisma {
     category?: boolean
     type?: boolean
     location?: boolean
-    userId?: boolean
-    createdAt?: boolean
-    numLikes?: boolean
     imageUrl?: boolean
+    userId?: boolean
     numReviews?: boolean
+    numLikes?: boolean
     rating?: boolean
+    createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -5332,12 +5332,12 @@ export namespace Prisma {
     category?: boolean
     type?: boolean
     location?: boolean
-    userId?: boolean
-    createdAt?: boolean
-    numLikes?: boolean
     imageUrl?: boolean
+    userId?: boolean
     numReviews?: boolean
+    numLikes?: boolean
     rating?: boolean
+    createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -5348,19 +5348,19 @@ export namespace Prisma {
     category?: boolean
     type?: boolean
     location?: boolean
-    userId?: boolean
-    createdAt?: boolean
-    numLikes?: boolean
     imageUrl?: boolean
+    userId?: boolean
     numReviews?: boolean
+    numLikes?: boolean
     rating?: boolean
+    createdAt?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "type" | "location" | "userId" | "createdAt" | "numLikes" | "imageUrl" | "numReviews" | "rating", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "type" | "location" | "imageUrl" | "userId" | "numReviews" | "numLikes" | "rating" | "createdAt", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Like?: boolean | Post$LikeArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     reviews?: boolean | Post$reviewsArgs<ExtArgs>
+    likes?: boolean | Post$likesArgs<ExtArgs>
     sessions?: boolean | Post$sessionsArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -5374,9 +5374,9 @@ export namespace Prisma {
   export type $PostPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Post"
     objects: {
-      Like: Prisma.$LikePayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
+      likes: Prisma.$LikePayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -5386,12 +5386,12 @@ export namespace Prisma {
       category: string
       type: $Enums.PostType
       location: string
-      userId: number
-      createdAt: Date
-      numLikes: number
       imageUrl: string | null
+      userId: number
       numReviews: number
+      numLikes: number
       rating: number
+      createdAt: Date
     }, ExtArgs["result"]["post"]>
     composites: {}
   }
@@ -5786,9 +5786,9 @@ export namespace Prisma {
    */
   export interface Prisma__PostClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Like<T extends Post$LikeArgs<ExtArgs> = {}>(args?: Subset<T, Post$LikeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     reviews<T extends Post$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Post$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    likes<T extends Post$likesArgs<ExtArgs> = {}>(args?: Subset<T, Post$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends Post$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, Post$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5825,12 +5825,12 @@ export namespace Prisma {
     readonly category: FieldRef<"Post", 'String'>
     readonly type: FieldRef<"Post", 'PostType'>
     readonly location: FieldRef<"Post", 'String'>
-    readonly userId: FieldRef<"Post", 'Int'>
-    readonly createdAt: FieldRef<"Post", 'DateTime'>
-    readonly numLikes: FieldRef<"Post", 'Int'>
     readonly imageUrl: FieldRef<"Post", 'String'>
+    readonly userId: FieldRef<"Post", 'Int'>
     readonly numReviews: FieldRef<"Post", 'Int'>
+    readonly numLikes: FieldRef<"Post", 'Int'>
     readonly rating: FieldRef<"Post", 'Float'>
+    readonly createdAt: FieldRef<"Post", 'DateTime'>
   }
     
 
@@ -6227,30 +6227,6 @@ export namespace Prisma {
   }
 
   /**
-   * Post.Like
-   */
-  export type Post$LikeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Like
-     */
-    omit?: LikeOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LikeInclude<ExtArgs> | null
-    where?: LikeWhereInput
-    orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
-    cursor?: LikeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LikeScalarFieldEnum | LikeScalarFieldEnum[]
-  }
-
-  /**
    * Post.reviews
    */
   export type Post$reviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6272,6 +6248,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
+  }
+
+  /**
+   * Post.likes
+   */
+  export type Post$likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Like
+     */
+    select?: LikeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Like
+     */
+    omit?: LikeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LikeInclude<ExtArgs> | null
+    where?: LikeWhereInput
+    orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
+    cursor?: LikeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LikeScalarFieldEnum | LikeScalarFieldEnum[]
   }
 
   /**
@@ -8521,12 +8521,12 @@ export namespace Prisma {
     category: 'category',
     type: 'type',
     location: 'location',
-    userId: 'userId',
-    createdAt: 'createdAt',
-    numLikes: 'numLikes',
     imageUrl: 'imageUrl',
+    userId: 'userId',
     numReviews: 'numReviews',
-    rating: 'rating'
+    numLikes: 'numLikes',
+    rating: 'rating',
+    createdAt: 'createdAt'
   };
 
   export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
@@ -8930,15 +8930,15 @@ export namespace Prisma {
     category?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     location?: StringFilter<"Post"> | string
-    userId?: IntFilter<"Post"> | number
-    createdAt?: DateTimeFilter<"Post"> | Date | string
-    numLikes?: IntFilter<"Post"> | number
     imageUrl?: StringNullableFilter<"Post"> | string | null
+    userId?: IntFilter<"Post"> | number
     numReviews?: IntFilter<"Post"> | number
+    numLikes?: IntFilter<"Post"> | number
     rating?: FloatFilter<"Post"> | number
-    Like?: LikeListRelationFilter
+    createdAt?: DateTimeFilter<"Post"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     reviews?: ReviewListRelationFilter
+    likes?: LikeListRelationFilter
     sessions?: SessionListRelationFilter
   }
 
@@ -8949,15 +8949,15 @@ export namespace Prisma {
     category?: SortOrder
     type?: SortOrder
     location?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-    numLikes?: SortOrder
     imageUrl?: SortOrderInput | SortOrder
+    userId?: SortOrder
     numReviews?: SortOrder
+    numLikes?: SortOrder
     rating?: SortOrder
-    Like?: LikeOrderByRelationAggregateInput
+    createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
     reviews?: ReviewOrderByRelationAggregateInput
+    likes?: LikeOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
   }
 
@@ -8971,15 +8971,15 @@ export namespace Prisma {
     category?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     location?: StringFilter<"Post"> | string
-    userId?: IntFilter<"Post"> | number
-    createdAt?: DateTimeFilter<"Post"> | Date | string
-    numLikes?: IntFilter<"Post"> | number
     imageUrl?: StringNullableFilter<"Post"> | string | null
+    userId?: IntFilter<"Post"> | number
     numReviews?: IntFilter<"Post"> | number
+    numLikes?: IntFilter<"Post"> | number
     rating?: FloatFilter<"Post"> | number
-    Like?: LikeListRelationFilter
+    createdAt?: DateTimeFilter<"Post"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     reviews?: ReviewListRelationFilter
+    likes?: LikeListRelationFilter
     sessions?: SessionListRelationFilter
   }, "id">
 
@@ -8990,12 +8990,12 @@ export namespace Prisma {
     category?: SortOrder
     type?: SortOrder
     location?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-    numLikes?: SortOrder
     imageUrl?: SortOrderInput | SortOrder
+    userId?: SortOrder
     numReviews?: SortOrder
+    numLikes?: SortOrder
     rating?: SortOrder
+    createdAt?: SortOrder
     _count?: PostCountOrderByAggregateInput
     _avg?: PostAvgOrderByAggregateInput
     _max?: PostMaxOrderByAggregateInput
@@ -9013,12 +9013,12 @@ export namespace Prisma {
     category?: StringWithAggregatesFilter<"Post"> | string
     type?: EnumPostTypeWithAggregatesFilter<"Post"> | $Enums.PostType
     location?: StringWithAggregatesFilter<"Post"> | string
-    userId?: IntWithAggregatesFilter<"Post"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
-    numLikes?: IntWithAggregatesFilter<"Post"> | number
     imageUrl?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    userId?: IntWithAggregatesFilter<"Post"> | number
     numReviews?: IntWithAggregatesFilter<"Post"> | number
+    numLikes?: IntWithAggregatesFilter<"Post"> | number
     rating?: FloatWithAggregatesFilter<"Post"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
   }
 
   export type LikeWhereInput = {
@@ -9361,14 +9361,14 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    createdAt?: Date | string
-    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
+    numLikes?: number
     rating?: number
-    Like?: LikeCreateNestedManyWithoutPostInput
+    createdAt?: Date | string
     user: UserCreateNestedOneWithoutPostsInput
     reviews?: ReviewCreateNestedManyWithoutPostInput
+    likes?: LikeCreateNestedManyWithoutPostInput
     sessions?: SessionCreateNestedManyWithoutPostInput
   }
 
@@ -9379,14 +9379,14 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    userId: number
-    createdAt?: Date | string
-    numLikes?: number
     imageUrl?: string | null
+    userId: number
     numReviews?: number
+    numLikes?: number
     rating?: number
-    Like?: LikeUncheckedCreateNestedManyWithoutPostInput
+    createdAt?: Date | string
     reviews?: ReviewUncheckedCreateNestedManyWithoutPostInput
+    likes?: LikeUncheckedCreateNestedManyWithoutPostInput
     sessions?: SessionUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -9396,14 +9396,14 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    Like?: LikeUpdateManyWithoutPostNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
     reviews?: ReviewUpdateManyWithoutPostNestedInput
+    likes?: LikeUpdateManyWithoutPostNestedInput
     sessions?: SessionUpdateManyWithoutPostNestedInput
   }
 
@@ -9414,14 +9414,14 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    Like?: LikeUncheckedUpdateManyWithoutPostNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUncheckedUpdateManyWithoutPostNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutPostNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -9432,12 +9432,12 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    userId: number
-    createdAt?: Date | string
-    numLikes?: number
     imageUrl?: string | null
+    userId: number
     numReviews?: number
+    numLikes?: number
     rating?: number
+    createdAt?: Date | string
   }
 
   export type PostUpdateManyMutationInput = {
@@ -9446,11 +9446,11 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostUncheckedUpdateManyInput = {
@@ -9460,17 +9460,17 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LikeCreateInput = {
     createdAt?: Date | string
-    Post: PostCreateNestedOneWithoutLikeInput
+    Post: PostCreateNestedOneWithoutLikesInput
     User: UserCreateNestedOneWithoutLikeInput
   }
 
@@ -9483,7 +9483,7 @@ export namespace Prisma {
 
   export type LikeUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Post?: PostUpdateOneRequiredWithoutLikeNestedInput
+    Post?: PostUpdateOneRequiredWithoutLikesNestedInput
     User?: UserUpdateOneRequiredWithoutLikeNestedInput
   }
 
@@ -9923,19 +9923,19 @@ export namespace Prisma {
     category?: SortOrder
     type?: SortOrder
     location?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-    numLikes?: SortOrder
     imageUrl?: SortOrder
+    userId?: SortOrder
     numReviews?: SortOrder
+    numLikes?: SortOrder
     rating?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type PostAvgOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    numLikes?: SortOrder
     numReviews?: SortOrder
+    numLikes?: SortOrder
     rating?: SortOrder
   }
 
@@ -9946,12 +9946,12 @@ export namespace Prisma {
     category?: SortOrder
     type?: SortOrder
     location?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-    numLikes?: SortOrder
     imageUrl?: SortOrder
+    userId?: SortOrder
     numReviews?: SortOrder
+    numLikes?: SortOrder
     rating?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type PostMinOrderByAggregateInput = {
@@ -9961,19 +9961,19 @@ export namespace Prisma {
     category?: SortOrder
     type?: SortOrder
     location?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-    numLikes?: SortOrder
     imageUrl?: SortOrder
+    userId?: SortOrder
     numReviews?: SortOrder
+    numLikes?: SortOrder
     rating?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type PostSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    numLikes?: SortOrder
     numReviews?: SortOrder
+    numLikes?: SortOrder
     rating?: SortOrder
   }
 
@@ -10420,13 +10420,6 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type LikeCreateNestedManyWithoutPostInput = {
-    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
-    createMany?: LikeCreateManyPostInputEnvelope
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-  }
-
   export type UserCreateNestedOneWithoutPostsInput = {
     create?: XOR<UserCreateWithoutPostsInput, UserUncheckedCreateWithoutPostsInput>
     connectOrCreate?: UserCreateOrConnectWithoutPostsInput
@@ -10440,6 +10433,13 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
+  export type LikeCreateNestedManyWithoutPostInput = {
+    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
+    createMany?: LikeCreateManyPostInputEnvelope
+    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+  }
+
   export type SessionCreateNestedManyWithoutPostInput = {
     create?: XOR<SessionCreateWithoutPostInput, SessionUncheckedCreateWithoutPostInput> | SessionCreateWithoutPostInput[] | SessionUncheckedCreateWithoutPostInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutPostInput | SessionCreateOrConnectWithoutPostInput[]
@@ -10447,18 +10447,18 @@ export namespace Prisma {
     connect?: SessionWhereUniqueInput | SessionWhereUniqueInput[]
   }
 
-  export type LikeUncheckedCreateNestedManyWithoutPostInput = {
-    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
-    createMany?: LikeCreateManyPostInputEnvelope
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-  }
-
   export type ReviewUncheckedCreateNestedManyWithoutPostInput = {
     create?: XOR<ReviewCreateWithoutPostInput, ReviewUncheckedCreateWithoutPostInput> | ReviewCreateWithoutPostInput[] | ReviewUncheckedCreateWithoutPostInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutPostInput | ReviewCreateOrConnectWithoutPostInput[]
     createMany?: ReviewCreateManyPostInputEnvelope
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+  }
+
+  export type LikeUncheckedCreateNestedManyWithoutPostInput = {
+    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
+    createMany?: LikeCreateManyPostInputEnvelope
+    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
   }
 
   export type SessionUncheckedCreateNestedManyWithoutPostInput = {
@@ -10478,20 +10478,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type LikeUpdateManyWithoutPostNestedInput = {
-    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
-    upsert?: LikeUpsertWithWhereUniqueWithoutPostInput | LikeUpsertWithWhereUniqueWithoutPostInput[]
-    createMany?: LikeCreateManyPostInputEnvelope
-    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    update?: LikeUpdateWithWhereUniqueWithoutPostInput | LikeUpdateWithWhereUniqueWithoutPostInput[]
-    updateMany?: LikeUpdateManyWithWhereWithoutPostInput | LikeUpdateManyWithWhereWithoutPostInput[]
-    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
   }
 
   export type UserUpdateOneRequiredWithoutPostsNestedInput = {
@@ -10516,6 +10502,20 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
+  export type LikeUpdateManyWithoutPostNestedInput = {
+    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
+    upsert?: LikeUpsertWithWhereUniqueWithoutPostInput | LikeUpsertWithWhereUniqueWithoutPostInput[]
+    createMany?: LikeCreateManyPostInputEnvelope
+    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    update?: LikeUpdateWithWhereUniqueWithoutPostInput | LikeUpdateWithWhereUniqueWithoutPostInput[]
+    updateMany?: LikeUpdateManyWithWhereWithoutPostInput | LikeUpdateManyWithWhereWithoutPostInput[]
+    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
+  }
+
   export type SessionUpdateManyWithoutPostNestedInput = {
     create?: XOR<SessionCreateWithoutPostInput, SessionUncheckedCreateWithoutPostInput> | SessionCreateWithoutPostInput[] | SessionUncheckedCreateWithoutPostInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutPostInput | SessionCreateOrConnectWithoutPostInput[]
@@ -10528,20 +10528,6 @@ export namespace Prisma {
     update?: SessionUpdateWithWhereUniqueWithoutPostInput | SessionUpdateWithWhereUniqueWithoutPostInput[]
     updateMany?: SessionUpdateManyWithWhereWithoutPostInput | SessionUpdateManyWithWhereWithoutPostInput[]
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
-  }
-
-  export type LikeUncheckedUpdateManyWithoutPostNestedInput = {
-    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
-    upsert?: LikeUpsertWithWhereUniqueWithoutPostInput | LikeUpsertWithWhereUniqueWithoutPostInput[]
-    createMany?: LikeCreateManyPostInputEnvelope
-    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    update?: LikeUpdateWithWhereUniqueWithoutPostInput | LikeUpdateWithWhereUniqueWithoutPostInput[]
-    updateMany?: LikeUpdateManyWithWhereWithoutPostInput | LikeUpdateManyWithWhereWithoutPostInput[]
-    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
   }
 
   export type ReviewUncheckedUpdateManyWithoutPostNestedInput = {
@@ -10558,6 +10544,20 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
+  export type LikeUncheckedUpdateManyWithoutPostNestedInput = {
+    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
+    upsert?: LikeUpsertWithWhereUniqueWithoutPostInput | LikeUpsertWithWhereUniqueWithoutPostInput[]
+    createMany?: LikeCreateManyPostInputEnvelope
+    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    update?: LikeUpdateWithWhereUniqueWithoutPostInput | LikeUpdateWithWhereUniqueWithoutPostInput[]
+    updateMany?: LikeUpdateManyWithWhereWithoutPostInput | LikeUpdateManyWithWhereWithoutPostInput[]
+    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
+  }
+
   export type SessionUncheckedUpdateManyWithoutPostNestedInput = {
     create?: XOR<SessionCreateWithoutPostInput, SessionUncheckedCreateWithoutPostInput> | SessionCreateWithoutPostInput[] | SessionUncheckedCreateWithoutPostInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutPostInput | SessionCreateOrConnectWithoutPostInput[]
@@ -10572,9 +10572,9 @@ export namespace Prisma {
     deleteMany?: SessionScalarWhereInput | SessionScalarWhereInput[]
   }
 
-  export type PostCreateNestedOneWithoutLikeInput = {
-    create?: XOR<PostCreateWithoutLikeInput, PostUncheckedCreateWithoutLikeInput>
-    connectOrCreate?: PostCreateOrConnectWithoutLikeInput
+  export type PostCreateNestedOneWithoutLikesInput = {
+    create?: XOR<PostCreateWithoutLikesInput, PostUncheckedCreateWithoutLikesInput>
+    connectOrCreate?: PostCreateOrConnectWithoutLikesInput
     connect?: PostWhereUniqueInput
   }
 
@@ -10584,12 +10584,12 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type PostUpdateOneRequiredWithoutLikeNestedInput = {
-    create?: XOR<PostCreateWithoutLikeInput, PostUncheckedCreateWithoutLikeInput>
-    connectOrCreate?: PostCreateOrConnectWithoutLikeInput
-    upsert?: PostUpsertWithoutLikeInput
+  export type PostUpdateOneRequiredWithoutLikesNestedInput = {
+    create?: XOR<PostCreateWithoutLikesInput, PostUncheckedCreateWithoutLikesInput>
+    connectOrCreate?: PostCreateOrConnectWithoutLikesInput
+    upsert?: PostUpsertWithoutLikesInput
     connect?: PostWhereUniqueInput
-    update?: XOR<XOR<PostUpdateToOneWithWhereWithoutLikeInput, PostUpdateWithoutLikeInput>, PostUncheckedUpdateWithoutLikeInput>
+    update?: XOR<XOR<PostUpdateToOneWithWhereWithoutLikesInput, PostUpdateWithoutLikesInput>, PostUncheckedUpdateWithoutLikesInput>
   }
 
   export type UserUpdateOneRequiredWithoutLikeNestedInput = {
@@ -10821,7 +10821,7 @@ export namespace Prisma {
 
   export type LikeCreateWithoutUserInput = {
     createdAt?: Date | string
-    Post: PostCreateNestedOneWithoutLikeInput
+    Post: PostCreateNestedOneWithoutLikesInput
   }
 
   export type LikeUncheckedCreateWithoutUserInput = {
@@ -10846,13 +10846,13 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    createdAt?: Date | string
-    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
+    numLikes?: number
     rating?: number
-    Like?: LikeCreateNestedManyWithoutPostInput
+    createdAt?: Date | string
     reviews?: ReviewCreateNestedManyWithoutPostInput
+    likes?: LikeCreateNestedManyWithoutPostInput
     sessions?: SessionCreateNestedManyWithoutPostInput
   }
 
@@ -10863,13 +10863,13 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    createdAt?: Date | string
-    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
+    numLikes?: number
     rating?: number
-    Like?: LikeUncheckedCreateNestedManyWithoutPostInput
+    createdAt?: Date | string
     reviews?: ReviewUncheckedCreateNestedManyWithoutPostInput
+    likes?: LikeUncheckedCreateNestedManyWithoutPostInput
     sessions?: SessionUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -11014,12 +11014,12 @@ export namespace Prisma {
     category?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     location?: StringFilter<"Post"> | string
-    userId?: IntFilter<"Post"> | number
-    createdAt?: DateTimeFilter<"Post"> | Date | string
-    numLikes?: IntFilter<"Post"> | number
     imageUrl?: StringNullableFilter<"Post"> | string | null
+    userId?: IntFilter<"Post"> | number
     numReviews?: IntFilter<"Post"> | number
+    numLikes?: IntFilter<"Post"> | number
     rating?: FloatFilter<"Post"> | number
+    createdAt?: DateTimeFilter<"Post"> | Date | string
   }
 
   export type ReviewUpsertWithWhereUniqueWithoutRecipientInput = {
@@ -11140,14 +11140,14 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    createdAt?: Date | string
-    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
+    numLikes?: number
     rating?: number
-    Like?: LikeCreateNestedManyWithoutPostInput
+    createdAt?: Date | string
     user: UserCreateNestedOneWithoutPostsInput
     reviews?: ReviewCreateNestedManyWithoutPostInput
+    likes?: LikeCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateWithoutSessionsInput = {
@@ -11157,14 +11157,14 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    userId: number
-    createdAt?: Date | string
-    numLikes?: number
     imageUrl?: string | null
+    userId: number
     numReviews?: number
+    numLikes?: number
     rating?: number
-    Like?: LikeUncheckedCreateNestedManyWithoutPostInput
+    createdAt?: Date | string
     reviews?: ReviewUncheckedCreateNestedManyWithoutPostInput
+    likes?: LikeUncheckedCreateNestedManyWithoutPostInput
   }
 
   export type PostCreateOrConnectWithoutSessionsInput = {
@@ -11233,14 +11233,14 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    Like?: LikeUpdateManyWithoutPostNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
     reviews?: ReviewUpdateManyWithoutPostNestedInput
+    likes?: LikeUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateWithoutSessionsInput = {
@@ -11250,14 +11250,14 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    Like?: LikeUncheckedUpdateManyWithoutPostNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUncheckedUpdateManyWithoutPostNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type PostCreateWithoutReviewsInput = {
@@ -11266,13 +11266,13 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    createdAt?: Date | string
-    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
+    numLikes?: number
     rating?: number
-    Like?: LikeCreateNestedManyWithoutPostInput
+    createdAt?: Date | string
     user: UserCreateNestedOneWithoutPostsInput
+    likes?: LikeCreateNestedManyWithoutPostInput
     sessions?: SessionCreateNestedManyWithoutPostInput
   }
 
@@ -11283,13 +11283,13 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    userId: number
-    createdAt?: Date | string
-    numLikes?: number
     imageUrl?: string | null
+    userId: number
     numReviews?: number
+    numLikes?: number
     rating?: number
-    Like?: LikeUncheckedCreateNestedManyWithoutPostInput
+    createdAt?: Date | string
+    likes?: LikeUncheckedCreateNestedManyWithoutPostInput
     sessions?: SessionUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -11391,13 +11391,13 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    Like?: LikeUpdateManyWithoutPostNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
+    likes?: LikeUpdateManyWithoutPostNestedInput
     sessions?: SessionUpdateManyWithoutPostNestedInput
   }
 
@@ -11408,13 +11408,13 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    Like?: LikeUncheckedUpdateManyWithoutPostNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likes?: LikeUncheckedUpdateManyWithoutPostNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -11506,27 +11506,6 @@ export namespace Prisma {
     sessions?: SessionUncheckedUpdateManyWithoutParticipantNestedInput
   }
 
-  export type LikeCreateWithoutPostInput = {
-    createdAt?: Date | string
-    User: UserCreateNestedOneWithoutLikeInput
-  }
-
-  export type LikeUncheckedCreateWithoutPostInput = {
-    id?: number
-    userId: number
-    createdAt?: Date | string
-  }
-
-  export type LikeCreateOrConnectWithoutPostInput = {
-    where: LikeWhereUniqueInput
-    create: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput>
-  }
-
-  export type LikeCreateManyPostInputEnvelope = {
-    data: LikeCreateManyPostInput | LikeCreateManyPostInput[]
-    skipDuplicates?: boolean
-  }
-
   export type UserCreateWithoutPostsInput = {
     email: string
     password: string
@@ -11590,6 +11569,27 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type LikeCreateWithoutPostInput = {
+    createdAt?: Date | string
+    User: UserCreateNestedOneWithoutLikeInput
+  }
+
+  export type LikeUncheckedCreateWithoutPostInput = {
+    id?: number
+    userId: number
+    createdAt?: Date | string
+  }
+
+  export type LikeCreateOrConnectWithoutPostInput = {
+    where: LikeWhereUniqueInput
+    create: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput>
+  }
+
+  export type LikeCreateManyPostInputEnvelope = {
+    data: LikeCreateManyPostInput | LikeCreateManyPostInput[]
+    skipDuplicates?: boolean
+  }
+
   export type SessionCreateWithoutPostInput = {
     title: string
     description?: string | null
@@ -11617,22 +11617,6 @@ export namespace Prisma {
   export type SessionCreateManyPostInputEnvelope = {
     data: SessionCreateManyPostInput | SessionCreateManyPostInput[]
     skipDuplicates?: boolean
-  }
-
-  export type LikeUpsertWithWhereUniqueWithoutPostInput = {
-    where: LikeWhereUniqueInput
-    update: XOR<LikeUpdateWithoutPostInput, LikeUncheckedUpdateWithoutPostInput>
-    create: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput>
-  }
-
-  export type LikeUpdateWithWhereUniqueWithoutPostInput = {
-    where: LikeWhereUniqueInput
-    data: XOR<LikeUpdateWithoutPostInput, LikeUncheckedUpdateWithoutPostInput>
-  }
-
-  export type LikeUpdateManyWithWhereWithoutPostInput = {
-    where: LikeScalarWhereInput
-    data: XOR<LikeUpdateManyMutationInput, LikeUncheckedUpdateManyWithoutPostInput>
   }
 
   export type UserUpsertWithoutPostsInput = {
@@ -11695,6 +11679,22 @@ export namespace Prisma {
     data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutPostInput>
   }
 
+  export type LikeUpsertWithWhereUniqueWithoutPostInput = {
+    where: LikeWhereUniqueInput
+    update: XOR<LikeUpdateWithoutPostInput, LikeUncheckedUpdateWithoutPostInput>
+    create: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput>
+  }
+
+  export type LikeUpdateWithWhereUniqueWithoutPostInput = {
+    where: LikeWhereUniqueInput
+    data: XOR<LikeUpdateWithoutPostInput, LikeUncheckedUpdateWithoutPostInput>
+  }
+
+  export type LikeUpdateManyWithWhereWithoutPostInput = {
+    where: LikeScalarWhereInput
+    data: XOR<LikeUpdateManyMutationInput, LikeUncheckedUpdateManyWithoutPostInput>
+  }
+
   export type SessionUpsertWithWhereUniqueWithoutPostInput = {
     where: SessionWhereUniqueInput
     update: XOR<SessionUpdateWithoutPostInput, SessionUncheckedUpdateWithoutPostInput>
@@ -11711,42 +11711,42 @@ export namespace Prisma {
     data: XOR<SessionUpdateManyMutationInput, SessionUncheckedUpdateManyWithoutPostInput>
   }
 
-  export type PostCreateWithoutLikeInput = {
+  export type PostCreateWithoutLikesInput = {
     title: string
     description: string
     category: string
     type: $Enums.PostType
     location: string
-    createdAt?: Date | string
-    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
+    numLikes?: number
     rating?: number
+    createdAt?: Date | string
     user: UserCreateNestedOneWithoutPostsInput
     reviews?: ReviewCreateNestedManyWithoutPostInput
     sessions?: SessionCreateNestedManyWithoutPostInput
   }
 
-  export type PostUncheckedCreateWithoutLikeInput = {
+  export type PostUncheckedCreateWithoutLikesInput = {
     id?: number
     title: string
     description: string
     category: string
     type: $Enums.PostType
     location: string
-    userId: number
-    createdAt?: Date | string
-    numLikes?: number
     imageUrl?: string | null
+    userId: number
     numReviews?: number
+    numLikes?: number
     rating?: number
+    createdAt?: Date | string
     reviews?: ReviewUncheckedCreateNestedManyWithoutPostInput
     sessions?: SessionUncheckedCreateNestedManyWithoutPostInput
   }
 
-  export type PostCreateOrConnectWithoutLikeInput = {
+  export type PostCreateOrConnectWithoutLikesInput = {
     where: PostWhereUniqueInput
-    create: XOR<PostCreateWithoutLikeInput, PostUncheckedCreateWithoutLikeInput>
+    create: XOR<PostCreateWithoutLikesInput, PostUncheckedCreateWithoutLikesInput>
   }
 
   export type UserCreateWithoutLikeInput = {
@@ -11787,46 +11787,46 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutLikeInput, UserUncheckedCreateWithoutLikeInput>
   }
 
-  export type PostUpsertWithoutLikeInput = {
-    update: XOR<PostUpdateWithoutLikeInput, PostUncheckedUpdateWithoutLikeInput>
-    create: XOR<PostCreateWithoutLikeInput, PostUncheckedCreateWithoutLikeInput>
+  export type PostUpsertWithoutLikesInput = {
+    update: XOR<PostUpdateWithoutLikesInput, PostUncheckedUpdateWithoutLikesInput>
+    create: XOR<PostCreateWithoutLikesInput, PostUncheckedCreateWithoutLikesInput>
     where?: PostWhereInput
   }
 
-  export type PostUpdateToOneWithWhereWithoutLikeInput = {
+  export type PostUpdateToOneWithWhereWithoutLikesInput = {
     where?: PostWhereInput
-    data: XOR<PostUpdateWithoutLikeInput, PostUncheckedUpdateWithoutLikeInput>
+    data: XOR<PostUpdateWithoutLikesInput, PostUncheckedUpdateWithoutLikesInput>
   }
 
-  export type PostUpdateWithoutLikeInput = {
+  export type PostUpdateWithoutLikesInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
     reviews?: ReviewUpdateManyWithoutPostNestedInput
     sessions?: SessionUpdateManyWithoutPostNestedInput
   }
 
-  export type PostUncheckedUpdateWithoutLikeInput = {
+  export type PostUncheckedUpdateWithoutLikesInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: IntFieldUpdateOperationsInput | number
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUncheckedUpdateManyWithoutPostNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -11888,11 +11888,11 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    createdAt?: Date | string
-    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
+    numLikes?: number
     rating?: number
+    createdAt?: Date | string
   }
 
   export type ReviewCreateManyRecipientInput = {
@@ -11923,7 +11923,7 @@ export namespace Prisma {
 
   export type LikeUpdateWithoutUserInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Post?: PostUpdateOneRequiredWithoutLikeNestedInput
+    Post?: PostUpdateOneRequiredWithoutLikesNestedInput
   }
 
   export type LikeUncheckedUpdateWithoutUserInput = {
@@ -11944,13 +11944,13 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    Like?: LikeUpdateManyWithoutPostNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUpdateManyWithoutPostNestedInput
+    likes?: LikeUpdateManyWithoutPostNestedInput
     sessions?: SessionUpdateManyWithoutPostNestedInput
   }
 
@@ -11961,13 +11961,13 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    Like?: LikeUncheckedUpdateManyWithoutPostNestedInput
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     reviews?: ReviewUncheckedUpdateManyWithoutPostNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutPostNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -11978,11 +11978,11 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
+    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewUpdateWithoutRecipientInput = {
@@ -12060,17 +12060,17 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type LikeCreateManyPostInput = {
-    id?: number
-    userId: number
-    createdAt?: Date | string
-  }
-
   export type ReviewCreateManyPostInput = {
     id?: number
     comment: string
     reviewerId: number
     recipientId: number
+    createdAt?: Date | string
+  }
+
+  export type LikeCreateManyPostInput = {
+    id?: number
+    userId: number
     createdAt?: Date | string
   }
 
@@ -12082,23 +12082,6 @@ export namespace Prisma {
     location: string
     participantId: number
     createdAt?: Date | string
-  }
-
-  export type LikeUpdateWithoutPostInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    User?: UserUpdateOneRequiredWithoutLikeNestedInput
-  }
-
-  export type LikeUncheckedUpdateWithoutPostInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LikeUncheckedUpdateManyWithoutPostInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewUpdateWithoutPostInput = {
@@ -12121,6 +12104,23 @@ export namespace Prisma {
     comment?: StringFieldUpdateOperationsInput | string
     reviewerId?: IntFieldUpdateOperationsInput | number
     recipientId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LikeUpdateWithoutPostInput = {
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    User?: UserUpdateOneRequiredWithoutLikeNestedInput
+  }
+
+  export type LikeUncheckedUpdateWithoutPostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LikeUncheckedUpdateManyWithoutPostInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
