@@ -58,15 +58,14 @@ model Post {
   category    String
   type        PostType
   location    String
-  userId      Int
-  createdAt   DateTime  @default(now())
-  numLikes    Int       @default(0)
   imageUrl    String?
+  userId      Int
   numReviews  Int       @default(0)
+  numLikes    Int       @default(0)
   rating      Float     @default(0)
-  likes       Like[]
   user        User      @relation(fields: [userId], references: [id])
   reviews     Review[]
+  likes       Like[]
   sessions    Session[]
 }
 

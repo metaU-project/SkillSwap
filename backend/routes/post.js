@@ -22,8 +22,8 @@ router.get('/', async (req, res) => {
         user: {
           select: { id: true, first_name: true, last_name: true },
         },
-        likes: true,
         reviews: true,
+        likes: true,
       },
       orderBy: { createdAt: 'desc' },
     });
