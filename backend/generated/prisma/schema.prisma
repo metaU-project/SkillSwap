@@ -33,10 +33,10 @@ model Session {
   date          DateTime
   location      String
   postId        Int
-  post          Post     @relation(fields: [postId], references: [id])
   participantId Int
-  participant   User     @relation("ParticipantSessions", fields: [participantId], references: [id])
   createdAt     DateTime @default(now())
+  participant   User     @relation("ParticipantSessions", fields: [participantId], references: [id])
+  post          Post     @relation(fields: [postId], references: [id])
 }
 
 model Review {
@@ -44,11 +44,11 @@ model Review {
   comment     String
   reviewerId  Int
   recipientId Int
+  createdAt   DateTime @default(now())
   postId      Int?
   post        Post?    @relation(fields: [postId], references: [id])
-  reviewer    User     @relation("Reviewer", fields: [reviewerId], references: [id])
   recipient   User     @relation("Recipient", fields: [recipientId], references: [id])
-  createdAt   DateTime @default(now())
+  reviewer    User     @relation("Reviewer", fields: [reviewerId], references: [id])
 }
 
 model Post {
@@ -68,6 +68,14 @@ model Post {
   likes       Like[]
   sessions    Session[]
   createdAt   DateTime  @default(now())
+}
+
+model session {
+  sid    String   @id @db.VarChar
+  sess   Json     @db.Json
+  expire DateTime @db.Timestamp(6)
+
+  @@index([expire], map: "IDX_session_expire")
 }
 
 model Like {

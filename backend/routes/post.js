@@ -25,36 +25,8 @@ router.get('/', async (req, res) => {
         user: {
           select: { id: true, first_name: true, last_name: true },
         },
-        likes: true,
         reviews: true,
-      },
-      orderBy: { createdAt: 'desc' },
-    });
-    res.json(posts);
-  } catch (err) {
-    console.error(err, ERROR_CODES.POSTS_ERROR);
-    res.status(500).json({ error: ERROR_CODES.POSTS_ERROR });
-  }
-});
-
-module.exports = router;
-router.get('/', checkAuth, async (req, res) => {
-  try {
-    const { category, location, type } = req.query;
-    const filters = {};
-
-    if (category) filters.category = category;
-    if (location) filters.location = location;
-    if (type) filters.type = type;
-
-    const posts = await prisma.post.findMany({
-      where: filters,
-      include: {
-        user: {
-          select: { id: true, first_name: true, last_name: true },
-        },
         likes: true,
-        reviews: true,
       },
       orderBy: { createdAt: 'desc' },
     });
@@ -102,7 +74,7 @@ router.post('/', checkAuth, async (req, res) => {
         category,
         location,
         type,
-        imageUrl,
+        image: imageUrl,
         user: { connect: { id: userId } },
       },
     });
