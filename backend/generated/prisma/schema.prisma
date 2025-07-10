@@ -19,6 +19,7 @@ model User {
   createdAt       DateTime  @default(now())
   first_name      String?
   last_name       String?
+  Like            Like[]
   posts           Post[]
   receivedReviews Review[]  @relation("Recipient")
   reviews         Review[]  @relation("Reviewer")
@@ -57,13 +58,33 @@ model Post {
   category    String
   type        PostType
   location    String
-  image       String?
   userId      Int
   createdAt   DateTime  @default(now())
   numLikes    Int       @default(0)
+  imageUrl    String?
+  numReviews  Int       @default(0)
+  rating      Float     @default(0)
+  Like        Like[]
   user        User      @relation(fields: [userId], references: [id])
   reviews     Review[]
   sessions    Session[]
+}
+
+model Like {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  createdAt DateTime @default(now())
+  Post      Post     @relation(fields: [postId], references: [id])
+  User      User     @relation(fields: [userId], references: [id])
+}
+
+model session {
+  sid    String   @id @db.VarChar
+  sess   Json     @db.Json
+  expire DateTime @db.Timestamp(6)
+
+  @@index([expire], map: "IDX_session_expire")
 }
 
 enum PostType {
