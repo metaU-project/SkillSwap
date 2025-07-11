@@ -2,23 +2,36 @@ import { useState, useEffect } from 'react';
 import './SearchBar.css';
 import { MdClear } from 'react-icons/md';
 
-function SearchBar({ suggestions, onSearch }) {
+function SearchBar({ onSearch }) {
   const [input, setInput] = useState('');
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [showClearButton, setShowClearButton] = useState(false);
 
-  useEffect(() => {
-    if (input.trim()) {
-      const filtered = suggestions.filter((s) =>
-        s.toLowerCase().includes(input.toLowerCase())
-      );
-      setFilteredSuggestions(filtered);
-      setShowSuggestions(true);
-    } else {
-      setShowSuggestions(false);
-    }
-  }, [input, suggestions]);
+  //[TODO] fetch suggestions from backend and filter them
+  // useEffect(() => {
+  //   if (!input || typeof input !== 'string') {
+  //     setFilteredSuggestions([]);
+  //     setShowSuggestions(false);
+  //     return;
+  //   }
+
+  //   const delay = setTimeout(async () => {
+  //     try {
+  //       const response = await fetchSuggestions(input);
+  //       if (response.error) {
+  //         setFilteredSuggestions([]);
+  //       }
+  //       setFilteredSuggestions(response);
+  //       console.log(response);
+  //       setShowSuggestions(true);
+  //     } catch (error) {
+  //       console.error(error);
+  //       setFilteredSuggestions([]);
+  //     }
+  //   }, 500);
+  //   return () => clearTimeout(delay);
+  // }, [input, fetchSuggestions]);
 
   const handleSelect = (suggestion) => {
     setInput(suggestion);
@@ -29,6 +42,7 @@ function SearchBar({ suggestions, onSearch }) {
   const handleClear = () => {
     setInput('');
     setShowSuggestions(false);
+    setShowClearButton(false);
   };
 
   return (
@@ -43,7 +57,9 @@ function SearchBar({ suggestions, onSearch }) {
             setShowClearButton(e.target.value.trim() !== '');
           }}
           onFocus={() => input && setShowSuggestions(true)}
-          onKeyDown={(e) => { if (e.key === 'Enter') handleSelect(input); }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') handleSelect(input);
+          }}
         />
         {showClearButton && (
           <MdClear onClick={handleClear} className="clear-btn" />
@@ -52,19 +68,15 @@ function SearchBar({ suggestions, onSearch }) {
 
       {showSuggestions && (
         <div className="suggestions-dropdown">
-          {filteredSuggestions.length > 0 ? (
-            filteredSuggestions.map((s, idx) => (
-              <div
-                key={idx}
-                onClick={() => handleSelect(s)}
-                className="suggestion-item"
-              >
-                {s}
-              </div>
-            ))
-          ) : (
-            <div className="no-suggestions">No matches found</div>
-          )}
+          {filteredSuggestions?.map((s, idx) => (
+            <div
+              key={idx}
+              onClick={() => handleSelect(s)}
+              className="suggestion-item"
+            >
+              {s}
+            </div>
+          ))}
         </div>
       )}
     </div>

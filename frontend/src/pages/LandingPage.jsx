@@ -24,9 +24,9 @@ const LandingPage = () => {
 
   return (
     <div>
-      <NavBar setPosts={setPosts} />
+      <NavBar setPosts={setPosts} getPosts={fetchPosts} />
       <FilterBar filter={filter} setFilter={setFilter} />
-      {loading ? <Loading/> : <PostList posts={posts} />}
+      {loading ? <Loading /> : <PostList posts={posts} />}
       <Footer />
     </div>
   );

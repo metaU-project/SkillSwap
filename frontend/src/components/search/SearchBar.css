@@ -21,6 +21,7 @@
   overflow-y: auto;
   z-index: 999;
   border-radius: 12px;
+  cursor: pointer;
 }
 
 .suggestion-item {
