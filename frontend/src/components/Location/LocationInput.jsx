@@ -5,10 +5,11 @@ const LocationInput = ({ location, setLocation }) => {
   const [query, setQuery] = useState('');
   const [suggestedLocations, setSuggestedLocations] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [hasSelected, setHasSelected] = useState(false);
   const apiKey = import.meta.env.VITE_GEOCOMPLETE_API_KEY;
 
   useEffect(() => {
-    if (query.length < 2) {
+    if (query.length < 2 || hasSelected) {
       setSuggestedLocations([]);
       setShowSuggestions(false);
       return;
@@ -29,12 +30,13 @@ const LocationInput = ({ location, setLocation }) => {
 
     const debounce = setTimeout(fetchSuggestions, 500);
     return () => clearTimeout(debounce);
-  }, [query, apiKey]);
+  }, [query, apiKey, hasSelected]);
 
   const handleSelectLocation = (place) => {
     const selectedLocation = place.properties.formatted;
     setLocation(selectedLocation);
     setQuery(selectedLocation);
+    setHasSelected(true);
     setSuggestedLocations([]);
     setShowSuggestions(false);
   };
@@ -47,7 +49,8 @@ const LocationInput = ({ location, setLocation }) => {
         value={query !== '' ? query : location}
         onChange={(e) => {
           setQuery(e.target.value);
-          setLocation('');
+            setLocation('');
+          setHasSelected(false);
         }}
         className="location-input"
         autoComplete="off"

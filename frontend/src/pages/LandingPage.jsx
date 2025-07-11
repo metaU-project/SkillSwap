@@ -5,6 +5,7 @@ import PostList from '../components/Post/PostList';
 import { useState, useEffect } from 'react';
 import { postFetch } from '../utils/postFetch';
 import Loading from '../components/Loading/Loading';
+import './LandingPage.css';
 
 const LandingPage = () => {
   const [filter, setFilter] = useState('Recommended');
@@ -24,9 +25,9 @@ const LandingPage = () => {
 
   return (
     <div>
-      <NavBar setPosts={setPosts} />
+      <NavBar setPosts={setPosts} getPosts={fetchPosts} />
       <FilterBar filter={filter} setFilter={setFilter} />
-      {loading ? <Loading/> : <PostList posts={posts} />}
+      <div className='main-section'>{loading ? <Loading /> : <PostList posts={posts} />}</div>
       <Footer />
     </div>
   );
