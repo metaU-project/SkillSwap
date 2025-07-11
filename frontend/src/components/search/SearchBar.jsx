@@ -2,36 +2,34 @@ import { useState, useEffect } from 'react';
 import './SearchBar.css';
 import { MdClear } from 'react-icons/md';
 
-function SearchBar({ onSearch }) {
+function SearchBar({ onSearch, fetchSuggestions }) {
   const [input, setInput] = useState('');
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [showClearButton, setShowClearButton] = useState(false);
 
-  //[TODO] fetch suggestions from backend and filter them
-  // useEffect(() => {
-  //   if (!input || typeof input !== 'string') {
-  //     setFilteredSuggestions([]);
-  //     setShowSuggestions(false);
-  //     return;
-  //   }
+  useEffect(() => {
+    if (!input || typeof input !== 'string') {
+      setFilteredSuggestions([]);
+      setShowSuggestions(false);
+      return;
+    }
 
-  //   const delay = setTimeout(async () => {
-  //     try {
-  //       const response = await fetchSuggestions(input);
-  //       if (response.error) {
-  //         setFilteredSuggestions([]);
-  //       }
-  //       setFilteredSuggestions(response);
-  //       console.log(response);
-  //       setShowSuggestions(true);
-  //     } catch (error) {
-  //       console.error(error);
-  //       setFilteredSuggestions([]);
-  //     }
-  //   }, 500);
-  //   return () => clearTimeout(delay);
-  // }, [input, fetchSuggestions]);
+    const delay = setTimeout(async () => {
+      try {
+        const response = await fetchSuggestions(input);
+        if (response.error) {
+          setFilteredSuggestions([]);
+        }
+        setFilteredSuggestions(response);
+        setShowSuggestions(true);
+      } catch (error) {
+        console.error(error);
+        setFilteredSuggestions([]);
+      }
+    }, 500);
+    return () => clearTimeout(delay);
+  }, [input, fetchSuggestions]);
 
   const handleSelect = (suggestion) => {
     setInput(suggestion);

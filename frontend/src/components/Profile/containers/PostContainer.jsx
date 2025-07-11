@@ -6,7 +6,7 @@ const PostContainer = ({ posts }) => {
       <div className="posts">
         {posts?.map((post) => (
           <div className="post-info" key={post.id}>
-            <img src={post.image || 'https://picsum.photos/400/300'}  alt={post.title} />
+            <img src={post.imageUrl || 'https://picsum.photos/400/300'}  alt={post.title} />
             <p>{post.title}</p>
             <p>
               {post.createdAt
