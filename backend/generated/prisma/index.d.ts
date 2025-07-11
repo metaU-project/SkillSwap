@@ -15,32 +15,32 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 /**
  * Model User
- *
+ * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
  * Model Session
- *
+ * 
  */
 export type Session = $Result.DefaultSelection<Prisma.$SessionPayload>
 /**
  * Model Review
- *
+ * 
  */
 export type Review = $Result.DefaultSelection<Prisma.$ReviewPayload>
 /**
  * Model Post
- *
+ * 
  */
 export type Post = $Result.DefaultSelection<Prisma.$PostPayload>
 /**
  * Model Like
- *
+ * 
  */
 export type Like = $Result.DefaultSelection<Prisma.$LikePayload>
 /**
  * Model session
- *
+ * 
  */
 export type session = $Result.DefaultSelection<Prisma.$sessionPayload>
 
@@ -174,7 +174,7 @@ export class PrismaClient<
    *   prisma.user.create({ data: { name: 'Alice' } }),
    * ])
    * ```
-   *
+   * 
    * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
    */
   $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
@@ -1202,7 +1202,7 @@ export namespace Prisma {
      * ```
      * // Defaults to stdout
      * log: ['query', 'info', 'warn', 'error']
-     *
+     * 
      * // Emit as events
      * log: [
      *   { emit: 'stdout', level: 'query' },
@@ -1226,7 +1226,7 @@ export namespace Prisma {
     }
     /**
      * Global configuration for omitting model fields by default.
-     *
+     * 
      * @example
      * ```
      * const prisma = new PrismaClient({
@@ -1341,7 +1341,7 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    Like: number
+    likes: number
     posts: number
     receivedReviews: number
     reviews: number
@@ -1349,7 +1349,7 @@ export namespace Prisma {
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Like?: boolean | UserCountOutputTypeCountLikeArgs
+    likes?: boolean | UserCountOutputTypeCountLikesArgs
     posts?: boolean | UserCountOutputTypeCountPostsArgs
     receivedReviews?: boolean | UserCountOutputTypeCountReceivedReviewsArgs
     reviews?: boolean | UserCountOutputTypeCountReviewsArgs
@@ -1370,7 +1370,7 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountLikeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type UserCountOutputTypeCountLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LikeWhereInput
   }
 
@@ -1410,14 +1410,12 @@ export namespace Prisma {
   export type PostCountOutputType = {
     likes: number
     reviews: number
-    likes: number
     sessions: number
   }
 
   export type PostCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     likes?: boolean | PostCountOutputTypeCountLikesArgs
     reviews?: boolean | PostCountOutputTypeCountReviewsArgs
-    likes?: boolean | PostCountOutputTypeCountLikesArgs
     sessions?: boolean | PostCountOutputTypeCountSessionsArgs
   }
 
@@ -1444,13 +1442,6 @@ export namespace Prisma {
    */
   export type PostCountOutputTypeCountReviewsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReviewWhereInput
-  }
-
-  /**
-   * PostCountOutputType without action
-   */
-  export type PostCountOutputTypeCountLikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LikeWhereInput
   }
 
   /**
@@ -1577,55 +1568,55 @@ export namespace Prisma {
     where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Users to fetch.
      */
     orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
     cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Users
     **/
     _count?: true | UserCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
     **/
     _avg?: UserAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
     **/
     _sum?: UserSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: UserMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
     **/
     _max?: UserMaxAggregateInputType
@@ -1699,7 +1690,7 @@ export namespace Prisma {
     createdAt?: boolean
     first_name?: boolean
     last_name?: boolean
-    Like?: boolean | User$LikeArgs<ExtArgs>
+    likes?: boolean | User$likesArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
     receivedReviews?: boolean | User$receivedReviewsArgs<ExtArgs>
     reviews?: boolean | User$reviewsArgs<ExtArgs>
@@ -1748,7 +1739,7 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "profileImage" | "location" | "bio" | "interests" | "createdAt" | "first_name" | "last_name", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Like?: boolean | User$LikeArgs<ExtArgs>
+    likes?: boolean | User$likesArgs<ExtArgs>
     posts?: boolean | User$postsArgs<ExtArgs>
     receivedReviews?: boolean | User$receivedReviewsArgs<ExtArgs>
     reviews?: boolean | User$reviewsArgs<ExtArgs>
@@ -1761,7 +1752,7 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      Like: Prisma.$LikePayload<ExtArgs>[]
+      likes: Prisma.$LikePayload<ExtArgs>[]
       posts: Prisma.$PostPayload<ExtArgs>[]
       receivedReviews: Prisma.$ReviewPayload<ExtArgs>[]
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
@@ -1857,13 +1848,13 @@ export namespace Prisma {
      * @example
      * // Get all Users
      * const users = await prisma.user.findMany()
-     *
+     * 
      * // Get first 10 Users
      * const users = await prisma.user.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `id`
      * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
-     *
+     * 
      */
     findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
@@ -1877,7 +1868,7 @@ export namespace Prisma {
      *     // ... data to create a User
      *   }
      * })
-     *
+     * 
      */
     create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -1891,7 +1882,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     *     
      */
     createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -1905,7 +1896,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Create many Users and only return the `id`
      * const userWithIdOnly = await prisma.user.createManyAndReturn({
      *   select: { id: true },
@@ -1915,7 +1906,7 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
     createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
@@ -1929,7 +1920,7 @@ export namespace Prisma {
      *     // ... filter to delete one User
      *   }
      * })
-     *
+     * 
      */
     delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -1946,7 +1937,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
     update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -1960,7 +1951,7 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
+     * 
      */
     deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -1979,7 +1970,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
     updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -1996,7 +1987,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Update zero or more Users and only return the `id`
      * const userWithIdOnly = await prisma.user.updateManyAndReturn({
      *   select: { id: true },
@@ -2009,7 +2000,7 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
     updateManyAndReturn<T extends UserUpdateManyAndReturnArgs>(args: SelectSubset<T, UserUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
@@ -2098,7 +2089,7 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
+     * 
     **/
     groupBy<
       T extends UserGroupByArgs,
@@ -2172,7 +2163,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Like<T extends User$LikeArgs<ExtArgs> = {}>(args?: Subset<T, User$LikeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    likes<T extends User$likesArgs<ExtArgs> = {}>(args?: Subset<T, User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     posts<T extends User$postsArgs<ExtArgs> = {}>(args?: Subset<T, User$postsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     receivedReviews<T extends User$receivedReviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$receivedReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reviews<T extends User$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2217,7 +2208,7 @@ export namespace Prisma {
     readonly first_name: FieldRef<"User", 'String'>
     readonly last_name: FieldRef<"User", 'String'>
   }
-
+    
 
   // Custom InputTypes
   /**
@@ -2286,31 +2277,31 @@ export namespace Prisma {
     where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Users to fetch.
      */
     orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Users.
      */
     cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Users.
      */
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
@@ -2338,31 +2329,31 @@ export namespace Prisma {
     where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Users to fetch.
      */
     orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Users.
      */
     cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Users.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Users.
      */
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
@@ -2390,25 +2381,25 @@ export namespace Prisma {
     where?: UserWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Users to fetch.
      */
     orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Users.
      */
     cursor?: UserWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Users from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Users.
      */
     skip?: number
@@ -2604,9 +2595,9 @@ export namespace Prisma {
   }
 
   /**
-   * User.Like
+   * User.likes
    */
-  export type User$LikeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Like
      */
@@ -2854,55 +2845,55 @@ export namespace Prisma {
     where?: SessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Sessions to fetch.
      */
     orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
     cursor?: SessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Sessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Sessions
     **/
     _count?: true | SessionCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
     **/
     _avg?: SessionAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
     **/
     _sum?: SessionSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: SessionMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
     **/
     _max?: SessionMaxAggregateInputType
@@ -3121,13 +3112,13 @@ export namespace Prisma {
      * @example
      * // Get all Sessions
      * const sessions = await prisma.session.findMany()
-     *
+     * 
      * // Get first 10 Sessions
      * const sessions = await prisma.session.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `id`
      * const sessionWithIdOnly = await prisma.session.findMany({ select: { id: true } })
-     *
+     * 
      */
     findMany<T extends SessionFindManyArgs>(args?: SelectSubset<T, SessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
@@ -3141,7 +3132,7 @@ export namespace Prisma {
      *     // ... data to create a Session
      *   }
      * })
-     *
+     * 
      */
     create<T extends SessionCreateArgs>(args: SelectSubset<T, SessionCreateArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -3155,7 +3146,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     *     
      */
     createMany<T extends SessionCreateManyArgs>(args?: SelectSubset<T, SessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -3169,7 +3160,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Create many Sessions and only return the `id`
      * const sessionWithIdOnly = await prisma.session.createManyAndReturn({
      *   select: { id: true },
@@ -3179,7 +3170,7 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
     createManyAndReturn<T extends SessionCreateManyAndReturnArgs>(args?: SelectSubset<T, SessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
@@ -3193,7 +3184,7 @@ export namespace Prisma {
      *     // ... filter to delete one Session
      *   }
      * })
-     *
+     * 
      */
     delete<T extends SessionDeleteArgs>(args: SelectSubset<T, SessionDeleteArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -3210,7 +3201,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
     update<T extends SessionUpdateArgs>(args: SelectSubset<T, SessionUpdateArgs<ExtArgs>>): Prisma__SessionClient<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -3224,7 +3215,7 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
+     * 
      */
     deleteMany<T extends SessionDeleteManyArgs>(args?: SelectSubset<T, SessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -3243,7 +3234,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
     updateMany<T extends SessionUpdateManyArgs>(args: SelectSubset<T, SessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -3260,7 +3251,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Update zero or more Sessions and only return the `id`
      * const sessionWithIdOnly = await prisma.session.updateManyAndReturn({
      *   select: { id: true },
@@ -3273,7 +3264,7 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
     updateManyAndReturn<T extends SessionUpdateManyAndReturnArgs>(args: SelectSubset<T, SessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
@@ -3362,7 +3353,7 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
+     * 
     **/
     groupBy<
       T extends SessionGroupByArgs,
@@ -3476,7 +3467,7 @@ export namespace Prisma {
     readonly participantId: FieldRef<"Session", 'Int'>
     readonly createdAt: FieldRef<"Session", 'DateTime'>
   }
-
+    
 
   // Custom InputTypes
   /**
@@ -3545,31 +3536,31 @@ export namespace Prisma {
     where?: SessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Sessions to fetch.
      */
     orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Sessions.
      */
     cursor?: SessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Sessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Sessions.
      */
     distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
@@ -3597,31 +3588,31 @@ export namespace Prisma {
     where?: SessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Sessions to fetch.
      */
     orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Sessions.
      */
     cursor?: SessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Sessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Sessions.
      */
     distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
@@ -3649,25 +3640,25 @@ export namespace Prisma {
     where?: SessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Sessions to fetch.
      */
     orderBy?: SessionOrderByWithRelationInput | SessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Sessions.
      */
     cursor?: SessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Sessions.
      */
     skip?: number
@@ -3993,55 +3984,55 @@ export namespace Prisma {
     where?: ReviewWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Reviews to fetch.
      */
     orderBy?: ReviewOrderByWithRelationInput | ReviewOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
     cursor?: ReviewWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Reviews from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Reviews.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Reviews
     **/
     _count?: true | ReviewCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
     **/
     _avg?: ReviewAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
     **/
     _sum?: ReviewSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: ReviewMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
     **/
     _max?: ReviewMaxAggregateInputType
@@ -4255,13 +4246,13 @@ export namespace Prisma {
      * @example
      * // Get all Reviews
      * const reviews = await prisma.review.findMany()
-     *
+     * 
      * // Get first 10 Reviews
      * const reviews = await prisma.review.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `id`
      * const reviewWithIdOnly = await prisma.review.findMany({ select: { id: true } })
-     *
+     * 
      */
     findMany<T extends ReviewFindManyArgs>(args?: SelectSubset<T, ReviewFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
@@ -4275,7 +4266,7 @@ export namespace Prisma {
      *     // ... data to create a Review
      *   }
      * })
-     *
+     * 
      */
     create<T extends ReviewCreateArgs>(args: SelectSubset<T, ReviewCreateArgs<ExtArgs>>): Prisma__ReviewClient<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -4289,7 +4280,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     *     
      */
     createMany<T extends ReviewCreateManyArgs>(args?: SelectSubset<T, ReviewCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -4303,7 +4294,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Create many Reviews and only return the `id`
      * const reviewWithIdOnly = await prisma.review.createManyAndReturn({
      *   select: { id: true },
@@ -4313,7 +4304,7 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
     createManyAndReturn<T extends ReviewCreateManyAndReturnArgs>(args?: SelectSubset<T, ReviewCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
@@ -4327,7 +4318,7 @@ export namespace Prisma {
      *     // ... filter to delete one Review
      *   }
      * })
-     *
+     * 
      */
     delete<T extends ReviewDeleteArgs>(args: SelectSubset<T, ReviewDeleteArgs<ExtArgs>>): Prisma__ReviewClient<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -4344,7 +4335,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
     update<T extends ReviewUpdateArgs>(args: SelectSubset<T, ReviewUpdateArgs<ExtArgs>>): Prisma__ReviewClient<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -4358,7 +4349,7 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
+     * 
      */
     deleteMany<T extends ReviewDeleteManyArgs>(args?: SelectSubset<T, ReviewDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -4377,7 +4368,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
     updateMany<T extends ReviewUpdateManyArgs>(args: SelectSubset<T, ReviewUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -4394,7 +4385,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Update zero or more Reviews and only return the `id`
      * const reviewWithIdOnly = await prisma.review.updateManyAndReturn({
      *   select: { id: true },
@@ -4407,7 +4398,7 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
     updateManyAndReturn<T extends ReviewUpdateManyAndReturnArgs>(args: SelectSubset<T, ReviewUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
@@ -4496,7 +4487,7 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
+     * 
     **/
     groupBy<
       T extends ReviewGroupByArgs,
@@ -4609,7 +4600,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Review", 'DateTime'>
     readonly postId: FieldRef<"Review", 'Int'>
   }
-
+    
 
   // Custom InputTypes
   /**
@@ -4678,31 +4669,31 @@ export namespace Prisma {
     where?: ReviewWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Reviews to fetch.
      */
     orderBy?: ReviewOrderByWithRelationInput | ReviewOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Reviews.
      */
     cursor?: ReviewWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Reviews from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Reviews.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Reviews.
      */
     distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
@@ -4730,31 +4721,31 @@ export namespace Prisma {
     where?: ReviewWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Reviews to fetch.
      */
     orderBy?: ReviewOrderByWithRelationInput | ReviewOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Reviews.
      */
     cursor?: ReviewWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Reviews from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Reviews.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Reviews.
      */
     distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
@@ -4782,25 +4773,25 @@ export namespace Prisma {
     where?: ReviewWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Reviews to fetch.
      */
     orderBy?: ReviewOrderByWithRelationInput | ReviewOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Reviews.
      */
     cursor?: ReviewWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Reviews from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Reviews.
      */
     skip?: number
@@ -5056,16 +5047,16 @@ export namespace Prisma {
   export type PostAvgAggregateOutputType = {
     id: number | null
     userId: number | null
-    numReviews: number | null
     numLikes: number | null
+    numReviews: number | null
     rating: number | null
   }
 
   export type PostSumAggregateOutputType = {
     id: number | null
     userId: number | null
-    numReviews: number | null
     numLikes: number | null
+    numReviews: number | null
     rating: number | null
   }
 
@@ -5076,12 +5067,12 @@ export namespace Prisma {
     category: string | null
     type: $Enums.PostType | null
     location: string | null
-    imageUrl: string | null
     userId: number | null
-    numReviews: number | null
-    numLikes: number | null
-    rating: number | null
     createdAt: Date | null
+    numLikes: number | null
+    imageUrl: string | null
+    numReviews: number | null
+    rating: number | null
   }
 
   export type PostMaxAggregateOutputType = {
@@ -5091,12 +5082,12 @@ export namespace Prisma {
     category: string | null
     type: $Enums.PostType | null
     location: string | null
-    imageUrl: string | null
     userId: number | null
-    numReviews: number | null
-    numLikes: number | null
-    rating: number | null
     createdAt: Date | null
+    numLikes: number | null
+    imageUrl: string | null
+    numReviews: number | null
+    rating: number | null
   }
 
   export type PostCountAggregateOutputType = {
@@ -5106,12 +5097,12 @@ export namespace Prisma {
     category: number
     type: number
     location: number
-    imageUrl: number
     userId: number
-    numReviews: number
-    numLikes: number
-    rating: number
     createdAt: number
+    numLikes: number
+    imageUrl: number
+    numReviews: number
+    rating: number
     _all: number
   }
 
@@ -5119,16 +5110,16 @@ export namespace Prisma {
   export type PostAvgAggregateInputType = {
     id?: true
     userId?: true
-    numReviews?: true
     numLikes?: true
+    numReviews?: true
     rating?: true
   }
 
   export type PostSumAggregateInputType = {
     id?: true
     userId?: true
-    numReviews?: true
     numLikes?: true
+    numReviews?: true
     rating?: true
   }
 
@@ -5139,12 +5130,12 @@ export namespace Prisma {
     category?: true
     type?: true
     location?: true
-    imageUrl?: true
     userId?: true
-    numReviews?: true
-    numLikes?: true
-    rating?: true
     createdAt?: true
+    numLikes?: true
+    imageUrl?: true
+    numReviews?: true
+    rating?: true
   }
 
   export type PostMaxAggregateInputType = {
@@ -5154,12 +5145,12 @@ export namespace Prisma {
     category?: true
     type?: true
     location?: true
-    imageUrl?: true
     userId?: true
-    numReviews?: true
-    numLikes?: true
-    rating?: true
     createdAt?: true
+    numLikes?: true
+    imageUrl?: true
+    numReviews?: true
+    rating?: true
   }
 
   export type PostCountAggregateInputType = {
@@ -5169,12 +5160,12 @@ export namespace Prisma {
     category?: true
     type?: true
     location?: true
-    imageUrl?: true
     userId?: true
-    numReviews?: true
-    numLikes?: true
-    rating?: true
     createdAt?: true
+    numLikes?: true
+    imageUrl?: true
+    numReviews?: true
+    rating?: true
     _all?: true
   }
 
@@ -5185,55 +5176,55 @@ export namespace Prisma {
     where?: PostWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Posts to fetch.
      */
     orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
     cursor?: PostWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Posts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Posts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Posts
     **/
     _count?: true | PostCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
     **/
     _avg?: PostAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
     **/
     _sum?: PostSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: PostMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
     **/
     _max?: PostMaxAggregateInputType
@@ -5271,12 +5262,12 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    imageUrl: string | null
     userId: number
-    numReviews: number
-    numLikes: number
-    rating: number
     createdAt: Date
+    numLikes: number
+    imageUrl: string | null
+    numReviews: number
+    rating: number
     _count: PostCountAggregateOutputType | null
     _avg: PostAvgAggregateOutputType | null
     _sum: PostSumAggregateOutputType | null
@@ -5305,15 +5296,15 @@ export namespace Prisma {
     category?: boolean
     type?: boolean
     location?: boolean
-    imageUrl?: boolean
     userId?: boolean
-    numReviews?: boolean
-    numLikes?: boolean
-    rating?: boolean
     createdAt?: boolean
+    numLikes?: boolean
+    imageUrl?: boolean
+    numReviews?: boolean
+    rating?: boolean
+    likes?: boolean | Post$likesArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     reviews?: boolean | Post$reviewsArgs<ExtArgs>
-    likes?: boolean | Post$likesArgs<ExtArgs>
     sessions?: boolean | Post$sessionsArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
@@ -5325,12 +5316,12 @@ export namespace Prisma {
     category?: boolean
     type?: boolean
     location?: boolean
-    imageUrl?: boolean
     userId?: boolean
-    numReviews?: boolean
-    numLikes?: boolean
-    rating?: boolean
     createdAt?: boolean
+    numLikes?: boolean
+    imageUrl?: boolean
+    numReviews?: boolean
+    rating?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -5341,12 +5332,12 @@ export namespace Prisma {
     category?: boolean
     type?: boolean
     location?: boolean
-    imageUrl?: boolean
     userId?: boolean
-    numReviews?: boolean
-    numLikes?: boolean
-    rating?: boolean
     createdAt?: boolean
+    numLikes?: boolean
+    imageUrl?: boolean
+    numReviews?: boolean
+    rating?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["post"]>
 
@@ -5357,20 +5348,19 @@ export namespace Prisma {
     category?: boolean
     type?: boolean
     location?: boolean
-    imageUrl?: boolean
     userId?: boolean
-    numReviews?: boolean
-    numLikes?: boolean
-    rating?: boolean
     createdAt?: boolean
+    numLikes?: boolean
+    imageUrl?: boolean
+    numReviews?: boolean
+    rating?: boolean
   }
 
-  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "type" | "location" | "imageUrl" | "userId" | "numReviews" | "numLikes" | "rating" | "createdAt", ExtArgs["result"]["post"]>
+  export type PostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "category" | "type" | "location" | "userId" | "createdAt" | "numLikes" | "imageUrl" | "numReviews" | "rating", ExtArgs["result"]["post"]>
   export type PostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     likes?: boolean | Post$likesArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     reviews?: boolean | Post$reviewsArgs<ExtArgs>
-    likes?: boolean | Post$likesArgs<ExtArgs>
     sessions?: boolean | Post$sessionsArgs<ExtArgs>
     _count?: boolean | PostCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -5387,7 +5377,6 @@ export namespace Prisma {
       likes: Prisma.$LikePayload<ExtArgs>[]
       user: Prisma.$UserPayload<ExtArgs>
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
-      likes: Prisma.$LikePayload<ExtArgs>[]
       sessions: Prisma.$SessionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -5397,12 +5386,12 @@ export namespace Prisma {
       category: string
       type: $Enums.PostType
       location: string
-      imageUrl: string | null
       userId: number
-      numReviews: number
-      numLikes: number
-      rating: number
       createdAt: Date
+      numLikes: number
+      imageUrl: string | null
+      numReviews: number
+      rating: number
     }, ExtArgs["result"]["post"]>
     composites: {}
   }
@@ -5482,13 +5471,13 @@ export namespace Prisma {
      * @example
      * // Get all Posts
      * const posts = await prisma.post.findMany()
-     *
+     * 
      * // Get first 10 Posts
      * const posts = await prisma.post.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `id`
      * const postWithIdOnly = await prisma.post.findMany({ select: { id: true } })
-     *
+     * 
      */
     findMany<T extends PostFindManyArgs>(args?: SelectSubset<T, PostFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
@@ -5502,7 +5491,7 @@ export namespace Prisma {
      *     // ... data to create a Post
      *   }
      * })
-     *
+     * 
      */
     create<T extends PostCreateArgs>(args: SelectSubset<T, PostCreateArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -5516,7 +5505,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     *     
      */
     createMany<T extends PostCreateManyArgs>(args?: SelectSubset<T, PostCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -5530,7 +5519,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Create many Posts and only return the `id`
      * const postWithIdOnly = await prisma.post.createManyAndReturn({
      *   select: { id: true },
@@ -5540,7 +5529,7 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
     createManyAndReturn<T extends PostCreateManyAndReturnArgs>(args?: SelectSubset<T, PostCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
@@ -5554,7 +5543,7 @@ export namespace Prisma {
      *     // ... filter to delete one Post
      *   }
      * })
-     *
+     * 
      */
     delete<T extends PostDeleteArgs>(args: SelectSubset<T, PostDeleteArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -5571,7 +5560,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
     update<T extends PostUpdateArgs>(args: SelectSubset<T, PostUpdateArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -5585,7 +5574,7 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
+     * 
      */
     deleteMany<T extends PostDeleteManyArgs>(args?: SelectSubset<T, PostDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -5604,7 +5593,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
     updateMany<T extends PostUpdateManyArgs>(args: SelectSubset<T, PostUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -5621,7 +5610,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Update zero or more Posts and only return the `id`
      * const postWithIdOnly = await prisma.post.updateManyAndReturn({
      *   select: { id: true },
@@ -5634,7 +5623,7 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
     updateManyAndReturn<T extends PostUpdateManyAndReturnArgs>(args: SelectSubset<T, PostUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
@@ -5723,7 +5712,7 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
+     * 
     **/
     groupBy<
       T extends PostGroupByArgs,
@@ -5800,7 +5789,6 @@ export namespace Prisma {
     likes<T extends Post$likesArgs<ExtArgs> = {}>(args?: Subset<T, Post$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     reviews<T extends Post$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Post$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    likes<T extends Post$likesArgs<ExtArgs> = {}>(args?: Subset<T, Post$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sessions<T extends Post$sessionsArgs<ExtArgs> = {}>(args?: Subset<T, Post$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5837,14 +5825,14 @@ export namespace Prisma {
     readonly category: FieldRef<"Post", 'String'>
     readonly type: FieldRef<"Post", 'PostType'>
     readonly location: FieldRef<"Post", 'String'>
-    readonly imageUrl: FieldRef<"Post", 'String'>
     readonly userId: FieldRef<"Post", 'Int'>
-    readonly numReviews: FieldRef<"Post", 'Int'>
-    readonly numLikes: FieldRef<"Post", 'Int'>
-    readonly rating: FieldRef<"Post", 'Float'>
     readonly createdAt: FieldRef<"Post", 'DateTime'>
+    readonly numLikes: FieldRef<"Post", 'Int'>
+    readonly imageUrl: FieldRef<"Post", 'String'>
+    readonly numReviews: FieldRef<"Post", 'Int'>
+    readonly rating: FieldRef<"Post", 'Float'>
   }
-
+    
 
   // Custom InputTypes
   /**
@@ -5913,31 +5901,31 @@ export namespace Prisma {
     where?: PostWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Posts to fetch.
      */
     orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Posts.
      */
     cursor?: PostWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Posts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Posts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Posts.
      */
     distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
@@ -5965,31 +5953,31 @@ export namespace Prisma {
     where?: PostWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Posts to fetch.
      */
     orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Posts.
      */
     cursor?: PostWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Posts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Posts.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Posts.
      */
     distinct?: PostScalarFieldEnum | PostScalarFieldEnum[]
@@ -6017,25 +6005,25 @@ export namespace Prisma {
     where?: PostWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Posts to fetch.
      */
     orderBy?: PostOrderByWithRelationInput | PostOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Posts.
      */
     cursor?: PostWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Posts from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Posts.
      */
     skip?: number
@@ -6287,30 +6275,6 @@ export namespace Prisma {
   }
 
   /**
-   * Post.likes
-   */
-  export type Post$likesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Like
-     */
-    select?: LikeSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Like
-     */
-    omit?: LikeOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: LikeInclude<ExtArgs> | null
-    where?: LikeWhereInput
-    orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
-    cursor?: LikeWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LikeScalarFieldEnum | LikeScalarFieldEnum[]
-  }
-
-  /**
    * Post.sessions
    */
   export type Post$sessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6441,55 +6405,55 @@ export namespace Prisma {
     where?: LikeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Likes to fetch.
      */
     orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
     cursor?: LikeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Likes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Likes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned Likes
     **/
     _count?: true | LikeCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
     **/
     _avg?: LikeAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
     **/
     _sum?: LikeSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: LikeMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
     **/
     _max?: LikeMaxAggregateInputType
@@ -6551,8 +6515,8 @@ export namespace Prisma {
     userId?: boolean
     postId?: boolean
     createdAt?: boolean
-    Post?: boolean | PostDefaultArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["like"]>
 
   export type LikeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6560,8 +6524,8 @@ export namespace Prisma {
     userId?: boolean
     postId?: boolean
     createdAt?: boolean
-    Post?: boolean | PostDefaultArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["like"]>
 
   export type LikeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6569,8 +6533,8 @@ export namespace Prisma {
     userId?: boolean
     postId?: boolean
     createdAt?: boolean
-    Post?: boolean | PostDefaultArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["like"]>
 
   export type LikeSelectScalar = {
@@ -6582,23 +6546,23 @@ export namespace Prisma {
 
   export type LikeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "postId" | "createdAt", ExtArgs["result"]["like"]>
   export type LikeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Post?: boolean | PostDefaultArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type LikeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Post?: boolean | PostDefaultArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type LikeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Post?: boolean | PostDefaultArgs<ExtArgs>
-    User?: boolean | UserDefaultArgs<ExtArgs>
+    post?: boolean | PostDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $LikePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Like"
     objects: {
-      Post: Prisma.$PostPayload<ExtArgs>
-      User: Prisma.$UserPayload<ExtArgs>
+      post: Prisma.$PostPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -6684,13 +6648,13 @@ export namespace Prisma {
      * @example
      * // Get all Likes
      * const likes = await prisma.like.findMany()
-     *
+     * 
      * // Get first 10 Likes
      * const likes = await prisma.like.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `id`
      * const likeWithIdOnly = await prisma.like.findMany({ select: { id: true } })
-     *
+     * 
      */
     findMany<T extends LikeFindManyArgs>(args?: SelectSubset<T, LikeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
@@ -6704,7 +6668,7 @@ export namespace Prisma {
      *     // ... data to create a Like
      *   }
      * })
-     *
+     * 
      */
     create<T extends LikeCreateArgs>(args: SelectSubset<T, LikeCreateArgs<ExtArgs>>): Prisma__LikeClient<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -6718,7 +6682,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     *     
      */
     createMany<T extends LikeCreateManyArgs>(args?: SelectSubset<T, LikeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -6732,7 +6696,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Create many Likes and only return the `id`
      * const likeWithIdOnly = await prisma.like.createManyAndReturn({
      *   select: { id: true },
@@ -6742,7 +6706,7 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
     createManyAndReturn<T extends LikeCreateManyAndReturnArgs>(args?: SelectSubset<T, LikeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
@@ -6756,7 +6720,7 @@ export namespace Prisma {
      *     // ... filter to delete one Like
      *   }
      * })
-     *
+     * 
      */
     delete<T extends LikeDeleteArgs>(args: SelectSubset<T, LikeDeleteArgs<ExtArgs>>): Prisma__LikeClient<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -6773,7 +6737,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
     update<T extends LikeUpdateArgs>(args: SelectSubset<T, LikeUpdateArgs<ExtArgs>>): Prisma__LikeClient<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -6787,7 +6751,7 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
+     * 
      */
     deleteMany<T extends LikeDeleteManyArgs>(args?: SelectSubset<T, LikeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -6806,7 +6770,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
     updateMany<T extends LikeUpdateManyArgs>(args: SelectSubset<T, LikeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -6823,7 +6787,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Update zero or more Likes and only return the `id`
      * const likeWithIdOnly = await prisma.like.updateManyAndReturn({
      *   select: { id: true },
@@ -6836,7 +6800,7 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
     updateManyAndReturn<T extends LikeUpdateManyAndReturnArgs>(args: SelectSubset<T, LikeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
@@ -6925,7 +6889,7 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
+     * 
     **/
     groupBy<
       T extends LikeGroupByArgs,
@@ -6999,8 +6963,8 @@ export namespace Prisma {
    */
   export interface Prisma__LikeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Post<T extends PostDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PostDefaultArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    User<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    post<T extends PostDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PostDefaultArgs<ExtArgs>>): Prisma__PostClient<$Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7035,7 +6999,7 @@ export namespace Prisma {
     readonly postId: FieldRef<"Like", 'Int'>
     readonly createdAt: FieldRef<"Like", 'DateTime'>
   }
-
+    
 
   // Custom InputTypes
   /**
@@ -7104,31 +7068,31 @@ export namespace Prisma {
     where?: LikeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Likes to fetch.
      */
     orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Likes.
      */
     cursor?: LikeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Likes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Likes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Likes.
      */
     distinct?: LikeScalarFieldEnum | LikeScalarFieldEnum[]
@@ -7156,31 +7120,31 @@ export namespace Prisma {
     where?: LikeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Likes to fetch.
      */
     orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for Likes.
      */
     cursor?: LikeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Likes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Likes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of Likes.
      */
     distinct?: LikeScalarFieldEnum | LikeScalarFieldEnum[]
@@ -7208,25 +7172,25 @@ export namespace Prisma {
     where?: LikeWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of Likes to fetch.
      */
     orderBy?: LikeOrderByWithRelationInput | LikeOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing Likes.
      */
     cursor?: LikeWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` Likes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` Likes.
      */
     skip?: number
@@ -7560,55 +7524,55 @@ export namespace Prisma {
     where?: sessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of sessions to fetch.
      */
     orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the start position
      */
     cursor?: sessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` sessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Count returned sessions
     **/
     _count?: true | SessionCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to average
     **/
     _avg?: SessionAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to sum
     **/
     _sum?: SessionSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: SessionMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     *
+     * 
      * Select which fields to find the maximum value
     **/
     _max?: SessionMaxAggregateInputType
@@ -7781,13 +7745,13 @@ export namespace Prisma {
      * @example
      * // Get all Sessions
      * const sessions = await prisma.session.findMany()
-     *
+     * 
      * // Get first 10 Sessions
      * const sessions = await prisma.session.findMany({ take: 10 })
-     *
+     * 
      * // Only select the `sid`
      * const sessionWithSidOnly = await prisma.session.findMany({ select: { sid: true } })
-     *
+     * 
      */
     findMany<T extends sessionFindManyArgs>(args?: SelectSubset<T, sessionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
@@ -7801,7 +7765,7 @@ export namespace Prisma {
      *     // ... data to create a Session
      *   }
      * })
-     *
+     * 
      */
     create<T extends sessionCreateArgs>(args: SelectSubset<T, sessionCreateArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -7815,7 +7779,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     *     
      */
     createMany<T extends sessionCreateManyArgs>(args?: SelectSubset<T, sessionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -7829,7 +7793,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Create many Sessions and only return the `sid`
      * const sessionWithSidOnly = await prisma.session.createManyAndReturn({
      *   select: { sid: true },
@@ -7839,7 +7803,7 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
     createManyAndReturn<T extends sessionCreateManyAndReturnArgs>(args?: SelectSubset<T, sessionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
@@ -7853,7 +7817,7 @@ export namespace Prisma {
      *     // ... filter to delete one Session
      *   }
      * })
-     *
+     * 
      */
     delete<T extends sessionDeleteArgs>(args: SelectSubset<T, sessionDeleteArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -7870,7 +7834,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
     update<T extends sessionUpdateArgs>(args: SelectSubset<T, sessionUpdateArgs<ExtArgs>>): Prisma__sessionClient<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
@@ -7884,7 +7848,7 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     *
+     * 
      */
     deleteMany<T extends sessionDeleteManyArgs>(args?: SelectSubset<T, sessionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -7903,7 +7867,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     *
+     * 
      */
     updateMany<T extends sessionUpdateManyArgs>(args: SelectSubset<T, sessionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
@@ -7920,7 +7884,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *
+     * 
      * // Update zero or more Sessions and only return the `sid`
      * const sessionWithSidOnly = await prisma.session.updateManyAndReturn({
      *   select: { sid: true },
@@ -7933,7 +7897,7 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     *
+     * 
      */
     updateManyAndReturn<T extends sessionUpdateManyAndReturnArgs>(args: SelectSubset<T, sessionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$sessionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
@@ -8022,7 +7986,7 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     *
+     * 
     **/
     groupBy<
       T extends sessionGroupByArgs,
@@ -8129,7 +8093,7 @@ export namespace Prisma {
     readonly sess: FieldRef<"session", 'Json'>
     readonly expire: FieldRef<"session", 'DateTime'>
   }
-
+    
 
   // Custom InputTypes
   /**
@@ -8186,31 +8150,31 @@ export namespace Prisma {
     where?: sessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of sessions to fetch.
      */
     orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for sessions.
      */
     cursor?: sessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` sessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of sessions.
      */
     distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
@@ -8234,31 +8198,31 @@ export namespace Prisma {
     where?: sessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of sessions to fetch.
      */
     orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for searching for sessions.
      */
     cursor?: sessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` sessions.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     *
+     * 
      * Filter by unique combinations of sessions.
      */
     distinct?: SessionScalarFieldEnum | SessionScalarFieldEnum[]
@@ -8282,25 +8246,25 @@ export namespace Prisma {
     where?: sessionWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     *
+     * 
      * Determine the order of sessions to fetch.
      */
     orderBy?: sessionOrderByWithRelationInput | sessionOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     *
+     * 
      * Sets the position for listing sessions.
      */
     cursor?: sessionWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Take `±n` sessions from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     *
+     * 
      * Skip the first `n` sessions.
      */
     skip?: number
@@ -8557,12 +8521,12 @@ export namespace Prisma {
     category: 'category',
     type: 'type',
     location: 'location',
-    imageUrl: 'imageUrl',
     userId: 'userId',
-    numReviews: 'numReviews',
+    createdAt: 'createdAt',
     numLikes: 'numLikes',
-    rating: 'rating',
-    createdAt: 'createdAt'
+    imageUrl: 'imageUrl',
+    numReviews: 'numReviews',
+    rating: 'rating'
   };
 
   export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
@@ -8636,84 +8600,84 @@ export namespace Prisma {
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-
+    
 
 
   /**
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-
+    
 
 
   /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
-
+    
 
 
   /**
    * Reference to a field of type 'String[]'
    */
   export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
-
+    
 
 
   /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-
+    
 
 
   /**
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-
+    
 
 
   /**
    * Reference to a field of type 'PostType'
    */
   export type EnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType'>
-
+    
 
 
   /**
    * Reference to a field of type 'PostType[]'
    */
   export type ListEnumPostTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PostType[]'>
-
+    
 
 
   /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-
+    
 
 
   /**
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-
+    
 
 
   /**
    * Reference to a field of type 'Json'
    */
   export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-
+    
 
 
   /**
    * Reference to a field of type 'QueryMode'
    */
   export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
-
+    
   /**
    * Deep Input Types
    */
@@ -8733,7 +8697,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     first_name?: StringNullableFilter<"User"> | string | null
     last_name?: StringNullableFilter<"User"> | string | null
-    Like?: LikeListRelationFilter
+    likes?: LikeListRelationFilter
     posts?: PostListRelationFilter
     receivedReviews?: ReviewListRelationFilter
     reviews?: ReviewListRelationFilter
@@ -8751,7 +8715,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     first_name?: SortOrderInput | SortOrder
     last_name?: SortOrderInput | SortOrder
-    Like?: LikeOrderByRelationAggregateInput
+    likes?: LikeOrderByRelationAggregateInput
     posts?: PostOrderByRelationAggregateInput
     receivedReviews?: ReviewOrderByRelationAggregateInput
     reviews?: ReviewOrderByRelationAggregateInput
@@ -8772,7 +8736,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     first_name?: StringNullableFilter<"User"> | string | null
     last_name?: StringNullableFilter<"User"> | string | null
-    Like?: LikeListRelationFilter
+    likes?: LikeListRelationFilter
     posts?: PostListRelationFilter
     receivedReviews?: ReviewListRelationFilter
     reviews?: ReviewListRelationFilter
@@ -8966,15 +8930,15 @@ export namespace Prisma {
     category?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     location?: StringFilter<"Post"> | string
-    imageUrl?: StringNullableFilter<"Post"> | string | null
     userId?: IntFilter<"Post"> | number
-    numReviews?: IntFilter<"Post"> | number
-    numLikes?: IntFilter<"Post"> | number
-    rating?: FloatFilter<"Post"> | number
     createdAt?: DateTimeFilter<"Post"> | Date | string
+    numLikes?: IntFilter<"Post"> | number
+    imageUrl?: StringNullableFilter<"Post"> | string | null
+    numReviews?: IntFilter<"Post"> | number
+    rating?: FloatFilter<"Post"> | number
+    likes?: LikeListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     reviews?: ReviewListRelationFilter
-    likes?: LikeListRelationFilter
     sessions?: SessionListRelationFilter
   }
 
@@ -8985,15 +8949,15 @@ export namespace Prisma {
     category?: SortOrder
     type?: SortOrder
     location?: SortOrder
-    imageUrl?: SortOrderInput | SortOrder
     userId?: SortOrder
-    numReviews?: SortOrder
-    numLikes?: SortOrder
-    rating?: SortOrder
     createdAt?: SortOrder
+    numLikes?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    numReviews?: SortOrder
+    rating?: SortOrder
+    likes?: LikeOrderByRelationAggregateInput
     user?: UserOrderByWithRelationInput
     reviews?: ReviewOrderByRelationAggregateInput
-    likes?: LikeOrderByRelationAggregateInput
     sessions?: SessionOrderByRelationAggregateInput
   }
 
@@ -9007,15 +8971,15 @@ export namespace Prisma {
     category?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     location?: StringFilter<"Post"> | string
-    imageUrl?: StringNullableFilter<"Post"> | string | null
     userId?: IntFilter<"Post"> | number
-    numReviews?: IntFilter<"Post"> | number
-    numLikes?: IntFilter<"Post"> | number
-    rating?: FloatFilter<"Post"> | number
     createdAt?: DateTimeFilter<"Post"> | Date | string
+    numLikes?: IntFilter<"Post"> | number
+    imageUrl?: StringNullableFilter<"Post"> | string | null
+    numReviews?: IntFilter<"Post"> | number
+    rating?: FloatFilter<"Post"> | number
+    likes?: LikeListRelationFilter
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     reviews?: ReviewListRelationFilter
-    likes?: LikeListRelationFilter
     sessions?: SessionListRelationFilter
   }, "id">
 
@@ -9026,12 +8990,12 @@ export namespace Prisma {
     category?: SortOrder
     type?: SortOrder
     location?: SortOrder
-    imageUrl?: SortOrderInput | SortOrder
     userId?: SortOrder
-    numReviews?: SortOrder
-    numLikes?: SortOrder
-    rating?: SortOrder
     createdAt?: SortOrder
+    numLikes?: SortOrder
+    imageUrl?: SortOrderInput | SortOrder
+    numReviews?: SortOrder
+    rating?: SortOrder
     _count?: PostCountOrderByAggregateInput
     _avg?: PostAvgOrderByAggregateInput
     _max?: PostMaxOrderByAggregateInput
@@ -9049,12 +9013,12 @@ export namespace Prisma {
     category?: StringWithAggregatesFilter<"Post"> | string
     type?: EnumPostTypeWithAggregatesFilter<"Post"> | $Enums.PostType
     location?: StringWithAggregatesFilter<"Post"> | string
-    imageUrl?: StringNullableWithAggregatesFilter<"Post"> | string | null
     userId?: IntWithAggregatesFilter<"Post"> | number
-    numReviews?: IntWithAggregatesFilter<"Post"> | number
-    numLikes?: IntWithAggregatesFilter<"Post"> | number
-    rating?: FloatWithAggregatesFilter<"Post"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Post"> | Date | string
+    numLikes?: IntWithAggregatesFilter<"Post"> | number
+    imageUrl?: StringNullableWithAggregatesFilter<"Post"> | string | null
+    numReviews?: IntWithAggregatesFilter<"Post"> | number
+    rating?: FloatWithAggregatesFilter<"Post"> | number
   }
 
   export type LikeWhereInput = {
@@ -9065,8 +9029,8 @@ export namespace Prisma {
     userId?: IntFilter<"Like"> | number
     postId?: IntFilter<"Like"> | number
     createdAt?: DateTimeFilter<"Like"> | Date | string
-    Post?: XOR<PostScalarRelationFilter, PostWhereInput>
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    post?: XOR<PostScalarRelationFilter, PostWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type LikeOrderByWithRelationInput = {
@@ -9074,8 +9038,8 @@ export namespace Prisma {
     userId?: SortOrder
     postId?: SortOrder
     createdAt?: SortOrder
-    Post?: PostOrderByWithRelationInput
-    User?: UserOrderByWithRelationInput
+    post?: PostOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type LikeWhereUniqueInput = Prisma.AtLeast<{
@@ -9086,8 +9050,8 @@ export namespace Prisma {
     userId?: IntFilter<"Like"> | number
     postId?: IntFilter<"Like"> | number
     createdAt?: DateTimeFilter<"Like"> | Date | string
-    Post?: XOR<PostScalarRelationFilter, PostWhereInput>
-    User?: XOR<UserScalarRelationFilter, UserWhereInput>
+    post?: XOR<PostScalarRelationFilter, PostWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type LikeOrderByWithAggregationInput = {
@@ -9164,7 +9128,7 @@ export namespace Prisma {
     createdAt?: Date | string
     first_name?: string | null
     last_name?: string | null
-    Like?: LikeCreateNestedManyWithoutUserInput
+    likes?: LikeCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
     receivedReviews?: ReviewCreateNestedManyWithoutRecipientInput
     reviews?: ReviewCreateNestedManyWithoutReviewerInput
@@ -9182,7 +9146,7 @@ export namespace Prisma {
     createdAt?: Date | string
     first_name?: string | null
     last_name?: string | null
-    Like?: LikeUncheckedCreateNestedManyWithoutUserInput
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     receivedReviews?: ReviewUncheckedCreateNestedManyWithoutRecipientInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
@@ -9199,7 +9163,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    Like?: LikeUpdateManyWithoutUserNestedInput
+    likes?: LikeUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
     receivedReviews?: ReviewUpdateManyWithoutRecipientNestedInput
     reviews?: ReviewUpdateManyWithoutReviewerNestedInput
@@ -9217,7 +9181,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    Like?: LikeUncheckedUpdateManyWithoutUserNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     receivedReviews?: ReviewUncheckedUpdateManyWithoutRecipientNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
@@ -9397,14 +9361,14 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
+    createdAt?: Date | string
+    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
-    numLikes?: number
     rating?: number
-    createdAt?: Date | string
+    likes?: LikeCreateNestedManyWithoutPostInput
     user: UserCreateNestedOneWithoutPostsInput
     reviews?: ReviewCreateNestedManyWithoutPostInput
-    likes?: LikeCreateNestedManyWithoutPostInput
     sessions?: SessionCreateNestedManyWithoutPostInput
   }
 
@@ -9415,14 +9379,14 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    imageUrl?: string | null
     userId: number
-    numReviews?: number
-    numLikes?: number
-    rating?: number
     createdAt?: Date | string
-    reviews?: ReviewUncheckedCreateNestedManyWithoutPostInput
+    numLikes?: number
+    imageUrl?: string | null
+    numReviews?: number
+    rating?: number
     likes?: LikeUncheckedCreateNestedManyWithoutPostInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutPostInput
     sessions?: SessionUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -9432,14 +9396,14 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likes?: LikeUpdateManyWithoutPostNestedInput
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
     reviews?: ReviewUpdateManyWithoutPostNestedInput
-    likes?: LikeUpdateManyWithoutPostNestedInput
     sessions?: SessionUpdateManyWithoutPostNestedInput
   }
 
@@ -9450,14 +9414,14 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
-    numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
-    rating?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reviews?: ReviewUncheckedUpdateManyWithoutPostNestedInput
+    numLikes?: IntFieldUpdateOperationsInput | number
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    numReviews?: IntFieldUpdateOperationsInput | number
+    rating?: FloatFieldUpdateOperationsInput | number
     likes?: LikeUncheckedUpdateManyWithoutPostNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutPostNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -9468,12 +9432,12 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    imageUrl?: string | null
     userId: number
-    numReviews?: number
-    numLikes?: number
-    rating?: number
     createdAt?: Date | string
+    numLikes?: number
+    imageUrl?: string | null
+    numReviews?: number
+    rating?: number
   }
 
   export type PostUpdateManyMutationInput = {
@@ -9482,11 +9446,11 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PostUncheckedUpdateManyInput = {
@@ -9496,18 +9460,18 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
-    numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
-    rating?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    numLikes?: IntFieldUpdateOperationsInput | number
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    numReviews?: IntFieldUpdateOperationsInput | number
+    rating?: FloatFieldUpdateOperationsInput | number
   }
 
   export type LikeCreateInput = {
     createdAt?: Date | string
-    Post: PostCreateNestedOneWithoutLikesInput
-    User: UserCreateNestedOneWithoutLikeInput
+    post: PostCreateNestedOneWithoutLikesInput
+    user: UserCreateNestedOneWithoutLikesInput
   }
 
   export type LikeUncheckedCreateInput = {
@@ -9519,8 +9483,8 @@ export namespace Prisma {
 
   export type LikeUpdateInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Post?: PostUpdateOneRequiredWithoutLikesNestedInput
-    User?: UserUpdateOneRequiredWithoutLikeNestedInput
+    post?: PostUpdateOneRequiredWithoutLikesNestedInput
+    user?: UserUpdateOneRequiredWithoutLikesNestedInput
   }
 
   export type LikeUncheckedUpdateInput = {
@@ -9959,19 +9923,19 @@ export namespace Prisma {
     category?: SortOrder
     type?: SortOrder
     location?: SortOrder
-    imageUrl?: SortOrder
     userId?: SortOrder
-    numReviews?: SortOrder
-    numLikes?: SortOrder
-    rating?: SortOrder
     createdAt?: SortOrder
+    numLikes?: SortOrder
+    imageUrl?: SortOrder
+    numReviews?: SortOrder
+    rating?: SortOrder
   }
 
   export type PostAvgOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    numReviews?: SortOrder
     numLikes?: SortOrder
+    numReviews?: SortOrder
     rating?: SortOrder
   }
 
@@ -9982,12 +9946,12 @@ export namespace Prisma {
     category?: SortOrder
     type?: SortOrder
     location?: SortOrder
-    imageUrl?: SortOrder
     userId?: SortOrder
-    numReviews?: SortOrder
-    numLikes?: SortOrder
-    rating?: SortOrder
     createdAt?: SortOrder
+    numLikes?: SortOrder
+    imageUrl?: SortOrder
+    numReviews?: SortOrder
+    rating?: SortOrder
   }
 
   export type PostMinOrderByAggregateInput = {
@@ -9997,19 +9961,19 @@ export namespace Prisma {
     category?: SortOrder
     type?: SortOrder
     location?: SortOrder
-    imageUrl?: SortOrder
     userId?: SortOrder
-    numReviews?: SortOrder
-    numLikes?: SortOrder
-    rating?: SortOrder
     createdAt?: SortOrder
+    numLikes?: SortOrder
+    imageUrl?: SortOrder
+    numReviews?: SortOrder
+    rating?: SortOrder
   }
 
   export type PostSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    numReviews?: SortOrder
     numLikes?: SortOrder
+    numReviews?: SortOrder
     rating?: SortOrder
   }
 
@@ -10476,13 +10440,6 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
-  export type LikeCreateNestedManyWithoutPostInput = {
-    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
-    createMany?: LikeCreateManyPostInputEnvelope
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-  }
-
   export type SessionCreateNestedManyWithoutPostInput = {
     create?: XOR<SessionCreateWithoutPostInput, SessionUncheckedCreateWithoutPostInput> | SessionCreateWithoutPostInput[] | SessionUncheckedCreateWithoutPostInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutPostInput | SessionCreateOrConnectWithoutPostInput[]
@@ -10504,13 +10461,6 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
-  export type LikeUncheckedCreateNestedManyWithoutPostInput = {
-    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
-    createMany?: LikeCreateManyPostInputEnvelope
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-  }
-
   export type SessionUncheckedCreateNestedManyWithoutPostInput = {
     create?: XOR<SessionCreateWithoutPostInput, SessionUncheckedCreateWithoutPostInput> | SessionCreateWithoutPostInput[] | SessionUncheckedCreateWithoutPostInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutPostInput | SessionCreateOrConnectWithoutPostInput[]
@@ -10528,6 +10478,20 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type LikeUpdateManyWithoutPostNestedInput = {
+    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
+    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
+    upsert?: LikeUpsertWithWhereUniqueWithoutPostInput | LikeUpsertWithWhereUniqueWithoutPostInput[]
+    createMany?: LikeCreateManyPostInputEnvelope
+    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
+    update?: LikeUpdateWithWhereUniqueWithoutPostInput | LikeUpdateWithWhereUniqueWithoutPostInput[]
+    updateMany?: LikeUpdateManyWithWhereWithoutPostInput | LikeUpdateManyWithWhereWithoutPostInput[]
+    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
   }
 
   export type UserUpdateOneRequiredWithoutPostsNestedInput = {
@@ -10550,20 +10514,6 @@ export namespace Prisma {
     update?: ReviewUpdateWithWhereUniqueWithoutPostInput | ReviewUpdateWithWhereUniqueWithoutPostInput[]
     updateMany?: ReviewUpdateManyWithWhereWithoutPostInput | ReviewUpdateManyWithWhereWithoutPostInput[]
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
-  }
-
-  export type LikeUpdateManyWithoutPostNestedInput = {
-    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
-    upsert?: LikeUpsertWithWhereUniqueWithoutPostInput | LikeUpsertWithWhereUniqueWithoutPostInput[]
-    createMany?: LikeCreateManyPostInputEnvelope
-    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    update?: LikeUpdateWithWhereUniqueWithoutPostInput | LikeUpdateWithWhereUniqueWithoutPostInput[]
-    updateMany?: LikeUpdateManyWithWhereWithoutPostInput | LikeUpdateManyWithWhereWithoutPostInput[]
-    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
   }
 
   export type SessionUpdateManyWithoutPostNestedInput = {
@@ -10608,20 +10558,6 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
-  export type LikeUncheckedUpdateManyWithoutPostNestedInput = {
-    create?: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput> | LikeCreateWithoutPostInput[] | LikeUncheckedCreateWithoutPostInput[]
-    connectOrCreate?: LikeCreateOrConnectWithoutPostInput | LikeCreateOrConnectWithoutPostInput[]
-    upsert?: LikeUpsertWithWhereUniqueWithoutPostInput | LikeUpsertWithWhereUniqueWithoutPostInput[]
-    createMany?: LikeCreateManyPostInputEnvelope
-    set?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    disconnect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    delete?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    connect?: LikeWhereUniqueInput | LikeWhereUniqueInput[]
-    update?: LikeUpdateWithWhereUniqueWithoutPostInput | LikeUpdateWithWhereUniqueWithoutPostInput[]
-    updateMany?: LikeUpdateManyWithWhereWithoutPostInput | LikeUpdateManyWithWhereWithoutPostInput[]
-    deleteMany?: LikeScalarWhereInput | LikeScalarWhereInput[]
-  }
-
   export type SessionUncheckedUpdateManyWithoutPostNestedInput = {
     create?: XOR<SessionCreateWithoutPostInput, SessionUncheckedCreateWithoutPostInput> | SessionCreateWithoutPostInput[] | SessionUncheckedCreateWithoutPostInput[]
     connectOrCreate?: SessionCreateOrConnectWithoutPostInput | SessionCreateOrConnectWithoutPostInput[]
@@ -10642,9 +10578,9 @@ export namespace Prisma {
     connect?: PostWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutLikeInput = {
-    create?: XOR<UserCreateWithoutLikeInput, UserUncheckedCreateWithoutLikeInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLikeInput
+  export type UserCreateNestedOneWithoutLikesInput = {
+    create?: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLikesInput
     connect?: UserWhereUniqueInput
   }
 
@@ -10656,12 +10592,12 @@ export namespace Prisma {
     update?: XOR<XOR<PostUpdateToOneWithWhereWithoutLikesInput, PostUpdateWithoutLikesInput>, PostUncheckedUpdateWithoutLikesInput>
   }
 
-  export type UserUpdateOneRequiredWithoutLikeNestedInput = {
-    create?: XOR<UserCreateWithoutLikeInput, UserUncheckedCreateWithoutLikeInput>
-    connectOrCreate?: UserCreateOrConnectWithoutLikeInput
-    upsert?: UserUpsertWithoutLikeInput
+  export type UserUpdateOneRequiredWithoutLikesNestedInput = {
+    create?: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutLikesInput
+    upsert?: UserUpsertWithoutLikesInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLikeInput, UserUpdateWithoutLikeInput>, UserUncheckedUpdateWithoutLikeInput>
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutLikesInput, UserUpdateWithoutLikesInput>, UserUncheckedUpdateWithoutLikesInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -10885,7 +10821,7 @@ export namespace Prisma {
 
   export type LikeCreateWithoutUserInput = {
     createdAt?: Date | string
-    Post: PostCreateNestedOneWithoutLikesInput
+    post: PostCreateNestedOneWithoutLikesInput
   }
 
   export type LikeUncheckedCreateWithoutUserInput = {
@@ -10910,13 +10846,13 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
+    createdAt?: Date | string
+    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
-    numLikes?: number
     rating?: number
-    createdAt?: Date | string
-    reviews?: ReviewCreateNestedManyWithoutPostInput
     likes?: LikeCreateNestedManyWithoutPostInput
+    reviews?: ReviewCreateNestedManyWithoutPostInput
     sessions?: SessionCreateNestedManyWithoutPostInput
   }
 
@@ -10927,13 +10863,13 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
+    createdAt?: Date | string
+    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
-    numLikes?: number
     rating?: number
-    createdAt?: Date | string
-    reviews?: ReviewUncheckedCreateNestedManyWithoutPostInput
     likes?: LikeUncheckedCreateNestedManyWithoutPostInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutPostInput
     sessions?: SessionUncheckedCreateNestedManyWithoutPostInput
   }
 
@@ -11078,12 +11014,12 @@ export namespace Prisma {
     category?: StringFilter<"Post"> | string
     type?: EnumPostTypeFilter<"Post"> | $Enums.PostType
     location?: StringFilter<"Post"> | string
-    imageUrl?: StringNullableFilter<"Post"> | string | null
     userId?: IntFilter<"Post"> | number
-    numReviews?: IntFilter<"Post"> | number
-    numLikes?: IntFilter<"Post"> | number
-    rating?: FloatFilter<"Post"> | number
     createdAt?: DateTimeFilter<"Post"> | Date | string
+    numLikes?: IntFilter<"Post"> | number
+    imageUrl?: StringNullableFilter<"Post"> | string | null
+    numReviews?: IntFilter<"Post"> | number
+    rating?: FloatFilter<"Post"> | number
   }
 
   export type ReviewUpsertWithWhereUniqueWithoutRecipientInput = {
@@ -11170,7 +11106,7 @@ export namespace Prisma {
     createdAt?: Date | string
     first_name?: string | null
     last_name?: string | null
-    Like?: LikeCreateNestedManyWithoutUserInput
+    likes?: LikeCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
     receivedReviews?: ReviewCreateNestedManyWithoutRecipientInput
     reviews?: ReviewCreateNestedManyWithoutReviewerInput
@@ -11187,7 +11123,7 @@ export namespace Prisma {
     createdAt?: Date | string
     first_name?: string | null
     last_name?: string | null
-    Like?: LikeUncheckedCreateNestedManyWithoutUserInput
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     receivedReviews?: ReviewUncheckedCreateNestedManyWithoutRecipientInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
@@ -11204,14 +11140,14 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
+    createdAt?: Date | string
+    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
-    numLikes?: number
     rating?: number
-    createdAt?: Date | string
+    likes?: LikeCreateNestedManyWithoutPostInput
     user: UserCreateNestedOneWithoutPostsInput
     reviews?: ReviewCreateNestedManyWithoutPostInput
-    likes?: LikeCreateNestedManyWithoutPostInput
   }
 
   export type PostUncheckedCreateWithoutSessionsInput = {
@@ -11221,14 +11157,14 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    imageUrl?: string | null
     userId: number
-    numReviews?: number
-    numLikes?: number
-    rating?: number
     createdAt?: Date | string
-    reviews?: ReviewUncheckedCreateNestedManyWithoutPostInput
+    numLikes?: number
+    imageUrl?: string | null
+    numReviews?: number
+    rating?: number
     likes?: LikeUncheckedCreateNestedManyWithoutPostInput
+    reviews?: ReviewUncheckedCreateNestedManyWithoutPostInput
   }
 
   export type PostCreateOrConnectWithoutSessionsInput = {
@@ -11257,7 +11193,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    Like?: LikeUpdateManyWithoutUserNestedInput
+    likes?: LikeUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
     receivedReviews?: ReviewUpdateManyWithoutRecipientNestedInput
     reviews?: ReviewUpdateManyWithoutReviewerNestedInput
@@ -11274,7 +11210,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    Like?: LikeUncheckedUpdateManyWithoutUserNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     receivedReviews?: ReviewUncheckedUpdateManyWithoutRecipientNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
@@ -11297,14 +11233,14 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    likes?: LikeUpdateManyWithoutPostNestedInput
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
     reviews?: ReviewUpdateManyWithoutPostNestedInput
-    likes?: LikeUpdateManyWithoutPostNestedInput
   }
 
   export type PostUncheckedUpdateWithoutSessionsInput = {
@@ -11314,14 +11250,14 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
-    numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
-    rating?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reviews?: ReviewUncheckedUpdateManyWithoutPostNestedInput
+    numLikes?: IntFieldUpdateOperationsInput | number
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    numReviews?: IntFieldUpdateOperationsInput | number
+    rating?: FloatFieldUpdateOperationsInput | number
     likes?: LikeUncheckedUpdateManyWithoutPostNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutPostNestedInput
   }
 
   export type PostCreateWithoutReviewsInput = {
@@ -11330,13 +11266,13 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
+    createdAt?: Date | string
+    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
-    numLikes?: number
     rating?: number
-    createdAt?: Date | string
-    user: UserCreateNestedOneWithoutPostsInput
     likes?: LikeCreateNestedManyWithoutPostInput
+    user: UserCreateNestedOneWithoutPostsInput
     sessions?: SessionCreateNestedManyWithoutPostInput
   }
 
@@ -11347,12 +11283,12 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    imageUrl?: string | null
     userId: number
-    numReviews?: number
-    numLikes?: number
-    rating?: number
     createdAt?: Date | string
+    numLikes?: number
+    imageUrl?: string | null
+    numReviews?: number
+    rating?: number
     likes?: LikeUncheckedCreateNestedManyWithoutPostInput
     sessions?: SessionUncheckedCreateNestedManyWithoutPostInput
   }
@@ -11372,7 +11308,7 @@ export namespace Prisma {
     createdAt?: Date | string
     first_name?: string | null
     last_name?: string | null
-    Like?: LikeCreateNestedManyWithoutUserInput
+    likes?: LikeCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
     reviews?: ReviewCreateNestedManyWithoutReviewerInput
     sessions?: SessionCreateNestedManyWithoutParticipantInput
@@ -11389,7 +11325,7 @@ export namespace Prisma {
     createdAt?: Date | string
     first_name?: string | null
     last_name?: string | null
-    Like?: LikeUncheckedCreateNestedManyWithoutUserInput
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
     sessions?: SessionUncheckedCreateNestedManyWithoutParticipantInput
@@ -11410,7 +11346,7 @@ export namespace Prisma {
     createdAt?: Date | string
     first_name?: string | null
     last_name?: string | null
-    Like?: LikeCreateNestedManyWithoutUserInput
+    likes?: LikeCreateNestedManyWithoutUserInput
     posts?: PostCreateNestedManyWithoutUserInput
     receivedReviews?: ReviewCreateNestedManyWithoutRecipientInput
     sessions?: SessionCreateNestedManyWithoutParticipantInput
@@ -11427,7 +11363,7 @@ export namespace Prisma {
     createdAt?: Date | string
     first_name?: string | null
     last_name?: string | null
-    Like?: LikeUncheckedCreateNestedManyWithoutUserInput
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     posts?: PostUncheckedCreateNestedManyWithoutUserInput
     receivedReviews?: ReviewUncheckedCreateNestedManyWithoutRecipientInput
     sessions?: SessionUncheckedCreateNestedManyWithoutParticipantInput
@@ -11455,13 +11391,13 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutPostsNestedInput
     likes?: LikeUpdateManyWithoutPostNestedInput
+    user?: UserUpdateOneRequiredWithoutPostsNestedInput
     sessions?: SessionUpdateManyWithoutPostNestedInput
   }
 
@@ -11472,12 +11408,12 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
-    numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
-    rating?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    numLikes?: IntFieldUpdateOperationsInput | number
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    numReviews?: IntFieldUpdateOperationsInput | number
+    rating?: FloatFieldUpdateOperationsInput | number
     likes?: LikeUncheckedUpdateManyWithoutPostNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutPostNestedInput
   }
@@ -11503,7 +11439,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    Like?: LikeUpdateManyWithoutUserNestedInput
+    likes?: LikeUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
     reviews?: ReviewUpdateManyWithoutReviewerNestedInput
     sessions?: SessionUpdateManyWithoutParticipantNestedInput
@@ -11520,7 +11456,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    Like?: LikeUncheckedUpdateManyWithoutUserNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutParticipantNestedInput
@@ -11547,7 +11483,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    Like?: LikeUpdateManyWithoutUserNestedInput
+    likes?: LikeUpdateManyWithoutUserNestedInput
     posts?: PostUpdateManyWithoutUserNestedInput
     receivedReviews?: ReviewUpdateManyWithoutRecipientNestedInput
     sessions?: SessionUpdateManyWithoutParticipantNestedInput
@@ -11564,7 +11500,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    Like?: LikeUncheckedUpdateManyWithoutUserNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     posts?: PostUncheckedUpdateManyWithoutUserNestedInput
     receivedReviews?: ReviewUncheckedUpdateManyWithoutRecipientNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutParticipantNestedInput
@@ -11572,7 +11508,7 @@ export namespace Prisma {
 
   export type LikeCreateWithoutPostInput = {
     createdAt?: Date | string
-    User: UserCreateNestedOneWithoutLikesInput
+    user: UserCreateNestedOneWithoutLikesInput
   }
 
   export type LikeUncheckedCreateWithoutPostInput = {
@@ -11601,7 +11537,7 @@ export namespace Prisma {
     createdAt?: Date | string
     first_name?: string | null
     last_name?: string | null
-    Like?: LikeCreateNestedManyWithoutUserInput
+    likes?: LikeCreateNestedManyWithoutUserInput
     receivedReviews?: ReviewCreateNestedManyWithoutRecipientInput
     reviews?: ReviewCreateNestedManyWithoutReviewerInput
     sessions?: SessionCreateNestedManyWithoutParticipantInput
@@ -11618,7 +11554,7 @@ export namespace Prisma {
     createdAt?: Date | string
     first_name?: string | null
     last_name?: string | null
-    Like?: LikeUncheckedCreateNestedManyWithoutUserInput
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput
     receivedReviews?: ReviewUncheckedCreateNestedManyWithoutRecipientInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutReviewerInput
     sessions?: SessionUncheckedCreateNestedManyWithoutParticipantInput
@@ -11651,27 +11587,6 @@ export namespace Prisma {
 
   export type ReviewCreateManyPostInputEnvelope = {
     data: ReviewCreateManyPostInput | ReviewCreateManyPostInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type LikeCreateWithoutPostInput = {
-    createdAt?: Date | string
-    User: UserCreateNestedOneWithoutLikeInput
-  }
-
-  export type LikeUncheckedCreateWithoutPostInput = {
-    id?: number
-    userId: number
-    createdAt?: Date | string
-  }
-
-  export type LikeCreateOrConnectWithoutPostInput = {
-    where: LikeWhereUniqueInput
-    create: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput>
-  }
-
-  export type LikeCreateManyPostInputEnvelope = {
-    data: LikeCreateManyPostInput | LikeCreateManyPostInput[]
     skipDuplicates?: boolean
   }
 
@@ -11741,7 +11656,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    Like?: LikeUpdateManyWithoutUserNestedInput
+    likes?: LikeUpdateManyWithoutUserNestedInput
     receivedReviews?: ReviewUpdateManyWithoutRecipientNestedInput
     reviews?: ReviewUpdateManyWithoutReviewerNestedInput
     sessions?: SessionUpdateManyWithoutParticipantNestedInput
@@ -11758,7 +11673,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     first_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: NullableStringFieldUpdateOperationsInput | string | null
-    Like?: LikeUncheckedUpdateManyWithoutUserNestedInput
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput
     receivedReviews?: ReviewUncheckedUpdateManyWithoutRecipientNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutReviewerNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutParticipantNestedInput
@@ -11778,22 +11693,6 @@ export namespace Prisma {
   export type ReviewUpdateManyWithWhereWithoutPostInput = {
     where: ReviewScalarWhereInput
     data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutPostInput>
-  }
-
-  export type LikeUpsertWithWhereUniqueWithoutPostInput = {
-    where: LikeWhereUniqueInput
-    update: XOR<LikeUpdateWithoutPostInput, LikeUncheckedUpdateWithoutPostInput>
-    create: XOR<LikeCreateWithoutPostInput, LikeUncheckedCreateWithoutPostInput>
-  }
-
-  export type LikeUpdateWithWhereUniqueWithoutPostInput = {
-    where: LikeWhereUniqueInput
-    data: XOR<LikeUpdateWithoutPostInput, LikeUncheckedUpdateWithoutPostInput>
-  }
-
-  export type LikeUpdateManyWithWhereWithoutPostInput = {
-    where: LikeScalarWhereInput
-    data: XOR<LikeUpdateManyMutationInput, LikeUncheckedUpdateManyWithoutPostInput>
   }
 
   export type SessionUpsertWithWhereUniqueWithoutPostInput = {
@@ -11818,11 +11717,11 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
+    createdAt?: Date | string
+    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
-    numLikes?: number
     rating?: number
-    createdAt?: Date | string
     user: UserCreateNestedOneWithoutPostsInput
     reviews?: ReviewCreateNestedManyWithoutPostInput
     sessions?: SessionCreateNestedManyWithoutPostInput
@@ -11835,12 +11734,12 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
-    imageUrl?: string | null
     userId: number
-    numReviews?: number
-    numLikes?: number
-    rating?: number
     createdAt?: Date | string
+    numLikes?: number
+    imageUrl?: string | null
+    numReviews?: number
+    rating?: number
     reviews?: ReviewUncheckedCreateNestedManyWithoutPostInput
     sessions?: SessionUncheckedCreateNestedManyWithoutPostInput
   }
@@ -11850,7 +11749,7 @@ export namespace Prisma {
     create: XOR<PostCreateWithoutLikesInput, PostUncheckedCreateWithoutLikesInput>
   }
 
-  export type UserCreateWithoutLikeInput = {
+  export type UserCreateWithoutLikesInput = {
     email: string
     password: string
     profileImage?: string | null
@@ -11866,7 +11765,7 @@ export namespace Prisma {
     sessions?: SessionCreateNestedManyWithoutParticipantInput
   }
 
-  export type UserUncheckedCreateWithoutLikeInput = {
+  export type UserUncheckedCreateWithoutLikesInput = {
     id?: number
     email: string
     password: string
@@ -11883,9 +11782,9 @@ export namespace Prisma {
     sessions?: SessionUncheckedCreateNestedManyWithoutParticipantInput
   }
 
-  export type UserCreateOrConnectWithoutLikeInput = {
+  export type UserCreateOrConnectWithoutLikesInput = {
     where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutLikeInput, UserUncheckedCreateWithoutLikeInput>
+    create: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
   }
 
   export type PostUpsertWithoutLikesInput = {
@@ -11905,11 +11804,11 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPostsNestedInput
     reviews?: ReviewUpdateManyWithoutPostNestedInput
     sessions?: SessionUpdateManyWithoutPostNestedInput
@@ -11922,28 +11821,28 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: IntFieldUpdateOperationsInput | number
-    numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
-    rating?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    numLikes?: IntFieldUpdateOperationsInput | number
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    numReviews?: IntFieldUpdateOperationsInput | number
+    rating?: FloatFieldUpdateOperationsInput | number
     reviews?: ReviewUncheckedUpdateManyWithoutPostNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutPostNestedInput
   }
 
-  export type UserUpsertWithoutLikeInput = {
-    update: XOR<UserUpdateWithoutLikeInput, UserUncheckedUpdateWithoutLikeInput>
-    create: XOR<UserCreateWithoutLikeInput, UserUncheckedCreateWithoutLikeInput>
+  export type UserUpsertWithoutLikesInput = {
+    update: XOR<UserUpdateWithoutLikesInput, UserUncheckedUpdateWithoutLikesInput>
+    create: XOR<UserCreateWithoutLikesInput, UserUncheckedCreateWithoutLikesInput>
     where?: UserWhereInput
   }
 
-  export type UserUpdateToOneWithWhereWithoutLikeInput = {
+  export type UserUpdateToOneWithWhereWithoutLikesInput = {
     where?: UserWhereInput
-    data: XOR<UserUpdateWithoutLikeInput, UserUncheckedUpdateWithoutLikeInput>
+    data: XOR<UserUpdateWithoutLikesInput, UserUncheckedUpdateWithoutLikesInput>
   }
 
-  export type UserUpdateWithoutLikeInput = {
+  export type UserUpdateWithoutLikesInput = {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     profileImage?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11959,7 +11858,7 @@ export namespace Prisma {
     sessions?: SessionUpdateManyWithoutParticipantNestedInput
   }
 
-  export type UserUncheckedUpdateWithoutLikeInput = {
+  export type UserUncheckedUpdateWithoutLikesInput = {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
@@ -11989,11 +11888,11 @@ export namespace Prisma {
     category: string
     type: $Enums.PostType
     location: string
+    createdAt?: Date | string
+    numLikes?: number
     imageUrl?: string | null
     numReviews?: number
-    numLikes?: number
     rating?: number
-    createdAt?: Date | string
   }
 
   export type ReviewCreateManyRecipientInput = {
@@ -12024,7 +11923,7 @@ export namespace Prisma {
 
   export type LikeUpdateWithoutUserInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Post?: PostUpdateOneRequiredWithoutLikesNestedInput
+    post?: PostUpdateOneRequiredWithoutLikesNestedInput
   }
 
   export type LikeUncheckedUpdateWithoutUserInput = {
@@ -12045,13 +11944,13 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reviews?: ReviewUpdateManyWithoutPostNestedInput
     likes?: LikeUpdateManyWithoutPostNestedInput
+    reviews?: ReviewUpdateManyWithoutPostNestedInput
     sessions?: SessionUpdateManyWithoutPostNestedInput
   }
 
@@ -12062,13 +11961,13 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    reviews?: ReviewUncheckedUpdateManyWithoutPostNestedInput
     likes?: LikeUncheckedUpdateManyWithoutPostNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutPostNestedInput
     sessions?: SessionUncheckedUpdateManyWithoutPostNestedInput
   }
 
@@ -12079,11 +11978,11 @@ export namespace Prisma {
     category?: StringFieldUpdateOperationsInput | string
     type?: EnumPostTypeFieldUpdateOperationsInput | $Enums.PostType
     location?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    numLikes?: IntFieldUpdateOperationsInput | number
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     numReviews?: IntFieldUpdateOperationsInput | number
-    numLikes?: IntFieldUpdateOperationsInput | number
     rating?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewUpdateWithoutRecipientInput = {
@@ -12175,12 +12074,6 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
-  export type LikeCreateManyPostInput = {
-    id?: number
-    userId: number
-    createdAt?: Date | string
-  }
-
   export type SessionCreateManyPostInput = {
     id?: number
     title: string
@@ -12193,7 +12086,7 @@ export namespace Prisma {
 
   export type LikeUpdateWithoutPostInput = {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    User?: UserUpdateOneRequiredWithoutLikesNestedInput
+    user?: UserUpdateOneRequiredWithoutLikesNestedInput
   }
 
   export type LikeUncheckedUpdateWithoutPostInput = {
@@ -12228,23 +12121,6 @@ export namespace Prisma {
     comment?: StringFieldUpdateOperationsInput | string
     reviewerId?: IntFieldUpdateOperationsInput | number
     recipientId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LikeUpdateWithoutPostInput = {
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    User?: UserUpdateOneRequiredWithoutLikeNestedInput
-  }
-
-  export type LikeUncheckedUpdateWithoutPostInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type LikeUncheckedUpdateManyWithoutPostInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
