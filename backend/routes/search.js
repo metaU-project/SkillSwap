@@ -3,7 +3,18 @@ const { PrismaClient } = require('../generated/prisma');
 const prisma = new PrismaClient();
 const router = express.Router();
 const ERROR_CODES = require('../utils/errors');
-const { buildTrieFromData, getSuggestions } = require('../services/trie/index');
+const {
+  buildTrieFromData,
+  getSuggestions,
+  trie,
+} = require('../services/trie/index');
+const {
+  loadKnownFilters,
+  classifyTokens,
+} = require('../services/search/classifyTokens');
+const rankPosts = require('../services/search/rankPosts');
+
+loadKnownFilters(prisma);
 
 /**
  * Initialize the Trie with existing posts data
@@ -30,6 +41,11 @@ async function initializeTrie() {
 
     const categories = [...new Set(posts.map((post) => post.category))];
     buildTrieFromData(posts, categories);
+
+    const queries = await prisma.searchQuery.findMany();
+    queries.forEach((query) => {
+      trie.insert(query.query, query.frequency);
+    });
   } catch (error) {
     console.error(ERROR_CODES.ERROR_INITIALIZING_TRIE, error);
   }
@@ -44,7 +60,7 @@ async function rebuildTrie() {
 }
 setTimeout(initializeTrie, 2000);
 
-//tokenized search [TODO - Include scoring logic]
+//tokenized with scoring logic
 router.get('/', async (req, res) => {
   try {
     const { keywords } = req.query;
@@ -52,21 +68,28 @@ router.get('/', async (req, res) => {
     if (!keywords || keywords.trim() === '') {
       return res.status(400).json({ error: ERROR_CODES.INVALID_SEARCH_QUERY });
     }
+    if (keywords && keywords.trim().length > 2) {
+      const content = keywords.trim().toLowerCase();
 
-    const tokens = keywords.trim().split(/\s+/);
-    const conditions = tokens.map((token) => ({
-      OR: [
-        { title: { contains: token, mode: 'insensitive' } },
-        { description: { contains: token, mode: 'insensitive' } },
-        { category: { contains: token, mode: 'insensitive' } },
-        { location: { contains: token, mode: 'insensitive' } },
-      ],
-    }));
+      await prisma.searchQuery.upsert({
+        where: {
+          query: content,
+        },
+        update: {
+          frequency: {
+            increment: 1,
+          },
+        },
+        create: {
+          query: content,
+          frequency: 1,
+        },
+      });
+
+      trie.insert(content);
+    }
 
     const results = await prisma.post.findMany({
-      where: {
-        AND: conditions,
-      },
       include: {
         user: {
           select: { id: true, first_name: true, last_name: true },
@@ -79,7 +102,15 @@ router.get('/', async (req, res) => {
       },
     });
 
-    res.status(200).json({ success: true, results });
+    const rankedPosts = rankPosts(keywords, results);
+
+    if (rankedPosts.length === 0) {
+      const fallback = [...results]
+        .sort((a, b) => b.likes.length - a.likes.length)
+        .slice(0, 10);
+      return res.status(200).json({ success: true, results: fallback });
+    }
+    res.status(200).json({ success: true, rankPosts: rankedPosts });
   } catch (err) {
     console.error('Search error:', err);
     res.status(500).json({ error: ERROR_CODES.INTERNAL_SERVER_ERROR });

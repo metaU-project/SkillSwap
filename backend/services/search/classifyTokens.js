@@ -1,8 +1,24 @@
 //define known locations
-const knownLocations = []; //fetch all locations from db?
+let knownLocations = [];
 
 //define known categeries
-const knownCategories = []; //fetch all categories from db?
+let knownCategories = [];
+
+async function loadKnownFilters(prisma) {
+  knownLocations = (
+    await prisma.post.findMany({
+      select: { location: true },
+      distinct: ['location'],
+    })
+  ).map((p) => p.location.toLowerCase());
+
+  knownCategories = (
+    await prisma.post.findMany({
+      select: { category: true },
+      distinct: ['category'],
+    })
+  ).map((p) => p.category.toLowerCase());
+}
 
 /**
  * Classify tokens into locations, categories, and other
@@ -10,13 +26,14 @@ const knownCategories = []; //fetch all categories from db?
  * @returns an object with three tokens: locations, categories, and other containing arrays of tokens
  */
 function classifyTokens(tokens) {
-  const locationTokens = tokens.filter((token) =>
+  console.log('classifyTokens', tokens);
+  const locationTokens = tokens?.filter((token) =>
     knownLocations.includes(token)
   );
-  const categoryTokens = tokens.filter((token) =>
+  const categoryTokens = tokens?.filter((token) =>
     knownCategories.includes(token)
   );
-  const otherTokens = tokens.filter(
+  const otherTokens = tokens?.filter(
     (token) =>
       !knownLocations.includes(token) && !knownCategories.includes(token)
   );
@@ -27,4 +44,4 @@ function classifyTokens(tokens) {
   };
 }
 
-module.exports = classifyTokens;
+module.exports = { classifyTokens, loadKnownFilters };

@@ -87,6 +87,13 @@ model session {
   @@index([expire], map: "IDX_session_expire")
 }
 
+model SearchQuery {
+  id        Int      @id @default(autoincrement())
+  query     String   @unique
+  frequency Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
 enum PostType {
   OFFER
   REQUEST

@@ -181,6 +181,13 @@ exports.Prisma.SessionScalarFieldEnum = {
   expire: 'expire'
 };
 
+exports.Prisma.SearchQueryScalarFieldEnum = {
+  id: 'id',
+  query: 'query',
+  frequency: 'frequency',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -216,7 +223,8 @@ exports.Prisma.ModelName = {
   Review: 'Review',
   Post: 'Post',
   Like: 'Like',
-  session: 'session'
+  session: 'session',
+  SearchQuery: 'SearchQuery'
 };
 
 /**
