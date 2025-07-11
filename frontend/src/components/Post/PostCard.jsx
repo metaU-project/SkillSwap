@@ -8,6 +8,7 @@ function PostCard({ post }) {
   const [likes, setLikes] = useState(post.numLikes);
   const [isLiked, setIsLiked] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [reviewCount, setReviewCount] = useState(post.numReviews);
   const previewLength = 30;
   const isLong = post.description.length > previewLength;
   const previewText = isLong
@@ -89,9 +90,7 @@ function PostCard({ post }) {
               </button>
             </div>
             <div className="post-reviews">
-              <span className="post-reviews-count">
-                {post.numReviews} Reviews
-              </span>
+              <span className="post-reviews-count">{reviewCount} Reviews</span>
             </div>
           </div>
         )}
@@ -106,7 +105,11 @@ function PostCard({ post }) {
       </div>
 
       {showModal && post.type == offer && (
-        <PostInfoModal post={post} onClose={onClose} />
+        <PostInfoModal
+          setReviewCount={setReviewCount}
+          post={post}
+          onClose={onClose}
+        />
       )}
 
       {showRecommend && post.type == request && (

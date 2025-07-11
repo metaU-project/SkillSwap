@@ -96,11 +96,6 @@ const CreatedPostModal = ({ setPosts }) => {
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                     />
-                    {/* <input
-                      placeholder="Enter location"
-                      value={location}
-                      onChange={(e) => setLocation(e.target.value)}
-                    /> */}
                     <LocationInput
                       location={location}
                       setLocation={setLocation}

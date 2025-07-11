@@ -6,7 +6,7 @@ import ReviewContainer from '../../Reviews/ReviewContainer';
 import { HiOutlineMail } from 'react-icons/hi';
 import { fetchPostReviews } from '../../../utils/reviewFetch';
 
-const PostInfoModal = ({ post, onClose }) => {
+const PostInfoModal = ({ post,setReviewCount, onClose }) => {
   const [reviews, setReviews] = useState([]);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
 
@@ -78,6 +78,7 @@ const PostInfoModal = ({ post, onClose }) => {
           <ReviewContainer
             reviews={reviews}
             setReviews={setReviews}
+            setReviewCount={setReviewCount}
             post={post}
           />
         )}
