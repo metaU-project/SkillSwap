@@ -3,6 +3,7 @@ import './CreatePostModal.css';
 import { postCreate, postFetch } from '../../../utils/postFetch';
 import ErrorModal from '../../ErrorModal';
 import Loading from '../../Loading/Loading';
+import LocationInput from '../../Location/LocationInput';
 
 const CreatedPostModal = ({ setPosts }) => {
   const [showModal, setShowModal] = useState(false);
@@ -95,10 +96,14 @@ const CreatedPostModal = ({ setPosts }) => {
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                     />
-                    <input
+                    {/* <input
                       placeholder="Enter location"
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
+                    /> */}
+                    <LocationInput
+                      location={location}
+                      setLocation={setLocation}
                     />
                     {image && (
                       <div className="image-preview">
