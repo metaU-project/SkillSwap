@@ -26,7 +26,6 @@ async function loadKnownFilters(prisma) {
  * @returns an object with three tokens: locations, categories, and other containing arrays of tokens
  */
 function classifyTokens(tokens) {
-  console.log('classifyTokens', tokens);
   const locationTokens = tokens?.filter((token) =>
     knownLocations.includes(token)
   );

@@ -6,16 +6,9 @@
  */
 
 function scorePost(post, { locationTokens, categoryTokens, otherTokens }) {
-  //   console.log('scoring post', post);
-  console.log('location tokens', locationTokens);
-  console.log('category tokens', categoryTokens);
-  console.log('other tokens', otherTokens);
-
   let score = 0;
   const text = `${post.title} ${post.description}`;
-  console.log('text', text);
   const words = text.split(/\s+/);
-  console.log('words', words);
 
   locationTokens?.forEach((token) => {
     if (post.location.toLowerCase() === token.toLowerCase()) {
@@ -33,7 +26,6 @@ function scorePost(post, { locationTokens, categoryTokens, otherTokens }) {
     } else if (post.description.toLowerCase().includes(token.toLowerCase())) {
       score += words.includes(token) ? 4 : 2;
     }
-    console.log('score', score);
   });
 
   const recent =
@@ -41,7 +33,6 @@ function scorePost(post, { locationTokens, categoryTokens, otherTokens }) {
   if (recent) {
     score += 5;
   }
-  console.log('score after', score);
   return score;
 }
 

@@ -8,10 +8,7 @@ const {
   getSuggestions,
   trie,
 } = require('../services/trie/index');
-const {
-  loadKnownFilters,
-  classifyTokens,
-} = require('../services/search/classifyTokens');
+const { loadKnownFilters } = require('../services/search/classifyTokens');
 const rankPosts = require('../services/search/rankPosts');
 
 loadKnownFilters(prisma);
@@ -135,7 +132,6 @@ router.get('/suggestions', async (req, res) => {
 });
 
 //popular suggestions
-// [TODO]-[include in scoring logic for search if no results found]
 const getPopularSuggestions = async () => {
   try {
     const popular = await prisma.post.findMany({

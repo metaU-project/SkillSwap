@@ -10,7 +10,6 @@ const scorePost = require('./scorePost');
  */
 function rankPosts(query, posts) {
   const tokenizedQueryResult = tokenizedQuery(query);
-  console.log(tokenizedQueryResult);
   const classifiedTokens = classifyTokens(tokenizedQueryResult);
 
   const results = posts.map((post) => ({
@@ -19,12 +18,9 @@ function rankPosts(query, posts) {
   }));
 
   const maxScore = Math.max(...results.map((result) => result.score));
-    const strongMatches = results.filter(
-
-        (result) => result.score >= maxScore * 0.8
-
-    );
-    console.log('maxxxxx', maxScore);
+  const strongMatches = results.filter(
+    (result) => result.score >= maxScore * 0.8
+  );
   return strongMatches.sort((a, b) => b.score - a.score).slice(0, 10);
 }
 

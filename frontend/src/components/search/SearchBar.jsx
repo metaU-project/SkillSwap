@@ -18,12 +18,10 @@ function SearchBar({ onSearch, fetchSuggestions }) {
     const delay = setTimeout(async () => {
       try {
         const response = await fetchSuggestions(input);
-        console.log('response', response);
         if (response.error) {
           setFilteredSuggestions([]);
         }
         setFilteredSuggestions(response);
-        console.log(response);
         setShowSuggestions(true);
       } catch (error) {
         console.error(error);

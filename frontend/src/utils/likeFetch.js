@@ -11,7 +11,6 @@ export async function likePost(postId) {
       throw new Error(ERROR_CODES.FAILED_TO_LIKE_POST);
     }
     const json = await response.json();
-    console.log(json);
     return json;
   } catch (error) {
     console.error(error);
