@@ -9,6 +9,7 @@ const postRoutes = require('./routes/post');
 const reviewRoutes = require('./routes/reviews');
 const likeRoutes = require('./routes/likes');
 const profileRoutes = require('./routes/profile');
+const { router: searchRoutes } = require('./routes/search');
 const fileUpload = require('express-fileupload');
 const app = express();
 
@@ -56,6 +57,7 @@ app.use('/post', postRoutes);
 app.use('/review', reviewRoutes);
 app.use('/like', likeRoutes);
 app.use('/profile', profileRoutes);
+app.use('/search', searchRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
