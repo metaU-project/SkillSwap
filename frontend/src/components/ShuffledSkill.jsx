@@ -2,12 +2,11 @@ import './ShuffledSkill.css';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { postFetch } from '../utils/postFetch';
-import Loading from './Loading/Loading';
+import fallbackImg from '../assets/images/fallback.jpg';
 
-const ShuffledSkill = () => {
+const ShuffledSkill = ({ setLoading }) => {
   const [currentSkill, setCurrentSkill] = useState(null);
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -33,23 +32,24 @@ const ShuffledSkill = () => {
     return () => clearInterval(interval);
   }, [posts]);
 
-  if (!currentSkill || loading) {
-    return <Loading />;
-  }
-
   return (
     <div className="skill-container">
       <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSkill.id}
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-        >
-          <img src={currentSkill.imageUrl} alt={currentSkill.title} />
-          <h3>{currentSkill.title}</h3>
-        </motion.div>
+        {currentSkill && (
+          <motion.div
+            key={currentSkill.id}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            <img
+              src={currentSkill.imageUrl || fallbackImg}
+              alt={currentSkill.title}
+            />
+            <h3>{currentSkill.title}</h3>
+          </motion.div>
+        )}
       </AnimatePresence>
     </div>
   );
