@@ -14,6 +14,7 @@ const app = express();
 
 // Trust proxy for Render deployment
 app.set('trust proxy', 1);
+const isProduction = process.env.NODE_ENV === 'production';
 
 app.use(express.json());
 app.use(
@@ -37,9 +38,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      secure: true,
+      secure: isProduction,
       httpOnly: true,
-      sameSite: 'none',
+      sameSite: isProduction ? 'none' : 'lax',
       maxAge: 24 * 60 * 60 * 1000,
     },
   })

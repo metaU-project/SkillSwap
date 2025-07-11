@@ -35,8 +35,8 @@ function PostCard({ post }) {
   const handleLike = async (postId) => {
     try {
       const response = await likePost(postId);
-      setIsLiked((prev) => !prev);
-      setLikes((prev) => (isLiked ? prev - 1 : prev + 1));
+      setIsLiked(response.liked);
+      setLikes(response.numLikes);
     } catch (error) {
       console.error(error, 'Error liking post');
     }
