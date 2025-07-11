@@ -8,7 +8,6 @@ function SearchBar({ onSearch, fetchSuggestions }) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [showClearButton, setShowClearButton] = useState(false);
 
-  //[TODO] fetch suggestions from backend and filter them //update main
   useEffect(() => {
     if (!input || typeof input !== 'string') {
       setFilteredSuggestions([]);
@@ -19,7 +18,7 @@ function SearchBar({ onSearch, fetchSuggestions }) {
     const delay = setTimeout(async () => {
       try {
         const response = await fetchSuggestions(input);
-        console.log('response',response);
+        console.log('response', response);
         if (response.error) {
           setFilteredSuggestions([]);
         }

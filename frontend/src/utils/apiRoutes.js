@@ -17,4 +17,5 @@ export const API_ROUTES = {
   likePost: `${BASE_URL}/like/post`,
   profile: `${BASE_URL}/profile`,
   autosuggestions: `${BASE_URL}/search/suggestions`,
+  tokenizedSearch: `${BASE_URL}/search`,
 };

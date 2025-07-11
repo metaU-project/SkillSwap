@@ -1,7 +1,7 @@
 import PostCard from './PostCard';
 import './Post.css';
 function PostList({ posts }) {
-  if (posts.length === 0) {
+  if (posts?.length === 0) {
     return <p>No skill posts available.</p>;
   }
 

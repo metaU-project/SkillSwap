@@ -1,5 +1,5 @@
 import './NavBar.css';
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { logOutUser } from '../utils/authFetch';
 import ErrorModal from './ErrorModal';
 import { useState } from 'react';
@@ -25,17 +25,14 @@ const NavBar = ({ setPosts, getPosts }) => {
   };
 
   const handleSearch = async (value) => {
-    console.log('searching for ', value);
-    //[TODO] - add autosuggestions from backend and set them in the search bar
-    // const response = await getTokenizedSearch(value);
-    // console.log('response', response);
-    // if (response?.success) {
-    //   setPosts(response?.results);
-    // } else if (response?.error) {
-    //   setErrorMessage(response?.error);
-    // } else {
-    //   setPosts([]);
-    // }
+    const response = await getTokenizedSearch(value);
+    if (response?.success) {
+      setPosts(response?.rankPosts);
+    } else if (response?.error) {
+      setErrorMessage(response?.error);
+    } else {
+      setPosts([]);
+    }
   };
 
   return (
@@ -45,7 +42,7 @@ const NavBar = ({ setPosts, getPosts }) => {
         {showSearchBar && (
           <SearchBar
             onSearch={handleSearch}
-            fetchSuggestions={getAutosuggestions} //[TODO] - add autosuggestions from backend
+            fetchSuggestions={getAutosuggestions}
           />
         )}
         <FaSearch
