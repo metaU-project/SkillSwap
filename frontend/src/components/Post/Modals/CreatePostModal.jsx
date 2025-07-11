@@ -68,52 +68,54 @@ const CreatedPostModal = ({ setPosts }) => {
                 </button>
                 <h2>Create New Post</h2>
                 <form onSubmit={handleSubmit}>
-                  <input
-                    placeholder="Enter post title"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
-                  <input
-                    placeholder="Enter post category"
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  />
-                  <select
-                    value={type}
-                    onChange={(e) => {
-                      setType(e.target.value);
-                    }}
-                    required
-                  >
-                    <option value="">Select type</option>
-                    <option value="OFFER">Offer</option>
-                    <option value="REQUEST">Request</option>
-                  </select>
-                  <textarea
-                    placeholder="Enter a description"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  />
-                  <input
-                    placeholder="Enter location"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                  />
-                  {image && (
-                    <div className="image-preview">
-                      <img src={URL.createObjectURL(image)} alt="preview" />
-                    </div>
-                  )}
-                  {!image && <p>Choose an image for the post</p>}
-                  <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => setImage(e.target.files[0])}
-                  />
+                  <div className="form-body">
+                    <input
+                      placeholder="Enter post title"
+                      value={title}
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <input
+                      placeholder="Enter post category"
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                    />
+                    <select
+                      value={type}
+                      onChange={(e) => {
+                        setType(e.target.value);
+                      }}
+                      required
+                    >
+                      <option value="">Select type</option>
+                      <option value="OFFER">Offer</option>
+                      <option value="REQUEST">Request</option>
+                    </select>
+                    <textarea
+                      placeholder="Enter a description"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
+                    />
+                    <input
+                      placeholder="Enter location"
+                      value={location}
+                      onChange={(e) => setLocation(e.target.value)}
+                    />
+                    {image && (
+                      <div className="image-preview">
+                        <img src={URL.createObjectURL(image)} alt="preview" />
+                      </div>
+                    )}
+                    {!image && <p>Choose an image for the post</p>}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => setImage(e.target.files[0])}
+                    />
 
-                  <button type="submit" className="create-btn">
-                    Post
-                  </button>
+                    <button type="submit" className="create-btn">
+                      Post
+                    </button>
+                  </div>
                 </form>
               </>
             )}

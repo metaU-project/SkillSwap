@@ -1,21 +1,24 @@
-import "./ShuffledSkill.css";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { postFetch } from "../utils/postFetch";
+import './ShuffledSkill.css';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { postFetch } from '../utils/postFetch';
+import Loading from './Loading/Loading';
 
 const ShuffledSkill = () => {
   const [currentSkill, setCurrentSkill] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
       const fetchedPosts = await postFetch();
-        if (fetchedPosts && !fetchedPosts.error) {
+      if (fetchedPosts && !fetchedPosts.error) {
         setPosts(fetchedPosts);
         if (fetchedPosts.length > 0) {
           setCurrentSkill(fetchedPosts[0]);
         }
       }
+      setLoading(false);
     };
     fetchPosts();
   }, []);
@@ -30,8 +33,8 @@ const ShuffledSkill = () => {
     return () => clearInterval(interval);
   }, [posts]);
 
-  if (!currentSkill) {
-    return null;
+  if (!currentSkill || loading) {
+    return <Loading />;
   }
 
   return (
