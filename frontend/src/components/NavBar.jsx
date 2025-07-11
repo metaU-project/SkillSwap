@@ -45,7 +45,7 @@ const NavBar = ({ setPosts, getPosts }) => {
         {showSearchBar && (
           <SearchBar
             onSearch={handleSearch}
-            // fetchSuggestions={getAutosuggestions} [TODO] - add autosuggestions from backend
+            fetchSuggestions={getAutosuggestions} //[TODO] - add autosuggestions from backend
           />
         )}
         <FaSearch

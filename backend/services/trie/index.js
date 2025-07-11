@@ -15,10 +15,10 @@ function buildTrieFromData(posts = [], categories = []) {
   const phrases = [];
   posts.forEach((post) => {
     phrases.push(post.title);
-    phrases.push(post.description);
+    // phrases.push(post.description);
     phrases.push(post.location);
     trie.insert(post.title, 1);
-    trie.insert(post.description, 1);
+    // trie.insert(post.description, 1);
     trie.insert(post.location, 1);
   });
   categories.forEach((category) => {

@@ -16,4 +16,5 @@ export const API_ROUTES = {
   postReview: `${BASE_URL}/review/post`,
   likePost: `${BASE_URL}/like/post`,
   profile: `${BASE_URL}/profile`,
+  autosuggestions: `${BASE_URL}/search/suggestions`,
 };
