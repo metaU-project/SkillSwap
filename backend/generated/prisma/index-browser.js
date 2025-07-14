@@ -188,6 +188,14 @@ exports.Prisma.SearchQueryScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.InteractionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  postId: 'postId',
+  type: 'type',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -217,6 +225,12 @@ exports.PostType = exports.$Enums.PostType = {
   REQUEST: 'REQUEST'
 };
 
+exports.InteractionType = exports.$Enums.InteractionType = {
+  LIKED: 'LIKED',
+  VIEWED: 'VIEWED',
+  REVIEWED: 'REVIEWED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Session: 'Session',
@@ -224,7 +238,8 @@ exports.Prisma.ModelName = {
   Post: 'Post',
   Like: 'Like',
   session: 'session',
-  SearchQuery: 'SearchQuery'
+  SearchQuery: 'SearchQuery',
+  Interaction: 'Interaction'
 };
 
 /**

@@ -24,6 +24,7 @@ model User {
   receivedReviews Review[]  @relation("Recipient")
   reviews         Review[]  @relation("Reviewer")
   sessions        Session[] @relation("ParticipantSessions")
+  interactions    Interaction[]
 }
 
 model Session {
@@ -68,6 +69,7 @@ model Post {
   user        User      @relation(fields: [userId], references: [id])
   reviews     Review[]
   sessions    Session[]
+  interactions Interaction[]
 }
 
 model Like {
@@ -93,6 +95,23 @@ model SearchQuery {
   frequency Int      @default(0)
   createdAt DateTime @default(now())
 }
+
+model Interaction{
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  type      InteractionType
+  createdAt DateTime @default(now())
+  post      Post     @relation(fields: [postId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+enum InteractionType {
+  LIKED
+  VIEWED
+  REVIEWED
+  }
+
 
 enum PostType {
   OFFER
