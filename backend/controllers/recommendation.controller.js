@@ -4,7 +4,7 @@ const ERROR_CODES = require('../utils/errors');
 const { InteractionType } = require('../generated/prisma');
 
 async function getRecommendationInput(req, res) {
-  const userId = req.params.userId;
+   const userId = req.session.userId;
   if (!userId) {
     return res.status(400).json({ error: ERROR_CODES.MISSING_USER });
   }
@@ -13,6 +13,9 @@ async function getRecommendationInput(req, res) {
       where: { id: parseInt(userId) },
     });
     const interests = user.interests;
+    if (!interests) {
+      return res.status(400).json({ error: ERROR_CODES.MISSING_INTERESTS });
+    }
     const location = user.location;
 
     //get all offer posts
