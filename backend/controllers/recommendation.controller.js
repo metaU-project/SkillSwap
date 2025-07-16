@@ -31,12 +31,21 @@ async function getRecommendationInput(req, res) {
         location: true,
         userId: true,
         description: true,
+        imageUrl: true,
+        createdAt: true,
+        numLikes: true,
+        numReviews: true,
+        title: true,
+        type: true,
         user: {
           select: {
             id: true,
-          }
-        }
-      }
+            first_name: true,
+            last_name: true,
+            email: true,
+          },
+        },
+      },
     });
 
     //scored offer posts
