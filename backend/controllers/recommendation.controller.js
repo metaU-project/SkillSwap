@@ -36,6 +36,7 @@ async function getRecommendationInput(req, res) {
         numLikes: true,
         numReviews: true,
         title: true,
+        rating: true,
         type: true,
         user: {
           select: {

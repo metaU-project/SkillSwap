@@ -11,4 +11,5 @@ export const ERROR_CODES = {
   ERROR_FETCHING_PROFILE: 'Error fetching profile',
   ERROR_UPDATING_PROFILE_PICTURE: 'Error updating profile picture',
   ERROR_FETCHING_TOKENIZED_SEARCH: 'Error fetching search results',
+  ERROR_FETCHING_RECOMMENDATIONS: 'Error fetching recommendations',
 };

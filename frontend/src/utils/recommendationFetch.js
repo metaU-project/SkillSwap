@@ -23,3 +23,23 @@ export const interactionLog = async (postId, type) => {
     console.error(error);
   }
 };
+
+//get recommendations
+export const getRecommendations = async (userId) => {
+  try {
+    const response = await fetch(`${API_ROUTES.recommendations}/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      return { error: ERROR_CODES.ERROR_FETCHING_RECOMMENDATIONS };
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
