@@ -8,7 +8,7 @@ import { FaRegHeart } from 'react-icons/fa6';
 import { interactionLog } from '../../utils/recommendationFetch';
 import { InteractionTypes } from '../../utils/InteractionTypes';
 
-function PostCard({ post }) {
+function PostCard({ post, posts }) {
   const [likes, setLikes] = useState(post.numLikes);
   const [isLiked, setIsLiked] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -46,6 +46,11 @@ function PostCard({ post }) {
     } catch (error) {
       console.error(error, 'Error liking post');
     }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setShowRecommend(false);
   };
 
   return (
@@ -121,7 +126,14 @@ function PostCard({ post }) {
       )}
 
       {showRecommend && post.type == request && (
-        <SessionModal setShowRecommend={setShowRecommend} />
+        <SessionModal
+          post={post}
+          posts={posts}
+          setShowRecommend={setShowRecommend}
+          onSubmit={(e) => {
+            handleSubmit;
+          }}
+        />
       )}
     </>
   );
