@@ -48,6 +48,11 @@ function PostCard({ post, posts }) {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setShowRecommend(false);
+  };
+
   return (
     <>
       <div className="post-card" onClick={handlePostClick}>
@@ -121,7 +126,14 @@ function PostCard({ post, posts }) {
       )}
 
       {showRecommend && post.type == request && (
-        <SessionModal posts={posts} setShowRecommend={setShowRecommend} />
+        <SessionModal
+          post={post}
+          posts={posts}
+          setShowRecommend={setShowRecommend}
+          onSubmit={(e) => {
+            handleSubmit;
+          }}
+        />
       )}
     </>
   );

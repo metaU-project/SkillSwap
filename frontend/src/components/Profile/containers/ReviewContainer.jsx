@@ -5,7 +5,7 @@ const ReviewContainer = ({ reviews }) => {
       <h2>My Reviews</h2>
       <div className="reviews-container">
         {reviews.map((review) => (
-          <p key={review} className="review-item">
+          <p key={review.id} className="review-item">
             {review.comment}{' '}
             <i>
               ~{review.reviewer.first_name} {review.reviewer.last_name}

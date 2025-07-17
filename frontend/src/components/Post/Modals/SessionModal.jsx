@@ -3,13 +3,29 @@ import './SessionModal.css';
 import { FaRegLightbulb } from 'react-icons/fa';
 import { GrLocation } from 'react-icons/gr';
 import { FaSearch } from 'react-icons/fa';
+import { checkAuth } from '../../../utils/authFetch';
+import { useEffect } from 'react';
+import Loading from '../../Loading/Loading';
 
 const SessionModal = ({ post, posts, setShowRecommend, onSubmit }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPostId, setSelectedPostId] = useState(null);
+  const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      const response = await checkAuth();
+      if (response) {
+        setUserId(response.user.id);
+      }
+    };
+    fetchUserId();
+  }, []);
 
   const filteredPosts = useMemo(() => {
-    const offerPosts = posts.filter((post) => post.type === 'OFFER');
+    const offerPosts = posts
+      .filter((post) => post.type === 'OFFER')
+      .filter((post) => post.user.id !== userId);
     if (!searchTerm.trim()) {
       return offerPosts;
     }
@@ -21,7 +37,7 @@ const SessionModal = ({ post, posts, setShowRecommend, onSubmit }) => {
         post.user.first_name.toLowerCase().includes(lowerCaseSearchTerm) ||
         post.user.last_name.toLowerCase().includes(lowerCaseSearchTerm)
     );
-  }, [searchTerm, posts]);
+  }, [searchTerm, posts, userId]);
 
   const handleSubmit = () => {
     if (selectedPostId) {
@@ -29,6 +45,9 @@ const SessionModal = ({ post, posts, setShowRecommend, onSubmit }) => {
       setShowRecommend(false);
     }
   };
+  if (!userId) {
+    return <Loading />;
+  }
   return (
     <div className="modal-overlay" onClick={() => setShowRecommend(false)}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -44,7 +63,7 @@ const SessionModal = ({ post, posts, setShowRecommend, onSubmit }) => {
           </div>
         </div>
         <div className="search-wrapper">
-          <FaSearch className="search-icon" />
+          <FaSearch className="search-icon-session" />
           <input
             type="text"
             placeholder="Search posts by title,category, or author..."
