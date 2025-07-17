@@ -1,4 +1,4 @@
-const { PrismaClient } = require('../generated/prisma');
+const { PrismaClient, PostType } = require('../generated/prisma');
 const prisma = new PrismaClient();
 const ERROR_CODES = require('../utils/errors');
 const getTrendingPostIds = require('../services/recommendation/trending');
@@ -23,7 +23,7 @@ async function getRecommendationInput(req, res) {
     //get all offer posts
     const offerPosts = await prisma.post.findMany({
       where: {
-        type: 'OFFER',
+        type: PostType.OFFER,
       },
       select: {
         id: true,
@@ -56,6 +56,7 @@ async function getRecommendationInput(req, res) {
 
     //get trending posts
     const trendingPostIds = await getTrendingPostIds(prisma);
+
     //user interactions
     const userInteractions = await getInteractions(userId);
     const scoredPosts = scoredPostsInput

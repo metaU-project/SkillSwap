@@ -28,6 +28,7 @@
   justify-content: center;
   margin-top: 2rem;
 }
+
 .view-all-btn {
   background-color: black;
   color: white;
@@ -38,6 +39,7 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
+
 .view-all-btn:hover {
   background-color: #007b8f;
   transform: scale(1.05);

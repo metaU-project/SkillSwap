@@ -5,7 +5,10 @@
  * @returns a score for each post based on the query as a number
  */
 
-function scorePost(post, { locationTokens, categoryTokens, otherTokens }) {
+function scorePost(
+  post,
+  { locationTokens, categoryTokens, otherTokens, authorTokens }
+) {
   let score = 0;
   const text = `${post.title} ${post.description}`;
   const words = text.split(/\s+/);
@@ -18,6 +21,18 @@ function scorePost(post, { locationTokens, categoryTokens, otherTokens }) {
   categoryTokens?.forEach((token) => {
     if (post.category.toLowerCase() === token.toLowerCase()) {
       score += 10;
+    }
+  });
+
+  authorTokens?.forEach((token) => {
+    const name =
+      `${post.user.first_name} ${post.user.last_name}`.toLocaleLowerCase();
+
+    if (
+      post.user.first_name?.toLowerCase().includes(token.toLowerCase()) ||
+      post.user.last_name?.toLowerCase().includes(token.toLowerCase())
+    ) {
+      score += 20;
     }
   });
   otherTokens?.forEach((token) => {

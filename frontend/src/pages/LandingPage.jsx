@@ -28,7 +28,6 @@ const LandingPage = () => {
     const fetchRecommendedPosts = async () => {
       setLoading(true);
       const fetchedPosts = await getRecommendations();
-      console.log(fetchedPosts);
       if (fetchedPosts && !fetchedPosts.error) {
         setLoading(false);
         setRecommendedPosts(

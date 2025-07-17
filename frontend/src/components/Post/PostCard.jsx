@@ -6,6 +6,7 @@ import { MdOutlineLocationOn } from 'react-icons/md';
 import { FaHeart } from 'react-icons/fa6';
 import { FaRegHeart } from 'react-icons/fa6';
 import { interactionLog } from '../../utils/recommendationFetch';
+import { InteractionTypes } from '../../utils/InteractionTypes';
 
 function PostCard({ post }) {
   const [likes, setLikes] = useState(post.numLikes);
@@ -23,7 +24,7 @@ function PostCard({ post }) {
 
   const handlePostClick = async (e) => {
     e.preventDefault();
-    await interactionLog(post.id, 'VIEWED');
+    await interactionLog(post.id, InteractionTypes.VIEWED);
     setShowModal(true);
   };
 
@@ -39,7 +40,7 @@ function PostCard({ post }) {
   const handleLike = async (postId) => {
     try {
       const response = await likePost(postId);
-      await interactionLog(post.id, 'LIKED');
+      await interactionLog(post.id, InteractionTypes.LIKED);
       setIsLiked(response.liked);
       setLikes(response.numLikes);
     } catch (error) {

@@ -1,14 +1,15 @@
 import './ReviewContainer.css';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { createPostReview } from '../../utils/reviewFetch';
 import { interactionLog } from '../../utils/recommendationFetch';
+import { InteractionTypes } from '../../utils/InteractionTypes';
 
 const ReviewContainer = ({ reviews, setReviewCount, setReviews, post }) => {
   const [newReview, setNewReview] = useState('');
 
   const addReview = async (comment, postID) => {
     const newReview = await createPostReview(postID, { comment });
-    await interactionLog(post.id, 'REVIEWED');
+    await interactionLog(post.id, InteractionTypes.REVIEWED);
     setReviewCount((prev) => prev + 1);
 
     if (newReview && newReview.reviewer) {

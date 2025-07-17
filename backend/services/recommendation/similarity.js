@@ -1,4 +1,7 @@
 const { getDomainScore } = require('../recommendation/categoryClusters');
+//recency decay helper functions
+const age = (date) => (Date.now() - new Date(date)) / (1000 * 60 * 60 * 24);
+const recencyWeight = (createdAt) => Math.exp(-0.1 * age(createdAt));
 
 /**
  * Scores the similarity of a post to a list of posts
@@ -9,14 +12,16 @@ const { getDomainScore } = require('../recommendation/categoryClusters');
 function ScoreSimilarityToLikedOrReviewed(post, comparisonPosts) {
   let score = 0;
   comparisonPosts.forEach((comparisonPost) => {
-    score += getDomainScore(post.category, comparisonPost.post.category);
+    const similarity = getDomainScore(
+      post.category,
+      comparisonPost.post.category
+    );
+    const userBonus = post.userId === comparisonPost.post.userId ? 2 : 0;
+    const locationBonus =
+      post.location === comparisonPost.post.location ? 1 : 0;
 
-    if (post.userId === comparisonPost.post.userId) {
-      score += 2;
-    }
-    if (post.location === comparisonPost.post.location) {
-      score += 1;
-    }
+    const weight = recencyWeight(comparisonPost.createdAt);
+    score += (similarity + userBonus + locationBonus) * weight;
   });
   return score;
 }
