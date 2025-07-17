@@ -18,4 +18,5 @@ export const API_ROUTES = {
   profile: `${BASE_URL}/profile`,
   autosuggestions: `${BASE_URL}/search/suggestions`,
   tokenizedSearch: `${BASE_URL}/search`,
+  interaction: `${BASE_URL}/recommendation/interaction`,
 };

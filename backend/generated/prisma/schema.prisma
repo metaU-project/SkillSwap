@@ -9,21 +9,22 @@ datasource db {
 }
 
 model User {
-  id              Int       @id @default(autoincrement())
-  email           String    @unique
+  id              Int           @id @default(autoincrement())
+  email           String        @unique
   password        String
   profileImage    String?
   location        String?
   bio             String?
-  interests       String[]  @default([])
-  createdAt       DateTime  @default(now())
+  interests       String[]      @default([])
+  createdAt       DateTime      @default(now())
   first_name      String?
   last_name       String?
   likes           Like[]
   posts           Post[]
-  receivedReviews Review[]  @relation("Recipient")
-  reviews         Review[]  @relation("Reviewer")
-  sessions        Session[] @relation("ParticipantSessions")
+  receivedReviews Review[]      @relation("Recipient")
+  reviews         Review[]      @relation("Reviewer")
+  sessions        Session[]     @relation("ParticipantSessions")
+  interactions    Interaction[]
 }
 
 model Session {
@@ -52,22 +53,23 @@ model Review {
 }
 
 model Post {
-  id          Int       @id @default(autoincrement())
-  title       String
-  description String
-  category    String
-  type        PostType
-  location    String
-  userId      Int
-  createdAt   DateTime  @default(now())
-  numLikes    Int       @default(0)
-  imageUrl    String?
-  numReviews  Int       @default(0)
-  rating      Float     @default(0)
-  likes       Like[]
-  user        User      @relation(fields: [userId], references: [id])
-  reviews     Review[]
-  sessions    Session[]
+  id           Int           @id @default(autoincrement())
+  title        String
+  description  String
+  category     String
+  type         PostType
+  location     String
+  userId       Int
+  createdAt    DateTime      @default(now())
+  numLikes     Int           @default(0)
+  imageUrl     String?
+  numReviews   Int           @default(0)
+  rating       Float         @default(0)
+  likes        Like[]
+  user         User          @relation(fields: [userId], references: [id])
+  reviews      Review[]
+  sessions     Session[]
+  interactions Interaction[]
 }
 
 model Like {
@@ -92,6 +94,22 @@ model SearchQuery {
   query     String   @unique
   frequency Int      @default(0)
   createdAt DateTime @default(now())
+}
+
+model Interaction {
+  id        Int             @id @default(autoincrement())
+  userId    Int
+  postId    Int
+  type      InteractionType
+  createdAt DateTime        @default(now())
+  post      Post            @relation(fields: [postId], references: [id])
+  user      User            @relation(fields: [userId], references: [id])
+}
+
+enum InteractionType {
+  LIKED
+  VIEWED
+  REVIEWED
 }
 
 enum PostType {
