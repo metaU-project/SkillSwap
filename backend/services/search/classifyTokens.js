@@ -4,6 +4,9 @@ let knownLocations = [];
 //define known categeries
 let knownCategories = [];
 
+//authors
+let knownAuthors = [];
+
 async function loadKnownFilters(prisma) {
   knownLocations = (
     await prisma.post.findMany({
@@ -18,10 +21,23 @@ async function loadKnownFilters(prisma) {
       distinct: ['category'],
     })
   ).map((p) => p.category.toLowerCase());
+  knownAuthors = [];
+  const users = await prisma.post.findMany({
+    select: {
+      user: {
+        select: { first_name: true, last_name: true },
+      },
+    },
+  });
+  users.forEach((u) => {
+    knownAuthors.push(u.user.first_name.toLowerCase());
+    knownAuthors.push(u.user.last_name.toLowerCase());
+  });
+  knownAuthors = Array.from(new Set(knownAuthors));
 }
 
 /**
- * Classify tokens into locations, categories, and other
+ * Classify tokens into locations, categories, author and other
  * @param {*} tokens - array of tokens to be classified
  * @returns an object with three tokens: locations, categories, and other containing arrays of tokens
  */
@@ -36,10 +52,13 @@ function classifyTokens(tokens) {
     (token) =>
       !knownLocations.includes(token) && !knownCategories.includes(token)
   );
+
+  const authorTokens = tokens?.filter((token) => knownAuthors.includes(token));
   return {
     locationTokens,
     categoryTokens,
     otherTokens,
+    authorTokens,
   };
 }
 

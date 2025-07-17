@@ -1,5 +1,6 @@
 const { PrismaClient } = require('../../generated/prisma');
 const prisma = new PrismaClient();
+const { InteractionType } = require('../../generated/prisma');
 
 /**
  * @param {Object} data - The data to log
@@ -35,20 +36,23 @@ async function getInteractions(userId) {
       include: {
         post: true,
       },
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
     //extract liked posts
     const likedPosts = userInteractions
-      .filter((interaction) => interaction.type === 'LIKED')
+      .filter((interaction) => interaction.type === InteractionType.LIKED)
       .map((interaction) => interaction);
 
     //extract reviewed posts
     const reviewedPosts = userInteractions
-      .filter((interaction) => interaction.type === 'REVIEWED')
+      .filter((interaction) => interaction.type === InteractionType.REVIEWED)
       .map((interaction) => interaction);
 
     //extract viewed posts
     const viewedPosts = userInteractions
-      .filter((interaction) => interaction.type === 'VIEWED')
+      .filter((interaction) => interaction.type === InteractionType.VIEWED)
       .map((interaction) => interaction);
 
     return { likedPosts, reviewedPosts, viewedPosts };

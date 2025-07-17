@@ -138,4 +138,6 @@ function getDomainScore(postCategory, likedCategory) {
 module.exports = {
   CATEGORY_CLUSTERS,
   getDomainScore,
+  getDomain,
+  fuzzMatch,
 };

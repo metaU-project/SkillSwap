@@ -11,7 +11,6 @@ const scorePost = require('./scorePost');
 function rankPosts(query, posts) {
   const tokenizedQueryResult = tokenizedQuery(query);
   const classifiedTokens = classifyTokens(tokenizedQueryResult);
-
   const results = posts.map((post) => ({
     ...post,
     score: scorePost(post, classifiedTokens),
