@@ -24,6 +24,7 @@ const ERROR_CODES = {
   INVALID_SEARCH_QUERY: 'Invalid search query',
   ERROR_INITIALIZING_TRIE: 'Error initializing trie',
   INVALID_REQUEST: 'Invalid request',
+  MISSING_INTERESTS: 'Missing interests',
 };
 
 module.exports = ERROR_CODES;

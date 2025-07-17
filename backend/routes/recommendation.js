@@ -5,7 +5,11 @@ const router = express.Router();
 const checkAuth = require('../middleware/checkAuth');
 const ERROR_CODES = require('../utils/errors');
 const { logInteraction } = require('../services/interactions/interaction');
+const {
+  getRecommendationInput,
+} = require('../controllers/recommendation.controller');
 
+//log user interaction
 router.post('/interaction', checkAuth, async (req, res) => {
   const userId = req.session.userId;
   if (!userId) {
@@ -18,5 +22,8 @@ router.post('/interaction', checkAuth, async (req, res) => {
   const interaction = await logInteraction({ postId, userId, type });
   res.status(200).json(interaction);
 });
+
+//get recommendation input
+router.get('/:userId',checkAuth, getRecommendationInput);
 
 module.exports = router;
