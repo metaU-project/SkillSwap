@@ -1,10 +1,12 @@
 const { PrismaClient } = require('../generated/prisma');
 const prisma = new PrismaClient();
 const ERROR_CODES = require('../utils/errors');
-const { InteractionType } = require('../generated/prisma');
+const getTrendingPostIds = require('../services/recommendation/trending');
+const { getInteractions } = require('../services/interactions/interaction');
+const { scorePost } = require('../services/recommendation/scoring');
 
 async function getRecommendationInput(req, res) {
-   const userId = req.session.userId;
+  const userId = req.session.userId;
   if (!userId) {
     return res.status(400).json({ error: ERROR_CODES.MISSING_USER });
   }
@@ -23,60 +25,43 @@ async function getRecommendationInput(req, res) {
       where: {
         type: 'OFFER',
       },
-      include: {
-        user: true,
-      },
+      select: {
+        id: true,
+        category: true,
+        location: true,
+        userId: true,
+        description: true,
+        user: {
+          select: {
+            id: true,
+          }
+        }
+      }
     });
 
-    //trending posts
-    const trendingLimit = new Date(Date.now() - 1000 * 60 * 60 * 24 * 7);
-    const trendingPosts = await prisma.interaction.groupBy({
-      by: ['postId'],
-      where: {
-        createdAt: {
-          gte: trendingLimit,
-        },
-        type: { in: [InteractionType.LIKED, InteractionType.REVIEWED] },
-      },
-      _count: { postId: true },
-      orderBy: { _count: { postId: 'desc' } },
-    });
+    //scored offer posts
+    const scoredPostsInput = offerPosts.filter(
+      (post) => post.user.id !== userId
+    );
 
-    const trendingPostIds = trendingPosts
-      .slice(0, 10)
-      .map((post) => post.postId);
-
+    //get trending posts
+    const trendingPostIds = await getTrendingPostIds(prisma);
     //user interactions
-    const userInteractions = await prisma.interaction.findMany({
-      where: {
-        userId: parseInt(userId),
-      },
-    });
-
-    //extract liked posts
-    const likedPosts = userInteractions
-      .filter((interaction) => interaction.type === 'LIKED')
-      .map((interaction) => interaction.postId);
-
-    //extract reviewed posts
-    const reviewedPosts = userInteractions
-      .filter((interaction) => interaction.type === 'REVIEWED')
-      .map((interaction) => interaction.postId);
-
-    //extract viewed posts
-    const viewedPosts = userInteractions
-      .filter((interaction) => interaction.type === 'VIEWED')
-      .map((interaction) => interaction.postId);
+    const userInteractions = await getInteractions(userId);
+    const scoredPosts = scoredPostsInput
+      .map((post) =>
+        scorePost({
+          post,
+          interests,
+          location,
+          trendingPostIds,
+          userInteractions,
+        })
+      )
+      .sort((a, b) => b.score - a.score);
 
     res.status(200).json({
-      interests,
-      location,
-      offerPosts,
-      trendingPostIds,
-      likedPosts,
-      viewedPosts,
-      reviewedPosts,
-      userInteractions,
+      scoredPosts,
     });
   } catch (err) {
     console.error(err);
