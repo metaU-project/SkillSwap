@@ -1,15 +1,18 @@
-import { AiOutlineLike } from 'react-icons/ai';
 import PostInfoModal from '../Post/Modals/PostInfoModal';
 import { useState } from 'react';
 import SessionModal from './Modals/SessionModal';
 import { likePost } from '../../utils/likeFetch';
+import { MdOutlineLocationOn } from 'react-icons/md';
+import { FaHeart } from 'react-icons/fa6';
+import { FaRegHeart } from 'react-icons/fa6';
+import { interactionLog } from '../../utils/recommendationFetch';
 
 function PostCard({ post }) {
   const [likes, setLikes] = useState(post.numLikes);
   const [isLiked, setIsLiked] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [reviewCount, setReviewCount] = useState(post.numReviews);
-  const previewLength = 30;
+  const previewLength = 100;
   const isLong = post.description.length > previewLength;
   const previewText = isLong
     ? post.description.slice(0, previewLength)
@@ -18,8 +21,9 @@ function PostCard({ post }) {
   const request = 'REQUEST';
   const offer = 'OFFER';
 
-  const handlePostClick = (e) => {
+  const handlePostClick = async (e) => {
     e.preventDefault();
+    await interactionLog(post.id, 'VIEWED');
     setShowModal(true);
   };
 
@@ -35,6 +39,7 @@ function PostCard({ post }) {
   const handleLike = async (postId) => {
     try {
       const response = await likePost(postId);
+      await interactionLog(post.id, 'LIKED');
       setIsLiked(response.liked);
       setLikes(response.numLikes);
     } catch (error) {
@@ -64,13 +69,15 @@ function PostCard({ post }) {
         </p>
 
         <div className="post-meta">
-          <span className="post-category">{post.category}</span>
+          <span className="post-category-pill">{post.category}</span>
+          <span className="post-location">
+            <MdOutlineLocationOn />
+            {post.location.slice(0, 20)}
+          </span>
           <span className={`post-type ${post.type.toLowerCase()}`}>
             {post.type === offer ? 'Offering Skill' : 'Seeking Skill'}
           </span>
         </div>
-
-        <div className="post-location">{post.location}</div>
 
         <div className="post-user">
           <strong>Posted by:</strong> {post.user.first_name}{' '}
@@ -86,7 +93,7 @@ function PostCard({ post }) {
                   handleLike(post.id);
                 }}
               >
-                {isLiked ? '❤️' : '🤍'} {likes}
+                {isLiked ? <FaHeart /> : <FaRegHeart />} {likes}
               </button>
             </div>
             <div className="post-reviews">

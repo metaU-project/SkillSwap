@@ -46,6 +46,7 @@ const NavBar = ({ setPosts, getPosts }) => {
           />
         )}
         <FaSearch
+          className="search-icon"
           onClick={() => {
             setShowSearchBar(!showSearchBar);
             getPosts();
