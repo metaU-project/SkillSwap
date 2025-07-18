@@ -8,6 +8,7 @@ const InterestConfirmationDialog = ({
   onOpenChange,
   setShowToast,
   setShowModal,
+  onConfirm,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -16,6 +17,7 @@ const InterestConfirmationDialog = ({
     setIsLoading(true);
     try {
       // [TODO] email to the user
+      await onConfirm();
       onOpenChange(false);
     } catch (error) {
       console.error(error);
