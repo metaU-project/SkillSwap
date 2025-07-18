@@ -1,6 +1,6 @@
 .main-content-signup {
   display: flex;
-  height: 100vh;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #f0f2f5;

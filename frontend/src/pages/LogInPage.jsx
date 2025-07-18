@@ -14,8 +14,8 @@ const LogInPage = () => {
         <h1>SkillSwap</h1>
       </div>
       <div className="main-content-login">
+        <ShuffledSkill />
         <LogIn />
-        <ShuffledSkill setLoading={setLoading} />
       </div>
     </>
   );
