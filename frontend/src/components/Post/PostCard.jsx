@@ -7,6 +7,7 @@ import { FaHeart } from 'react-icons/fa6';
 import { FaRegHeart } from 'react-icons/fa6';
 import { interactionLog } from '../../utils/recommendationFetch';
 import { InteractionTypes } from '../../utils/InteractionTypes';
+import EmailToast from '../schedule/EmailToast';
 
 function PostCard({ post, posts }) {
   const [likes, setLikes] = useState(post.numLikes);
@@ -21,6 +22,7 @@ function PostCard({ post, posts }) {
   const [showRecommend, setShowRecommend] = useState(false);
   const request = 'REQUEST';
   const offer = 'OFFER';
+  const [showToast, setShowToast] = useState(false);
 
   const handlePostClick = async (e) => {
     e.preventDefault();
@@ -120,8 +122,10 @@ function PostCard({ post, posts }) {
       {showModal && post.type == offer && (
         <PostInfoModal
           setReviewCount={setReviewCount}
+          setShowModal={setShowModal}
           post={post}
           onClose={onClose}
+          setShowToast={setShowToast}
         />
       )}
 
@@ -135,6 +139,7 @@ function PostCard({ post, posts }) {
           }}
         />
       )}
+      {showToast && <EmailToast post={post} setShowToast={setShowToast} />}
     </>
   );
 }
