@@ -25,6 +25,7 @@ const ERROR_CODES = {
   ERROR_INITIALIZING_TRIE: 'Error initializing trie',
   INVALID_REQUEST: 'Invalid request',
   MISSING_INTERESTS: 'Missing interests',
+  EMAIL_SEND_FAILED: 'Error sending email',
 };
 
 module.exports = ERROR_CODES;

@@ -16,8 +16,6 @@ async function sendEmail({ to, senderName, senderEmail, skillTitle }) {
     subject: `Interest in your "${skillTitle}" post`,
     html: `<p><strong>${senderName}</strong> is interested in your <em>${skillTitle}</em> post.</p> <p>Send them a message at <strong>${senderEmail}</strong> to get in touch.</p>`,
   });
-
-  console.log(' Email sent via Gmail');
 }
 
 module.exports = { sendEmail };
