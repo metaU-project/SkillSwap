@@ -26,6 +26,9 @@ const ERROR_CODES = {
   INVALID_REQUEST: 'Invalid request',
   MISSING_INTERESTS: 'Missing interests',
   EMAIL_SEND_FAILED: 'Error sending email',
+  SESSION_CONFLICT:
+    'There is already a session scheduled for this participant at this time.',
+  INTERNAL_ERROR: 'Internal error',
 };
 
 module.exports = ERROR_CODES;
