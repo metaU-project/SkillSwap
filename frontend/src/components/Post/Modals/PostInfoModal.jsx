@@ -6,6 +6,7 @@ import ReviewContainer from '../../Reviews/ReviewContainer';
 import { HiOutlineMail } from 'react-icons/hi';
 import { fetchPostReviews } from '../../../utils/reviewFetch';
 import InterestConfirmationDialog from './InterestConfirmationDialog';
+import { sendEmail } from '../../../utils/emailFetch';
 
 const PostInfoModal = ({
   post,
@@ -17,11 +18,24 @@ const PostInfoModal = ({
   const [reviews, setReviews] = useState([]);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSendInterest = async () => {
-    //TODO: Send interest to the server
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setShowToast(true);
+    setIsLoading(true);
+    try {
+      const senderName = `${post.user.first_name} ${post.user.last_name}`;
+      const skillTitle = post.title;
+      const to = post.user.email;
+      await sendEmail(to, senderName, skillTitle);
+      setDialogOpen(false);
+      setShowToast(true);
+    } catch (error) {
+      setErrorMessage(error.message);
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSchedule = () => {
@@ -112,6 +126,10 @@ const PostInfoModal = ({
         onConfirm={handleSendInterest}
         setShowToast={setShowToast}
         setShowModal={setShowModal}
+        errorMessage={errorMessage}
+        setErrorMessage={setErrorMessage}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
       />
     </div>
   );
