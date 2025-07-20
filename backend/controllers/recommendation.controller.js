@@ -1,5 +1,5 @@
-const { PrismaClient, PostType } = require('../generated/prisma');
-const prisma = new PrismaClient();
+const { PostType } = require('../generated/prisma');
+const prisma = require('../prisma/client');
 const ERROR_CODES = require('../utils/errors');
 const getTrendingPostIds = require('../services/recommendation/trending');
 const { getInteractions } = require('../services/interactions/interaction');

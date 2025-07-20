@@ -1,5 +1,4 @@
-const {PrismaClient} = require('../generated/prisma');
-const prisma = new PrismaClient();
+const prisma = require('../prisma/client');
 const ERROR_CODES = require('../utils/errors');
 
 const createSession = async (req, res) => {
