@@ -2,33 +2,16 @@ import './InterestConfirmationDialog.css';
 import { useState } from 'react';
 import { MdOutlineEmail } from 'react-icons/md';
 import { FiLoader } from 'react-icons/fi';
+import ErrorModal from '../../ErrorModal';
 const InterestConfirmationDialog = ({
   post,
   open,
   onOpenChange,
-  setShowToast,
-  setShowModal,
   onConfirm,
+  errorMessage,
+  setErrorMessage,
+  isLoading,
 }) => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
-
-  const handleConfirm = async () => {
-    setIsLoading(true);
-    try {
-      // [TODO] email to the user
-      await onConfirm();
-      onOpenChange(false);
-    } catch (error) {
-      console.error(error);
-      setErrorMessage(error.message);
-    } finally {
-      setShowModal(false);
-      setShowToast(true);
-      setIsLoading(false);
-    }
-  };
-
   if (!open) {
     return null;
   }
@@ -58,7 +41,7 @@ const InterestConfirmationDialog = ({
           </button>
           <button
             className="confirm-btn-dialog"
-            onClick={handleConfirm}
+            onClick={onConfirm}
             disabled={isLoading}
           >
             {isLoading ? (

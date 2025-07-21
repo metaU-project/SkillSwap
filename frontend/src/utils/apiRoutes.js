@@ -20,4 +20,5 @@ export const API_ROUTES = {
   tokenizedSearch: `${BASE_URL}/search`,
   interaction: `${BASE_URL}/recommendation/interaction`,
   recommendations: `${BASE_URL}/recommendation`,
+  email: `${BASE_URL}/email`,
 };
