@@ -1,0 +1,37 @@
+.no-sessions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-calendar {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.session-list {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.session-item {
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  font-size: 14px;
+}
+
+.session-item:hover {
+  background-color: #e5e7eb;
+  cursor: pointer;
+}
+
+.session-description {
+  font-style: italic;
+  color: #6b7280;
+}
