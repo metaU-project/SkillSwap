@@ -5,10 +5,28 @@ import { IoMdClose } from 'react-icons/io';
 import ReviewContainer from '../../Reviews/ReviewContainer';
 import { HiOutlineMail } from 'react-icons/hi';
 import { fetchPostReviews } from '../../../utils/reviewFetch';
+import InterestConfirmationDialog from './InterestConfirmationDialog';
 
-const PostInfoModal = ({ post,setReviewCount, onClose }) => {
+const PostInfoModal = ({
+  post,
+  setReviewCount,
+  onClose,
+  setShowToast,
+  setShowModal,
+}) => {
   const [reviews, setReviews] = useState([]);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const handleSendInterest = async () => {
+    //TODO: Send interest to the server
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    setShowToast(true);
+  };
+
+  const handleSchedule = () => {
+    //TODO: Schedule a session with the owner of the post
+  };
 
   const handleReviewClick = async () => {
     if (!isReviewOpen) {
@@ -23,7 +41,7 @@ const PostInfoModal = ({ post,setReviewCount, onClose }) => {
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
+    <div className="modal-overlay">
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <button id="close-btn" onClick={onClose}>
           <IoMdClose />
@@ -42,7 +60,6 @@ const PostInfoModal = ({ post,setReviewCount, onClose }) => {
               alt={post.title}
             />
           </div>
-
           <div>
             <h3>Description</h3>
             <p>{post.description}</p>
@@ -64,7 +81,12 @@ const PostInfoModal = ({ post,setReviewCount, onClose }) => {
         </div>
 
         <div className="review-interest-section">
-          <button className="interest-btn">
+          <button
+            className="interest-btn"
+            onClick={() => {
+              setDialogOpen(true);
+            }}
+          >
             <HiOutlineMail className="email-icon" /> Express interest
           </button>
           <div className="modal-reviews-section">
@@ -83,6 +105,14 @@ const PostInfoModal = ({ post,setReviewCount, onClose }) => {
           />
         )}
       </div>
+      <InterestConfirmationDialog
+        post={post}
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        onConfirm={handleSendInterest}
+        setShowToast={setShowToast}
+        setShowModal={setShowModal}
+      />
     </div>
   );
 };
