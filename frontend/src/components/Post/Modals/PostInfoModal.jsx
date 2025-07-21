@@ -38,10 +38,6 @@ const PostInfoModal = ({
     }
   };
 
-  const handleSchedule = () => {
-    //TODO: Schedule a session with the owner of the post
-  };
-
   const handleReviewClick = async () => {
     if (!isReviewOpen) {
       try {
