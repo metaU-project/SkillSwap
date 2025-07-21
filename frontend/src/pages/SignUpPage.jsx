@@ -15,7 +15,7 @@ const SignUpPage = () => {
         <p>Connect with others and exchange skills. It's free!</p>
       </div>
       <div className="main-content-signup">
-        <ShuffledSkill setLoading={setLoading} />
+        <ShuffledSkill />
         <SignUp />
       </div>
     </>

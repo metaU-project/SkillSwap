@@ -1,23 +1,217 @@
-.skill-container img {
-    border-radius: 8px;
-    width: 600px;
-    height: auto;
-    object-fit: cover;
-    height: 600px;
+.skill-wrapper {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
-.skill-container {
-  flex: 1;
+.skill-header {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.skill-subtext {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+.skill-controls {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.skill-card-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.icon-btn {
+  font-size: 0.875rem;
+  padding: 6px 12px;
+  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f9fafb;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.skill-card {
   width: 100%;
   max-width: 600px;
-  padding: 30px;
-  border-radius: 8px;
-  margin: 10px;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #fff;
+  transition: transform 0.2s ease;
 }
 
-.skill-container h3{
+.skill-card * {
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.skill-image-container {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  max-width: 600px;
+}
+
+.skill-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+  display: block;
+}
+
+.skill-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  align-items: flex-start;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.skill-category {
+  padding: 0.3rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.8);
+  color: #1f2937;
+}
+
+.skill-type {
+  padding: 0.3rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(174, 210, 216, 0.8);
+  color: #0a4318;
+}
+
+.skill-details {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.skill-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.skill-user-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.skill-user-initials {
+  width: 36px;
+  height: 36px;
+  background-color: #f3f4f6;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skill-user-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.skill-duration {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.skill-progress {
+  display: flex;
+  gap: 6px;
+  margin: 1rem 0;
+  height: 6px;
+}
+
+.skill-progress-bar {
+  height: 6px;
+  flex: 1;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  transition: background-color 0.3s ease;
+}
+
+.skill-progress-bar.active {
+  background-color: #0f766e;
+}
+
+.skill-explore-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #0f766e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.skill-explore-btn:hover {
+  background-color: #0e4f48;
+}
+
+.skill-footer {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.loading-container {
+  width: 100%;
+  min-height: 300px;
+  max-width: 600px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  transition: transform 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.loading-text {
   font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-weight: bold;
+  margin-bottom: 1rem;
   text-align: center;
 }
