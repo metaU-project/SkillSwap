@@ -31,7 +31,8 @@ model Session {
   id            Int      @id @default(autoincrement())
   title         String
   description   String?
-  date          DateTime
+  startTime     Int
+  endTime       Int
   location      String
   postId        Int
   participantId Int

@@ -2988,12 +2988,16 @@ export namespace Prisma {
 
   export type SessionAvgAggregateOutputType = {
     id: number | null
+    startTime: number | null
+    endTime: number | null
     postId: number | null
     participantId: number | null
   }
 
   export type SessionSumAggregateOutputType = {
     id: number | null
+    startTime: number | null
+    endTime: number | null
     postId: number | null
     participantId: number | null
   }
@@ -3002,7 +3006,8 @@ export namespace Prisma {
     id: number | null
     title: string | null
     description: string | null
-    date: Date | null
+    startTime: number | null
+    endTime: number | null
     location: string | null
     postId: number | null
     participantId: number | null
@@ -3013,7 +3018,8 @@ export namespace Prisma {
     id: number | null
     title: string | null
     description: string | null
-    date: Date | null
+    startTime: number | null
+    endTime: number | null
     location: string | null
     postId: number | null
     participantId: number | null
@@ -3024,7 +3030,8 @@ export namespace Prisma {
     id: number
     title: number
     description: number
-    date: number
+    startTime: number
+    endTime: number
     location: number
     postId: number
     participantId: number
@@ -3035,12 +3042,16 @@ export namespace Prisma {
 
   export type SessionAvgAggregateInputType = {
     id?: true
+    startTime?: true
+    endTime?: true
     postId?: true
     participantId?: true
   }
 
   export type SessionSumAggregateInputType = {
     id?: true
+    startTime?: true
+    endTime?: true
     postId?: true
     participantId?: true
   }
@@ -3049,7 +3060,8 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
-    date?: true
+    startTime?: true
+    endTime?: true
     location?: true
     postId?: true
     participantId?: true
@@ -3060,7 +3072,8 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
-    date?: true
+    startTime?: true
+    endTime?: true
     location?: true
     postId?: true
     participantId?: true
@@ -3071,7 +3084,8 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
-    date?: true
+    startTime?: true
+    endTime?: true
     location?: true
     postId?: true
     participantId?: true
@@ -3169,7 +3183,8 @@ export namespace Prisma {
     id: number
     title: string
     description: string | null
-    date: Date
+    startTime: number
+    endTime: number
     location: string
     postId: number
     participantId: number
@@ -3199,7 +3214,8 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
-    date?: boolean
+    startTime?: boolean
+    endTime?: boolean
     location?: boolean
     postId?: boolean
     participantId?: boolean
@@ -3212,7 +3228,8 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
-    date?: boolean
+    startTime?: boolean
+    endTime?: boolean
     location?: boolean
     postId?: boolean
     participantId?: boolean
@@ -3225,7 +3242,8 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
-    date?: boolean
+    startTime?: boolean
+    endTime?: boolean
     location?: boolean
     postId?: boolean
     participantId?: boolean
@@ -3238,14 +3256,15 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
-    date?: boolean
+    startTime?: boolean
+    endTime?: boolean
     location?: boolean
     postId?: boolean
     participantId?: boolean
     createdAt?: boolean
   }
 
-  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "date" | "location" | "postId" | "participantId" | "createdAt", ExtArgs["result"]["session"]>
+  export type SessionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "startTime" | "endTime" | "location" | "postId" | "participantId" | "createdAt", ExtArgs["result"]["session"]>
   export type SessionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     participant?: boolean | UserDefaultArgs<ExtArgs>
     post?: boolean | PostDefaultArgs<ExtArgs>
@@ -3269,7 +3288,8 @@ export namespace Prisma {
       id: number
       title: string
       description: string | null
-      date: Date
+      startTime: number
+      endTime: number
       location: string
       postId: number
       participantId: number
@@ -3702,7 +3722,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Session", 'Int'>
     readonly title: FieldRef<"Session", 'String'>
     readonly description: FieldRef<"Session", 'String'>
-    readonly date: FieldRef<"Session", 'DateTime'>
+    readonly startTime: FieldRef<"Session", 'Int'>
+    readonly endTime: FieldRef<"Session", 'Int'>
     readonly location: FieldRef<"Session", 'String'>
     readonly postId: FieldRef<"Session", 'Int'>
     readonly participantId: FieldRef<"Session", 'Int'>
@@ -7695,12 +7716,16 @@ export namespace Prisma {
 
   export type SessionAvgAggregateOutputType = {
     id: number | null
+    startTime: number | null
+    endTime: number | null
     postId: number | null
     participantId: number | null
   }
 
   export type SessionSumAggregateOutputType = {
     id: number | null
+    startTime: number | null
+    endTime: number | null
     postId: number | null
     participantId: number | null
   }
@@ -7709,7 +7734,8 @@ export namespace Prisma {
     id: number | null
     title: string | null
     description: string | null
-    date: Date | null
+    startTime: number | null
+    endTime: number | null
     location: string | null
     postId: number | null
     participantId: number | null
@@ -7720,7 +7746,8 @@ export namespace Prisma {
     id: number | null
     title: string | null
     description: string | null
-    date: Date | null
+    startTime: number | null
+    endTime: number | null
     location: string | null
     postId: number | null
     participantId: number | null
@@ -7731,7 +7758,8 @@ export namespace Prisma {
     id: number
     title: number
     description: number
-    date: number
+    startTime: number
+    endTime: number
     location: number
     postId: number
     participantId: number
@@ -7742,12 +7770,16 @@ export namespace Prisma {
 
   export type SessionAvgAggregateInputType = {
     id?: true
+    startTime?: true
+    endTime?: true
     postId?: true
     participantId?: true
   }
 
   export type SessionSumAggregateInputType = {
     id?: true
+    startTime?: true
+    endTime?: true
     postId?: true
     participantId?: true
   }
@@ -7756,7 +7788,8 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
-    date?: true
+    startTime?: true
+    endTime?: true
     location?: true
     postId?: true
     participantId?: true
@@ -7767,7 +7800,8 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
-    date?: true
+    startTime?: true
+    endTime?: true
     location?: true
     postId?: true
     participantId?: true
@@ -7778,7 +7812,8 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
-    date?: true
+    startTime?: true
+    endTime?: true
     location?: true
     postId?: true
     participantId?: true
@@ -7876,7 +7911,8 @@ export namespace Prisma {
     id: number
     title: string
     description: string | null
-    date: Date
+    startTime: number
+    endTime: number
     location: string
     postId: number
     participantId: number
@@ -10889,7 +10925,8 @@ export namespace Prisma {
     id: 'id',
     title: 'title',
     description: 'description',
-    date: 'date',
+    startTime: 'startTime',
+    endTime: 'endTime',
     location: 'location',
     postId: 'postId',
     participantId: 'participantId',
@@ -11219,7 +11256,8 @@ export namespace Prisma {
     id?: IntFilter<"Session"> | number
     title?: StringFilter<"Session"> | string
     description?: StringNullableFilter<"Session"> | string | null
-    date?: DateTimeFilter<"Session"> | Date | string
+    startTime?: IntFilter<"Session"> | number
+    endTime?: IntFilter<"Session"> | number
     location?: StringFilter<"Session"> | string
     postId?: IntFilter<"Session"> | number
     participantId?: IntFilter<"Session"> | number
@@ -11232,7 +11270,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    date?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     location?: SortOrder
     postId?: SortOrder
     participantId?: SortOrder
@@ -11248,7 +11287,8 @@ export namespace Prisma {
     NOT?: SessionWhereInput | SessionWhereInput[]
     title?: StringFilter<"Session"> | string
     description?: StringNullableFilter<"Session"> | string | null
-    date?: DateTimeFilter<"Session"> | Date | string
+    startTime?: IntFilter<"Session"> | number
+    endTime?: IntFilter<"Session"> | number
     location?: StringFilter<"Session"> | string
     postId?: IntFilter<"Session"> | number
     participantId?: IntFilter<"Session"> | number
@@ -11261,7 +11301,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrderInput | SortOrder
-    date?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     location?: SortOrder
     postId?: SortOrder
     participantId?: SortOrder
@@ -11280,7 +11321,8 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Session"> | number
     title?: StringWithAggregatesFilter<"Session"> | string
     description?: StringNullableWithAggregatesFilter<"Session"> | string | null
-    date?: DateTimeWithAggregatesFilter<"Session"> | Date | string
+    startTime?: IntWithAggregatesFilter<"Session"> | number
+    endTime?: IntWithAggregatesFilter<"Session"> | number
     location?: StringWithAggregatesFilter<"Session"> | string
     postId?: IntWithAggregatesFilter<"Session"> | number
     participantId?: IntWithAggregatesFilter<"Session"> | number
@@ -11780,7 +11822,8 @@ export namespace Prisma {
   export type SessionCreateInput = {
     title: string
     description?: string | null
-    date: Date | string
+    startTime: number
+    endTime: number
     location: string
     createdAt?: Date | string
     participant: UserCreateNestedOneWithoutSessionsInput
@@ -11791,7 +11834,8 @@ export namespace Prisma {
     id?: number
     title: string
     description?: string | null
-    date: Date | string
+    startTime: number
+    endTime: number
     location: string
     postId: number
     participantId: number
@@ -11801,7 +11845,8 @@ export namespace Prisma {
   export type SessionUpdateInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: IntFieldUpdateOperationsInput | number
+    endTime?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     participant?: UserUpdateOneRequiredWithoutSessionsNestedInput
@@ -11812,7 +11857,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: IntFieldUpdateOperationsInput | number
+    endTime?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     postId?: IntFieldUpdateOperationsInput | number
     participantId?: IntFieldUpdateOperationsInput | number
@@ -11823,7 +11869,8 @@ export namespace Prisma {
     id?: number
     title: string
     description?: string | null
-    date: Date | string
+    startTime: number
+    endTime: number
     location: string
     postId: number
     participantId: number
@@ -11833,7 +11880,8 @@ export namespace Prisma {
   export type SessionUpdateManyMutationInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: IntFieldUpdateOperationsInput | number
+    endTime?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11842,7 +11890,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: IntFieldUpdateOperationsInput | number
+    endTime?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     postId?: IntFieldUpdateOperationsInput | number
     participantId?: IntFieldUpdateOperationsInput | number
@@ -12446,7 +12495,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    date?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     location?: SortOrder
     postId?: SortOrder
     participantId?: SortOrder
@@ -12455,6 +12505,8 @@ export namespace Prisma {
 
   export type SessionAvgOrderByAggregateInput = {
     id?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     postId?: SortOrder
     participantId?: SortOrder
   }
@@ -12463,7 +12515,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    date?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     location?: SortOrder
     postId?: SortOrder
     participantId?: SortOrder
@@ -12474,7 +12527,8 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
-    date?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     location?: SortOrder
     postId?: SortOrder
     participantId?: SortOrder
@@ -12483,6 +12537,8 @@ export namespace Prisma {
 
   export type SessionSumOrderByAggregateInput = {
     id?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
     postId?: SortOrder
     participantId?: SortOrder
   }
@@ -13817,7 +13873,8 @@ export namespace Prisma {
   export type SessionCreateWithoutParticipantInput = {
     title: string
     description?: string | null
-    date: Date | string
+    startTime: number
+    endTime: number
     location: string
     createdAt?: Date | string
     post: PostCreateNestedOneWithoutSessionsInput
@@ -13827,7 +13884,8 @@ export namespace Prisma {
     id?: number
     title: string
     description?: string | null
-    date: Date | string
+    startTime: number
+    endTime: number
     location: string
     postId: number
     createdAt?: Date | string
@@ -13993,7 +14051,8 @@ export namespace Prisma {
     id?: IntFilter<"Session"> | number
     title?: StringFilter<"Session"> | string
     description?: StringNullableFilter<"Session"> | string | null
-    date?: DateTimeFilter<"Session"> | Date | string
+    startTime?: IntFilter<"Session"> | number
+    endTime?: IntFilter<"Session"> | number
     location?: StringFilter<"Session"> | string
     postId?: IntFilter<"Session"> | number
     participantId?: IntFilter<"Session"> | number
@@ -14546,7 +14605,8 @@ export namespace Prisma {
   export type SessionCreateWithoutPostInput = {
     title: string
     description?: string | null
-    date: Date | string
+    startTime: number
+    endTime: number
     location: string
     createdAt?: Date | string
     participant: UserCreateNestedOneWithoutSessionsInput
@@ -14556,7 +14616,8 @@ export namespace Prisma {
     id?: number
     title: string
     description?: string | null
-    date: Date | string
+    startTime: number
+    endTime: number
     location: string
     participantId: number
     createdAt?: Date | string
@@ -15089,7 +15150,8 @@ export namespace Prisma {
     id?: number
     title: string
     description?: string | null
-    date: Date | string
+    startTime: number
+    endTime: number
     location: string
     postId: number
     createdAt?: Date | string
@@ -15217,7 +15279,8 @@ export namespace Prisma {
   export type SessionUpdateWithoutParticipantInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: IntFieldUpdateOperationsInput | number
+    endTime?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     post?: PostUpdateOneRequiredWithoutSessionsNestedInput
@@ -15227,7 +15290,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: IntFieldUpdateOperationsInput | number
+    endTime?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     postId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15237,7 +15301,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: IntFieldUpdateOperationsInput | number
+    endTime?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     postId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15281,7 +15346,8 @@ export namespace Prisma {
     id?: number
     title: string
     description?: string | null
-    date: Date | string
+    startTime: number
+    endTime: number
     location: string
     participantId: number
     createdAt?: Date | string
@@ -15337,7 +15403,8 @@ export namespace Prisma {
   export type SessionUpdateWithoutPostInput = {
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: IntFieldUpdateOperationsInput | number
+    endTime?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     participant?: UserUpdateOneRequiredWithoutSessionsNestedInput
@@ -15347,7 +15414,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: IntFieldUpdateOperationsInput | number
+    endTime?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     participantId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15357,7 +15425,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
-    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: IntFieldUpdateOperationsInput | number
+    endTime?: IntFieldUpdateOperationsInput | number
     location?: StringFieldUpdateOperationsInput | string
     participantId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
