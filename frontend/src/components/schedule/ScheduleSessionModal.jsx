@@ -7,13 +7,37 @@ import { FiUser } from 'react-icons/fi';
 import { BiComment } from 'react-icons/bi';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { postSession, toUnixTimestamp } from '../../utils/sessionFetch';
+import ErrorModal from '../ErrorModal';
 
-const ScheduleSessionModal = ({ post }) => {
+const ScheduleSessionModal = ({ post, setScheduleModal }) => {
   const [date, setDate] = useState(null);
   const [duration, setDuration] = useState('');
   const [timeSlot, setTimeSlot] = useState('');
   const [notes, setNotes] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const handleSchedule = async () => {
+    setIsLoading(true);
+    const startTime = toUnixTimestamp(date, timeSlot);
+    const postId = post.id;
+    const location = post.location;
+    const title = post.title;
+    try {
+      await postSession(postId, startTime, duration, title, notes, location);
+      setSuccessMessage('Session scheduled successfully!');
+      setTimeout(() => {
+        setSuccessMessage('');
+        setScheduleModal(false);
+      }, 2000);
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(error.message);
+    }
+    setIsLoading(false);
+  };
 
   return (
     <div className="modal-schedule-overlay">
@@ -39,7 +63,7 @@ const ScheduleSessionModal = ({ post }) => {
           />
           <div className="row">
             <div className="column">
-              <label className='time-label'>
+              <label className="time-label">
                 <MdAccessTime className="icon-sm" />
                 Time
               </label>
@@ -57,7 +81,7 @@ const ScheduleSessionModal = ({ post }) => {
               </select>
             </div>
             <div className="column">
-              <label className='duration-label'>
+              <label className="duration-label">
                 <FiUser className="icon-sm" />
                 Duration
               </label>
@@ -98,9 +122,9 @@ const ScheduleSessionModal = ({ post }) => {
               </p>
             </div>
           )}
-          <label className='additional-label'>
+          <label className="additional-label">
             {' '}
-            <BiComment className="icon-sm" /> Additional Notes
+            <BiComment className="icon-sm" /> Additional Notes (Optional)
           </label>
           <textarea
             className="textarea"
@@ -109,10 +133,22 @@ const ScheduleSessionModal = ({ post }) => {
             placeholder="Enter any additional notes here..."
           />
         </div>
+
+        {successMessage && (
+          <div className="success-message">{successMessage}</div>
+        )}
         <div className="modal-schedule-footer">
-          <button className="btn cancel">Cancel</button>
+          <button
+            className="btn cancel"
+            onClick={() => {
+              setScheduleModal(false);
+            }}
+          >
+            Cancel
+          </button>
           <button
             className="btn primary"
+            onClick={handleSchedule}
             disabled={isLoading || !date || !timeSlot || !duration}
           >
             {isLoading ? (
@@ -125,6 +161,12 @@ const ScheduleSessionModal = ({ post }) => {
           </button>
         </div>
       </div>
+      {errorMessage && (
+        <ErrorModal
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+        />
+      )}
     </div>
   );
 };

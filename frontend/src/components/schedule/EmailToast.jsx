@@ -25,7 +25,9 @@ const EmailToast = ({ post, setShowToast, setShowModal }) => {
           Schedule Session
         </button>
       </div>
-      {scheduleModal && <ScheduleSessionModal post={post} />}
+      {scheduleModal && (
+        <ScheduleSessionModal post={post} setScheduleModal={setScheduleModal} />
+      )}
     </div>
   );
 };
