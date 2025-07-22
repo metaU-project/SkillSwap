@@ -139,7 +139,13 @@ function PostCard({ post, posts }) {
           }}
         />
       )}
-      {showToast && <EmailToast post={post} setShowToast={setShowToast} />}
+      {showToast && (
+        <EmailToast
+          post={post}
+          setShowToast={setShowToast}
+          setShowModal={setShowModal}
+        />
+      )}
     </>
   );
 }
