@@ -1,7 +1,6 @@
 const express = require('express');
-const { PrismaClient } = require('../generated/prisma');
+const prisma = require('../prisma/client');
 const bcrypt = require('bcrypt');
-const prisma = new PrismaClient();
 const router = express.Router();
 const rateLimit = require('express-rate-limit');
 const ERROR_CODES = require('../utils/errors');
