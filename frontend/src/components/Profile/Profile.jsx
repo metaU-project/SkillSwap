@@ -6,10 +6,12 @@ import InterestContainer from './containers/InterestContainer';
 import CalendarContainer from './containers/CalendarContainer';
 import { FaHome } from 'react-icons/fa';
 import { MdOutlineEdit } from 'react-icons/md';
+import { MdAccessTime } from 'react-icons/md';
 import NewProfilePic from './modals/NewProfilePic';
 import { TabButton } from './components/TabButton';
 import { fetchProfile } from '../../utils/profileFetch';
 import { useNavigate } from 'react-router-dom';
+import UserSessions from '../schedule/UserSessions';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
@@ -17,10 +19,11 @@ const Profile = () => {
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
   const [profilePic, setProfilePic] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const handleImageUpdate = (imageUrl) => {
     setProfilePic(imageUrl);
-  }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,7 +48,11 @@ const Profile = () => {
             <MdOutlineEdit />
           </button>
           <img
-            src={profilePic || profile?.user.profileImage || 'https://avatar.iran.liara.run/public'}
+            src={
+              profilePic ||
+              profile?.user.profileImage ||
+              'https://avatar.iran.liara.run/public'
+            }
             alt="profile-pic"
             className="profile-pic"
           />
@@ -105,14 +112,22 @@ const Profile = () => {
           </div>
         </div>
         <div className="profile-bottom-right">
-          <CalendarContainer />
+          <CalendarContainer onDateSelect={setSelectedDate} />
           <div className="profile-bottom-right-bottom">
-            <h4>Upcoming Events</h4>
-            <p>There are no upcoming events</p>
+            <h4>
+              {' '}
+              <MdAccessTime /> Upcoming Sessions
+            </h4>
+            <UserSessions selectedDate={selectedDate} />
           </div>
         </div>
       </div>
-      {showModal && <NewProfilePic setShowModal={setShowModal} onImageUpdate={handleImageUpdate } />}
+      {showModal && (
+        <NewProfilePic
+          setShowModal={setShowModal}
+          onImageUpdate={handleImageUpdate}
+        />
+      )}
     </div>
   );
 };

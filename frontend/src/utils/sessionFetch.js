@@ -45,3 +45,21 @@ export const postSession = async (
     return { error: ERROR_CODES.TRY_AGAIN };
   }
 };
+
+export const getSessions = async () => {
+  try {
+    const response = await fetch(API_ROUTES.sessions, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+    });
+    if (!response.ok) {
+      return { error: json.error };
+    }
+    return await response.json();
+  } catch (error) {
+    return { error: ERROR_CODES.TRY_AGAIN };
+  }
+};

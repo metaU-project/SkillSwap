@@ -3,14 +3,8 @@ const ERROR_CODES = require('../utils/errors');
 
 const createSession = async (req, res) => {
   try {
-    const {
-      postId,
-      startTime,
-      duration,
-      title,
-      description,
-      location,
-    } = req.body;
+    const { postId, startTime, duration, title, description, location } =
+      req.body;
     const participantId = req.session.userId;
     const endTime = startTime + duration * 60;
 
@@ -48,6 +42,28 @@ const createSession = async (req, res) => {
   }
 };
 
+const getSessions = async (req, res) => {
+  try {
+    const sessions = await prisma.session.findMany({
+      where: {
+        participantId: req.session.userId,
+      },
+      orderBy: {
+        startTime: 'asc',
+      },
+    });
+    return res.status(200).json({
+      sessions,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      error: ERROR_CODES.INTERNAL_ERROR,
+    });
+  }
+};
+
 module.exports = {
   createSession,
+  getSessions,
 };

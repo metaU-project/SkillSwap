@@ -1,6 +1,6 @@
 # SkillSwap
 
-**Deployed site**:
+**Deployed site**: [SkillSwap](https://skillswap-frontend-bews.onrender.com/)
 
 ## Overview
 
@@ -10,11 +10,10 @@ SkillSwap is a community-driven platform designed to connect people who want to 
 
 For detailed information about the project, including user roles, personas, and stories, please refer to the [Project Plan Document](https://docs.google.com/document/d/1q5PDm8L_pALFiUCXYNso6z2uid2x5GtOIc7O4y06Ptc/edit?usp=sharing).
 
-
 **Wireframes**: [here](https://www.figma.com/design/4i5kmsSfGnfDx4byG9CKHG/SkillSwap?node-id=21-72&t=nXGNVBYffUNBeeAY-1)
 
-
 ## Demo Video
+
 [TBD]
 
 ## Getting Started
@@ -22,17 +21,3 @@ For detailed information about the project, including user roles, personas, and 
 ## Contact
 
 For questions or feedback, please contact [Wellington Mapise](wpm44@cornell.edu).
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
