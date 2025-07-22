@@ -14,6 +14,8 @@ const LandingPage = () => {
   const [posts, setPosts] = useState([]);
   const [recommendedPosts, setRecommendedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [type, setType] = useState('');
+  const [recency, setRecency] = useState('');
 
   const fetchData = async () => {
     setLoading(true);
@@ -37,6 +39,25 @@ const LandingPage = () => {
     };
     fetchRecommendedPosts();
   }, []);
+
+  const filteredPosts = posts.filter((post) => {
+    const matchType = type ? post.type === type : true;
+    const matchRecency = recency
+      ? (() => {
+          const createdAt = new Date(post.createdAt);
+          const now = new Date();
+          if (recency === 'last_week') {
+            const oneWeekAgo = new Date(now.setDate(now.getDate() - 7));
+            return createdAt > oneWeekAgo;
+          } else if (recency === 'last_month') {
+            const oneMonthAgo = new Date(now.setMonth(now.getMonth() - 1));
+            return createdAt > oneMonthAgo;
+          }
+          return true;
+        })()
+      : true;
+    return matchType && matchRecency;
+  });
 
   return (
     <div>
@@ -70,9 +91,14 @@ const LandingPage = () => {
       )}
       {filter === 'All' && (
         <>
-          <FilterBar filter={filter} setFilter={setFilter} />
+          <FilterBar
+            filter={filter}
+            setFilter={setFilter}
+            setRecency={setRecency}
+            setType={setType}
+          />
           <div className="main-section">
-            {loading ? <Loading /> : <PostList posts={posts} />}
+            {loading ? <Loading /> : <PostList posts={filteredPosts} />}
           </div>
           <Footer />
         </>
