@@ -1,0 +1,57 @@
+import dotenv from 'dotenv';
+dotenv.config();
+/**
+ *  Geo.js - A utility for getting coordinates from a location
+ * @param {*} location - The location to get coordinates for
+ * @returns - The coordinates of the location as an object with latitude and longitude properties
+ */
+
+export async function getCoordinates(location) {
+  const apiKey = process.env.GEOAPIFY_API_KEY;
+  const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(location)}&format=json&apiKey=${apiKey}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const result = data?.results[0];
+    if (!result) {
+      return null;
+    }
+    return {
+      latitude: result.lat,
+      longitude: result.lon,
+    };
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+/**
+ *  HarvesineDistance.js - A utility for calculating the distance between two coordinates using the Harvesine formula
+ * @param {*} lat1 - The latitude of the first coordinate
+ * @param {*} lon1 - The longitude of the first coordinate
+ * @param {*} lat2 - The latitude of the second coordinate
+ * @param {*} lon2 - The longitude of the second coordinate
+ * @returns
+ */
+
+export function harvesineDistance(lat1, lon1, lat2, lon2) {
+  const toRadian = (value) => (value * Math.PI) / 180;
+  const R = 6371; // Radius of the Earth in kilometers
+
+  const dLat = toRadian(lat2 - lat1);
+  const dLon = toRadian(lon2 - lon1);
+
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRadian(lat1)) *
+      Math.cos(toRadian(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c;
+
+  return distance;
+}
