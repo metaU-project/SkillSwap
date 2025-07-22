@@ -17,7 +17,7 @@ const ShuffledSkill = () => {
     const fetchPosts = async () => {
       const fetchedPosts = await postFetch();
       if (fetchedPosts && !fetchedPosts.error) {
-        setPosts(fetchedPosts.slice(3, 8));
+        setPosts(fetchedPosts);
         setCurrentSkill(fetchedPosts[0]);
       }
     };
@@ -127,7 +127,6 @@ const ShuffledSkill = () => {
                         </p>
                       </div>
                     </div>
-
                     <div className="skill-progress">
                       {posts.map((post, i) => (
                         <div
