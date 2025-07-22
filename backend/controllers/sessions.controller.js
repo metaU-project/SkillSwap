@@ -5,13 +5,13 @@ const createSession = async (req, res) => {
   try {
     const {
       postId,
-      participantId,
       startTime,
       duration,
       title,
       description,
       location,
     } = req.body;
+    const participantId = req.session.userId;
     const endTime = startTime + duration * 60;
 
     const conflict = await prisma.session.findFirst({

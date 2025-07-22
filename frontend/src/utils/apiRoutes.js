@@ -21,4 +21,5 @@ export const API_ROUTES = {
   interaction: `${BASE_URL}/recommendation/interaction`,
   recommendations: `${BASE_URL}/recommendation`,
   email: `${BASE_URL}/email`,
+  sessions: `${BASE_URL}/sessions`,
 };

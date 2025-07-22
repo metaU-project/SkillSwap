@@ -69,6 +69,17 @@
   font-family: 'Times New Roman', Times, serif;
 }
 
+.success-message {
+  color: #065f46;
+  font-size: 14px;
+  background-color: #ecfdf5;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #25c483;
+  margin-bottom: 16px;
+  margin-top: 12px;
+}
+
 .row {
   display: flex;
   gap: 16px;
