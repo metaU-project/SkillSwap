@@ -12,6 +12,7 @@ const profileRoutes = require('./routes/profile');
 const recommendationRoutes = require('./routes/recommendation');
 const { router: searchRoutes } = require('./routes/search');
 const emailRoutes = require('./routes/email');
+const sessionsRoutes = require('./routes/sessions');
 const fileUpload = require('express-fileupload');
 const app = express();
 
@@ -62,6 +63,7 @@ app.use('/profile', profileRoutes);
 app.use('/search', searchRoutes);
 app.use('/recommendation', recommendationRoutes);
 app.use('/email', emailRoutes);
+app.use('/sessions', sessionsRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
