@@ -107,6 +107,14 @@ model Interaction{
   user      User     @relation(fields: [userId], references: [id])
 }
 
+model LocationCache{
+  id Int @id @default(autoincrement())
+  location String @unique
+  latitude Float
+  longitude Float
+}
+
+
 enum InteractionType {
   LIKED
   VIEWED
