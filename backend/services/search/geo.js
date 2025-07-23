@@ -1,12 +1,39 @@
 import dotenv from 'dotenv';
 dotenv.config();
+import prisma from '../../prisma/client.js';
+
+const memoryCache = new Map();
+
 /**
  *  Geo.js - A utility for getting coordinates from a location
  * @param {*} location - The location to get coordinates for
+ * @param {*} type - The type of location (post or user)
  * @returns - The coordinates of the location as an object with latitude and longitude properties
  */
 
-export async function getCoordinates(location) {
+export async function getCoordinates(location, type = 'post') {
+  const key = `${type}-${location.toLowerCase()}`;
+
+  // Check if the result is already in the cache
+  if (memoryCache.has(key)) {
+    return memoryCache.get(key);
+  }
+
+  //check database cache
+  const cachedResult = await prisma.locationCache.findUnique({
+    where: { key },
+  });
+
+  if (cachedResult) {
+    const coordinates = {
+      latitude: cachedResult.latitude,
+      longitude: cachedResult.longitude,
+    };
+    memoryCache.set(key, coordinates);
+    return coordinates;
+  }
+
+  // If the result is not in the cache, fetch it from the API
   const apiKey = process.env.GEOAPIFY_API_KEY;
   const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(location)}&format=json&apiKey=${apiKey}`;
 
@@ -17,10 +44,22 @@ export async function getCoordinates(location) {
     if (!result) {
       return null;
     }
-    return {
+    const coordinates = {
       latitude: result.lat,
       longitude: result.lon,
     };
+
+    // Add the result to the cache
+    await prisma.locationCache.create({
+      data: {
+        key,
+        latitude: coordinates.latitude,
+        longitude: coordinates.longitude,
+      },
+    });
+
+    memoryCache.set(key, coordinates);
+    return coordinates;
   } catch (error) {
     console.error(error);
     return null;

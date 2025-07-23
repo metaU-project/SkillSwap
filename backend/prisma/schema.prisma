@@ -108,8 +108,8 @@ model Interaction{
 }
 
 model LocationCache{
-  id Int @id @default(autoincrement())
-  location String @unique
+  key      String @id
+  location String?
   latitude Float
   longitude Float
 }

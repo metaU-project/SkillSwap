@@ -198,7 +198,7 @@ exports.Prisma.InteractionScalarFieldEnum = {
 };
 
 exports.Prisma.LocationCacheScalarFieldEnum = {
-  id: 'id',
+  key: 'key',
   location: 'location',
   latitude: 'latitude',
   longitude: 'longitude'

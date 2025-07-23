@@ -10995,33 +10995,31 @@ export namespace Prisma {
   }
 
   export type LocationCacheAvgAggregateOutputType = {
-    id: number | null
     latitude: number | null
     longitude: number | null
   }
 
   export type LocationCacheSumAggregateOutputType = {
-    id: number | null
     latitude: number | null
     longitude: number | null
   }
 
   export type LocationCacheMinAggregateOutputType = {
-    id: number | null
+    key: string | null
     location: string | null
     latitude: number | null
     longitude: number | null
   }
 
   export type LocationCacheMaxAggregateOutputType = {
-    id: number | null
+    key: string | null
     location: string | null
     latitude: number | null
     longitude: number | null
   }
 
   export type LocationCacheCountAggregateOutputType = {
-    id: number
+    key: number
     location: number
     latitude: number
     longitude: number
@@ -11030,33 +11028,31 @@ export namespace Prisma {
 
 
   export type LocationCacheAvgAggregateInputType = {
-    id?: true
     latitude?: true
     longitude?: true
   }
 
   export type LocationCacheSumAggregateInputType = {
-    id?: true
     latitude?: true
     longitude?: true
   }
 
   export type LocationCacheMinAggregateInputType = {
-    id?: true
+    key?: true
     location?: true
     latitude?: true
     longitude?: true
   }
 
   export type LocationCacheMaxAggregateInputType = {
-    id?: true
+    key?: true
     location?: true
     latitude?: true
     longitude?: true
   }
 
   export type LocationCacheCountAggregateInputType = {
-    id?: true
+    key?: true
     location?: true
     latitude?: true
     longitude?: true
@@ -11150,8 +11146,8 @@ export namespace Prisma {
   }
 
   export type LocationCacheGroupByOutputType = {
-    id: number
-    location: string
+    key: string
+    location: string | null
     latitude: number
     longitude: number
     _count: LocationCacheCountAggregateOutputType | null
@@ -11176,41 +11172,41 @@ export namespace Prisma {
 
 
   export type LocationCacheSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
+    key?: boolean
     location?: boolean
     latitude?: boolean
     longitude?: boolean
   }, ExtArgs["result"]["locationCache"]>
 
   export type LocationCacheSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
+    key?: boolean
     location?: boolean
     latitude?: boolean
     longitude?: boolean
   }, ExtArgs["result"]["locationCache"]>
 
   export type LocationCacheSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
+    key?: boolean
     location?: boolean
     latitude?: boolean
     longitude?: boolean
   }, ExtArgs["result"]["locationCache"]>
 
   export type LocationCacheSelectScalar = {
-    id?: boolean
+    key?: boolean
     location?: boolean
     latitude?: boolean
     longitude?: boolean
   }
 
-  export type LocationCacheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "location" | "latitude" | "longitude", ExtArgs["result"]["locationCache"]>
+  export type LocationCacheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"key" | "location" | "latitude" | "longitude", ExtArgs["result"]["locationCache"]>
 
   export type $LocationCachePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "LocationCache"
     objects: {}
     scalars: $Extensions.GetPayloadResult<{
-      id: number
-      location: string
+      key: string
+      location: string | null
       latitude: number
       longitude: number
     }, ExtArgs["result"]["locationCache"]>
@@ -11296,8 +11292,8 @@ export namespace Prisma {
      * // Get first 10 LocationCaches
      * const locationCaches = await prisma.locationCache.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const locationCacheWithIdOnly = await prisma.locationCache.findMany({ select: { id: true } })
+     * // Only select the `key`
+     * const locationCacheWithKeyOnly = await prisma.locationCache.findMany({ select: { key: true } })
      * 
      */
     findMany<T extends LocationCacheFindManyArgs>(args?: SelectSubset<T, LocationCacheFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationCachePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -11341,9 +11337,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many LocationCaches and only return the `id`
-     * const locationCacheWithIdOnly = await prisma.locationCache.createManyAndReturn({
-     *   select: { id: true },
+     * // Create many LocationCaches and only return the `key`
+     * const locationCacheWithKeyOnly = await prisma.locationCache.createManyAndReturn({
+     *   select: { key: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -11432,9 +11428,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more LocationCaches and only return the `id`
-     * const locationCacheWithIdOnly = await prisma.locationCache.updateManyAndReturn({
-     *   select: { id: true },
+     * // Update zero or more LocationCaches and only return the `key`
+     * const locationCacheWithKeyOnly = await prisma.locationCache.updateManyAndReturn({
+     *   select: { key: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -11636,7 +11632,7 @@ export namespace Prisma {
    * Fields of the LocationCache model
    */
   interface LocationCacheFieldRefs {
-    readonly id: FieldRef<"LocationCache", 'Int'>
+    readonly key: FieldRef<"LocationCache", 'String'>
     readonly location: FieldRef<"LocationCache", 'String'>
     readonly latitude: FieldRef<"LocationCache", 'Float'>
     readonly longitude: FieldRef<"LocationCache", 'Float'>
@@ -12122,7 +12118,7 @@ export namespace Prisma {
 
 
   export const LocationCacheScalarFieldEnum: {
-    id: 'id',
+    key: 'key',
     location: 'location',
     latitude: 'latitude',
     longitude: 'longitude'
@@ -12836,32 +12832,32 @@ export namespace Prisma {
     AND?: LocationCacheWhereInput | LocationCacheWhereInput[]
     OR?: LocationCacheWhereInput[]
     NOT?: LocationCacheWhereInput | LocationCacheWhereInput[]
-    id?: IntFilter<"LocationCache"> | number
-    location?: StringFilter<"LocationCache"> | string
+    key?: StringFilter<"LocationCache"> | string
+    location?: StringNullableFilter<"LocationCache"> | string | null
     latitude?: FloatFilter<"LocationCache"> | number
     longitude?: FloatFilter<"LocationCache"> | number
   }
 
   export type LocationCacheOrderByWithRelationInput = {
-    id?: SortOrder
-    location?: SortOrder
+    key?: SortOrder
+    location?: SortOrderInput | SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
   }
 
   export type LocationCacheWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    location?: string
+    key?: string
     AND?: LocationCacheWhereInput | LocationCacheWhereInput[]
     OR?: LocationCacheWhereInput[]
     NOT?: LocationCacheWhereInput | LocationCacheWhereInput[]
+    location?: StringNullableFilter<"LocationCache"> | string | null
     latitude?: FloatFilter<"LocationCache"> | number
     longitude?: FloatFilter<"LocationCache"> | number
-  }, "id" | "location">
+  }, "key">
 
   export type LocationCacheOrderByWithAggregationInput = {
-    id?: SortOrder
-    location?: SortOrder
+    key?: SortOrder
+    location?: SortOrderInput | SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
     _count?: LocationCacheCountOrderByAggregateInput
@@ -12875,8 +12871,8 @@ export namespace Prisma {
     AND?: LocationCacheScalarWhereWithAggregatesInput | LocationCacheScalarWhereWithAggregatesInput[]
     OR?: LocationCacheScalarWhereWithAggregatesInput[]
     NOT?: LocationCacheScalarWhereWithAggregatesInput | LocationCacheScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"LocationCache"> | number
-    location?: StringWithAggregatesFilter<"LocationCache"> | string
+    key?: StringWithAggregatesFilter<"LocationCache"> | string
+    location?: StringNullableWithAggregatesFilter<"LocationCache"> | string | null
     latitude?: FloatWithAggregatesFilter<"LocationCache"> | number
     longitude?: FloatWithAggregatesFilter<"LocationCache"> | number
   }
@@ -13430,47 +13426,50 @@ export namespace Prisma {
   }
 
   export type LocationCacheCreateInput = {
-    location: string
+    key: string
+    location?: string | null
     latitude: number
     longitude: number
   }
 
   export type LocationCacheUncheckedCreateInput = {
-    id?: number
-    location: string
+    key: string
+    location?: string | null
     latitude: number
     longitude: number
   }
 
   export type LocationCacheUpdateInput = {
-    location?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: FloatFieldUpdateOperationsInput | number
     longitude?: FloatFieldUpdateOperationsInput | number
   }
 
   export type LocationCacheUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: FloatFieldUpdateOperationsInput | number
     longitude?: FloatFieldUpdateOperationsInput | number
   }
 
   export type LocationCacheCreateManyInput = {
-    id?: number
-    location: string
+    key: string
+    location?: string | null
     latitude: number
     longitude: number
   }
 
   export type LocationCacheUpdateManyMutationInput = {
-    location?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: FloatFieldUpdateOperationsInput | number
     longitude?: FloatFieldUpdateOperationsInput | number
   }
 
   export type LocationCacheUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    location?: StringFieldUpdateOperationsInput | string
+    key?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
     latitude?: FloatFieldUpdateOperationsInput | number
     longitude?: FloatFieldUpdateOperationsInput | number
   }
@@ -14124,34 +14123,32 @@ export namespace Prisma {
   }
 
   export type LocationCacheCountOrderByAggregateInput = {
-    id?: SortOrder
+    key?: SortOrder
     location?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
   }
 
   export type LocationCacheAvgOrderByAggregateInput = {
-    id?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
   }
 
   export type LocationCacheMaxOrderByAggregateInput = {
-    id?: SortOrder
+    key?: SortOrder
     location?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
   }
 
   export type LocationCacheMinOrderByAggregateInput = {
-    id?: SortOrder
+    key?: SortOrder
     location?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
   }
 
   export type LocationCacheSumOrderByAggregateInput = {
-    id?: SortOrder
     latitude?: SortOrder
     longitude?: SortOrder
   }
