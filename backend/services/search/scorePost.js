@@ -12,19 +12,61 @@ function getDistanceScore(distanceKm) {
   return score;
 }
 
+/***
+ * Function to score a post based on its recency
+ * @param {*} postDate date of the post
+ * @returns a score for the recency of the post as a number between 0 and 10 based on the age of the post in days (0-1, 1-7, 7-30, 30+)
+ */
+function getRecencyScore(post) {
+  const ageInDays =
+    (Date.now() - new Date(post.createdAt).getTime()) / (1000 * 3600 * 24);
+
+  let baseRecencyScore = 0;
+
+  //linear decay first 24 hours
+  if (ageInDays <= 1) {
+    const baseScore = 10;
+    baseRecencyScore = baseScore * (1 - ageInDays);
+  }
+
+  //exponential decay for the next 7 days
+  else if (ageInDays <= 7) {
+    const baseScore = 8;
+    const decayRate = 0.3;
+    baseRecencyScore = baseScore * Math.exp(-decayRate * (ageInDays - 1));
+  }
+
+  //logarithmic decay for the next 30 days
+  else if (ageInDays <= 30) {
+    const baseScore = 5;
+    const logAge = Math.log(ageInDays - 6);
+    baseRecencyScore = Math.max(baseScore - logAge, 0);
+  } else {
+    baseRecencyScore = 0.5;
+  }
+
+  //engagement score
+  const numLikes = post.numLikes || 0;
+  const numReviews = post.numReviews || 0;
+  const engagementScore = numLikes * 2 + numReviews * 3;
+
+  const finalScore = baseRecencyScore * Math.log1p(engagementScore + 1);
+
+  return finalScore;
+}
+
 /**
  * Function to score a post based on the query and other factors
  * @param {*} post post to be scored relative to the query
  * @param {*} param1 token objects to be used for scoring
  * @returns a score for each post based on the query as a number
  */
-
 async function scorePost(
   post,
   { locationTokens, categoryTokens, otherTokens, authorTokens }
 ) {
   let score = 0;
-  const text = `${post.title} ${post.description}.toLowerCase()`;
+  const text = `${post.title} ${post.description}`.toLowerCase();
   const words = text.split(/\s+/);
 
   const postCoordinates = await getCoordinates(post.location, 'post');
@@ -53,7 +95,6 @@ async function scorePost(
     }
   }
 
-  //if location token is null, use user's location
   if (locationTokens?.length === 0) {
     if (postCoordinates && userCoordinatesObject) {
       const distance = harvesineDistance(
@@ -74,9 +115,6 @@ async function scorePost(
   });
 
   authorTokens?.forEach((token) => {
-    const name =
-      `${post.user.first_name} ${post.user.last_name}`.toLocaleLowerCase();
-
     if (
       post.user.first_name?.toLowerCase().includes(token.toLowerCase()) ||
       post.user.last_name?.toLowerCase().includes(token.toLowerCase())
@@ -93,11 +131,7 @@ async function scorePost(
     }
   });
 
-  const recent =
-    Date.now() - new Date(post.createdAt).getTime() < 7 * 24 * 60 * 60 * 1000;
-  if (recent) {
-    score += 5;
-  }
+  score += getRecencyScore(post);
   return score;
 }
 
