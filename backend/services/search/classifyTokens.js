@@ -1,11 +1,11 @@
-//define known locations
+const tokenizeQuery = require('./tokenizeQuery');
+const Fuse = require('fuse.js');
+
 let knownLocations = [];
-
-//define known categeries
 let knownCategories = [];
-
-//authors
 let knownAuthors = [];
+
+let locationFuse = null;
 
 async function loadKnownFilters(prisma) {
   knownLocations = (
@@ -14,6 +14,11 @@ async function loadKnownFilters(prisma) {
       distinct: ['location'],
     })
   ).map((p) => p.location.toLowerCase());
+
+  locationFuse = new Fuse(knownLocations, {
+    includeScore: true,
+    threshold: 0.5,
+  });
 
   knownCategories = (
     await prisma.post.findMany({
@@ -36,24 +41,40 @@ async function loadKnownFilters(prisma) {
   knownAuthors = Array.from(new Set(knownAuthors));
 }
 
+function extractLocationTokens(rawQuery) {
+  const results = locationFuse.search(rawQuery.toLowerCase());
+  return results.filter((r) => r.score < 0.5).map((r) => r.item);
+}
+
 /**
  * Classify tokens into locations, categories, author and other
- * @param {*} tokens - array of tokens to be classified
+ * @param {*} rawQuery - raw query string
  * @returns an object with three tokens: locations, categories, and other containing arrays of tokens
  */
-function classifyTokens(tokens) {
-  const locationTokens = tokens?.filter((token) =>
-    knownLocations.includes(token)
-  );
-  const categoryTokens = tokens?.filter((token) =>
+
+function classifyTokens(rawQuery) {
+  const locationTokens = extractLocationTokens(rawQuery);
+
+  let strippedQuery = rawQuery.toLowerCase();
+  for (const location of locationTokens) {
+    const regex = new RegExp(`\\b${location}\\b`, 'gi');
+    strippedQuery = strippedQuery.replace(regex, '');
+  }
+
+  const remainingTokens = tokenizeQuery(strippedQuery);
+  const categoryTokens = remainingTokens?.filter((token) =>
     knownCategories.includes(token)
   );
-  const otherTokens = tokens?.filter(
+  const otherTokens = remainingTokens?.filter(
     (token) =>
-      !knownLocations.includes(token) && !knownCategories.includes(token)
+      !knownLocations.includes(token) &&
+      !knownCategories.includes(token) &&
+      !knownAuthors.includes(token)
   );
 
-  const authorTokens = tokens?.filter((token) => knownAuthors.includes(token));
+  const authorTokens = remainingTokens?.filter((token) =>
+    knownAuthors.includes(token)
+  );
   return {
     locationTokens,
     categoryTokens,

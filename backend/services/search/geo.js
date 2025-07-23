@@ -14,12 +14,10 @@ const memoryCache = new Map();
 export async function getCoordinates(location, type = 'post') {
   const key = `${type}-${location.toLowerCase()}`;
 
-  // Check if the result is already in the cache
   if (memoryCache.has(key)) {
     return memoryCache.get(key);
   }
 
-  //check database cache
   const cachedResult = await prisma.locationCache.findUnique({
     where: { key },
   });
@@ -33,7 +31,6 @@ export async function getCoordinates(location, type = 'post') {
     return coordinates;
   }
 
-  // If the result is not in the cache, fetch it from the API
   const apiKey = process.env.GEOAPIFY_API_KEY;
   const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(location)}&format=json&apiKey=${apiKey}`;
 
@@ -49,9 +46,10 @@ export async function getCoordinates(location, type = 'post') {
       longitude: result.lon,
     };
 
-    // Add the result to the cache
-    await prisma.locationCache.create({
-      data: {
+    await prisma.locationCache.upsert({
+      where: { key },
+      update: {},
+      create: {
         key,
         latitude: coordinates.latitude,
         longitude: coordinates.longitude,
@@ -77,7 +75,7 @@ export async function getCoordinates(location, type = 'post') {
 
 export function harvesineDistance(lat1, lon1, lat2, lon2) {
   const toRadian = (value) => (value * Math.PI) / 180;
-  const R = 6371; // Radius of the Earth in kilometers
+  const R = 6371;
 
   const dLat = toRadian(lat2 - lat1);
   const dLon = toRadian(lon2 - lon1);

@@ -34,7 +34,6 @@ async function initializeTrie() {
       );
       return;
     }
-
     const categories = [...new Set(posts.map((post) => post.category))];
     buildTrieFromData(posts, categories);
 
@@ -81,14 +80,17 @@ router.get('/', async (req, res) => {
           frequency: 1,
         },
       });
-
       trie.insert(content);
     }
-
     const results = await prisma.post.findMany({
       include: {
         user: {
-          select: { id: true, first_name: true, last_name: true },
+          select: {
+            id: true,
+            first_name: true,
+            last_name: true,
+            location: true,
+          },
         },
         likes: true,
         reviews: true,
@@ -97,9 +99,7 @@ router.get('/', async (req, res) => {
         createdAt: 'desc',
       },
     });
-
-    const rankedPosts = rankPosts(keywords, results);
-
+    const rankedPosts = await rankPosts(keywords, results);
     if (rankedPosts.length === 0) {
       const fallback = [...results]
         .sort((a, b) => b.likes.length - a.likes.length)
