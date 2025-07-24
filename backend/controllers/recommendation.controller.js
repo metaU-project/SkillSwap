@@ -4,6 +4,9 @@ const ERROR_CODES = require('../utils/errors');
 const getTrendingPostIds = require('../services/recommendation/trending');
 const { getInteractions } = require('../services/interactions/interaction');
 const { scorePost } = require('../services/recommendation/scoring');
+const {
+  getCollaborativeRecommendations,
+} = require('../services/recommendation/collabRecommender');
 
 async function getRecommendationInput(req, res) {
   const userId = req.session.userId;
@@ -18,6 +21,7 @@ async function getRecommendationInput(req, res) {
     if (!interests) {
       return res.status(400).json({ error: ERROR_CODES.MISSING_INTERESTS });
     }
+
     const location = user.location;
 
     //get all offer posts
@@ -60,21 +64,35 @@ async function getRecommendationInput(req, res) {
 
     //user interactions
     const userInteractions = await getInteractions(userId);
-    const scoredPosts = scoredPostsInput
-      .map((post) =>
-        scorePost({
+    const collabRecs = await getCollaborativeRecommendations(userId, interests);
+    const collabMap = new Map(collabRecs.map((p) => [p.id, p.score]));
+
+    const scored = scoredPostsInput
+      .map((post) => {
+        const base = scorePost({
           post,
           interests,
           location,
           trendingPostIds,
           userInteractions,
-        })
-      )
-      .sort((a, b) => b.score - a.score);
+        });
 
-    res.status(200).json({
-      scoredPosts,
-    });
+        const collabScore = collabMap.get(post.id) || 0;
+        const hybridScore = base.score * 0.7 + collabScore * 0.3;
+
+        return {
+          ...base,
+          score: hybridScore,
+          breakdown: {
+            ...base.breakdown,
+            collab: collabScore,
+          },
+        };
+      })
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 10);
+
+    res.status(200).json({ scoredPosts: scored });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });

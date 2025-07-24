@@ -2,7 +2,6 @@ const { getAllInteractions } = require('../interactions/interaction');
 
 async function buildInteractionGraph() {
   const interactions = await getAllInteractions();
-
   const userToPosts = new Map();
   const postToUsers = new Map();
 
@@ -17,7 +16,6 @@ async function buildInteractionGraph() {
     }
     postToUsers.get(postId).add(userId);
   }
-
   return { userToPosts, postToUsers };
 }
 
