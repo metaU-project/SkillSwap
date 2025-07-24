@@ -2,6 +2,13 @@ const { buildInteractionGraph } = require('./collabGraph');
 const { getInteractions } = require('../interactions/interaction');
 const { getDomainScore } = require('./categoryClusters');
 
+/**
+ * Generates collaborative recommendations for a user based on their interactions with other users and posts.
+ * @param {*} userId - user id of the user to generate recommendations for
+ * @param {*} userInterests - interests of the user to generate recommendations for
+ * @returns - list of recommended posts for the user and their scores
+ */
+
 async function getCollaborativeRecommendations(userId, userInterests) {
   const { userToPosts, postToUsers } = await buildInteractionGraph();
   const seenPostIds = new Set();

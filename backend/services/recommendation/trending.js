@@ -3,7 +3,7 @@ const { InteractionType } = require('../../generated/prisma');
 /**
  * Get the trending posts
  * @param {*} prisma  - Prisma client
- * @returns          - List of trending post ids
+ * @returns - List of trending post ids
  */
 async function trending(prisma) {
   const trendingLimit = new Date(Date.now() - 1000 * 60 * 60 * 24 * 7);
