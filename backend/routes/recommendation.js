@@ -6,6 +6,9 @@ const { logInteraction } = require('../services/interactions/interaction');
 const {
   getRecommendationInput,
 } = require('../controllers/recommendation.controller');
+const {
+  getCollaborativeRecommendations,
+} = require('../services/recommendation/collabRecommender');
 
 //log user interaction
 router.post('/interaction', checkAuth, async (req, res) => {
@@ -22,6 +25,21 @@ router.post('/interaction', checkAuth, async (req, res) => {
 });
 
 //get recommendation input
-router.get('/:userId',checkAuth, getRecommendationInput);
+router.get('/:userId', checkAuth, getRecommendationInput);
+
+//get collaborative recommendations
+router.get('/collaborative/:userId', checkAuth, async (req, res) => {
+  const userId = req.session.userId;
+  if (!userId) {
+    return res.status(400).json({ error: ERROR_CODES.NOT_AUTHORIZED });
+  }
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+  const posts = await getCollaborativeRecommendations(userId, user.interests);
+  res.status(200).json(posts);
+});
 
 module.exports = router;
