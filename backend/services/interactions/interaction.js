@@ -60,7 +60,28 @@ async function getInteractions(userId) {
   }
 }
 
+/**
+ * Get all user-post interactions needed for collaborative filtering
+ * @returns {Promise} - A promise that resolves to an array of all interactions
+ */
+
+async function getAllInteractions() {
+  try {
+    const allInteractions = await prisma.interaction.findMany({
+      select: {
+        postId: true,
+        userId: true,
+      },
+    });
+    return allInteractions;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
+
 module.exports = {
   logInteraction,
   getInteractions,
+  getAllInteractions,
 };
