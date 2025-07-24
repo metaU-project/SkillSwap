@@ -2,6 +2,7 @@ const {
   ScoreSimilarityToLikedOrReviewed,
 } = require('../recommendation/similarity');
 const { getDomain, fuzzMatch } = require('../recommendation/categoryClusters');
+const { getRecencyScore } = require('../../utils/scoringUtils');
 
 /**
  * Score a post based on its similarity to the user's interests and location
@@ -69,6 +70,8 @@ function scorePost({
     score += 1;
     breakdown.location = 1;
   }
+  score += getRecencyScore(post);
+  breakdown.recency = getRecencyScore(post);
 
   //boost for unexplored interests
   const interactedCategories = new Set([
