@@ -1,6 +1,7 @@
 const { buildInteractionGraph } = require('./collabGraph');
 const { getInteractions } = require('../interactions/interaction');
 const { getDomainScore } = require('./categoryClusters');
+const { getRecencyScore } = require('../../utils/scoringUtils');
 
 async function getCollaborativeRecommendations(userId, userInterests) {
   const MAX_DEPTH = 3;
@@ -41,7 +42,6 @@ async function getCollaborativeRecommendations(userId, userInterests) {
         postScores.set(postId, (postScores.get(postId) || 0) + 0.1);
         continue;
       }
-
       const baseScore = 1 / (depth + 1);
       const oldScore = postScores.get(postId) || 0;
       postScores.set(postId, oldScore + baseScore);
@@ -60,9 +60,12 @@ async function getCollaborativeRecommendations(userId, userInterests) {
     for (const interest of userInterests) {
       domainScore += getDomainScore(interest, post.category);
     }
+
+    const recency = getRecencyScore(post);
+
     return {
       ...post,
-      score: postScores.get(post.id) + domainScore,
+      score: postScores.get(post.id) + domainScore + recency,
     };
   });
 
