@@ -37,7 +37,10 @@ export async function getCoordinates(location, type = 'post') {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    const result = data?.results[0];
+    const result =
+      Array.isArray(data?.results) && data.results.length > 0
+        ? data?.results[0]
+        : null;
     if (!result) {
       return null;
     }

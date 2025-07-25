@@ -8,6 +8,7 @@ import { getRecommendations } from '../utils/recommendationFetch';
 import Loading from '../components/Loading/Loading';
 import './LandingPage.css';
 import { FaArrowRight } from 'react-icons/fa';
+import { filterByRecency } from '../utils/postFilters';
 
 const LandingPage = () => {
   const [filter, setFilter] = useState('Recommended');
@@ -42,20 +43,7 @@ const LandingPage = () => {
 
   const filteredPosts = posts.filter((post) => {
     const matchType = type ? post.type === type : true;
-    const matchRecency = recency
-      ? (() => {
-          const createdAt = new Date(post.createdAt);
-          const now = new Date();
-          if (recency === 'last_week') {
-            const oneWeekAgo = new Date(now.setDate(now.getDate() - 7));
-            return createdAt > oneWeekAgo;
-          } else if (recency === 'last_month') {
-            const oneMonthAgo = new Date(now.setMonth(now.getMonth() - 1));
-            return createdAt > oneMonthAgo;
-          }
-          return true;
-        })()
-      : true;
+    const matchRecency = filterByRecency(post, recency);
     return matchType && matchRecency;
   });
 
