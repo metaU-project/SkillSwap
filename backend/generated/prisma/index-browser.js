@@ -197,6 +197,13 @@ exports.Prisma.InteractionScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.LocationCacheScalarFieldEnum = {
+  key: 'key',
+  location: 'location',
+  latitude: 'latitude',
+  longitude: 'longitude'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -240,7 +247,8 @@ exports.Prisma.ModelName = {
   Like: 'Like',
   session: 'session',
   SearchQuery: 'SearchQuery',
-  Interaction: 'Interaction'
+  Interaction: 'Interaction',
+  LocationCache: 'LocationCache'
 };
 
 /**

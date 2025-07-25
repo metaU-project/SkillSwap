@@ -1,12 +1,36 @@
 import dotenv from 'dotenv';
 dotenv.config();
+import prisma from '../../prisma/client.js';
+
+const memoryCache = new Map();
+
 /**
  *  Geo.js - A utility for getting coordinates from a location
  * @param {*} location - The location to get coordinates for
+ * @param {*} type - The type of location (post or user)
  * @returns - The coordinates of the location as an object with latitude and longitude properties
  */
 
-export async function getCoordinates(location) {
+export async function getCoordinates(location, type = 'post') {
+  const key = `${type}-${location.toLowerCase()}`;
+
+  if (memoryCache.has(key)) {
+    return memoryCache.get(key);
+  }
+
+  const cachedResult = await prisma.locationCache.findUnique({
+    where: { key },
+  });
+
+  if (cachedResult) {
+    const coordinates = {
+      latitude: cachedResult.latitude,
+      longitude: cachedResult.longitude,
+    };
+    memoryCache.set(key, coordinates);
+    return coordinates;
+  }
+
   const apiKey = process.env.GEOAPIFY_API_KEY;
   const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(location)}&format=json&apiKey=${apiKey}`;
 
@@ -17,10 +41,23 @@ export async function getCoordinates(location) {
     if (!result) {
       return null;
     }
-    return {
+    const coordinates = {
       latitude: result.lat,
       longitude: result.lon,
     };
+
+    await prisma.locationCache.upsert({
+      where: { key },
+      update: {},
+      create: {
+        key,
+        latitude: coordinates.latitude,
+        longitude: coordinates.longitude,
+      },
+    });
+
+    memoryCache.set(key, coordinates);
+    return coordinates;
   } catch (error) {
     console.error(error);
     return null;
@@ -38,7 +75,7 @@ export async function getCoordinates(location) {
 
 export function harvesineDistance(lat1, lon1, lat2, lon2) {
   const toRadian = (value) => (value * Math.PI) / 180;
-  const R = 6371; // Radius of the Earth in kilometers
+  const R = 6371;
 
   const dLat = toRadian(lat2 - lat1);
   const dLon = toRadian(lon2 - lon1);

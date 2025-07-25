@@ -53,6 +53,11 @@ export type SearchQuery = $Result.DefaultSelection<Prisma.$SearchQueryPayload>
  * 
  */
 export type Interaction = $Result.DefaultSelection<Prisma.$InteractionPayload>
+/**
+ * Model LocationCache
+ * 
+ */
+export type LocationCache = $Result.DefaultSelection<Prisma.$LocationCachePayload>
 
 /**
  * Enums
@@ -288,6 +293,16 @@ export class PrismaClient<
     * ```
     */
   get interaction(): Prisma.InteractionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.locationCache`: Exposes CRUD operations for the **LocationCache** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LocationCaches
+    * const locationCaches = await prisma.locationCache.findMany()
+    * ```
+    */
+  get locationCache(): Prisma.LocationCacheDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -735,7 +750,8 @@ export namespace Prisma {
     Like: 'Like',
     session: 'session',
     SearchQuery: 'SearchQuery',
-    Interaction: 'Interaction'
+    Interaction: 'Interaction',
+    LocationCache: 'LocationCache'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -754,7 +770,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "review" | "post" | "like" | "session" | "searchQuery" | "interaction"
+      modelProps: "user" | "session" | "review" | "post" | "like" | "session" | "searchQuery" | "interaction" | "locationCache"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1350,6 +1366,80 @@ export namespace Prisma {
           }
         }
       }
+      LocationCache: {
+        payload: Prisma.$LocationCachePayload<ExtArgs>
+        fields: Prisma.LocationCacheFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LocationCacheFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationCachePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LocationCacheFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationCachePayload>
+          }
+          findFirst: {
+            args: Prisma.LocationCacheFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationCachePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LocationCacheFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationCachePayload>
+          }
+          findMany: {
+            args: Prisma.LocationCacheFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationCachePayload>[]
+          }
+          create: {
+            args: Prisma.LocationCacheCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationCachePayload>
+          }
+          createMany: {
+            args: Prisma.LocationCacheCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LocationCacheCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationCachePayload>[]
+          }
+          delete: {
+            args: Prisma.LocationCacheDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationCachePayload>
+          }
+          update: {
+            args: Prisma.LocationCacheUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationCachePayload>
+          }
+          deleteMany: {
+            args: Prisma.LocationCacheDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LocationCacheUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LocationCacheUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationCachePayload>[]
+          }
+          upsert: {
+            args: Prisma.LocationCacheUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LocationCachePayload>
+          }
+          aggregate: {
+            args: Prisma.LocationCacheAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLocationCache>
+          }
+          groupBy: {
+            args: Prisma.LocationCacheGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LocationCacheGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LocationCacheCountArgs<ExtArgs>
+            result: $Utils.Optional<LocationCacheCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1442,6 +1532,7 @@ export namespace Prisma {
     session?: sessionOmit
     searchQuery?: SearchQueryOmit
     interaction?: InteractionOmit
+    locationCache?: LocationCacheOmit
   }
 
   /* Types for Logging */
@@ -10892,6 +10983,1026 @@ export namespace Prisma {
 
 
   /**
+   * Model LocationCache
+   */
+
+  export type AggregateLocationCache = {
+    _count: LocationCacheCountAggregateOutputType | null
+    _avg: LocationCacheAvgAggregateOutputType | null
+    _sum: LocationCacheSumAggregateOutputType | null
+    _min: LocationCacheMinAggregateOutputType | null
+    _max: LocationCacheMaxAggregateOutputType | null
+  }
+
+  export type LocationCacheAvgAggregateOutputType = {
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type LocationCacheSumAggregateOutputType = {
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type LocationCacheMinAggregateOutputType = {
+    key: string | null
+    location: string | null
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type LocationCacheMaxAggregateOutputType = {
+    key: string | null
+    location: string | null
+    latitude: number | null
+    longitude: number | null
+  }
+
+  export type LocationCacheCountAggregateOutputType = {
+    key: number
+    location: number
+    latitude: number
+    longitude: number
+    _all: number
+  }
+
+
+  export type LocationCacheAvgAggregateInputType = {
+    latitude?: true
+    longitude?: true
+  }
+
+  export type LocationCacheSumAggregateInputType = {
+    latitude?: true
+    longitude?: true
+  }
+
+  export type LocationCacheMinAggregateInputType = {
+    key?: true
+    location?: true
+    latitude?: true
+    longitude?: true
+  }
+
+  export type LocationCacheMaxAggregateInputType = {
+    key?: true
+    location?: true
+    latitude?: true
+    longitude?: true
+  }
+
+  export type LocationCacheCountAggregateInputType = {
+    key?: true
+    location?: true
+    latitude?: true
+    longitude?: true
+    _all?: true
+  }
+
+  export type LocationCacheAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LocationCache to aggregate.
+     */
+    where?: LocationCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LocationCaches to fetch.
+     */
+    orderBy?: LocationCacheOrderByWithRelationInput | LocationCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LocationCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LocationCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LocationCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LocationCaches
+    **/
+    _count?: true | LocationCacheCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LocationCacheAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LocationCacheSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LocationCacheMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LocationCacheMaxAggregateInputType
+  }
+
+  export type GetLocationCacheAggregateType<T extends LocationCacheAggregateArgs> = {
+        [P in keyof T & keyof AggregateLocationCache]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLocationCache[P]>
+      : GetScalarType<T[P], AggregateLocationCache[P]>
+  }
+
+
+
+
+  export type LocationCacheGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LocationCacheWhereInput
+    orderBy?: LocationCacheOrderByWithAggregationInput | LocationCacheOrderByWithAggregationInput[]
+    by: LocationCacheScalarFieldEnum[] | LocationCacheScalarFieldEnum
+    having?: LocationCacheScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LocationCacheCountAggregateInputType | true
+    _avg?: LocationCacheAvgAggregateInputType
+    _sum?: LocationCacheSumAggregateInputType
+    _min?: LocationCacheMinAggregateInputType
+    _max?: LocationCacheMaxAggregateInputType
+  }
+
+  export type LocationCacheGroupByOutputType = {
+    key: string
+    location: string | null
+    latitude: number
+    longitude: number
+    _count: LocationCacheCountAggregateOutputType | null
+    _avg: LocationCacheAvgAggregateOutputType | null
+    _sum: LocationCacheSumAggregateOutputType | null
+    _min: LocationCacheMinAggregateOutputType | null
+    _max: LocationCacheMaxAggregateOutputType | null
+  }
+
+  type GetLocationCacheGroupByPayload<T extends LocationCacheGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LocationCacheGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LocationCacheGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LocationCacheGroupByOutputType[P]>
+            : GetScalarType<T[P], LocationCacheGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LocationCacheSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    key?: boolean
+    location?: boolean
+    latitude?: boolean
+    longitude?: boolean
+  }, ExtArgs["result"]["locationCache"]>
+
+  export type LocationCacheSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    key?: boolean
+    location?: boolean
+    latitude?: boolean
+    longitude?: boolean
+  }, ExtArgs["result"]["locationCache"]>
+
+  export type LocationCacheSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    key?: boolean
+    location?: boolean
+    latitude?: boolean
+    longitude?: boolean
+  }, ExtArgs["result"]["locationCache"]>
+
+  export type LocationCacheSelectScalar = {
+    key?: boolean
+    location?: boolean
+    latitude?: boolean
+    longitude?: boolean
+  }
+
+  export type LocationCacheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"key" | "location" | "latitude" | "longitude", ExtArgs["result"]["locationCache"]>
+
+  export type $LocationCachePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LocationCache"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      key: string
+      location: string | null
+      latitude: number
+      longitude: number
+    }, ExtArgs["result"]["locationCache"]>
+    composites: {}
+  }
+
+  type LocationCacheGetPayload<S extends boolean | null | undefined | LocationCacheDefaultArgs> = $Result.GetResult<Prisma.$LocationCachePayload, S>
+
+  type LocationCacheCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LocationCacheFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LocationCacheCountAggregateInputType | true
+    }
+
+  export interface LocationCacheDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LocationCache'], meta: { name: 'LocationCache' } }
+    /**
+     * Find zero or one LocationCache that matches the filter.
+     * @param {LocationCacheFindUniqueArgs} args - Arguments to find a LocationCache
+     * @example
+     * // Get one LocationCache
+     * const locationCache = await prisma.locationCache.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LocationCacheFindUniqueArgs>(args: SelectSubset<T, LocationCacheFindUniqueArgs<ExtArgs>>): Prisma__LocationCacheClient<$Result.GetResult<Prisma.$LocationCachePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LocationCache that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LocationCacheFindUniqueOrThrowArgs} args - Arguments to find a LocationCache
+     * @example
+     * // Get one LocationCache
+     * const locationCache = await prisma.locationCache.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LocationCacheFindUniqueOrThrowArgs>(args: SelectSubset<T, LocationCacheFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LocationCacheClient<$Result.GetResult<Prisma.$LocationCachePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LocationCache that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationCacheFindFirstArgs} args - Arguments to find a LocationCache
+     * @example
+     * // Get one LocationCache
+     * const locationCache = await prisma.locationCache.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LocationCacheFindFirstArgs>(args?: SelectSubset<T, LocationCacheFindFirstArgs<ExtArgs>>): Prisma__LocationCacheClient<$Result.GetResult<Prisma.$LocationCachePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LocationCache that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationCacheFindFirstOrThrowArgs} args - Arguments to find a LocationCache
+     * @example
+     * // Get one LocationCache
+     * const locationCache = await prisma.locationCache.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LocationCacheFindFirstOrThrowArgs>(args?: SelectSubset<T, LocationCacheFindFirstOrThrowArgs<ExtArgs>>): Prisma__LocationCacheClient<$Result.GetResult<Prisma.$LocationCachePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LocationCaches that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationCacheFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LocationCaches
+     * const locationCaches = await prisma.locationCache.findMany()
+     * 
+     * // Get first 10 LocationCaches
+     * const locationCaches = await prisma.locationCache.findMany({ take: 10 })
+     * 
+     * // Only select the `key`
+     * const locationCacheWithKeyOnly = await prisma.locationCache.findMany({ select: { key: true } })
+     * 
+     */
+    findMany<T extends LocationCacheFindManyArgs>(args?: SelectSubset<T, LocationCacheFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationCachePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LocationCache.
+     * @param {LocationCacheCreateArgs} args - Arguments to create a LocationCache.
+     * @example
+     * // Create one LocationCache
+     * const LocationCache = await prisma.locationCache.create({
+     *   data: {
+     *     // ... data to create a LocationCache
+     *   }
+     * })
+     * 
+     */
+    create<T extends LocationCacheCreateArgs>(args: SelectSubset<T, LocationCacheCreateArgs<ExtArgs>>): Prisma__LocationCacheClient<$Result.GetResult<Prisma.$LocationCachePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LocationCaches.
+     * @param {LocationCacheCreateManyArgs} args - Arguments to create many LocationCaches.
+     * @example
+     * // Create many LocationCaches
+     * const locationCache = await prisma.locationCache.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LocationCacheCreateManyArgs>(args?: SelectSubset<T, LocationCacheCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LocationCaches and returns the data saved in the database.
+     * @param {LocationCacheCreateManyAndReturnArgs} args - Arguments to create many LocationCaches.
+     * @example
+     * // Create many LocationCaches
+     * const locationCache = await prisma.locationCache.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LocationCaches and only return the `key`
+     * const locationCacheWithKeyOnly = await prisma.locationCache.createManyAndReturn({
+     *   select: { key: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LocationCacheCreateManyAndReturnArgs>(args?: SelectSubset<T, LocationCacheCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationCachePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LocationCache.
+     * @param {LocationCacheDeleteArgs} args - Arguments to delete one LocationCache.
+     * @example
+     * // Delete one LocationCache
+     * const LocationCache = await prisma.locationCache.delete({
+     *   where: {
+     *     // ... filter to delete one LocationCache
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LocationCacheDeleteArgs>(args: SelectSubset<T, LocationCacheDeleteArgs<ExtArgs>>): Prisma__LocationCacheClient<$Result.GetResult<Prisma.$LocationCachePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LocationCache.
+     * @param {LocationCacheUpdateArgs} args - Arguments to update one LocationCache.
+     * @example
+     * // Update one LocationCache
+     * const locationCache = await prisma.locationCache.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LocationCacheUpdateArgs>(args: SelectSubset<T, LocationCacheUpdateArgs<ExtArgs>>): Prisma__LocationCacheClient<$Result.GetResult<Prisma.$LocationCachePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LocationCaches.
+     * @param {LocationCacheDeleteManyArgs} args - Arguments to filter LocationCaches to delete.
+     * @example
+     * // Delete a few LocationCaches
+     * const { count } = await prisma.locationCache.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LocationCacheDeleteManyArgs>(args?: SelectSubset<T, LocationCacheDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LocationCaches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationCacheUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LocationCaches
+     * const locationCache = await prisma.locationCache.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LocationCacheUpdateManyArgs>(args: SelectSubset<T, LocationCacheUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LocationCaches and returns the data updated in the database.
+     * @param {LocationCacheUpdateManyAndReturnArgs} args - Arguments to update many LocationCaches.
+     * @example
+     * // Update many LocationCaches
+     * const locationCache = await prisma.locationCache.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LocationCaches and only return the `key`
+     * const locationCacheWithKeyOnly = await prisma.locationCache.updateManyAndReturn({
+     *   select: { key: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LocationCacheUpdateManyAndReturnArgs>(args: SelectSubset<T, LocationCacheUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationCachePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LocationCache.
+     * @param {LocationCacheUpsertArgs} args - Arguments to update or create a LocationCache.
+     * @example
+     * // Update or create a LocationCache
+     * const locationCache = await prisma.locationCache.upsert({
+     *   create: {
+     *     // ... data to create a LocationCache
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LocationCache we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LocationCacheUpsertArgs>(args: SelectSubset<T, LocationCacheUpsertArgs<ExtArgs>>): Prisma__LocationCacheClient<$Result.GetResult<Prisma.$LocationCachePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LocationCaches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationCacheCountArgs} args - Arguments to filter LocationCaches to count.
+     * @example
+     * // Count the number of LocationCaches
+     * const count = await prisma.locationCache.count({
+     *   where: {
+     *     // ... the filter for the LocationCaches we want to count
+     *   }
+     * })
+    **/
+    count<T extends LocationCacheCountArgs>(
+      args?: Subset<T, LocationCacheCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LocationCacheCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LocationCache.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationCacheAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LocationCacheAggregateArgs>(args: Subset<T, LocationCacheAggregateArgs>): Prisma.PrismaPromise<GetLocationCacheAggregateType<T>>
+
+    /**
+     * Group by LocationCache.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LocationCacheGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LocationCacheGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LocationCacheGroupByArgs['orderBy'] }
+        : { orderBy?: LocationCacheGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LocationCacheGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLocationCacheGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LocationCache model
+   */
+  readonly fields: LocationCacheFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LocationCache.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LocationCacheClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LocationCache model
+   */
+  interface LocationCacheFieldRefs {
+    readonly key: FieldRef<"LocationCache", 'String'>
+    readonly location: FieldRef<"LocationCache", 'String'>
+    readonly latitude: FieldRef<"LocationCache", 'Float'>
+    readonly longitude: FieldRef<"LocationCache", 'Float'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LocationCache findUnique
+   */
+  export type LocationCacheFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationCache
+     */
+    select?: LocationCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationCache
+     */
+    omit?: LocationCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which LocationCache to fetch.
+     */
+    where: LocationCacheWhereUniqueInput
+  }
+
+  /**
+   * LocationCache findUniqueOrThrow
+   */
+  export type LocationCacheFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationCache
+     */
+    select?: LocationCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationCache
+     */
+    omit?: LocationCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which LocationCache to fetch.
+     */
+    where: LocationCacheWhereUniqueInput
+  }
+
+  /**
+   * LocationCache findFirst
+   */
+  export type LocationCacheFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationCache
+     */
+    select?: LocationCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationCache
+     */
+    omit?: LocationCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which LocationCache to fetch.
+     */
+    where?: LocationCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LocationCaches to fetch.
+     */
+    orderBy?: LocationCacheOrderByWithRelationInput | LocationCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LocationCaches.
+     */
+    cursor?: LocationCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LocationCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LocationCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LocationCaches.
+     */
+    distinct?: LocationCacheScalarFieldEnum | LocationCacheScalarFieldEnum[]
+  }
+
+  /**
+   * LocationCache findFirstOrThrow
+   */
+  export type LocationCacheFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationCache
+     */
+    select?: LocationCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationCache
+     */
+    omit?: LocationCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which LocationCache to fetch.
+     */
+    where?: LocationCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LocationCaches to fetch.
+     */
+    orderBy?: LocationCacheOrderByWithRelationInput | LocationCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LocationCaches.
+     */
+    cursor?: LocationCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LocationCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LocationCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LocationCaches.
+     */
+    distinct?: LocationCacheScalarFieldEnum | LocationCacheScalarFieldEnum[]
+  }
+
+  /**
+   * LocationCache findMany
+   */
+  export type LocationCacheFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationCache
+     */
+    select?: LocationCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationCache
+     */
+    omit?: LocationCacheOmit<ExtArgs> | null
+    /**
+     * Filter, which LocationCaches to fetch.
+     */
+    where?: LocationCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LocationCaches to fetch.
+     */
+    orderBy?: LocationCacheOrderByWithRelationInput | LocationCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LocationCaches.
+     */
+    cursor?: LocationCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LocationCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LocationCaches.
+     */
+    skip?: number
+    distinct?: LocationCacheScalarFieldEnum | LocationCacheScalarFieldEnum[]
+  }
+
+  /**
+   * LocationCache create
+   */
+  export type LocationCacheCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationCache
+     */
+    select?: LocationCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationCache
+     */
+    omit?: LocationCacheOmit<ExtArgs> | null
+    /**
+     * The data needed to create a LocationCache.
+     */
+    data: XOR<LocationCacheCreateInput, LocationCacheUncheckedCreateInput>
+  }
+
+  /**
+   * LocationCache createMany
+   */
+  export type LocationCacheCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LocationCaches.
+     */
+    data: LocationCacheCreateManyInput | LocationCacheCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LocationCache createManyAndReturn
+   */
+  export type LocationCacheCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationCache
+     */
+    select?: LocationCacheSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationCache
+     */
+    omit?: LocationCacheOmit<ExtArgs> | null
+    /**
+     * The data used to create many LocationCaches.
+     */
+    data: LocationCacheCreateManyInput | LocationCacheCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LocationCache update
+   */
+  export type LocationCacheUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationCache
+     */
+    select?: LocationCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationCache
+     */
+    omit?: LocationCacheOmit<ExtArgs> | null
+    /**
+     * The data needed to update a LocationCache.
+     */
+    data: XOR<LocationCacheUpdateInput, LocationCacheUncheckedUpdateInput>
+    /**
+     * Choose, which LocationCache to update.
+     */
+    where: LocationCacheWhereUniqueInput
+  }
+
+  /**
+   * LocationCache updateMany
+   */
+  export type LocationCacheUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LocationCaches.
+     */
+    data: XOR<LocationCacheUpdateManyMutationInput, LocationCacheUncheckedUpdateManyInput>
+    /**
+     * Filter which LocationCaches to update
+     */
+    where?: LocationCacheWhereInput
+    /**
+     * Limit how many LocationCaches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LocationCache updateManyAndReturn
+   */
+  export type LocationCacheUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationCache
+     */
+    select?: LocationCacheSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationCache
+     */
+    omit?: LocationCacheOmit<ExtArgs> | null
+    /**
+     * The data used to update LocationCaches.
+     */
+    data: XOR<LocationCacheUpdateManyMutationInput, LocationCacheUncheckedUpdateManyInput>
+    /**
+     * Filter which LocationCaches to update
+     */
+    where?: LocationCacheWhereInput
+    /**
+     * Limit how many LocationCaches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LocationCache upsert
+   */
+  export type LocationCacheUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationCache
+     */
+    select?: LocationCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationCache
+     */
+    omit?: LocationCacheOmit<ExtArgs> | null
+    /**
+     * The filter to search for the LocationCache to update in case it exists.
+     */
+    where: LocationCacheWhereUniqueInput
+    /**
+     * In case the LocationCache found by the `where` argument doesn't exist, create a new LocationCache with this data.
+     */
+    create: XOR<LocationCacheCreateInput, LocationCacheUncheckedCreateInput>
+    /**
+     * In case the LocationCache was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LocationCacheUpdateInput, LocationCacheUncheckedUpdateInput>
+  }
+
+  /**
+   * LocationCache delete
+   */
+  export type LocationCacheDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationCache
+     */
+    select?: LocationCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationCache
+     */
+    omit?: LocationCacheOmit<ExtArgs> | null
+    /**
+     * Filter which LocationCache to delete.
+     */
+    where: LocationCacheWhereUniqueInput
+  }
+
+  /**
+   * LocationCache deleteMany
+   */
+  export type LocationCacheDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LocationCaches to delete
+     */
+    where?: LocationCacheWhereInput
+    /**
+     * Limit how many LocationCaches to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LocationCache without action
+   */
+  export type LocationCacheDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LocationCache
+     */
+    select?: LocationCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LocationCache
+     */
+    omit?: LocationCacheOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -11004,6 +12115,16 @@ export namespace Prisma {
   };
 
   export type InteractionScalarFieldEnum = (typeof InteractionScalarFieldEnum)[keyof typeof InteractionScalarFieldEnum]
+
+
+  export const LocationCacheScalarFieldEnum: {
+    key: 'key',
+    location: 'location',
+    latitude: 'latitude',
+    longitude: 'longitude'
+  };
+
+  export type LocationCacheScalarFieldEnum = (typeof LocationCacheScalarFieldEnum)[keyof typeof LocationCacheScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -11707,6 +12828,55 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Interaction"> | Date | string
   }
 
+  export type LocationCacheWhereInput = {
+    AND?: LocationCacheWhereInput | LocationCacheWhereInput[]
+    OR?: LocationCacheWhereInput[]
+    NOT?: LocationCacheWhereInput | LocationCacheWhereInput[]
+    key?: StringFilter<"LocationCache"> | string
+    location?: StringNullableFilter<"LocationCache"> | string | null
+    latitude?: FloatFilter<"LocationCache"> | number
+    longitude?: FloatFilter<"LocationCache"> | number
+  }
+
+  export type LocationCacheOrderByWithRelationInput = {
+    key?: SortOrder
+    location?: SortOrderInput | SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type LocationCacheWhereUniqueInput = Prisma.AtLeast<{
+    key?: string
+    AND?: LocationCacheWhereInput | LocationCacheWhereInput[]
+    OR?: LocationCacheWhereInput[]
+    NOT?: LocationCacheWhereInput | LocationCacheWhereInput[]
+    location?: StringNullableFilter<"LocationCache"> | string | null
+    latitude?: FloatFilter<"LocationCache"> | number
+    longitude?: FloatFilter<"LocationCache"> | number
+  }, "key">
+
+  export type LocationCacheOrderByWithAggregationInput = {
+    key?: SortOrder
+    location?: SortOrderInput | SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+    _count?: LocationCacheCountOrderByAggregateInput
+    _avg?: LocationCacheAvgOrderByAggregateInput
+    _max?: LocationCacheMaxOrderByAggregateInput
+    _min?: LocationCacheMinOrderByAggregateInput
+    _sum?: LocationCacheSumOrderByAggregateInput
+  }
+
+  export type LocationCacheScalarWhereWithAggregatesInput = {
+    AND?: LocationCacheScalarWhereWithAggregatesInput | LocationCacheScalarWhereWithAggregatesInput[]
+    OR?: LocationCacheScalarWhereWithAggregatesInput[]
+    NOT?: LocationCacheScalarWhereWithAggregatesInput | LocationCacheScalarWhereWithAggregatesInput[]
+    key?: StringWithAggregatesFilter<"LocationCache"> | string
+    location?: StringNullableWithAggregatesFilter<"LocationCache"> | string | null
+    latitude?: FloatWithAggregatesFilter<"LocationCache"> | number
+    longitude?: FloatWithAggregatesFilter<"LocationCache"> | number
+  }
+
   export type UserCreateInput = {
     email: string
     password: string
@@ -12253,6 +13423,55 @@ export namespace Prisma {
     postId?: IntFieldUpdateOperationsInput | number
     type?: EnumInteractionTypeFieldUpdateOperationsInput | $Enums.InteractionType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LocationCacheCreateInput = {
+    key: string
+    location?: string | null
+    latitude: number
+    longitude: number
+  }
+
+  export type LocationCacheUncheckedCreateInput = {
+    key: string
+    location?: string | null
+    latitude: number
+    longitude: number
+  }
+
+  export type LocationCacheUpdateInput = {
+    key?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type LocationCacheUncheckedUpdateInput = {
+    key?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type LocationCacheCreateManyInput = {
+    key: string
+    location?: string | null
+    latitude: number
+    longitude: number
+  }
+
+  export type LocationCacheUpdateManyMutationInput = {
+    key?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
+  }
+
+  export type LocationCacheUncheckedUpdateManyInput = {
+    key?: StringFieldUpdateOperationsInput | string
+    location?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: FloatFieldUpdateOperationsInput | number
+    longitude?: FloatFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -12901,6 +14120,37 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumInteractionTypeFilter<$PrismaModel>
     _max?: NestedEnumInteractionTypeFilter<$PrismaModel>
+  }
+
+  export type LocationCacheCountOrderByAggregateInput = {
+    key?: SortOrder
+    location?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type LocationCacheAvgOrderByAggregateInput = {
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type LocationCacheMaxOrderByAggregateInput = {
+    key?: SortOrder
+    location?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type LocationCacheMinOrderByAggregateInput = {
+    key?: SortOrder
+    location?: SortOrder
+    latitude?: SortOrder
+    longitude?: SortOrder
+  }
+
+  export type LocationCacheSumOrderByAggregateInput = {
+    latitude?: SortOrder
+    longitude?: SortOrder
   }
 
   export type UserCreateinterestsInput = {
