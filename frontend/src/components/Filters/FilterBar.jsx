@@ -1,6 +1,6 @@
 import './FilterBar.css';
 
-function FilterBar({ setFilter }) {
+function FilterBar({ setFilter, setType, setRecency }) {
   return (
     <div className="filter-bar">
       <button
@@ -9,15 +9,21 @@ function FilterBar({ setFilter }) {
       >
         Recommended
       </button>
-      <select className="filter-select">
+      <select
+        className="filter-select"
+        onChange={(e) => setType(e.target.value)}
+      >
         <option value="">Type</option>
-        <option value="Offer">Offer</option>
-        <option value="Request">Request</option>
+        <option value="OFFER">Offer</option>
+        <option value="REQUEST">Request</option>
       </select>
-      <select className="filter-select">
+      <select
+        className="filter-select"
+        onChange={(e) => setRecency(e.target.value)}
+      >
         <option value="">Recent</option>
-        <option value="Recent">last week</option>
-        <option value="Recommended"> last month</option>
+        <option value="last_week">Last Week</option>
+        <option value="last_month"> Last Month</option>
       </select>
     </div>
   );

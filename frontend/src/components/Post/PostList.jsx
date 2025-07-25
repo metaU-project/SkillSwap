@@ -2,7 +2,7 @@ import PostCard from './PostCard';
 import './Post.css';
 function PostList({ posts }) {
   if (posts?.length === 0) {
-    return <p>No skill posts available.</p>;
+    return <p className="fall-back-text">No skill posts available.</p>;
   }
 
   return (
