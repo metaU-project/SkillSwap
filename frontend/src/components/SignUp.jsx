@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { registerUser } from '../utils/authFetch';
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './SignUp.css';
 import ErrorModal from './ErrorModal';
 

@@ -1,7 +1,6 @@
 import { API_ROUTES } from './apiRoutes';
 import { ERROR_CODES } from './ErrorCodes';
 
-//complete onboarding
 export async function completeOnboarding(interests, location, bio = '') {
   try {
     const response = await fetch(API_ROUTES.onboarding, {
@@ -26,7 +25,6 @@ export async function completeOnboarding(interests, location, bio = '') {
   }
 }
 
-//get suggested interests
 export async function getSuggestedInterests() {
   try {
     const response = await fetch(API_ROUTES.suggestions);

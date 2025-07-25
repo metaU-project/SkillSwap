@@ -49,7 +49,7 @@ const LocationInput = ({ location, setLocation }) => {
         value={query !== '' ? query : location}
         onChange={(e) => {
           setQuery(e.target.value);
-            setLocation('');
+          setLocation('');
           setHasSelected(false);
         }}
         className="location-input"

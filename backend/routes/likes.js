@@ -4,7 +4,6 @@ const router = express.Router();
 const checkAuth = require('../middleware/checkAuth');
 const ERROR_CODES = require('../utils/errors');
 
-//like a post
 router.patch('/post/:postId/like', checkAuth, async (req, res) => {
   const postId = parseInt(req.params.postId);
   const userId = req.session.userId;

@@ -1,7 +1,6 @@
 import { API_ROUTES } from './apiRoutes';
 import { ERROR_CODES } from './ErrorCodes';
 
-//log interactions with posts
 export const interactionLog = async (postId, type) => {
   try {
     const response = await fetch(API_ROUTES.interaction, {
@@ -24,7 +23,6 @@ export const interactionLog = async (postId, type) => {
   }
 };
 
-//get recommendations
 export const getRecommendations = async (userId) => {
   try {
     const response = await fetch(`${API_ROUTES.recommendations}/${userId}`, {

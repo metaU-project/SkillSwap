@@ -1,7 +1,6 @@
 import { API_ROUTES } from './apiRoutes';
 import { ERROR_CODES } from './ErrorCodes';
 
-//tokenized search
 export const getTokenizedSearch = async (keywords) => {
   try {
     const response = await fetch(
@@ -21,7 +20,6 @@ export const getTokenizedSearch = async (keywords) => {
   }
 };
 
-//autosuggestions
 export const getAutosuggestions = async (input) => {
   try {
     const response = await fetch(

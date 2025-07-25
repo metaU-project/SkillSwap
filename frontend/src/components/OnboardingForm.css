@@ -16,7 +16,6 @@
   margin: 1px 0;
   font-size: 1.2rem;
   font-weight: bold;
-
 }
 
 .onboarding-form input[type='text'],
@@ -26,7 +25,7 @@
   margin-top: 8px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   box-sizing: border-box;
 }
 

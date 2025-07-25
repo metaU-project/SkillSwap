@@ -6,7 +6,6 @@ const ERROR_CODES = require('../utils/errors');
 const cloudinary = require('../config/cloudinary');
 const { rebuildTrie } = require('./search');
 
-//fetch all posts
 router.get('/', async (req, res) => {
   try {
     const { category, location, type } = req.query;
@@ -40,7 +39,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-//create a post
 router.post('/', checkAuth, async (req, res) => {
   const title = req.body.title;
   const description = req.body.description;
@@ -58,7 +56,6 @@ router.post('/', checkAuth, async (req, res) => {
   try {
     let imageUrl = null;
 
-    // If image is provided, upload to Cloudinary
     if (image) {
       const streamifier = require('streamifier');
 
@@ -101,7 +98,6 @@ router.post('/', checkAuth, async (req, res) => {
       },
     });
 
-    // Rebuild the Trie with the new post data
     try {
       await rebuildTrie();
     } catch (trieError) {

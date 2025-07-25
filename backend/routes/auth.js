@@ -5,10 +5,8 @@ const router = express.Router();
 const rateLimit = require('express-rate-limit');
 const ERROR_CODES = require('../utils/errors');
 
-//check valid email
 const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-//route for signup
 router.post('/register', async (req, res) => {
   const { first_name, last_name, password, email } = req.body;
 
@@ -50,15 +48,12 @@ router.post('/register', async (req, res) => {
   }
 });
 
-//rate limiting for login
-
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 5,
   message: { error: ERROR_CODES.TOO_MANY_REQUESTS },
 });
 
-//route for log in
 router.post('/login', loginLimiter, async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -83,7 +78,6 @@ router.post('/login', loginLimiter, async (req, res) => {
   }
 });
 
-// Check if user is logged in
 router.get('/me', async (req, res) => {
   if (!req.session.userId) {
     return res.status(401).json({ message: 'Not logged in' });
@@ -110,7 +104,6 @@ router.get('/me', async (req, res) => {
   }
 });
 
-//logout
 router.post('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {

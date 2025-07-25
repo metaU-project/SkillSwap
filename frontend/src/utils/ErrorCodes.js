@@ -1,4 +1,3 @@
-// error enums for frontend
 export const ERROR_CODES = {
   POST_ERROR: 'Error fetching posts',
   POSTS_NOT_FOUND: 'No posts found',

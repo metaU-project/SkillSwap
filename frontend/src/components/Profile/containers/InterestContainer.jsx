@@ -1,5 +1,5 @@
 import './InterestContainer.css';
-const InterestContainer = ({interests}) => {
+const InterestContainer = ({ interests }) => {
   return (
     <div>
       <h2>My Interests</h2>

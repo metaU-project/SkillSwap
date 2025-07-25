@@ -9,21 +9,14 @@ function getRecencyScore(post) {
 
   let baseRecencyScore = 0;
 
-  //linear decay first 24 hours
   if (ageInDays <= 1) {
     const baseScore = 10;
     baseRecencyScore = baseScore * (1 - ageInDays);
-  }
-
-  //exponential decay for the next 7 days
-  else if (ageInDays <= 7) {
+  } else if (ageInDays <= 7) {
     const baseScore = 8;
     const decayRate = 0.3;
     baseRecencyScore = baseScore * Math.exp(-decayRate * (ageInDays - 1));
-  }
-
-  //logarithmic decay for the next 30 days
-  else if (ageInDays <= 30) {
+  } else if (ageInDays <= 30) {
     const baseScore = 5;
     const logAge = Math.log(ageInDays - 6);
     baseRecencyScore = Math.max(baseScore - logAge, 0);
@@ -31,7 +24,6 @@ function getRecencyScore(post) {
     baseRecencyScore = 0.5;
   }
 
-  //engagement score
   const numLikes = post.numLikes || 0;
   const numReviews = post.numReviews || 0;
   const engagementScore = numLikes * 2 + numReviews * 3;

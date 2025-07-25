@@ -16,7 +16,6 @@ const sessionsRoutes = require('./routes/sessions');
 const fileUpload = require('express-fileupload');
 const app = express();
 
-// Trust proxy for Render deployment
 app.set('trust proxy', 1);
 const isProduction = process.env.NODE_ENV === 'production';
 

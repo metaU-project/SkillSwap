@@ -4,7 +4,6 @@ const router = express.Router();
 const checkAuth = require('../middleware/checkAuth');
 const ERROR_CODES = require('../utils/errors');
 
-//get suggestions for interests
 const suggestedInterests = [
   'Web Development',
   'Graphic Design',
@@ -19,7 +18,6 @@ router.get('/interests/suggestions', (req, res) => {
   res.json({ suggestions: suggestedInterests });
 });
 
-//add interests for a user
 router.post('/', checkAuth, async (req, res) => {
   const userId = req.session.userId;
   const { interests, location, bio } = req.body;

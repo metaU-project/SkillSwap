@@ -1,7 +1,6 @@
 import { API_ROUTES } from './apiRoutes';
 import { ERROR_CODES } from './ErrorCodes';
 
-// Fetches all reviews from the server
 export const reviewFetch = async (userId) => {
   try {
     const response = await fetch(`${API_ROUTES.reviews}/${userId}`, {
@@ -19,7 +18,6 @@ export const reviewFetch = async (userId) => {
   }
 };
 
-//fetch review for a post
 export const fetchPostReviews = async (postId) => {
   try {
     const response = await fetch(`${API_ROUTES.postReview}/${postId}`, {
@@ -37,7 +35,6 @@ export const fetchPostReviews = async (postId) => {
   }
 };
 
-//create a review for a post
 export const createPostReview = async (postId, review) => {
   try {
     const response = await fetch(`${API_ROUTES.postReview}/${postId}`, {

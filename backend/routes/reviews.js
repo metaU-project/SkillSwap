@@ -4,7 +4,6 @@ const router = express.Router();
 const checkAuth = require('../middleware/checkAuth');
 const ERROR_CODES = require('../utils/errors');
 
-// GET all reviews for a user
 router.get('/:userId', async (req, res) => {
   const { userId } = req.params;
   if (!userId) {
@@ -32,7 +31,6 @@ router.get('/:userId', async (req, res) => {
   }
 });
 
-//get reviews for a post
 router.get('/post/:postId', async (req, res) => {
   const { postId } = req.params;
   if (!postId) {
@@ -62,7 +60,6 @@ router.get('/post/:postId', async (req, res) => {
   }
 });
 
-// POST a new review to a post
 router.post('/post/:postId', checkAuth, async (req, res) => {
   const postId = parseInt(req.params.postId);
   const { comment } = req.body;
