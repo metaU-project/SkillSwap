@@ -10,6 +10,7 @@ const { getDomainScore } = require('./categoryClusters');
  */
 
 async function getCollaborativeRecommendations(userId, userInterests) {
+  const MAX_DEPTH = 3;
   const { userToPosts, postToUsers } = await buildInteractionGraph();
   const seenPostIds = new Set();
   const visited = new Set();
@@ -19,12 +20,10 @@ async function getCollaborativeRecommendations(userId, userInterests) {
   const { likedPosts, reviewedPosts, viewedPosts } =
     await getInteractions(userId);
   [...likedPosts, ...reviewedPosts, ...viewedPosts].forEach((interaction) => {
-    seenPostIds.add(interaction.postId);
+    seenPostIds.add(interaction.post.id);
   });
 
   visited.add(parseInt(userId));
-
-  const MAX_DEPTH = 3;
 
   while (queue.length > 0) {
     const { userId: currentUserId, depth } = queue.shift();
@@ -43,10 +42,10 @@ async function getCollaborativeRecommendations(userId, userInterests) {
         }
       }
     }
-
     const posts = userToPosts.get(currentUserId) || [];
     for (const postId of posts) {
       if (seenPostIds.has(postId)) {
+        postScores.set(postId, (postScores.get(postId) || 0) + 0.1);
         continue;
       }
 
@@ -56,11 +55,13 @@ async function getCollaborativeRecommendations(userId, userInterests) {
     }
   }
   const postIds = [...postScores.keys()];
+
   const posts = await prisma.post.findMany({
     where: {
       id: { in: postIds },
     },
   });
+
   const enriched = posts.map((post) => {
     let domainScore = 0;
     for (const interest of userInterests) {
