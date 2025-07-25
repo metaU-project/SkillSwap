@@ -2,6 +2,7 @@ const { buildInteractionGraph } = require('./collabGraph');
 const { getInteractions } = require('../interactions/interaction');
 const { getDomainScore } = require('./categoryClusters');
 const { getRecencyScore } = require('../../utils/scoringUtils');
+const prisma = require('../../prisma/client');
 
 /**
  * Generates collaborative recommendations for a user based on their interactions with other users and posts.
