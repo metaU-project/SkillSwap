@@ -59,8 +59,8 @@ function scorePost({
   }
 
   if (viewedPosts.some((v) => v.post?.id === post.id)) {
-    score -= 20;
-    breakdown.viewed = -20;
+    score -= 2;
+    breakdown.viewed = -2;
   }
   if (post.interests?.some((interest) => interests.includes(interest))) {
     score += 4;
@@ -73,7 +73,6 @@ function scorePost({
   score += getRecencyScore(post);
   breakdown.recency = getRecencyScore(post);
 
-  //boost for unexplored interests
   const interactedCategories = new Set([
     ...likedPosts.map((p) => p.category),
     ...reviewedPosts.map((p) => p.category),

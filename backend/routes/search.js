@@ -89,6 +89,7 @@ router.get('/', async (req, res) => {
             first_name: true,
             last_name: true,
             location: true,
+            createdAt: true,
           },
         },
         likes: true,
