@@ -8,8 +8,11 @@ import { FaRegHeart } from 'react-icons/fa6';
 import { interactionLog } from '../../utils/recommendationFetch';
 import { InteractionTypes } from '../../utils/InteractionTypes';
 import EmailToast from '../schedule/EmailToast';
+import CursorTooltip from '../CursorTooltip/CursorTooltip';
+import { useCursorTooltip } from '../CursorTooltip/userCursorTooltip';
 
 function PostCard({ post, posts }) {
+  const { tooltip, showTooltip, hideTooltip } = useCursorTooltip();
   const [likes, setLikes] = useState(post.numLikes);
   const [isLiked, setIsLiked] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -54,7 +57,39 @@ function PostCard({ post, posts }) {
     e.preventDefault();
     setShowRecommend(false);
   };
+  const userTooltip = (
+    <div>
+      <div className="row">
+        <div className="tooltip-avatar">
+          {' '}
+          {post.user.first_name[0]}
+          {post.user.last_name[0]}
+        </div>
+        <strong>
+          {post.user.first_name} {post.user.last_name}
+        </strong>
+      </div>
+      <p>
+        <strong>Member since: </strong>
+        {post.user.createdAt.slice(0, 4)}
+      </p>
+      <p className="text-xs text-muted">
+        <strong>Contact at: </strong>
+        {post.user.email}
+      </p>
+    </div>
+  );
 
+  const locationTooltip = (
+    <div>
+      <p className="text-xs">📍 {post.location}</p>
+      <p className="text-xs text-muted">
+        {post.type === 'OFFER'
+          ? 'Offering sessions here'
+          : 'Looking to meet here'}
+      </p>
+    </div>
+  );
   return (
     <>
       <div className="post-card" onClick={handlePostClick}>
@@ -78,7 +113,11 @@ function PostCard({ post, posts }) {
 
         <div className="post-meta">
           <span className="post-category-pill">{post.category}</span>
-          <span className="post-location">
+          <span
+            className="post-location"
+            onMouseEnter={(e) => showTooltip(locationTooltip, e.nativeEvent)}
+            onMouseLeave={hideTooltip}
+          >
             <MdOutlineLocationOn />
             {post.location.slice(0, 20)}
           </span>
@@ -87,7 +126,11 @@ function PostCard({ post, posts }) {
           </span>
         </div>
 
-        <div className="post-user">
+        <div
+          className="post-user"
+          onMouseEnter={(e) => showTooltip(userTooltip, e.nativeEvent)}
+          onMouseLeave={hideTooltip}
+        >
           <strong>Posted by:</strong> {post.user.first_name}{' '}
           {post.user.last_name}
         </div>
@@ -146,6 +189,11 @@ function PostCard({ post, posts }) {
           setShowModal={setShowModal}
         />
       )}
+      <CursorTooltip
+        isVisible={tooltip.isVisible}
+        content={tooltip.content}
+        position={tooltip.position}
+      />
     </>
   );
 }

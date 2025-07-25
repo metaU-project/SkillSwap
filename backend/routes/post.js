@@ -20,7 +20,13 @@ router.get('/', async (req, res) => {
       where: filters,
       include: {
         user: {
-          select: { id: true, first_name: true, last_name: true, email: true },
+          select: {
+            id: true,
+            first_name: true,
+            last_name: true,
+            email: true,
+            createdAt: true,
+          },
         },
         reviews: true,
         likes: true,
