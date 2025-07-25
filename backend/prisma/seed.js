@@ -1,7 +1,6 @@
 const prisma = require('../prisma/client');
 
 async function main() {
-  // Example Users
   const user1 = await prisma.user.create({
     data: {
       first_name: 'Alex',
@@ -22,7 +21,6 @@ async function main() {
     },
   });
 
-  // Example Posts
   await prisma.post.create({
     data: {
       title: 'Learn Guitar',

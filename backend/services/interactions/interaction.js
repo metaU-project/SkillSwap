@@ -39,17 +39,15 @@ async function getInteractions(userId) {
         createdAt: 'desc',
       },
     });
-    //extract liked posts
+
     const likedPosts = userInteractions
       .filter((interaction) => interaction.type === InteractionType.LIKED)
       .map((interaction) => interaction);
 
-    //extract reviewed posts
     const reviewedPosts = userInteractions
       .filter((interaction) => interaction.type === InteractionType.REVIEWED)
       .map((interaction) => interaction);
 
-    //extract viewed posts
     const viewedPosts = userInteractions
       .filter((interaction) => interaction.type === InteractionType.VIEWED)
       .map((interaction) => interaction);

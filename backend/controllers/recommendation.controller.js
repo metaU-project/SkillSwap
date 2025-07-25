@@ -24,7 +24,6 @@ async function getRecommendationInput(req, res) {
 
     const location = user.location;
 
-    //get all offer posts
     const offerPosts = await prisma.post.findMany({
       where: {
         type: PostType.OFFER,
@@ -54,15 +53,12 @@ async function getRecommendationInput(req, res) {
       },
     });
 
-    //scored offer posts
     const scoredPostsInput = offerPosts.filter(
       (post) => post.user.id !== userId
     );
 
-    //get trending posts
     const trendingPostIds = await getTrendingPostIds(prisma);
 
-    //user interactions
     const userInteractions = await getInteractions(userId);
     const collabRecs = await getCollaborativeRecommendations(userId, interests);
     const collabMap = new Map(collabRecs.map((p) => [p.id, p.score]));

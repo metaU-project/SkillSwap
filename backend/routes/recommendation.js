@@ -10,7 +10,6 @@ const {
   getCollaborativeRecommendations,
 } = require('../services/recommendation/collabRecommender');
 
-//log user interaction
 router.post('/interaction', checkAuth, async (req, res) => {
   const userId = req.session.userId;
   if (!userId) {
@@ -24,10 +23,8 @@ router.post('/interaction', checkAuth, async (req, res) => {
   res.status(200).json(interaction);
 });
 
-//get recommendation input
 router.get('/:userId', checkAuth, getRecommendationInput);
 
-//get collaborative recommendations
 router.get('/collaborative/:userId', checkAuth, async (req, res) => {
   const userId = req.session.userId;
   if (!userId) {

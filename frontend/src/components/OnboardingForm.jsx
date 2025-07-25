@@ -1,19 +1,19 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   getSuggestedInterests,
   completeOnboarding,
-} from "../utils/onboardingFetch";
-import ErrorModal from "./ErrorModal";
-import "./OnboardingForm.css";
-import { IoAddSharp } from "react-icons/io5";
-import LocationInput from "../components/Location/LocationInput";
+} from '../utils/onboardingFetch';
+import ErrorModal from './ErrorModal';
+import './OnboardingForm.css';
+import { IoAddSharp } from 'react-icons/io5';
+import LocationInput from '../components/Location/LocationInput';
 
 const Onboarding = () => {
-  const [location, setLocation] = useState("");
-  const [bio, setBio] = useState("");
+  const [location, setLocation] = useState('');
+  const [bio, setBio] = useState('');
   const [interests, setInterests] = useState([]);
-  const [customInterest, setCustomInterest] = useState("");
+  const [customInterest, setCustomInterest] = useState('');
   const [suggested, setSuggested] = useState([]);
   const [customInterests, setCustomInterests] = useState([]);
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const Onboarding = () => {
     if (customInterest && !interests.includes(customInterest)) {
       setCustomInterests([...customInterests, customInterest]);
       setInterests([...interests, customInterest]);
-      setCustomInterest("");
+      setCustomInterest('');
     }
   };
 
@@ -48,7 +48,7 @@ const Onboarding = () => {
     e.preventDefault();
     const res = await completeOnboarding(interests, location, bio);
     if (res?.success) {
-      navigate("/landing");
+      navigate('/landing');
     } else {
       setErrorMessage(res?.error);
     }

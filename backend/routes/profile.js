@@ -5,7 +5,6 @@ const checkAuth = require('../middleware/checkAuth');
 const ERROR_CODES = require('../utils/errors');
 const cloudinary = require('../config/cloudinary');
 
-//get user profile
 router.get('/:userId', checkAuth, async (req, res) => {
   try {
     const userId = req.session.userId;
@@ -34,7 +33,6 @@ router.get('/:userId', checkAuth, async (req, res) => {
   }
 });
 
-//update user profile picture
 router.post('/:userId/profile-pic', checkAuth, async (req, res) => {
   const userId = req.session.userId;
   if (!req.files || !req.files.profileImage) {
@@ -44,7 +42,6 @@ router.post('/:userId/profile-pic', checkAuth, async (req, res) => {
   const image = req.files.profileImage;
 
   try {
-    // Upload image to Cloudinary
     const result = await cloudinary.uploader.upload_stream(
       {
         resource_type: 'image',
@@ -65,7 +62,6 @@ router.post('/:userId/profile-pic', checkAuth, async (req, res) => {
         }
 
         try {
-          // Update user profile with Cloudinary URL
           const updatedUser = await prisma.user.update({
             where: { id: userId },
             data: { profileImage: result.secure_url },
@@ -80,7 +76,6 @@ router.post('/:userId/profile-pic', checkAuth, async (req, res) => {
       }
     );
 
-    // Convert buffer to stream and pipe to Cloudinary
     const streamifier = require('streamifier');
     streamifier.createReadStream(image.data).pipe(result);
   } catch (err) {

@@ -383,12 +383,12 @@ User authentication in SkillSwap is implemented using a **session-based login sy
     - Becomes a pointer over interactive elements.
     - Becomes not-allowed when form validation fails (e.g. incomplete scheduling form).
 - **custom-styled components**
-- I built a custom [skill carousel](https://pxl.cl/7Kl61) with shuffle, pause/play controls, and smooth animations from scratch using React and css animation functions.
+  - I built a custom [skill carousel](https://pxl.cl/7Kl61) with shuffle, pause/play controls, and smooth animations from scratch using  React and css animation functions.
 - Built from scratch with shuffle, pause/play buttons, and animated transitions.
   - Uses custom React logic and animation libraries (framer-motion).
 - **Loading states**
   - I have a [loading state component](https://pxl.cl/7Mjz6) (spinner) that appears during refresh and when awaiting a promise(e.g fetching data from backend)
   - Appears during asynchronous operations like:
-- Fetching data from backend
-- Submitting a session
-- Signing in or registering
+    - Fetching data from backend
+    - Submitting a session
+    - Signing in or registering

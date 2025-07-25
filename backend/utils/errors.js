@@ -1,4 +1,3 @@
-// error enums
 const ERROR_CODES = {
   INVALID_EMAIL: 'Invalid email format',
   USER_EXISTS: 'User already exists',

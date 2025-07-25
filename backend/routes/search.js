@@ -55,7 +55,6 @@ async function rebuildTrie() {
 }
 setTimeout(initializeTrie, 2000);
 
-//tokenized with scoring logic
 router.get('/', async (req, res) => {
   try {
     const { keywords } = req.query;
@@ -113,7 +112,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-//autosuggestions for search
 router.get('/suggestions', async (req, res) => {
   try {
     const { input } = req.query;
@@ -130,7 +128,6 @@ router.get('/suggestions', async (req, res) => {
   }
 });
 
-//popular suggestions
 const getPopularSuggestions = async () => {
   try {
     const popular = await prisma.post.findMany({

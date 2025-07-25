@@ -1,11 +1,11 @@
-import { API_ROUTES } from "./apiRoutes";
-import { ERROR_CODES } from "./ErrorCodes";
+import { API_ROUTES } from './apiRoutes';
+import { ERROR_CODES } from './ErrorCodes';
 
 export const fetchProfile = async (userId) => {
   try {
     const response = await fetch(`${API_ROUTES.profile}/${userId}`, {
-      method: "GET",
-      credentials: "include",
+      method: 'GET',
+      credentials: 'include',
     });
     if (!response.ok) {
       return { error: ERROR_CODES.ERROR_FETCHING_PROFILE };
@@ -17,17 +17,16 @@ export const fetchProfile = async (userId) => {
   }
 };
 
-//update profile picture
 export const updateProfilePicture = async (userId, profilePicture) => {
   const formData = new FormData();
-  formData.append("profileImage", profilePicture);
+  formData.append('profileImage', profilePicture);
   try {
     const response = await fetch(
       `${API_ROUTES.profile}/${userId}/profile-pic`,
       {
-        method: "POST",
+        method: 'POST',
         body: formData,
-        credentials: "include",
+        credentials: 'include',
       }
     );
     if (!response.ok) {
