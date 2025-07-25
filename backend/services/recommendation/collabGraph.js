@@ -1,4 +1,9 @@
 const { getAllInteractions } = require('../interactions/interaction');
+/**
+ * Builds the interaction graph for the recommendation service
+ * @returns {Promise<{userToPosts: Map<string, Set<string>>, postToUsers: Map<string, Set<string>>}>}
+ *
+ */
 
 async function buildInteractionGraph() {
   const interactions = await getAllInteractions();
