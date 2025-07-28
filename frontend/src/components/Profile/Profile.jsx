@@ -7,11 +7,12 @@ import CalendarContainer from './containers/CalendarContainer';
 import { FaHome } from 'react-icons/fa';
 import { MdOutlineEdit } from 'react-icons/md';
 import { MdAccessTime } from 'react-icons/md';
-import NewProfilePic from './modals/NewProfilePic';
+import EditProfile from './modals/EditProfile';
 import { TabButton } from './components/TabButton';
 import { fetchProfile } from '../../utils/profileFetch';
 import { useNavigate } from 'react-router-dom';
 import UserSessions from '../schedule/UserSessions';
+import { Mail, MapPin, Calendar } from 'lucide-react';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
@@ -40,13 +41,13 @@ const Profile = () => {
   return (
     <div className="main-section">
       <button className="home-btn" onClick={handleClickHome}>
-        <FaHome />{' '}
+        <FaHome className="icon" /> Home
+      </button>
+      <button className="edit-btn" onClick={() => setShowModal(true)}>
+        <MdOutlineEdit className="icon" /> Edit Profile
       </button>
       <div className="profile-header">
         <div className="profile-pic-container">
-          <button className="edit-btn" onClick={() => setShowModal(true)}>
-            <MdOutlineEdit />
-          </button>
           <img
             src={
               profilePic ||
@@ -58,20 +59,25 @@ const Profile = () => {
           />
         </div>
         <div className="user-details">
-          <h3>
-            {profile?.user.first_name} {profile?.user.last_name}
-          </h3>
-          <p>{profile?.user.email}</p>
-          <p>
-            <strong>Member Since: </strong>{' '}
-            {profile?.user.createdAt?.slice(0, 4)}
-          </p>
-          <p>
-            <strong>location: </strong> {profile?.user.location}
-          </p>
-          <p>
-            <strong>Bio: </strong> {profile?.user.bio}
-          </p>
+          <div className="user-details-sub">
+            <h3>
+              {profile?.user.first_name} {profile?.user.last_name}
+            </h3>
+            <div className="details-row">
+              <p>
+                <Mail className="icon" />
+                {profile?.user.email}
+              </p>
+              <p>
+                <MapPin className="icon" /> {profile?.user.location}
+              </p>
+              <p>
+                <Calendar className="icon" />
+                Member since: {profile?.user.createdAt?.slice(0, 4)}
+              </p>
+            </div>
+            <p>{profile?.user.bio}</p>
+          </div>
         </div>
       </div>
       <div className="profile-bottom">
@@ -123,7 +129,8 @@ const Profile = () => {
         </div>
       </div>
       {showModal && (
-        <NewProfilePic
+        <EditProfile
+          profile={profile}
           setShowModal={setShowModal}
           onImageUpdate={handleImageUpdate}
         />
