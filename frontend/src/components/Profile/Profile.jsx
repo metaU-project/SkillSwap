@@ -108,12 +108,14 @@ const Profile = () => {
             </TabButton>
           </div>
           <div>
-            {selectedBtn === 1 && <PostContainer posts={profile?.user.posts} />}
+            {selectedBtn === 1 && (
+              <PostContainer posts={profile?.user?.posts} />
+            )}
             {selectedBtn === 2 && (
-              <ReviewContainer reviews={profile.user.receivedReviews} />
+              <ReviewContainer reviews={profile?.user?.receivedReviews} />
             )}
             {selectedBtn === 3 && (
-              <InterestContainer interests={profile.user.interests} />
+              <InterestContainer interests={profile?.user?.interests} />
             )}
           </div>
         </div>
@@ -133,6 +135,7 @@ const Profile = () => {
           profile={profile}
           setShowModal={setShowModal}
           onImageUpdate={handleImageUpdate}
+          setProfile={setProfile}
         />
       )}
     </div>
