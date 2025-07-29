@@ -38,7 +38,7 @@ model Session {
   participantId Int
   createdAt     DateTime @default(now())
   participant   User     @relation("ParticipantSessions", fields: [participantId], references: [id])
-  post          Post     @relation(fields: [postId], references: [id])
+  post          Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
 }
 
 model Review {
@@ -48,7 +48,7 @@ model Review {
   recipientId Int
   createdAt   DateTime @default(now())
   postId      Int?
-  post        Post?    @relation(fields: [postId], references: [id])
+  post        Post?    @relation(fields: [postId], references: [id], onDelete: Cascade)
   recipient   User     @relation("Recipient", fields: [recipientId], references: [id])
   reviewer    User     @relation("Reviewer", fields: [reviewerId], references: [id])
 }
@@ -78,7 +78,7 @@ model Like {
   userId    Int
   postId    Int
   createdAt DateTime @default(now())
-  post      Post     @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   user      User     @relation(fields: [userId], references: [id])
 }
 
@@ -103,7 +103,7 @@ model Interaction{
   postId    Int
   type      InteractionType
   createdAt DateTime @default(now())
-  post      Post     @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
   user      User     @relation(fields: [userId], references: [id])
 }
 
