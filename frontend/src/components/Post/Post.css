@@ -133,6 +133,7 @@
   cursor: pointer;
   background: none;
 }
+
 .unliked-btn:hover,
 .liked-btn:hover {
   background-color: #c286d6;
@@ -170,22 +171,26 @@
   border: 2px solid;
   transition: all 0.2s ease;
 }
+
 .post-type.offer {
   background: linear-gradient(135deg, #4caf50, #45a049);
   color: white;
   border-color: #4caf50;
   box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
 }
+
 .post-type.request {
   background: linear-gradient(135deg, #2196f3, #1976d2);
   color: white;
   border-color: #2196f3;
   box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
 }
+
 .post-type:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+
 .post-reviews-count {
   color: #666;
   font-size: 0.9rem;
