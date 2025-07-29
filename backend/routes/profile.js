@@ -86,4 +86,28 @@ router.post('/:userId/profile-pic', checkAuth, async (req, res) => {
   }
 });
 
+router.put('/:userId', checkAuth, async (req, res) => {
+  const userId = req.session.userId;
+  const { first_name, last_name, email, bio, location } = req.body;
+
+  try {
+    const updatedUser = await prisma.user.update({
+      where: { id: userId },
+      data: {
+        first_name,
+        last_name,
+        email,
+        bio,
+        location,
+      },
+    });
+    return res.status(200).json({ user: updatedUser });
+  } catch (err) {
+    console.error(err);
+    return res
+      .status(500)
+      .json({ error: ERROR_CODES.FAILED_TO_UPDATE_PROFILE });
+  }
+});
+
 module.exports = router;

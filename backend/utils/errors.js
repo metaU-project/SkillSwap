@@ -28,6 +28,7 @@ const ERROR_CODES = {
   SESSION_CONFLICT:
     'There is already a session scheduled for this participant at this time.',
   INTERNAL_ERROR: 'Internal error',
+  FAILED_TO_UPDATE_PROFILE: 'Failed to update profile',
 };
 
 module.exports = ERROR_CODES;
