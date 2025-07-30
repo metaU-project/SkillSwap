@@ -3,7 +3,7 @@ import { Trash2, BookOpen } from 'lucide-react';
 import { useState } from 'react';
 import DeletePostModal from '../modals/DeletePost';
 
-const PostContainer = ({ posts }) => {
+const PostContainer = ({ posts, setPosts }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [postToDelete, setPostToDelete] = useState(null);
 
@@ -46,6 +46,8 @@ const PostContainer = ({ posts }) => {
       {showDeleteModal && (
         <DeletePostModal
           post={postToDelete}
+          posts={posts}
+          setPosts={setPosts}
           setShowDeleteModal={setShowDeleteModal}
         />
       )}

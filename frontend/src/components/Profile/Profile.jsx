@@ -18,6 +18,7 @@ const Profile = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedBtn, setSelectedBtn] = useState(1);
   const [profile, setProfile] = useState(null);
+  const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
   const [profilePic, setProfilePic] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
@@ -30,6 +31,7 @@ const Profile = () => {
     const fetchData = async () => {
       const profileData = await fetchProfile();
       setProfile(profileData);
+      setPosts(profileData.user.posts);
     };
     fetchData();
   }, []);
@@ -109,7 +111,7 @@ const Profile = () => {
           </div>
           <div>
             {selectedBtn === 1 && (
-              <PostContainer posts={profile?.user?.posts} />
+              <PostContainer posts={posts} setPosts={setPosts} />
             )}
             {selectedBtn === 2 && (
               <ReviewContainer reviews={profile?.user?.receivedReviews} />

@@ -1,13 +1,23 @@
 import './DeletePost.css';
 import { useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import { deletePost } from '../../../utils/postFetch';
+import ErrorModal from '../../ErrorModal';
 
-const DeletePostModal = ({ post, setShowDeleteModal }) => {
+const DeletePostModal = ({ post, setShowDeleteModal, setPosts, posts }) => {
   const [isDeleting, setIsDeleting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     setIsDeleting(true);
-    console.log('delete pressed'); // [TODO - Put backend logic]
+    try {
+      await deletePost(post.id);
+      setPosts(posts.filter((p) => p.id !== post.id));
+      setShowDeleteModal(false);
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(error.message);
+    }
     setIsDeleting(false);
   };
 
@@ -39,6 +49,12 @@ const DeletePostModal = ({ post, setShowDeleteModal }) => {
             </button>
           </div>
         </div>
+        {errorMessage && (
+          <ErrorModal
+            errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage}
+          />
+        )}
       </div>
     </>
   );

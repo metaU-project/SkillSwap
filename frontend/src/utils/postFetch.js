@@ -44,3 +44,18 @@ export const postCreate = async (post) => {
     console.error(error);
   }
 };
+
+export const deletePost = async (id) => {
+  try {
+    const response = await fetch(`${API_ROUTES.posts}/${id}`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
