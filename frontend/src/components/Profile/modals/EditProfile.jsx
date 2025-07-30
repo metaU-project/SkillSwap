@@ -1,11 +1,22 @@
 import './EditProfile.css';
 import { IoMdClose } from 'react-icons/io';
 import { useState } from 'react';
-import { updateProfilePicture } from '../../../utils/profileFetch';
+import {
+  updateProfilePicture,
+  updateProfileDetails,
+  fetchProfile,
+} from '../../../utils/profileFetch';
 import { checkAuth } from '../../../utils/authFetch';
 import { Camera } from 'lucide-react';
+import Loading from '../../Loading/Loading';
+import ErrorModal from '../../ErrorModal';
 
-export default function EditProfile({ profile, setShowModal, onImageUpdate }) {
+export default function EditProfile({
+  profile,
+  setShowModal,
+  onImageUpdate,
+  setProfile,
+}) {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(
     profile.user.profileImage ||
@@ -16,6 +27,8 @@ export default function EditProfile({ profile, setShowModal, onImageUpdate }) {
   const [email, setEmail] = useState(profile.user.email || '');
   const [bio, setBio] = useState(profile.user.bio || '');
   const [location, setLocation] = useState(profile.user.location || '');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -36,6 +49,23 @@ export default function EditProfile({ profile, setShowModal, onImageUpdate }) {
         imageUrl = result.user.profileImage;
         onImageUpdate?.(imageUrl);
       }
+    }
+    try {
+      setLoading(true);
+      const updated = await updateProfileDetails(userId, {
+        first_name,
+        last_name,
+        email,
+        bio,
+        location,
+      });
+      const profile = await fetchProfile(userId);
+      setLoading(false);
+      setProfile(profile);
+    } catch (error) {
+      console.error(error);
+      setError(error.message);
+      setLoading(false);
     }
     setImage(null);
     setShowModal(false);
@@ -115,6 +145,13 @@ export default function EditProfile({ profile, setShowModal, onImageUpdate }) {
           </button>
         </div>
       </div>
+      {loading && <Loading />}
+      {error && (
+        <ErrorModal
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+        />
+      )}
     </div>
   );
 }

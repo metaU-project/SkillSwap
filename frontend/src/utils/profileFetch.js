@@ -38,3 +38,23 @@ export const updateProfilePicture = async (userId, profilePicture) => {
     return { error: error };
   }
 };
+
+export const updateProfileDetails = async (userId, profile) => {
+  try {
+    const response = await fetch(`${API_ROUTES.profile}/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(profile),
+      credentials: 'include',
+    });
+    if (!response.ok) {
+      return { error: ERROR_CODES.ERROR_UPDATING_PROFILE_DETAILS };
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return { error: error };
+  }
+};
