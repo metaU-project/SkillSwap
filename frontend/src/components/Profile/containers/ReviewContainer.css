@@ -50,3 +50,29 @@
 .review-item-bottom {
   margin-bottom: 4px;
 }
+
+@media (max-width: 600px) {
+  .review-item {
+    width: 90%;
+    padding: 8px;
+  }
+
+  .reviews-container-profile {
+    padding: 8px;
+    max-height: 60vh;
+  }
+
+  .review-header {
+    font-size: 1.1rem;
+  }
+
+  .review-item-top,
+  .review-item-bottom {
+    align-items: flex-start;
+    padding: 0px;
+  }
+
+  .author-name {
+    font-size: 0.9rem;
+  }
+}

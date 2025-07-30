@@ -159,7 +159,10 @@ const Profile = () => {
           </div>
         </div>
         <div className="profile-bottom-right">
-          <CalendarContainer onDateSelect={setSelectedDate} />
+          <CalendarContainer
+            className="profile-calendar"
+            onDateSelect={setSelectedDate}
+          />
           <div className="profile-bottom-right-bottom">
             <h4>
               {' '}

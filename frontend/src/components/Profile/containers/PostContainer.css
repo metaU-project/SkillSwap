@@ -20,6 +20,7 @@
 .posts {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 10px;
   margin-top: 20px;
@@ -74,4 +75,34 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .posts {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .post-info {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 12px;
+  }
+
+  .post-info img {
+    margin-bottom: 8px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .post-row {
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
+  .post-info p {
+    margin-top: 8px;
+  }
 }
