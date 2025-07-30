@@ -1,14 +1,20 @@
 import './InterestContainer.css';
+import { Badge } from 'lucide-react';
 const InterestContainer = ({ interests }) => {
   return (
     <div>
-      <h2>My Interests</h2>
       <div className="interests-container">
-        {interests.map((interest) => (
-          <span key={interest} className="interest-item">
-            {interest}
-          </span>
-        ))}
+        <h2 className="interests-header">
+          <Badge />
+          My Interests
+        </h2>
+        <div className="interests">
+          {interests.map((interest) => (
+            <span key={interest} className="interest-item">
+              {interest}
+            </span>
+          ))}
+        </div>
       </div>
     </div>
   );

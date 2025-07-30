@@ -1,18 +1,26 @@
 import './ReviewContainer.css';
+import { Star } from 'lucide-react';
 const ReviewContainer = ({ reviews }) => {
   return (
-    <div>
-      <h2>My Reviews</h2>
-      <div className="reviews-container">
-        {reviews.map((review) => (
-          <p key={review.id} className="review-item">
-            {review.comment}{' '}
-            <i>
-              ~{review.reviewer.first_name} {review.reviewer.last_name}
-            </i>
-          </p>
-        ))}
-      </div>
+    <div className="reviews-container-profile">
+      <h2 className="review-header">
+        <Star /> My Reviews
+      </h2>
+      {reviews.map((review) => (
+        <>
+          <div key={review.id} className="review-item">
+            <div className="review-item-top">
+              <span>
+                <Star className="star-orange" />
+              </span>
+              <p className="author-name">
+                by {review.reviewer.first_name} {review.reviewer.last_name}
+              </p>
+            </div>
+            <div className="review-item-bottom">{review.comment} </div>
+          </div>
+        </>
+      ))}
     </div>
   );
 };

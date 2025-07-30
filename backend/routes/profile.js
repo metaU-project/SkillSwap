@@ -14,6 +14,8 @@ router.get('/:userId', checkAuth, async (req, res) => {
       },
       include: {
         posts: true,
+        likes: true,
+        sessions: true,
         receivedReviews: {
           include: {
             reviewer: {

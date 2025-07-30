@@ -12,7 +12,7 @@ import { TabButton } from './components/TabButton';
 import { fetchProfile } from '../../utils/profileFetch';
 import { useNavigate } from 'react-router-dom';
 import UserSessions from '../schedule/UserSessions';
-import { Mail, MapPin, Calendar } from 'lucide-react';
+import { Mail, MapPin, Calendar, Star, Award, Users } from 'lucide-react';
 
 const Profile = () => {
   const [showModal, setShowModal] = useState(false);
@@ -62,9 +62,9 @@ const Profile = () => {
         </div>
         <div className="user-details">
           <div className="user-details-sub">
-            <h3>
+            <h1>
               {profile?.user.first_name} {profile?.user.last_name}
-            </h3>
+            </h1>
             <div className="details-row">
               <p>
                 <Mail className="icon" />
@@ -79,7 +79,44 @@ const Profile = () => {
               </p>
             </div>
             <p>{profile?.user.bio}</p>
+            <div className="badge-container">
+              <div className="profile-badges">
+                <span>
+                  <Star className="icon-bage orange" />
+                  5-Star User
+                </span>
+                <span>
+                  <Award className="icon-bage orange" />
+                  Top Contributor
+                </span>
+                <span>
+                  <Users className="icon-bage blue" /> Community Leader
+                </span>
+              </div>
+            </div>
           </div>
+        </div>
+      </div>
+      <div className="profile-stats">
+        <div className="stat-box reviews">
+          <h4>{profile?.user.receivedReviews?.length || 0}</h4>
+          <p>Reviews Received</p>
+        </div>
+        <div className="stat-box post">
+          <h4>{posts?.length || 0}</h4>
+          <p>Posts Created</p>
+        </div>
+        <div className="stat-box interests">
+          <h4>{profile?.user.interests?.length || 0}</h4>
+          <p>Interests</p>
+        </div>
+        <div className="stat-box sessions">
+          <h4>{profile?.user.sessions.length || 0} </h4>
+          <p>Sessions Held</p>
+        </div>
+        <div className="stat-box likes">
+          <h4>{profile?.user.likes.length || 0}</h4>
+          <p>Likes Received</p>
         </div>
       </div>
       <div className="profile-bottom">
