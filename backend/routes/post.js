@@ -113,7 +113,6 @@ router.post('/', checkAuth, async (req, res) => {
 
 router.delete('/:postId', checkAuth, async (req, res) => {
   const postId = parseInt(req.params.postId);
-  console.log('Deleting post with id: ', postId);
 
   try {
     const postExists = await prisma.post.findUnique({
@@ -123,7 +122,6 @@ router.delete('/:postId', checkAuth, async (req, res) => {
     if (!postExists) {
       console.error(ERROR_CODES.POST_NOT_FOUND);
     }
-
     await prisma.post.delete({
       where: { id: postId },
     });
