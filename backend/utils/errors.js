@@ -29,6 +29,9 @@ const ERROR_CODES = {
     'There is already a session scheduled for this participant at this time.',
   INTERNAL_ERROR: 'Internal error',
   FAILED_TO_UPDATE_PROFILE: 'Failed to update profile',
+  POST_NOT_FOUND: 'Post not found',
+  POST_DELETED: 'Post deleted',
+  FAILED_TO_DELETE_POST: 'Failed to delete post',
 };
 
 module.exports = ERROR_CODES;

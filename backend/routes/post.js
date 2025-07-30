@@ -111,4 +111,27 @@ router.post('/', checkAuth, async (req, res) => {
   }
 });
 
+router.delete('/:postId', checkAuth, async (req, res) => {
+  const postId = parseInt(req.params.postId);
+  console.log('Deleting post with id: ', postId);
+
+  try {
+    const postExists = await prisma.post.findUnique({
+      where: { id: postId },
+    });
+
+    if (!postExists) {
+      console.error(ERROR_CODES.POST_NOT_FOUND);
+    }
+
+    await prisma.post.delete({
+      where: { id: postId },
+    });
+    res.status(200).json({ message: ERROR_CODES.POST_DELETED });
+  } catch (error) {
+    console.error(ERROR_CODES.FAILED_TO_DELETE_POST, error);
+    res.status(500).json({ error: ERROR_CODES.FAILED_TO_DELETE_POST });
+  }
+});
+
 module.exports = router;
