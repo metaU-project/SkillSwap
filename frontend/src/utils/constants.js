@@ -25,3 +25,10 @@ export const durations = [
   { value: '90', label: ' 1.5 hours' },
   { value: '120', label: ' 2 hours' },
 ];
+
+export const benefits = [
+    'Connect with skill partners',
+    'Share your expertise',
+    'Learn something new',
+    'Build your professional network',
+  ];

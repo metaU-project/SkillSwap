@@ -12,14 +12,17 @@ const ShuffledSkill = () => {
   const [posts, setPosts] = useState([]);
   const [isPlaying, setIsPlaying] = useState(true);
   const [index, setIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
+      setLoading(true);
       const fetchedPosts = await postFetch();
-      if (fetchedPosts && !fetchedPosts.error) {
+      if (fetchedPosts && !fetchedPosts.error && fetchedPosts.length > 0) {
         setPosts(fetchedPosts);
         setCurrentSkill(fetchedPosts[0]);
       }
+      setLoading(false);
     };
     fetchPosts();
   }, []);
@@ -54,108 +57,121 @@ const ShuffledSkill = () => {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
 
+  if (loading) return <Loading />;
+
+  if (!posts.length || !currentSkill) {
+    return (
+      <div className="skill-wrapper">
+        <h2 className="skill-header">Today's Top Skills</h2>
+        <p className="skill-subtext">
+          Discover skills shared by our community.
+        </p>
+        <div className="loading-bubble">
+          <Loading />
+        </div>
+        <p className="skill-footer">No skills available at the moment.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="skill-wrapper">
       <h2 className="skill-header"> Today's Top Skills</h2>
       <p className="skill-subtext">
-        Discover skills shared by our community –– auto-play or shuffle at your
+        Discover skills shared by our community and auto-play or shuffle at your
         pace.
       </p>
-      {currentSkill ? (
-        <div>
-          <div className="skill-controls">
-            <div>
-              <button
-                onClick={() => setIsPlaying(!isPlaying)}
-                className="icon-btn"
+
+      <div>
+        <div className="skill-controls">
+          <div>
+            <button
+              onClick={() => setIsPlaying(!isPlaying)}
+              className="icon-btn"
+            >
+              {isPlaying ? <CiPause1 /> : <CiPlay1 />}
+              {isPlaying ? 'Pause' : 'Play'}
+            </button>
+            <button onClick={handleShuffle} className="icon-btn">
+              <LuShuffle />
+              Shuffle
+            </button>
+          </div>
+        </div>
+
+        <div className="skill-card-wrapper">
+          <div className="skill-card">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSkill.id}
+                layout
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
               >
-                {isPlaying ? <CiPause1 /> : <CiPlay1 />}
-                {isPlaying ? 'Pause' : 'Play'}
-              </button>
-              <button onClick={handleShuffle} className="icon-btn">
-                <LuShuffle />
-                Shuffle
-              </button>
-            </div>
-          </div>
-          <div className="skill-card-wrapper">
-            <div className="skill-card">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSkill.id}
-                  style={{ widows: '100%' }}
-                  layout
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <div className="skill-image-container">
-                    <img
-                      src={currentSkill.imageUrl || fallbackImg}
-                      alt={currentSkill.title}
-                      className="skill-image"
-                    />
-                    <div className="skill-overlay">
-                      <span className="skill-category">
-                        {currentSkill.category}
-                      </span>
-                      <span className="skill-type">{currentSkill.type}</span>
+                <div className="skill-image-container">
+                  <img
+                    src={currentSkill.imageUrl || fallbackImg}
+                    alt={currentSkill.title}
+                    className="skill-image"
+                  />
+                  <div className="skill-overlay">
+                    <span className="skill-category">
+                      {currentSkill.category}
+                    </span>
+                    <span className="skill-type">{currentSkill.type}</span>
+                  </div>
+                </div>
+
+                <div className="skill-details">
+                  <h3 className="skill-title">{currentSkill.title}</h3>
+                  <div className="skill-user-block">
+                    <div className="skill-user-initials">
+                      {getInitials(currentSkill.user.first_name)}
+                      {getInitials(currentSkill.user.last_name)}
+                    </div>
+                    <div>
+                      <p className="skill-user-name">
+                        {currentSkill.user.first_name}{' '}
+                        {currentSkill.user.last_name}
+                      </p>
+                      <p className="skill-duration">
+                        {new Date(currentSkill.createdAt).toLocaleString(
+                          'en-US',
+                          {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric',
+                          }
+                        )}
+                      </p>
                     </div>
                   </div>
-                  <div className="skill-details">
-                    <h3 className="skill-title">{currentSkill.title}</h3>
-                    <div className="skill-user-block">
-                      <div className="skill-user-initials">
-                        {getInitials(currentSkill.user.first_name)}
-                        {getInitials(currentSkill.user.last_name)}
-                      </div>
-                      <div>
-                        <p className="skill-user-name">
-                          {currentSkill.user.first_name}{' '}
-                          {currentSkill.user.last_name}
-                        </p>
-                        <p className="skill-duration">
-                          {new Date(currentSkill.createdAt).toLocaleString(
-                            'en-US',
-                            {
-                              month: 'short',
-                              day: 'numeric',
-                              year: 'numeric',
-                            }
-                          )}
-                        </p>
-                      </div>
-                    </div>
-                    <div className="skill-progress">
-                      {posts.map((post, i) => (
-                        <div
-                          key={post.id}
-                          className={`skill-progress-bar ${i === index ? 'active' : ''}`}
-                        />
-                      ))}
-                    </div>
-                    <button
-                      className="skill-explore-btn"
-                      onClick={handleExplore}
-                    >
-                      Explore This Skill
-                    </button>
+                  <div className="skill-progress">
+                    {posts.map((post, i) => (
+                      <div
+                        key={post.id}
+                        className={`skill-progress-bar ${i === index ? 'active' : ''}`}
+                      />
+                    ))}
                   </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+                  <button
+                    className="skill-explore-btn"
+                    onClick={handleExplore}
+                  >
+                    Explore This Skill
+                  </button>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
-          <p className="skill-footer">
-            {index + 1} of {posts?.length} skills
-          </p>
         </div>
-      ) : (
-        <div className="loading-container">
-          <p className="loading-text">Loading skills...</p>
-          <Loading />
-        </div>
-      )}
+
+        <p className="skill-footer">
+          {index + 1} of {posts?.length} skills
+        </p>
+      </div>
     </div>
   );
 };

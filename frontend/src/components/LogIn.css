@@ -1,57 +1,164 @@
-.login-container {
+.login-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #f8f9fc;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .login-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.login-left {
   flex: 1;
-  width: 100%;
   max-width: 600px;
-  padding: 30px;
+}
+
+.login-left h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.highlight {
+  background: linear-gradient(to right, #6366f1, #9333ea);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-left p {
+  font-size: 1.2rem;
+  color: #4b5563;
+}
+
+.benefits-card {
+  background: white;
   border-radius: 8px;
-  margin: 10px;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.login-container h2 {
-  margin-bottom: 20px;
-  color: #333;
-}
-.login-container h2 {
-  margin-bottom: 20px;
-  color: #333;
+.benefits-card h3 {
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
-.login-container input {
-  width: 80%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.login-container button {
-  width: 80%;
-  padding: 12px;
-  background-color: #004225;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-.login-container button:hover {
-  background-color: #006837;
-}
-.benefits-list {
-  margin: 1rem 0;
-  color: #333;
-}
-
-.benefits-list ul {
-  list-style-type: none;
+.benefits-card ul {
+  list-style: none;
   padding: 0;
 }
 
-.benefits-list li {
-  margin: 0.5rem 0;
+.benefits-card li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  color: #374151;
+}
+
+.check-icon {
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+.login-right {
+  flex: 1;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.login-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.login-form h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.login-form p {
+  font-size: 0.95rem;
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+.input-group {
+  margin-bottom: 1.25rem;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.input-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  background-color: #f9fafb;
+}
+
+.input-icon svg {
+  margin-right: 0.5rem;
+  color: #6b7280;
+}
+
+.input-icon input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
   font-size: 1rem;
 }
-.benefits-list h3 {
-  margin: 0.5rem 0;
+
+.eye-icon {
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #0f766e;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.submit-btn:hover {
+  background-color: #115e59;
+}
+
+.signup-text {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.signup-text a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
 }

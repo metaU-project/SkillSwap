@@ -215,3 +215,79 @@
   margin-bottom: 1rem;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .skill-wrapper {
+    padding: 1rem;
+  }
+
+  .skill-header {
+    font-size: 1.5rem;
+  }
+
+  .skill-subtext {
+    font-size: 0.9rem;
+    text-align: center;
+  }
+
+  .skill-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .skill-card-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skill-card {
+    width: 100%;
+    margin: 0 auto;
+    box-shadow: none;
+    border: 1px solid #e5e7eb;
+  }
+
+  .skill-image-container {
+    height: 200px;
+  }
+
+  .skill-details {
+    padding: 1rem;
+  }
+
+  .skill-title {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .skill-user-block {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .skill-progress {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .skill-explore-btn {
+    font-size: 0.95rem;
+    padding: 0.65rem;
+  }
+
+  .skill-footer {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .loading-container {
+    min-height: 200px;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .loading-text {
+    font-size: 1.25rem;
+  }
+}
