@@ -77,11 +77,13 @@ const PostInfoModal = ({
               <MapPin size={16} /> {post.location}
             </span>
             <span>
-              <Calendar size={16} /> Created on {new Date(post.createdAt).toLocaleDateString()}
+              <Calendar size={16} /> Created on{' '}
+              {new Date(post.createdAt).toLocaleDateString()}
             </span>
             {post.rating && (
               <span>
-                <Star size={16} fill="gold" stroke="gold" /> {post.rating} rating
+                <Star size={16} fill="gold" stroke="gold" /> {post.rating}{' '}
+                rating
               </span>
             )}
           </div>
@@ -92,20 +94,28 @@ const PostInfoModal = ({
               {post.user.last_name[0]}
             </div>
             <div>
-              <strong>{post.user.first_name} {post.user.last_name}</strong>
+              <strong>
+                {post.user.first_name} {post.user.last_name}
+              </strong>
               <p>Member since {post.user.createdAt.slice(0, 4)}</p>
             </div>
           </div>
 
           <div className="modal-actions">
-            <button className="btn interest" onClick={() => setDialogOpen(true)} disabled={isLoading}>
+            <button
+              className="btn interest"
+              onClick={() => setDialogOpen(true)}
+              disabled={isLoading}
+            >
               <Mail size={16} /> {isLoading ? 'Sending...' : 'Express Interest'}
             </button>
-            {post.numReviews > 0 && (
-              <button className="btn outline" onClick={handleReviewClick}>
-                <MessageCircle size={16} /> {isReviewOpen ? 'Hide Reviews' : `View Reviews (${post.numReviews})`}
-              </button>
-            )}
+
+            <button className="btn outline" onClick={handleReviewClick}>
+              <MessageCircle size={16} />{' '}
+              {isReviewOpen
+                ? 'Hide Reviews'
+                : `View Reviews (${post.numReviews})`}
+            </button>
           </div>
 
           {isReviewOpen && (
