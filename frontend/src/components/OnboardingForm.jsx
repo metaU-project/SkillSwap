@@ -41,6 +41,7 @@ const Onboarding = () => {
       setCustomInterests([...customInterests, customInterest]);
       setInterests([...interests, customInterest]);
       setCustomInterest('');
+      setAddInterest(false);
     }
   };
 
@@ -55,92 +56,95 @@ const Onboarding = () => {
   };
 
   return (
-    <div className="onboarding-form">
-      <h2>Welcome to SkillSwap</h2>
-      <p>Please fill out the following information to get started</p>
-      <form onSubmit={handleCompleteOnboarding}>
-        <label>
-          Location
-          <LocationInput location={location} setLocation={setLocation} />
-        </label>
-        <br />
-        <label>
-          Bio
-          <textarea
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-            required
-            placeholder="Tell us a little bit about yourself"
-          />
-        </label>
-        <br />
+    <div className="onboarding-wrapper">
+      <div className="onboarding-card">
+        <h2>Welcome to SkillSwap</h2>
+        <p className="onboarding-subtext">
+          Please fill out the following information to get started
+        </p>
+        <form onSubmit={handleCompleteOnboarding}>
+          <label>
+            Location
+            <LocationInput location={location} setLocation={setLocation} />
+          </label>
 
-        <label>
-          Interests
-          <div className="interests-container">
-            {suggested.map((interest) => (
+          <label>
+            Bio
+            <textarea
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+              required
+              placeholder="Tell us a little bit about yourself..."
+            />
+          </label>
+
+          <label>
+            Interests
+            <div className="interests">
+              {suggested.map((interest) => (
+                <button
+                  key={interest}
+                  type="button"
+                  onClick={() => toggleInterest(interest)}
+                  className={`interest-tag ${interests.includes(interest) ? 'selected' : ''}`}
+                >
+                  {interest}
+                </button>
+              ))}
+              {customInterests.map((interest) => (
+                <button
+                  key={`custom-${interest}`}
+                  type="button"
+                  onClick={() => toggleInterest(interest)}
+                  className={`interest-tag custom ${interests.includes(interest) ? 'selected' : ''}`}
+                >
+                  {interest}
+                </button>
+              ))}
               <button
-                key={interest}
                 type="button"
-                onClick={() => toggleInterest(interest)}
-                className={`interest-chip ${
-                  interests.includes(interest) ? 'selected' : ''
-                }`}
-              >
-                {interest}
-              </button>
-            ))}
-            {customInterests.map((interest) => (
-              <button
-                key={`custom-${interest}`}
-                type="button"
-                onClick={() => toggleInterest(interest)}
-                className={`interest-chip custom ${
-                  interests.includes(interest) ? 'selected' : ''
-                }`}
-              >
-                {interest}
-              </button>
-            ))}
-            <div>
-              <button
-                type="button"
-                className="add-interest-btn"
-                onClick={() => setAddInterest(!addInterest)}
+                className="add-btn"
+                onClick={() => setAddInterest(true)}
               >
                 <IoAddSharp />
               </button>
             </div>
-          </div>
-          {addInterest && (
-            <div className="custom-interest-input">
-              <input
-                placeholder="Add custom interest"
-                value={customInterest}
-                onChange={(e) => {
-                  setCustomInterest(e.target.value);
-                }}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    addCustomInterest();
-                  }
-                }}
-              />
-            </div>
-          )}
-        </label>
-        <br />
-        <button type="submit" className="submit-btn">
-          Finish Onboarding
-        </button>
-      </form>
-      {errorMessage && (
-        <ErrorModal
-          errorMessage={errorMessage}
-          setErrorMessage={setErrorMessage}
-        />
-      )}
+            {addInterest && (
+              <div className="interest-input-row">
+                <input
+                  type="text"
+                  placeholder="Enter custom interest"
+                  value={customInterest}
+                  onChange={(e) => setCustomInterest(e.target.value)}
+                />
+                <button type="button" onClick={addCustomInterest}>
+                  Add
+                </button>
+                <button
+                  type="button"
+                  className="cancel-btn"
+                  onClick={() => {
+                    setCustomInterest('');
+                    setAddInterest(false);
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            )}
+          </label>
+
+          <button className="submit-btn" type="submit">
+            Finish Onboarding
+          </button>
+        </form>
+        {errorMessage && (
+          <ErrorModal
+            errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage}
+          />
+        )}
+      </div>
     </div>
   );
 };

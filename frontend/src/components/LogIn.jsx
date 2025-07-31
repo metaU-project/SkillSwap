@@ -18,7 +18,11 @@ const LogIn = () => {
     const response = await loginUser(email, password);
     if (response?.success) {
       const user = await checkAuth();
-      if (!user.user.location || user.user.interests.length === 0 || !user.user.bio) {
+      if (
+        !user.user.location ||
+        user.user.interests.length === 0 ||
+        !user.user.bio
+      ) {
         navigate('/onboarding');
       } else {
         navigate('/landing');
@@ -80,12 +84,15 @@ const LogIn = () => {
                 placeholder="Enter your password"
                 required
               />
-              <span className="eye-icon" onClick={() => setShowPassword(!showPassword)}>
+              <span
+                className="eye-icon"
+                onClick={() => setShowPassword(!showPassword)}
+              >
                 {showPassword ? <EyeOff /> : <Eye />}
               </span>
             </div>
           </div>
-          
+
           <button className="submit-btn" type="submit">
             Sign In <ArrowRight />
           </button>
@@ -95,7 +102,10 @@ const LogIn = () => {
           </p>
         </form>
         {errorMessage && (
-          <ErrorModal errorMessage={errorMessage} setErrorMessage={setErrorMessage} />
+          <ErrorModal
+            errorMessage={errorMessage}
+            setErrorMessage={setErrorMessage}
+          />
         )}
       </div>
     </div>

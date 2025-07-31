@@ -12,8 +12,12 @@ const SignUpPage = () => {
   ) : (
     <>
       <div className="signup-header">
-        <h1>Join <span className="highlight">SkillSwap</span></h1>
-        <p>Connect with others and exchange skills. It’s free and always will be!</p>
+        <h1>
+          Join <span className="highlight">SkillSwap</span>
+        </h1>
+        <p>
+          Connect with others and exchange skills. It’s free and always will be!
+        </p>
       </div>
 
       <div className="signup-main-content">
