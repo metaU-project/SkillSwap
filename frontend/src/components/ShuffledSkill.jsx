@@ -54,7 +54,7 @@ const ShuffledSkill = () => {
   };
 
   const handleExplore = () => {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   if (loading) return <Loading />;
