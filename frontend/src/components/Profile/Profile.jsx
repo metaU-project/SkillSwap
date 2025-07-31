@@ -166,7 +166,7 @@ const Profile = () => {
           <div className="profile-bottom-right-bottom">
             <h4>
               {' '}
-              <MdAccessTime /> Upcoming Sessions
+              <MdAccessTime /> Your Sessions
             </h4>
             <UserSessions selectedDate={selectedDate} />
           </div>

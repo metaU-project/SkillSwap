@@ -10,6 +10,7 @@ import { checkAuth } from '../../../utils/authFetch';
 import { Camera } from 'lucide-react';
 import Loading from '../../Loading/Loading';
 import ErrorModal from '../../ErrorModal';
+import LocationInput from '../../Location/LocationInput';
 
 export default function EditProfile({
   profile,
@@ -137,13 +138,7 @@ export default function EditProfile({
               placeholder="Write your bio..."
               onChange={(e) => setBio(e.target.value)}
             />
-
-            <input
-              type="text"
-              value={location}
-              placeholder="Location"
-              onChange={(e) => setLocation(e.target.value)}
-            />
+            <LocationInput location={location} setLocation={setLocation} />
           </div>
           <button className="upload-btn-profile" onClick={handleSaveProfile}>
             Save Changes

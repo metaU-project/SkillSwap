@@ -8,6 +8,7 @@ import ErrorModal from './ErrorModal';
 import './OnboardingForm.css';
 import { IoAddSharp } from 'react-icons/io5';
 import LocationInput from '../components/Location/LocationInput';
+import { Loader2 } from 'lucide-react';
 
 const Onboarding = () => {
   const [location, setLocation] = useState('');
@@ -19,6 +20,7 @@ const Onboarding = () => {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState(null);
   const [addInterest, setAddInterest] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchSuggestions = async () => {
@@ -47,10 +49,13 @@ const Onboarding = () => {
 
   const handleCompleteOnboarding = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const res = await completeOnboarding(interests, location, bio);
     if (res?.success) {
+      setLoading(false);
       navigate('/landing');
     } else {
+      setLoading(false);
       setErrorMessage(res?.error);
     }
   };
@@ -133,9 +138,9 @@ const Onboarding = () => {
               </div>
             )}
           </label>
-
           <button className="submit-btn" type="submit">
-            Finish Onboarding
+            Finish Onboarding{' '}
+            {loading && <Loader2 size={16} className="spin-icon" />}
           </button>
         </form>
         {errorMessage && (

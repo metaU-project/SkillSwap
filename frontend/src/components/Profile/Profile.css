@@ -170,6 +170,7 @@
   border-radius: 10px;
   border: #d6d6d6 solid 1px;
   overflow-y: scroll;
+  max-height: 50vh;
 }
 
 .profile-bottom-right-bottom h4 {

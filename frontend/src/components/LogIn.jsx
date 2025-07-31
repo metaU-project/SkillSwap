@@ -1,7 +1,15 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { checkAuth, loginUser } from '../utils/authFetch';
-import { Mail, Lock, CheckCircle, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import {
+  Mail,
+  Lock,
+  CheckCircle,
+  ArrowRight,
+  Eye,
+  EyeOff,
+  Loader2,
+} from 'lucide-react';
 import './LogIn.css';
 import ErrorModal from './ErrorModal';
 import { benefits } from '../utils/constants';
@@ -12,9 +20,11 @@ const LogIn = () => {
   const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleLogIn = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const response = await loginUser(email, password);
     if (response?.success) {
       const user = await checkAuth();
@@ -23,13 +33,17 @@ const LogIn = () => {
         user.user.interests.length === 0 ||
         !user.user.bio
       ) {
+        setLoading(false);
         navigate('/onboarding');
       } else {
+        setLoading(false);
         navigate('/landing');
       }
     } else if (response?.error) {
+      setLoading(false);
       setErrorMessage(response.error);
     } else {
+      setLoading(false);
       setErrorMessage('Something went wrong');
     }
   };
@@ -94,7 +108,7 @@ const LogIn = () => {
           </div>
 
           <button className="submit-btn" type="submit">
-            Sign In <ArrowRight />
+            Sign In {loading ? <Loader2 className="loader" /> : <ArrowRight />}
           </button>
 
           <p className="signup-text">

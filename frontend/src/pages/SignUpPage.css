@@ -44,12 +44,14 @@
   .signup-main-content {
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
+    justify-content: center;
+    padding: 0.3rem;
   }
 
   .signup-left,
   .signup-right {
     width: 100%;
     max-width: 100%;
+    align-items: center;
   }
 }
