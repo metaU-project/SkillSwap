@@ -156,10 +156,7 @@ const ShuffledSkill = () => {
                       />
                     ))}
                   </div>
-                  <button
-                    className="skill-explore-btn"
-                    onClick={handleExplore}
-                  >
+                  <button className="skill-explore-btn" onClick={handleExplore}>
                     Explore This Skill
                   </button>
                 </div>

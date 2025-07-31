@@ -27,8 +27,8 @@ export const durations = [
 ];
 
 export const benefits = [
-    'Connect with skill partners',
-    'Share your expertise',
-    'Learn something new',
-    'Build your professional network',
-  ];
+  'Connect with skill partners',
+  'Share your expertise',
+  'Learn something new',
+  'Build your professional network',
+];

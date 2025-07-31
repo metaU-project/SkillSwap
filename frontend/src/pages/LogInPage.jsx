@@ -10,6 +10,7 @@ const LogInPage = () => {
         <ShuffledSkill />
       </div>
     </>
-  );};
+  );
+};
 
 export default LogInPage;

@@ -29,7 +29,9 @@ const SignUp = () => {
   return (
     <div className="signup-box">
       <h2>Create an account</h2>
-      <p className="subtitle">Enter your details below to create your account</p>
+      <p className="subtitle">
+        Enter your details below to create your account
+      </p>
       <form className="signup-form" onSubmit={handleSignUp}>
         <div className="name-fields">
           <div>

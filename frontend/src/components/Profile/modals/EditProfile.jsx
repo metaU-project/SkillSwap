@@ -38,7 +38,9 @@ export default function EditProfile({
     }
   };
 
-  const handleSaveProfile = async () => {
+  const handleSaveProfile = async (e) => {
+    e.preventDefault();
+    setLoading(true);
     const user = await checkAuth();
     const userId = user?.user.id;
 
@@ -51,7 +53,6 @@ export default function EditProfile({
       }
     }
     try {
-      setLoading(true);
       const updated = await updateProfileDetails(userId, {
         first_name,
         last_name,
@@ -60,16 +61,20 @@ export default function EditProfile({
         location,
       });
       const profile = await fetchProfile(userId);
-      setLoading(false);
       setProfile(profile);
     } catch (error) {
       console.error(error);
       setError(error.message);
+    } finally {
       setLoading(false);
+      setShowModal(false);
+      setImage(null);
     }
-    setImage(null);
-    setShowModal(false);
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="modal-overlay-profile">
@@ -145,7 +150,6 @@ export default function EditProfile({
           </button>
         </div>
       </div>
-      {loading && <Loading />}
       {error && (
         <ErrorModal
           errorMessage={errorMessage}
