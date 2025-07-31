@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { registerUser } from '../utils/authFetch';
 import { useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react';
+import { registerUser } from '../utils/authFetch';
+import { Eye, EyeOff } from 'lucide-react';
 import './SignUp.css';
 import ErrorModal from './ErrorModal';
 
@@ -9,8 +10,9 @@ const SignUp = () => {
   const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -23,66 +25,78 @@ const SignUp = () => {
       setErrorMessage('Registration failed. Please try again.');
     }
   };
-  return (
-    <div className="signup-container">
-      <h2>Get Started Now</h2>
-      <form onSubmit={handleSignUp}>
-        <label>
-          First Name
-          <br />
-          <input
-            type="text"
-            placeholder="First name"
-            value={first_name}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </label>
-        <br />
 
-        <label>
-          Last Name
-          <br />
+  return (
+    <div className="signup-box">
+      <h2>Create an account</h2>
+      <p className="subtitle">Enter your details below to create your account</p>
+      <form className="signup-form" onSubmit={handleSignUp}>
+        <div className="name-fields">
+          <div>
+            <label htmlFor="first_name">First Name</label>
+            <input
+              id="first_name"
+              type="text"
+              placeholder="John"
+              value={first_name}
+              onChange={(e) => setFirstName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="last_name">Last Name</label>
+            <input
+              id="last_name"
+              type="text"
+              placeholder="Doe"
+              value={last_name}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="email">Email</label>
           <input
-            type="text"
-            placeholder="Last name"
-            value={last_name}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Email address
-          <br />
-          <input
+            id="email"
             type="email"
+            placeholder="john.doe@example.com"
             value={email}
-            placeholder="Type your email"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        <br />
-        <label>
-          Password
-          <br />
-          <input
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <button className="login-btn" type="submit">
-          Sign Up
+        </div>
+
+        <div>
+          <label htmlFor="password">Password</label>
+          <div className="input-password-wrapper">
+            <input
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <button
+              type="button"
+              className="toggle-password-btn"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+            </button>
+          </div>
+        </div>
+
+        <button className="signup-btn" type="submit">
+          Create account
         </button>
       </form>
-      <p>
-        Have an account? <Link to="/signin">Sign In</Link>
-      </p>
+
+      <div className="signin-redirect">
+        Already have an account? <Link to="/signin">Sign in</Link>
+      </div>
 
       {errorMessage && (
         <ErrorModal

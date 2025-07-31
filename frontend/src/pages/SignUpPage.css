@@ -1,30 +1,55 @@
-.main-content-signup {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #f0f2f5;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
-
-.header-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.header-section h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #333;
+.signup-header {
+  text-align: center;
+  margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
-.header-section p {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #666;
-  margin-bottom: 2rem;
+.signup-header h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.signup-header .highlight {
+  color: #0ea5e9;
+}
+
+.signup-header p {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+.signup-main-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  flex-wrap: wrap;
+}
+
+.signup-left {
+  flex: 1;
+  min-width: 300px;
+  max-width: 600px;
+}
+
+.signup-right {
+  flex: 1;
+  min-width: 300px;
+  max-width: 480px;
+}
+
+@media (max-width: 768px) {
+  .signup-main-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .signup-left,
+  .signup-right {
+    width: 100%;
+    max-width: 100%;
+  }
 }
