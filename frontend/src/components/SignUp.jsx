@@ -1,7 +1,7 @@
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { registerUser } from '../utils/authFetch';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Loader2 } from 'lucide-react';
 import './SignUp.css';
 import ErrorModal from './ErrorModal';
 
@@ -12,17 +12,22 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const response = await registerUser(first_name, last_name, email, password);
     if (response?.success) {
+      setLoading(false);
       navigate('/signin');
     } else if (response?.error) {
       setErrorMessage(response.error);
+      setLoading(false);
     } else {
       setErrorMessage('Registration failed. Please try again.');
+      setLoading(false);
     }
   };
 
@@ -91,7 +96,8 @@ const SignUp = () => {
           </div>
         </div>
 
-        <button className="signup-btn" type="submit">
+        <button className="signup-btn" type="submit" disabled={loading}>
+          {loading && <Loader2 size={16} className="spin-icon" />}
           Create account
         </button>
       </form>

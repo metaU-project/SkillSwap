@@ -130,6 +130,8 @@
 .eye-icon {
   cursor: pointer;
   margin-left: auto;
+  color: #6b7280;
+  padding: 0.5rem;
 }
 
 .submit-btn {
