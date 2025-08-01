@@ -40,7 +40,7 @@
 .logo-text {
   font-size: 1.5rem;
   font-weight: bold;
-  background: linear-gradient(to right, #3b82f6, #06b6d4);
+  background: linear-gradient(to right, #0a0d13, #0e1618);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -65,29 +65,45 @@
 }
 
 .signout-btn {
+  background: white;
+  border: none;
+  color: #040404;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  background: transparent;
-  border: none;
-  font-size: 0.875rem;
-  color: #6b7280;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 700;
   cursor: pointer;
+  font-size: 14px;
 }
 
 .signout-btn:hover {
-  color: #000000;
+  background: #c280c3;
 }
 
 .icon-btn {
-  background: transparent;
-  border: none;
+  border: 1px solid #ccc;
+  background: white;
+  color: #040404;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 700;
   cursor: pointer;
-  padding: 0.25rem;
+  font-size: 14px;
+}
+
+.icon-btn:hover {
+  background: #c280c3;
 }
 
 .profile-icon {
-  color: #4b5563;
+  color: #000000;
   border-radius: 100%;
   padding: 0.25rem;
   transition: background-color 0.2s;
@@ -101,6 +117,7 @@
   flex: 1;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   margin-left: 1rem;
 }

@@ -1,12 +1,21 @@
 .new-post-btn {
-  margin-left: 1.5rem;
-  padding: 0.4rem 1rem;
-  border: none;
-  background-color: #031710;
+  border: #ff7a00 1px solid;
+  background: #ff7a00;
   color: white;
-  border-radius: 4px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  font-size: 14px;
+}
+
+.new-post-btn:hover {
+  background: #c280c3;
 }
 
 .modal-overlay {
@@ -85,7 +94,8 @@
   border-radius: 5px;
   width: 100%;
   padding: 0.75rem 0.75rem;
-  background-color: black;
+  background-color: #0e7490;
+  border: none;
   color: white;
   font-weight: bold;
   font-size: 1rem;
@@ -94,7 +104,7 @@
 }
 
 .create-btn:hover {
-  background-color: #10a31e;
+  background-color: #0e7490;
   color: white;
 }
 .image-preview img {

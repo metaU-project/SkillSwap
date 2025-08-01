@@ -4,6 +4,7 @@ import { postCreate, postFetch } from '../../../utils/postFetch';
 import ErrorModal from '../../ErrorModal';
 import Loading from '../../Loading/Loading';
 import LocationInput from '../../Location/LocationInput';
+import { Plus } from 'lucide-react';
 
 const CreatedPostModal = ({ setPosts }) => {
   const [showModal, setShowModal] = useState(false);
@@ -49,7 +50,7 @@ const CreatedPostModal = ({ setPosts }) => {
   return (
     <>
       <button className="new-post-btn" onClick={() => setShowModal(true)}>
-        + New Post
+        <Plus size={18} /> New Post
       </button>
       {showModal && (
         <div className="modal-overlay">

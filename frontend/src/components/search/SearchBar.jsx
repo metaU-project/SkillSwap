@@ -48,7 +48,7 @@ function SearchBar({ onSearch, fetchSuggestions }) {
       <div className="search-input-wrapper">
         <input
           type="text"
-          placeholder="Search skills..."
+          placeholder="Search skills, categries or people ..."
           value={input}
           onChange={(e) => {
             setInput(e.target.value);

@@ -30,7 +30,7 @@
 }
 
 .view-all-btn {
-  background-color: black;
+  background-color: #007b8f;
   color: white;
   border: none;
   padding: 0.8rem 2rem;
@@ -41,6 +41,5 @@
 }
 
 .view-all-btn:hover {
-  background-color: #007b8f;
   transform: scale(1.05);
 }

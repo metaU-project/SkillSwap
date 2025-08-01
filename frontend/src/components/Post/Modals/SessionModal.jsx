@@ -107,7 +107,7 @@ const SessionModal = ({ post, posts, setShowRecommend, onSubmit }) => {
           ))}
         </div>
 
-        <div className="action-btns">
+        <div className="action-btns-session">
           <button
             className="submit-btn-session"
             disabled={!selectedPostId}
@@ -116,7 +116,7 @@ const SessionModal = ({ post, posts, setShowRecommend, onSubmit }) => {
             Submit
           </button>
           <button
-            className="cancel-btn"
+            className="cancel-btn-session"
             onClick={() => setShowRecommend(false)}
           >
             Cancel

@@ -80,14 +80,7 @@ const PostInfoModal = ({
               <Calendar size={16} /> Created on{' '}
               {new Date(post.createdAt).toLocaleDateString()}
             </span>
-            {post.rating && (
-              <span>
-                <Star size={16} fill="gold" stroke="gold" /> {post.rating}{' '}
-                rating
-              </span>
-            )}
           </div>
-
           <div className="modal-user">
             <div className="avatar-fallback">
               {post.user.first_name[0]}

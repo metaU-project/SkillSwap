@@ -25,12 +25,14 @@
   right: 15px;
   border: none;
   background: transparent;
-  color: #f9f9f9;
+  color: #000;
   cursor: pointer;
 }
 
 .modal-close-btn:hover {
   opacity: 0.8;
+  background: #232323;
+  color: white;
 }
 
 .modal-image-wrapper img {
@@ -75,11 +77,23 @@
 
 .modal-details {
   display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 24px;
+  background-color: #f9f9f9;
   gap: 20px;
   flex-wrap: wrap;
   color: #666;
   font-size: 14px;
   margin-bottom: 24px;
+}
+
+.modal-details span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .modal-user {
@@ -96,7 +110,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #8b5cf6;
+  background: #0e7490;
   color: white;
   font-weight: bold;
   font-size: 18px;
@@ -126,7 +140,7 @@
 }
 
 .btn.interest {
-  background: #8b5cf6;
+  background: #0e7490;
   color: white;
   border: none;
 }

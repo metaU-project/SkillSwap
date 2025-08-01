@@ -3,10 +3,7 @@
 }
 
 .search-input-wrapper input {
-  width: 100%;
   padding: 8px;
-  padding-right: 30px;
-  box-sizing: border-box;
   border-radius: 12px;
   border: 1px solid #ccc;
 }

@@ -9,6 +9,7 @@ const {
 } = require('../services/trie/index');
 const { loadKnownFilters } = require('../services/search/classifyTokens');
 const rankPosts = require('../services/search/rankPosts');
+const e = require('express');
 
 loadKnownFilters(prisma);
 
@@ -89,6 +90,7 @@ router.get('/', async (req, res) => {
             first_name: true,
             last_name: true,
             location: true,
+            email: true,
             createdAt: true,
           },
         },

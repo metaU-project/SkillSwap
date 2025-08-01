@@ -147,10 +147,12 @@
   border-radius: 9999px;
 }
 
-.action-btns {
+.action-btns-session {
   display: flex;
+  align-items: center;
   gap: 12px;
-  justify-content: flex-end;
+  margin-top: 12px;
+  justify-content: center;
 }
 
 .submit-btn-session {
@@ -168,7 +170,7 @@
   cursor: not-allowed;
 }
 
-.cancel-btn {
+.cancel-btn-session {
   background-color: transparent;
   color: #374151;
   border: 1px solid #d1d5db;

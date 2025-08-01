@@ -21,9 +21,9 @@
 }
 
 .filter-bar select:focus {
-  background-color: #88b04b;
+  background-color: #0e7490;
   color: white;
-  border-color: #88b04b;
+  border-color: #0e7490;
 }
 
 .filter-button {
@@ -37,7 +37,7 @@
 }
 
 .filter-button:hover {
-  background-color: #88b04b;
+  background-color: #0e7490;
   color: white;
-  border-color: #88b04b;
+  border-color: #0e7490;
 }

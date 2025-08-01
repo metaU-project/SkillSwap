@@ -7,7 +7,7 @@ import SearchBar from '../components/search/SearchBar';
 import CreatedPostModal from './Post/Modals/CreatePostModal';
 
 import './NavBar.css';
-import { Search, LogOut, Plus, User, X } from 'lucide-react';
+import { Search, LogOut, Plus, User, X, BookOpen } from 'lucide-react';
 
 const NavBar = ({ setPosts, getPosts }) => {
   const [showSearchBar, setShowSearchBar] = useState(false);
@@ -45,7 +45,9 @@ const NavBar = ({ setPosts, getPosts }) => {
     <nav className="nav-bar">
       <div className="nav-container">
         <Link to="/" className="logo">
-          <div className="logo-badge">SS</div>
+          <div className="logo-badge">
+            <BookOpen />
+          </div>
           <span className="logo-text">SkillSwap</span>
         </Link>
 
@@ -62,7 +64,7 @@ const NavBar = ({ setPosts, getPosts }) => {
         <div className="nav-actions">
           {!showSearchBar && (
             <button className="icon-btn" onClick={toggleSearch}>
-              <Search size={18} />
+              <Search size={18} /> Search
             </button>
           )}
 
@@ -72,15 +74,14 @@ const NavBar = ({ setPosts, getPosts }) => {
               <span>Create</span>
             </button>
           </CreatedPostModal>
-
-          <Link to="/profile" className="profile-icon">
-            <User size={18} />
-          </Link>
-
           <button className="signout-btn" onClick={handleLogout}>
             <LogOut size={16} />
             <span>Sign Out</span>
           </button>
+
+          <Link to="/profile" className="profile-icon">
+            <User size={18} />
+          </Link>
         </div>
       </div>
 
