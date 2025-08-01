@@ -1,5 +1,4 @@
 import LogIn from '../components/LogIn';
-import ShuffledSkill from '../components/ShuffledSkill';
 import './LogInPage.css';
 
 const LogInPage = () => {
@@ -7,7 +6,6 @@ const LogInPage = () => {
     <>
       <div className="main-content-login">
         <LogIn />
-        <ShuffledSkill />
       </div>
     </>
   );
