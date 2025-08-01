@@ -5,7 +5,6 @@ import { GrLocation } from 'react-icons/gr';
 import { FaSearch } from 'react-icons/fa';
 import { checkAuth } from '../../../utils/authFetch';
 import { useEffect } from 'react';
-import Loading from '../../Loading/Loading';
 
 const SessionModal = ({ post, posts, setShowRecommend, onSubmit }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -45,9 +44,6 @@ const SessionModal = ({ post, posts, setShowRecommend, onSubmit }) => {
       setShowRecommend(false);
     }
   };
-  if (!userId) {
-    return <Loading />;
-  }
   return (
     <div className="modal-overlay" onClick={() => setShowRecommend(false)}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>

@@ -10,6 +10,7 @@ import { InteractionTypes } from '../../utils/InteractionTypes';
 import EmailToast from '../schedule/EmailToast';
 import CursorTooltip from '../CursorTooltip/CursorTooltip';
 import { useCursorTooltip } from '../CursorTooltip/userCursorTooltip';
+import { Loader2 } from 'lucide-react';
 
 function PostCard({ post, posts }) {
   const { tooltip, showTooltip, hideTooltip } = useCursorTooltip();
@@ -26,6 +27,7 @@ function PostCard({ post, posts }) {
   const request = 'REQUEST';
   const offer = 'OFFER';
   const [showToast, setShowToast] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handlePostClick = async (e) => {
     e.preventDefault();
@@ -38,8 +40,11 @@ function PostCard({ post, posts }) {
   };
 
   const handleRecommend = (e) => {
+    e.stopPropagation();
+    setLoading(true);
     e.preventDefault();
     setShowRecommend(true);
+    setLoading(false);
   };
 
   const handleLike = async (postId) => {
@@ -157,6 +162,7 @@ function PostCard({ post, posts }) {
           <div className="post-actions">
             <button className="post-recommend-btn" onClick={handleRecommend}>
               Recommend session
+              {loading && <Loader2 size={16} className="spin-icon" />}
             </button>
           </div>
         )}

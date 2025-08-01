@@ -8,9 +8,9 @@ import {
 } from '../../../utils/profileFetch';
 import { checkAuth } from '../../../utils/authFetch';
 import { Camera } from 'lucide-react';
-import Loading from '../../Loading/Loading';
 import ErrorModal from '../../ErrorModal';
 import LocationInput from '../../Location/LocationInput';
+import { Loader2 } from 'lucide-react';
 
 export default function EditProfile({
   profile,
@@ -72,10 +72,6 @@ export default function EditProfile({
       setImage(null);
     }
   };
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <div className="modal-overlay-profile">
@@ -142,6 +138,7 @@ export default function EditProfile({
           </div>
           <button className="upload-btn-profile" onClick={handleSaveProfile}>
             Save Changes
+            {loading && <Loader2 size={16} className="spin-icon" />}
           </button>
         </div>
       </div>
