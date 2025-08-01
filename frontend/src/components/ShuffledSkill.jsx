@@ -87,12 +87,12 @@ const ShuffledSkill = () => {
           <div>
             <button
               onClick={() => setIsPlaying(!isPlaying)}
-              className="icon-btn"
+              className="icon-btn-shuffle"
             >
               {isPlaying ? <CiPause1 /> : <CiPlay1 />}
               {isPlaying ? 'Pause' : 'Play'}
             </button>
-            <button onClick={handleShuffle} className="icon-btn">
+            <button onClick={handleShuffle} className="icon-btn-shuffle">
               <LuShuffle />
               Shuffle
             </button>
