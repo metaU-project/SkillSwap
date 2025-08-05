@@ -18,7 +18,7 @@ const fileUpload = require('express-fileupload');
 const app = express();
 const isProduction = process.env.NODE_ENV === 'production';
 
-app.set('trust proxy', true);
+app.set('trust proxy', 1);
 
 // CORS configuration
 app.use(
@@ -26,37 +26,30 @@ app.use(
     origin: [
       'https://skillswap-frontend-bews.onrender.com',
       'http://localhost:5173',
+      'http://localhost:3000',
     ],
     credentials: true,
   })
 );
 
-// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 
-// Session configuration with mobile compatibility improvements
-app.use(
-  session({
-    store: new pgSession({
-      conString: process.env.DATABASE_URL,
-      tableName: 'session',
-      createTableIfMissing: true,
-    }),
-    secret: process.env.SESSION_SECRET_KEY,
-    resave: false,
-    saveUninitialized: false,
-    name: 'skillswap.sid',
-    cookie: {
-      secure: isProduction,
-      httpOnly: true,
-      sameSite: isProduction ? 'none' : 'lax',
-      maxAge: 24 * 60 * 60 * 1000,
-    },
-    rolling: true,
-  })
-);
+let sessionConfig = {
+  name: 'skillswap.sid',
+  secret: process.env.SESSION_SECRET_KEY,
+  cookie: {
+    secure: isProduction,
+    httpOnly: true,
+    sameSite: isProduction ? 'none' : 'lax',
+    maxAge: 24 * 60 * 60 * 1000,
+  },
+  resave: false,
+  saveUninitialized: false,
+};
+
+app.use(session(sessionConfig));
 app.use('/auth', authRoutes);
 app.use('/onboarding', onboardingRoutes);
 app.use('/post', postRoutes);
