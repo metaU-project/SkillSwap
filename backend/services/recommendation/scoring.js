@@ -59,8 +59,8 @@ function scorePost({
   }
 
   if (viewedPosts.some((v) => v.post?.id === post.id)) {
-    score -= 2;
-    breakdown.viewed = -2;
+    score -= 20;
+    breakdown.viewed = -20;
   }
   if (post.interests?.some((interest) => interests.includes(interest))) {
     score += 4;
