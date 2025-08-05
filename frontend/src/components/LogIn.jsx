@@ -28,6 +28,11 @@ const LogIn = () => {
     const response = await loginUser(email, password);
     if (response?.success) {
       const user = await checkAuth();
+      if (!user || !user.user) {
+        setLoading(false);
+        setErrorMessage('Authentication failed. Please try again.');
+        return;
+      }
       if (
         !user.user.location ||
         user.user.interests.length === 0 ||
