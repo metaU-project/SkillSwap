@@ -25,9 +25,7 @@ app.use(
   cors({
     origin: [
       'https://skillswap-frontend-bews.onrender.com',
-      'https://skillswap-frontend-n642.onrender.com',
       'http://localhost:5173',
-      'http://localhost:3000',
     ],
     credentials: true,
   })
@@ -57,6 +55,7 @@ app.use(
       maxAge: 24 * 60 * 60 * 1000,
     },
     rolling: true,
+    proxy: true,
   })
 );
 app.use('/auth', authRoutes);
