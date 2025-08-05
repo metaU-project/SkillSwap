@@ -22,6 +22,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 app.use(
   cors({
     origin: [
+      'https://skillswap-frontend-bews.onrender.com',
       'https://skillswap-frontend-n642.onrender.com',
       'http://localhost:5173',
       'http://localhost:3000',
