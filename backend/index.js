@@ -55,7 +55,6 @@ app.use(
       maxAge: 24 * 60 * 60 * 1000,
     },
     rolling: true,
-    proxy: true,
   })
 );
 app.use('/auth', authRoutes);
