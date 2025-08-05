@@ -18,6 +18,8 @@ const fileUpload = require('express-fileupload');
 const app = express();
 const isProduction = process.env.NODE_ENV === 'production';
 
+app.set('trust proxy', true);
+
 // CORS configuration
 app.use(
   cors({

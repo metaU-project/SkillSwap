@@ -109,7 +109,7 @@ router.post('/logout', (req, res) => {
     if (err) {
       return res.status(500).json({ error: ERROR_CODES.LOGOUT_FAILED });
     }
-    res.clearCookie('skillswap.sid'); // Use correct session name
+    res.clearCookie('skillswap.sid');
     res.json({ success: true, message: 'Logout successful' });
   });
 });
