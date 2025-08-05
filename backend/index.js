@@ -14,22 +14,28 @@ const { router: searchRoutes } = require('./routes/search');
 const emailRoutes = require('./routes/email');
 const sessionsRoutes = require('./routes/sessions');
 const fileUpload = require('express-fileupload');
-const app = express();
 
-app.set('trust proxy', 1);
+const app = express();
 const isProduction = process.env.NODE_ENV === 'production';
 
-app.use(express.json());
+// CORS configuration
 app.use(
   cors({
     origin: [
-      'https://skillswap-frontend-bews.onrender.com',
+      'https://skillswap-frontend-n642.onrender.com',
       'http://localhost:5173',
+      'http://localhost:3000',
     ],
     credentials: true,
   })
 );
+
+// Middleware
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(fileUpload());
+
+// Session configuration with mobile compatibility improvements
 app.use(
   session({
     store: new pgSession({
@@ -40,17 +46,15 @@ app.use(
     secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: false,
+    name: 'skillswap.sid',
     cookie: {
       secure: isProduction,
       httpOnly: true,
       sameSite: isProduction ? 'none' : 'lax',
       maxAge: 24 * 60 * 60 * 1000,
+      ...(isProduction && { domain: '.onrender.com' }),
     },
-  })
-);
-app.use(
-  fileUpload({
-    limits: { fileSize: 50 * 1024 * 1024 },
+    rolling: true,
   })
 );
 app.use('/auth', authRoutes);
