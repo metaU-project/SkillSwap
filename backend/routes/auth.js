@@ -79,6 +79,13 @@ router.post('/login', loginLimiter, async (req, res) => {
 });
 
 router.get('/me', async (req, res) => {
+  console.log('=== /me route debug ===');
+  console.log('Session ID:', req.sessionID);
+  console.log('Session data:', req.session);
+  console.log('User ID from session:', req.session.userId);
+  console.log('Cookies received:', req.headers.cookie);
+  console.log('========================');
+
   if (!req.session.userId) {
     return res.status(401).json({ message: 'Not logged in' });
   }
