@@ -53,7 +53,6 @@ app.use(
       httpOnly: true,
       sameSite: isProduction ? 'none' : 'lax',
       maxAge: 24 * 60 * 60 * 1000,
-      ...(isProduction && { domain: '.onrender.com' }),
     },
     rolling: true,
   })
